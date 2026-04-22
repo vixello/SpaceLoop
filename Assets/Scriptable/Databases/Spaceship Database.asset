@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee8e4b6a8dd6d149ae751595d8c73e0, type: 3}
+  m_Name: Spaceship Database
+  m_EditorClassIdentifier: Data::Assets.Scripts.Data.Spaceship.SpaceshipDatabase
+  Ids: []
+  _databaseLabel: Spaceship

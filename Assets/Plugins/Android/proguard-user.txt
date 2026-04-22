@@ -1,0 +1,11 @@
+# Keep LoginKT class and all members
+-keep class com.playeveryware.googlelogin.LoginKT { *; }
+
+-keep class com.google.android.gms.games.PlayGanes{ *; }
+
+# Keep companion object methods (@JvmStatic)
+-keepclassmembers class com.playeveryware.googlelogin.LoginKT$Companion { *; }
+
+# Keep Google Identity / Credentials classes if reflection is used
+-keep class com.google.android.libraries.identity.googleid.** { *; }
+-keep class androidx.credentials.** { *; }

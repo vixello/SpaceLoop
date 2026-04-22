@@ -1,0 +1,38 @@
+{
+  "ProductName": "Space Looper",
+  "ProductId": "f013a7ffcd8a48b5a91255fbd1d824db",
+  "ProductVersion": "0.0.0",
+  "imported": true,
+  "Clients": [
+    {
+      "Value": {
+        "ClientId": "xyza78911h0CUBHkEw6edE0IfecMt1K0",
+        "ClientSecret": "Rlje624aV0s1vAifYQn21h4yIJhcdgoSLA2v0t4lXkw",
+        "EncryptionKey": "DE2DD322EBD7AC56826F138A94745DCA7C48122ACB608E9039C744340EE45F52"
+      },
+      "Name": "Client"
+    }
+  ],
+  "Environments": {
+    "Deployments": [
+      {
+        "Value": {
+          "SandboxId": {
+            "Value": "p-w2enmn93v6bek6ra2zun5etg9bbl85"
+          },
+          "DeploymentId": "e75b431657ea41d1bea8ea8d61b2c03e"
+        },
+        "Name": "Deployment"
+      }
+    ],
+    "Sandboxes": [
+      {
+        "Value": {
+          "Value": "0ebd97369e884c85b2240cc92a46e248"
+        },
+        "Name": "Sandbox"
+      }
+    ]
+  },
+  "schemaVersion": "1.0"
+}

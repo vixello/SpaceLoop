@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79f448120cedb34e882438b07b7aba1, type: 3}
+  m_Name: 1_Newcomer
+  m_EditorClassIdentifier: Data::Assets.Scripts.Data.Titles.TitleConfig
+  TitleId: NEWCOMER
+  DisplayName: Newcomer
+  Description: Start the game!
+  RequiredLevel: 0
+  RequiredAchievementId: NONE
+  TMP_FontMaterial: {fileID: -6471479325630977397, guid: c18d470c4d95ced49aa122411cabfd3b, type: 2}
+  TitleColor: {r: 1, g: 0.3019608, b: 0.882353, a: 1}

@@ -1,0 +1,40 @@
+{
+    "name": "Tests",
+    "rootNamespace": "Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "com.playeveryware.eos",
+        "com.playeveryware.eos-Editor",
+        "com.playeveryware.eos-Editor.steam.utility",
+        "com.playeveryware.eos.core",
+        "com.playeveryware.eos.samples",
+        "com.playeveryware.eos.samples.appleauth",
+        "com.playeveryware.eos.samples.appleauth.editor",
+        "com.playeveryware.eos.samples.networking",
+        "com.playeveryware.eos.samples.oculus",
+        "com.playeveryware.eos.samples.postprocessing",
+        "com.playeveryware.eos.samples.steam",
+        "Services.EOS",
+        "Core",
+        "Services.Auth",
+        "UniTask",
+        "Data",
+        "com.Epic.OnlineServices"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

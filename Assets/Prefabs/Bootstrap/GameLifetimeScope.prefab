@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5312181965692859718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3882931127226670443}
+  - component: {fileID: 1286206488279298884}
+  m_Layer: 0
+  m_Name: GameLifetimeScope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3882931127226670443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312181965692859718}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.37678, y: 0.04373, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1286206488279298884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312181965692859718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed420d729736b9d4eac1671498f0f8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bootstrap::Assets.Scripts.Bootstrap.GameLifetimeScope
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects: []
+  _gameManager: {fileID: 2610348953548773659, guid: b9c441e6a274618479d8cea9b11073d9, type: 3}
+  _updatePublisher: {fileID: 3158394950061200984, guid: 5621aceac3c0e0c47bb1c4193371370d, type: 3}
+  _additiveScenesManager: {fileID: -8327298853766243152, guid: 58c08e83d2f07264d909bc125bc2dab2, type: 3}
+  _eosManager: {fileID: 0}
+  _loginManager: {fileID: 3889970509574665912, guid: c3afde82cfd139c4c8e8e4a0ffc7b74f, type: 3}
+  _dialogFactory: {fileID: 1347172145711213081, guid: 2d0802de318271a4e99b84de3be224ed, type: 3}
+  _achievementsManager: {fileID: 938538029615566592, guid: 314b17fcb039b1a489f9be08a1f0cb24, type: 3}
+  _profilePictureDatabase: {fileID: 11400000, guid: ba2f9558f270d91468ed4c52ee8d88fc, type: 2}
+  _titleDatabase: {fileID: 11400000, guid: cf7fb431c35622a428e78d9f0ad5f194, type: 2}
+  _rewardVisualDatabase: {fileID: 11400000, guid: 5675a39aedf78e84d87af61ee6bd31e1, type: 2}
+  _titleManager: {fileID: 2037476287850902304, guid: e529920d40f6f7644a8aaac49421f167, type: 3}
+  _levelCurve: {fileID: 11400000, guid: 320897f5e43ad684ea04aab86ecce394, type: 2}
+  _inputManager: {fileID: 3052656208217132630, guid: 8068d5b64c06b024e8ca63f9f1505723, type: 3}

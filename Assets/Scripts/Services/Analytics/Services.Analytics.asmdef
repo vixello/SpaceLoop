@@ -1,0 +1,16 @@
+{
+    "name": "Services.Analytics",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b31e9033f0570974da09553697016428"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

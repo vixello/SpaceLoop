@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MovingWavesMAT
+  m_Shader: {fileID: 4800000, guid: 26045fc1c3417b84da98689785737745, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _TotalPhases: 28
+    - _WaveAmp: 0.009
+    - _WaveSize: 2.3
+    - _WaveTimeMul: 0.3
+    m_Colors:
+    - _BottomColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TopColor: {r: 0.28853896, g: 0.067817666, b: 0.4792453, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

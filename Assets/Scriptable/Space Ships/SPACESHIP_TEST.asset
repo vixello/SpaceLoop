@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00c7d0b08a5be746b476baaa6dcd90c, type: 3}
+  m_Name: SPACESHIP_TEST
+  m_EditorClassIdentifier: Data::Assets.Scripts.Data.Spaceship.SpaceshipConfig
+  _id: SPACESHIP_TEST
+  _shipPrefab: {fileID: 2504885003918651556, guid: 15c427c50ce77564cb3bfb8490a50f55, type: 3}
+  _shipMaxSpeed: 50
+  _shipAcceleration: 20
+  _shipTurnSpeed: 60

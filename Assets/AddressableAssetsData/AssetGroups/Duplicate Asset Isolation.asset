@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Duplicate Asset Isolation
+  m_GUID: 72e55e2a3cf3dd74f83ddd769dad65bc
+  m_SerializeEntries:
+  - m_GUID: 07ddac96a763d41478525b503dff2f7a
+    m_Address: Assets/Space_Exploration_GUI_Kit/Button_Images/Highlighted_Sprite/large/extra-long-yellow-highlight-large.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e7afc1450c03cb418716e928679cecf
+    m_Address: Assets/Space_Exploration_GUI_Kit/Button_Images/Source_Image_Sprites/large/extra-long-yellow-large.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0edd562265f4761499b01457f88ae581
+    m_Address: Assets/Scriptable/Transitions/From_Login_To_Menu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1682fb2ae82f4df449ef4804f187cb05
+    m_Address: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/cross-128.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68e6db2ebdc24f95958faec2be5558d6
+    m_Address: Assets/TextMesh Pro/Shaders/TMP_SDF.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a96e3f84c3796d46af3d16fa2b6f143
+    m_Address: Assets/Prefabs/SpriteAtlases/UIAtlas.spriteatlasv2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ad0b05adb98a7b458a1a1fe8e3a7ebb
+    m_Address: Assets/Prefabs/UI/Fonts/NikkyouSans-mLKax.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2510478070083d4097bcd6ee855dc29
+    m_Address: Assets/Space_Exploration_GUI_Kit/Button_Images/Pressed_Sprites/Large/large-yellow-pressed-large.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3dd40870e2814b41a13603005c6c410
+    m_Address: Assets/Space_Exploration_GUI_Kit/Button_Images/Pressed_Sprites/Large/extra-long-yellow-pressed-large.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b650f7c8c9ab6914e9929aa950f9fe4d
+    m_Address: Assets/Prefabs/UI/Fonts/NikkyouSans-mLKax SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3265ab4bf004d28a9537516768c1c75
+    m_Address: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
+    m_Address: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0ff5f19761583fa4583aad3eadc2c468, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d96db84e7d7d9a349ae682d115e4bcb3, type: 2}
+    - {fileID: 11400000, guid: cff1ee522fcbbae46939a3088f321d83, type: 2}

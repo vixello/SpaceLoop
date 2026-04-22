@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d616af178760d59498192f66b7d3507c, type: 3}
+  m_Name: Reward Visual Database
+  m_EditorClassIdentifier: Data::Assets.Scripts.Data.Rewards.RewardVisualDatabase
+  _entries:
+  - Type: 0
+    SpriteAtlas:
+      m_AssetGUID: c86a44ad97ff2ef498aa5ebf675370ed
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    SpriteName: coins-tier-1-extra-large_0
+  - Type: 1
+    SpriteAtlas:
+      m_AssetGUID: c86a44ad97ff2ef498aa5ebf675370ed
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    SpriteName: coins-tier-2-extra-large_0
+  - Type: 2
+    SpriteAtlas:
+      m_AssetGUID: c86a44ad97ff2ef498aa5ebf675370ed
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    SpriteName: coins-tier-3-extra-large_0
+  - Type: 5
+    SpriteAtlas:
+      m_AssetGUID: c86a44ad97ff2ef498aa5ebf675370ed
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 1
+    SpriteName: fast-forward-256
