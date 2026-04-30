@@ -1,10 +1,7 @@
 ﻿using Assets.Scripts.Core;
-using Assets.Scripts.Data;
 using Assets.Scripts.Data.Spaceship;
 using Core;
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
@@ -70,6 +67,8 @@ namespace Assets.Scripts.Gameplay
 
         private string _selectedShipID;
         [SerializeField] private SpaceshipConfig _shipConfig;
+        private bool _hasInitializedRotation;
+        private Vector3 _initialForward;
 
         [Inject]
         private void Construct(InputManager inputManager, UpdatePublisher updatePublisher, PlayerSpaceshipManager playerSpaceshipManager)
@@ -79,7 +78,7 @@ namespace Assets.Scripts.Gameplay
             _spaceshipManager = playerSpaceshipManager;
         }
 
-        private async void Awake()
+        private void Awake()
         {
             _inputManager.OnGyroMove += HandleGyroMove;
             _publisher.RegisterObserver(this);
@@ -94,6 +93,8 @@ namespace Assets.Scripts.Gameplay
             _acceleration = _shipConfig.Acceleration;
             _turnSpeed = _shipConfig.TurnSpeed;
             SetCameraTrackingTarget();
+
+            _initialForward = transform.forward;
         }
 
 /*        private async UniTask SetSelectedShipConfig()
@@ -118,10 +119,47 @@ namespace Assets.Scripts.Gameplay
             ApplyMovement();
             float thickness = 0.2f;
 
+            Debug.DrawRay(transform.position, _rb.linearVelocity * 3f, Color.orange);
             Debug.DrawRay(transform.position , _lastGroundNormal * 3f, Color.red);
             Debug.DrawRay(transform.position - transform.right * thickness, transform.up * 3f, Color.green);
         }
 
+        private void OnDrawGizmos()
+        {
+            if (_hoverPoints == null) return;
+
+            foreach (var hp in _hoverPoints)
+            {
+                if (hp.point == null) continue;
+
+                Vector3 origin = hp.point.position;
+
+                // Draw the ray
+                Gizmos.color = Color.gray;
+                // In OnDrawGizmos replace Vector3.down with:
+                Vector3 rayDir = Application.isPlaying ? -_lastGroundNormal : Vector3.down;
+                if (Physics.Raycast(origin, rayDir, out RaycastHit hit, hp.hoverHeight * 3f, _groundLayer))
+                {
+                    // exact contact point
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawSphere(hit.point, 0.3f);
+
+                    // normal at that point
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawRay(hit.point, hit.normal * 1.5f);
+
+                    // optional: line from hover point to ground
+                    Gizmos.color = Color.yellow;
+                    Gizmos.DrawLine(origin, hit.point);
+                }
+                else
+                {
+                    // no hit (important!)
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawSphere(origin + Vector3.down * hp.hoverHeight, 0.3f);
+                }
+            }
+        }
         private Vector3 _lastGroundNormal = Vector3.up;
         private bool _wasGrounded;
         private bool _isGrounded;
@@ -136,144 +174,146 @@ namespace Assets.Scripts.Gameplay
             int leftC = 0, rightC = 0;
             Vector3 avgNormal = Vector3.zero;
 
+            // Use last frame's normal as ray direction — measures true perpendicular distance
+            Vector3 rayDir = -_lastGroundNormal;
+
             for (int i = 0; i < _hoverPoints.Length; i++)
             {
                 var hp = _hoverPoints[i];
-
                 Vector3 origin = hp.point.position;
 
-                if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, hp.hoverHeight * 3f, _groundLayer))
+                if (Physics.Raycast(origin, rayDir, out RaycastHit hit, hp.hoverHeight * 3f, _groundLayer))
                 {
-                    float error = (hp.hoverHeight - hit.distance);
+                    // hit.distance is now the perpendicular distance — no slope correction needed
+                    float error = hp.hoverHeight - hit.distance;
 
                     totalError += error * hp.forceMultiplier;
                     validPoints++;
+                    avgNormal += hit.normal;
 
-                    {
-                        avgNormal += hit.normal;
-                        //normalCount++;
-                    }
                     ApplyEngineHoverShift(hit, hp, ref leftH, ref leftC, ref rightH, ref rightC);
                     ComputeCoreSurfaceTilt(hp, hit, ref frontH, ref frontC, ref backH, ref backC);
                     ApplyCoreShift(hit, hp);
-
-                    if (hp.point.localPosition.x > 0)
-                    {
-                        rightH += hit.distance;
-                        rightC++;
-                    }
-                    else
-                    {
-                        leftH += hit.distance;
-                        leftC++;
-                    }
                 }
             }
+
             float sum = rightH + leftH;
             float normalized = sum > 0 ? (rightH - leftH) / sum : 0f;
-
             _rollFromEngines = normalized * _coreEngineRoll;
+
             float frontAvg = frontC > 0 ? frontH / frontC : 0f;
             float backAvg = backC > 0 ? backH / backC : 0f;
-
-            float pitchTarget = (backAvg - frontAvg) * 10f; // scale for feel
-
+            float pitchTarget = (backAvg - frontAvg) * 10f;
             _pitch = Mathf.Lerp(_pitch, pitchTarget, 6f * Time.fixedDeltaTime);
 
             _isGrounded = validPoints > 0;
+
             if (validPoints == 0)
             {
-                _wasGrounded = true;
-                _rb.AddForce(Vector3.up * Physics.gravity.y, ForceMode.Acceleration);
-
-                // smooth return to upright in air
-                Vector3 airNormal = Vector3.Lerp(_lastGroundNormal, Vector3.up, 2f * Time.fixedDeltaTime);
-                _lastGroundNormal = airNormal;
-
-                ApplyRotation(airNormal);
+                // In air — let real gravity do its job, just smoothly return normal to up
+                _lastGroundNormal = Vector3.Lerp(_lastGroundNormal, Vector3.up, 2f * Time.fixedDeltaTime);
+                ApplyRotation(_lastGroundNormal);
                 return;
             }
 
-            // ─────────────────────────────
-            // 🟢 HOVER FORCE (SPRING)
-            // ─────────────────────────────
+            // ── GROUND NORMAL (compute before spring so force uses this frame's normal) ──
+            avgNormal /= validPoints;
+            Vector3 surfaceNormal = avgNormal.normalized;
+            _lastGroundNormal = surfaceNormal;
+
+            // ── HOVER SPRING ──
             float avgError = totalError / validPoints;
-
-            float breathing =
-                Mathf.Sin(Time.time * _breathingFrequency)
-                * _breathingAmplitude;
-
+            float breathing = Mathf.Sin(Time.time * _breathingFrequency) * _breathingAmplitude;
             float displacement = avgError + breathing;
 
             float springForce = displacement * _hoverSpring;
-            float dampingForce = _rb.linearVelocity.y * _hoverDamper;
-
+            // Damp along the normal direction, not just world Y
+            float dampingForce = Vector3.Dot(_rb.linearVelocity, surfaceNormal) * _hoverDamper;
             float force = springForce - dampingForce;
 
-            _rb.AddForce(transform.up * force, ForceMode.Acceleration);
+            _rb.AddForce(surfaceNormal * force, ForceMode.Acceleration);
 
-            // clamp vertical velocity (stability)
-            _rb.linearVelocity = new Vector3(
-                _rb.linearVelocity.x,
-                Mathf.Clamp(_rb.linearVelocity.y, -10f, 10f),
-                _rb.linearVelocity.z
-            );
+            // Clamp velocity component along normal (not world Y — wrong on slopes)
+            Vector3 vel = _rb.linearVelocity;
+            float normalVel = Vector3.Dot(vel, surfaceNormal);
+            float clampedNormalVel = Mathf.Clamp(normalVel, -10f, 10f);
+            _rb.linearVelocity = vel + surfaceNormal * (clampedNormalVel - normalVel);
 
-            // ─────────────────────────────
-            // 🟢 GROUND NORMAL
-            // ─────────────────────────────
-            avgNormal /= validPoints;
-            Vector3 targetNormal = avgNormal.normalized;
-
-            _lastGroundNormal = targetNormal;
-            Debug.Log($"Last ground normal: {_lastGroundNormal.x} {_lastGroundNormal.y} {_lastGroundNormal.z}");
-
-            ApplyRotation(_lastGroundNormal);
+            ApplyRotation(surfaceNormal);
             _wasGrounded = false;
         }
 
         private void ApplyRotation(Vector3 groundNormal)
         {
-            // 1. Choose a stable forward direction
             Vector3 forward = _rb.linearVelocity;
-            forward.y = 0f;
 
             if (forward.sqrMagnitude < 0.01f)
-                forward = transform.forward;
+                forward = _hasInitializedRotation ? _initialForward : transform.forward;
 
             forward.Normalize();
 
-            // 2. Project forward onto the ground plane
-            forward = Vector3.ProjectOnPlane(forward, groundNormal).normalized;
+            Vector3 projection = Vector3.ProjectOnPlane(forward, groundNormal);
 
-            // 3. Build rotation from corrected axes (safer than LookRotation alone)
-            Quaternion targetRotation = Quaternion.LookRotation(forward, groundNormal);
-            _rb.angularVelocity = Vector3.zero; 
-            _rb.MoveRotation(targetRotation);
+            if (projection.sqrMagnitude < 0.001f)
+                projection = Vector3.ProjectOnPlane(_initialForward, groundNormal);
+
+            Quaternion targetRot = Quaternion.LookRotation(projection, groundNormal);
+
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                10f * Time.deltaTime
+            );
+
+            _hasInitializedRotation = true;
         }
-        private void ApplyEngineHoverShift(RaycastHit hit, HoverPoint hp, ref float leftHeight, ref int leftCount, ref float rightHeight, ref int rightCount)
+
+        private void ApplyEngineHoverShift(
+         RaycastHit hit,
+         HoverPoint hp,
+         ref float leftHeight,
+         ref int leftCount,
+         ref float rightHeight,
+         ref int rightCount)
         {
             if (hp.visual == null) return;
-
             if (hp.Type != HoverPointType.Engine) return;
-            // target height per engine
-            float compression = hp.hoverHeight - hit.distance;
-            float targetY = compression;
+
+            // ─────────────────────────────
+            // 1. BASE HOVER DISTANCE
+            // ─────────────────────────────
+            float baseHeight = hp.hoverHeight;
+
+            // ─────────────────────────────
+            // 2. TILT BIAS (left/right influence)
+            // ─────────────────────────────
+            float side = Mathf.Sign(hp.point.localPosition.x); // +1 right, -1 left
+
+            float tiltBias = -_currentTilt.x * _maxEngineRollAngle * 0.05f;
+
+            // left/right engines react opposite
+            float adjustedHeight = baseHeight + (side * tiltBias);
+
+            // ─────────────────────────────
+            // 3. KEEP ABOVE GROUND
+            // ─────────────────────────────
+            float compression = adjustedHeight - hit.distance;
+
             Vector3 pos = hp.visual.localPosition;
 
-            // smooth vertical bob
-            pos.y = Mathf.Lerp(pos.y, targetY, 10f * Time.deltaTime);
+            pos.y = Mathf.Lerp(
+                pos.y,
+                compression,
+                10f * Time.deltaTime
+            );
 
             hp.visual.localPosition = pos;
 
-            // engine banking response
-            float roll = -_currentTilt.x * _maxEngineRollAngle;
-
-            Quaternion targetRot = Quaternion.Euler(0, 0, roll);
-            hp.visual.localRotation = Quaternion.Slerp(hp.visual.localRotation, targetRot, _engineRollSmoothing * Time.deltaTime);
-
+            // ─────────────────────────────
+            // 4. stats (unchanged)
+            // ─────────────────────────────
             float h = hit.distance;
-       
+
             if (hp.point.localPosition.x > 0)
             {
                 rightHeight += h;
@@ -341,6 +381,11 @@ namespace Assets.Scripts.Gameplay
         }
         private void LateUpdate()
         {
+            foreach (var hp in _hoverPoints)
+            {
+                if (hp.Type == HoverPointType.Engine)
+                    ApplyCosmedicRoll(hp.visual, -_maxEngineRollAngle, _engineRollSmoothing, 0f, 0f);
+            }
             ApplyCosmedicRoll(_coreVisual, _maxCoreRollAngle, _coreRollSmoothing, _pitch, _rollFromEngines);
             ApplyCosmedicRoll(_shipVisual, _maxShipRollAngle, _engineRollSmoothing, 0f, 0f);
         }
@@ -417,7 +462,12 @@ namespace Assets.Scripts.Gameplay
             // IMPORTANT: SmoothDamp on your OWN state, not Euler angles
             rollState = Mathf.Lerp(rollState, targetRoll, smoothTime * Time.deltaTime);
 
-            visual.localRotation = Quaternion.Euler(finalPitch, 0f, rollState);
+//            visual.localRotation = Quaternion.Euler(finalPitch, 0f, rollState);
+
+            Quaternion baseRot = Quaternion.Euler(finalPitch, 0f, 0f);
+            Quaternion rollRot = Quaternion.AngleAxis(rollState, Vector3.forward);
+
+            visual.localRotation = baseRot * rollRot;
         }
 
 

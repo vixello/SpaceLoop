@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Data::Assets.Scripts.Data.Spaceship.SpaceshipConfig
   _id: SPACESHIP_TEST
   _shipPrefab: {fileID: 2504885003918651556, guid: 15c427c50ce77564cb3bfb8490a50f55, type: 3}
-  _shipMaxSpeed: 50
+  _shipMaxSpeed: 100
   _shipAcceleration: 20
-  _shipTurnSpeed: 60
+  _shipTurnSpeed: 120
