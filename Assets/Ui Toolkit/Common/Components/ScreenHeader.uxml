@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Template name="Currencies" src="project://database/Assets/Ui Toolkit/Common/Components/Currencies.uxml" />
+    <ui:VisualElement name="header" class="header accent-cyan" picking-mode="Ignore">
+        <ui:VisualElement class="header__accent" picking-mode="Ignore" />
+        <ui:VisualElement class="header__left" picking-mode="Ignore">
+            <ui:Button name="back-btn" class="btn back-btn">
+                <ui:VisualElement class="chevron chevron--left" picking-mode="Ignore" />
+            </ui:Button>
+            <ui:VisualElement class="header__titles" picking-mode="Ignore">
+                <ui:Label name="screen-eyebrow" class="eyebrow eyebrow--accent" text="SECTION" picking-mode="Ignore" />
+                <ui:Label name="screen-title" class="header__title" text="TITLE" picking-mode="Ignore" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Instance template="Currencies" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Garage/Garage.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <ui:VisualElement name="root" class="screen">
+
+        <!-- 3D garage scene renders behind. Drag to orbit the car. -->
+        <ui:VisualElement name="rotate-drag-zone" class="layer drag-zone" />
+        <ui:Instance template="Scrims" class="layer" picking-mode="Ignore" />
+
+        <ui:VisualElement name="hud" class="layer hud" picking-mode="Ignore">
+
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="YOUR COLLECTION  /  6 OF 24 OWNED" />
+                <ui:AttributeOverrides element-name="screen-title" text="GARAGE" />
+            </ui:Instance>
+
+            <ui:VisualElement class="body" picking-mode="Ignore">
+
+                <!-- LEFT: identity + performance -->
+                <ui:VisualElement name="col-left" class="col-left accent-cyan" picking-mode="Ignore">
+                    <ui:Label name="car-class" class="eyebrow eyebrow--accent" text="CLASS S  /  HYPERCAR" picking-mode="Ignore" />
+                    <ui:Label name="car-name" class="car-title" text="ZEPHYR GT-X" picking-mode="Ignore" />
+
+                    <ui:VisualElement class="pi" picking-mode="Ignore">
+                        <ui:VisualElement class="pi__badge" picking-mode="Ignore">
+                            <ui:Label class="pi__class" text="S" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pi__text" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="PERFORMANCE INDEX" picking-mode="Ignore" />
+                            <ui:VisualElement class="pi__row" picking-mode="Ignore">
+                                <ui:Label name="pi-value" class="pi__value" text="842" picking-mode="Ignore" />
+                                <ui:Label name="pi-delta" class="pi__delta" text="+36" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="stats" picking-mode="Ignore">
+                    <ui:VisualElement class="stat" picking-mode="Ignore">
+                        <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                            <ui:Label class="stat__label" text="SPEED" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="stat__delta" text="+8" picking-mode="Ignore" />
+                            <ui:Label class="stat__value" text="74" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__fill" style="width: 74%;" picking-mode="Ignore" />
+                            <ui:VisualElement class="stat__delta-fill" style="left: 74%; width: 8%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="stat" picking-mode="Ignore">
+                        <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                            <ui:Label class="stat__label" text="ACCELERATION" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="stat__delta" text="" picking-mode="Ignore" />
+                            <ui:Label class="stat__value" text="68" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__fill" style="width: 68%;" picking-mode="Ignore" />
+
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="stat" picking-mode="Ignore">
+                        <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                            <ui:Label class="stat__label" text="HANDLING" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="stat__delta" text="+5" picking-mode="Ignore" />
+                            <ui:Label class="stat__value" text="81" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__fill" style="width: 81%;" picking-mode="Ignore" />
+                            <ui:VisualElement class="stat__delta-fill" style="left: 81%; width: 5%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="stat" picking-mode="Ignore">
+                        <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                            <ui:Label class="stat__label" text="BOOST" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="stat__delta" text="" picking-mode="Ignore" />
+                            <ui:Label class="stat__value" text="59" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__fill" style="width: 59%;" picking-mode="Ignore" />
+
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:VisualElement class="rotate-row" picking-mode="Ignore">
+                        <ui:Button name="rotate-left" class="btn rot-btn accent-cyan">
+                            <ui:VisualElement class="chevron chevron--left" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button name="rotate-right" class="btn rot-btn accent-cyan">
+                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Label class="drag-hint rotate-row__hint" text="DRAG TO ORBIT" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+                <!-- RIGHT: customization panel -->
+                <ui:VisualElement name="col-right" class="col-right accent-cyan" picking-mode="Ignore">
+                    <ui:VisualElement class="tabs-row" picking-mode="Ignore">
+                        <ui:Button name="tab-upgrades" class="btn tab tab--active">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="UPGRADES" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button name="tab-paint" class="btn tab">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="PAINT" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button name="tab-wheels" class="btn tab">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="WHEELS" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="panel" picking-mode="Ignore">
+
+                        <!-- PAGE: UPGRADES -->
+                        <ui:VisualElement name="page-upgrades" class="page" picking-mode="Ignore">
+                            <ui:Label class="eyebrow section-label" text="PERFORMANCE PARTS" picking-mode="Ignore" />
+                            <ui:ScrollView class="list" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <ui:VisualElement class="upg" picking-mode="Ignore">
+                            <ui:VisualElement class="upg__info" picking-mode="Ignore">
+                                <ui:Label class="upg__name" text="ENGINE" picking-mode="Ignore" />
+                                <ui:Label class="upg__effect" text="+8 SPEED   +3 BOOST" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Button class="btn upg__btn accent-amber">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:Label class="upg__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                <ui:VisualElement class="price" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value upg__cost" text="48,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="upg" picking-mode="Ignore">
+                            <ui:VisualElement class="upg__info" picking-mode="Ignore">
+                                <ui:Label class="upg__name" text="TURBO" picking-mode="Ignore" />
+                                <ui:Label class="upg__effect" text="+6 ACCELERATION" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Button class="btn upg__btn accent-amber">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:Label class="upg__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                <ui:VisualElement class="price" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value upg__cost" text="36,500" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="upg" picking-mode="Ignore">
+                            <ui:VisualElement class="upg__info" picking-mode="Ignore">
+                                <ui:Label class="upg__name" text="TRANSMISSION" picking-mode="Ignore" />
+                                <ui:Label class="upg__effect" text="+5 ACCELERATION   +2 SPEED" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Button class="btn upg__btn accent-amber">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:Label class="upg__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                <ui:VisualElement class="price" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value upg__cost" text="22,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="upg" picking-mode="Ignore">
+                            <ui:VisualElement class="upg__info" picking-mode="Ignore">
+                                <ui:Label class="upg__name" text="TIRES" picking-mode="Ignore" />
+                                <ui:Label class="upg__effect" text="+7 HANDLING" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Button class="btn upg__btn upg__btn--max">
+                                <ui:Label class="upg__btn-text" text="MAX" picking-mode="Ignore" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="upg" picking-mode="Ignore">
+                            <ui:VisualElement class="upg__info" picking-mode="Ignore">
+                                <ui:Label class="upg__name" text="WEIGHT REDUCTION" picking-mode="Ignore" />
+                                <ui:Label class="upg__effect" text="+4 HANDLING   +3 ACCELERATION" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Button class="btn upg__btn accent-amber">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:Label class="upg__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                <ui:VisualElement class="price" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value upg__cost" text="18,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:VisualElement>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+
+                        <!-- PAGE: PAINT -->
+                        <ui:VisualElement name="page-paint" class="page page--hidden" picking-mode="Ignore">
+                            <ui:Label class="eyebrow section-label" text="BODY COLOR" picking-mode="Ignore" />
+                            <ui:VisualElement class="swatches" picking-mode="Ignore">
+                            <ui:Button class="btn swatch swatch--on" style="background-color: rgb(0,229,255);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,46,176);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,190,0);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(70,255,160);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(176,96,255);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(64,150,255);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,82,96);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(236,244,255);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(120,134,156);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(30,38,56);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,110,60);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(200,255,0);" />
+                            </ui:VisualElement>
+                            <ui:Label class="eyebrow section-label" text="FINISH" picking-mode="Ignore" />
+                            <ui:VisualElement class="chips" picking-mode="Ignore">
+                            <ui:Button class="btn chip"><ui:Label class="chip__label" text="GLOSS" picking-mode="Ignore" /></ui:Button>
+                            <ui:Button class="btn chip"><ui:Label class="chip__label" text="MATTE" picking-mode="Ignore" /></ui:Button>
+                            <ui:Button class="btn chip chip--active"><ui:Label class="chip__label" text="METALLIC" picking-mode="Ignore" /></ui:Button>
+                            <ui:Button class="btn chip"><ui:Label class="chip__label" text="CHROME" picking-mode="Ignore" /></ui:Button>
+                            <ui:Button class="btn chip"><ui:Label class="chip__label" text="HOLO" picking-mode="Ignore" /></ui:Button>
+                            </ui:VisualElement>
+                            <ui:Label class="eyebrow section-label" text="TRIM AND ACCENT" picking-mode="Ignore" />
+                            <ui:VisualElement class="swatches" picking-mode="Ignore">
+                            <ui:Button class="btn swatch" style="background-color: rgb(236,244,255);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,190,0);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,46,176);" />
+                            <ui:Button class="btn swatch swatch--on" style="background-color: rgb(0,229,255);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(30,38,56);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,82,96);" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+
+                        <!-- PAGE: WHEELS -->
+                        <ui:VisualElement name="page-wheels" class="page page--hidden" picking-mode="Ignore">
+                            <ui:Label class="eyebrow section-label" text="RIM STYLE" picking-mode="Ignore" />
+                            <ui:VisualElement class="wheels" picking-mode="Ignore">
+                            <ui:Button class="btn wheel">
+                                <ui:VisualElement class="wheel__rim" picking-mode="Ignore">
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--b" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__hub" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="wheel__name" text="STREET" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn wheel wheel--on">
+                                <ui:VisualElement class="wheel__rim" picking-mode="Ignore">
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--b" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__hub" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="wheel__name" text="VOLT" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn wheel">
+                                <ui:VisualElement class="wheel__rim" picking-mode="Ignore">
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--b" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__hub" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="wheel__name" text="GHOST BLADE" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn wheel">
+                                <ui:VisualElement class="wheel__rim" picking-mode="Ignore">
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__spoke wheel__spoke--b" picking-mode="Ignore" />
+                                    <ui:VisualElement class="wheel__hub" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="wheel__name" text="APEX FORGED" picking-mode="Ignore" />
+                            </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="toggle-row" picking-mode="Ignore">
+                                <ui:Label class="eyebrow section-label toggle-row__label" text="UNDERGLOW" picking-mode="Ignore" />
+                                <ui:Button name="toggle-underglow" class="btn toggle toggle--on">
+                                    <ui:VisualElement class="toggle__knob" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="swatches" picking-mode="Ignore">
+                            <ui:Button class="btn swatch" style="background-color: rgb(0,229,255);" />
+                            <ui:Button class="btn swatch swatch--on" style="background-color: rgb(255,46,176);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(176,96,255);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(70,255,160);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(255,190,0);" />
+                            <ui:Button class="btn swatch" style="background-color: rgb(236,244,255);" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- BOTTOM: car carousel + actions -->
+            <ui:VisualElement class="bottom" picking-mode="Ignore">
+                <ui:VisualElement class="carousel-wrap" picking-mode="Ignore">
+                    <ui:Label class="eyebrow carousel-label" text="SELECT VEHICLE" picking-mode="Ignore" />
+                    <ui:ScrollView name="car-carousel" class="carousel" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <ui:Button class="btn car rarity-epic car--active">
+                            <ui:VisualElement class="car__art art-car-1" picking-mode="Ignore">
+                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="car__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="car__info" picking-mode="Ignore">
+                                <ui:Label class="car__name" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                                <ui:Label class="car__state car__state--on" text="active" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn car rarity-rare">
+                            <ui:VisualElement class="car__art art-car-2" picking-mode="Ignore">
+                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="car__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="car__info" picking-mode="Ignore">
+                                <ui:Label class="car__name" text="VANTA R9" picking-mode="Ignore" />
+                                <ui:Label class="car__state" text="owned" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn car rarity-rare">
+                            <ui:VisualElement class="car__art art-car-3" picking-mode="Ignore">
+                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="car__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="car__info" picking-mode="Ignore">
+                                <ui:Label class="car__name" text="HELIX 88" picking-mode="Ignore" />
+                                <ui:Label class="car__state" text="owned" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn car rarity-common">
+                            <ui:VisualElement class="car__art art-car-5" picking-mode="Ignore">
+                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="car__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="car__info" picking-mode="Ignore">
+                                <ui:Label class="car__name" text="NOMAD LX" picking-mode="Ignore" />
+                                <ui:Label class="car__state" text="owned" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn car rarity-legendary car--locked">
+                            <ui:VisualElement class="car__art art-car-4" picking-mode="Ignore">
+                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="car__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="car__info" picking-mode="Ignore">
+                                <ui:Label class="car__name" text="OBSIDIAN KING" picking-mode="Ignore" />
+                                <ui:Label class="car__state" text="locked" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn car rarity-legendary car--locked">
+                            <ui:VisualElement class="car__art art-car-6" picking-mode="Ignore">
+                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="car__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="car__info" picking-mode="Ignore">
+                                <ui:Label class="car__name" text="SPECTRE ONE" picking-mode="Ignore" />
+                                <ui:Label class="car__state" text="locked" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:ScrollView>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="actions accent-cyan" picking-mode="Ignore">
+                    <ui:Button name="btn-revert" class="btn btn-ghost actions__revert">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="REVERT" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="btn-equip" class="btn btn-cta actions__equip">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="SAVE AND EQUIP" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
