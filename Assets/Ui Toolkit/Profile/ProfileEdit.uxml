@@ -1,0 +1,449 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Profile/Profile.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Profile/ProfileEdit.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Edit profile: username, avatar, title and frame. Tabs toggle the page elements. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="PILOT PROFILE" />
+                <ui:AttributeOverrides element-name="screen-title" text="EDIT PROFILE" />
+            </ui:Instance>
+            <ui:VisualElement class="body" picking-mode="Ignore">
+                <ui:VisualElement class="pcard pcard--preview accent-cyan" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="LIVE PREVIEW" picking-mode="Ignore" />
+                    <ui:VisualElement class="pcard__center" picking-mode="Ignore">
+                        <ui:VisualElement class="pavatar" picking-mode="Ignore">
+                            <ui:VisualElement class="pavatar__img" name="preview-avatar" picking-mode="Ignore" />
+                            <ui:VisualElement class="pavatar__frame" picking-mode="Ignore" />
+                            <ui:VisualElement class="pavatar__lvl" picking-mode="Ignore">
+                                <ui:VisualElement class="pavatar__lvl-in" picking-mode="Ignore">
+                                    <ui:Label class="pavatar__lvl-num" text="27" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label class="pcard__name pcard__name--center" text="NOVA_RUNNER" name="preview-name" picking-mode="Ignore" />
+                        <ui:Label class="tag tag--accent pcard__title" text="VELOCITY KING" name="preview-title" picking-mode="Ignore" />
+                        <ui:Label class="preview-level" text="LEVEL 27  /  PLATINUM II" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:Label class="preview-note" text="THIS IS HOW OTHER PLAYERS SEE YOU IN LOBBIES AND ON LEADERBOARDS." picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:VisualElement class="pstore edit-panel accent-cyan" picking-mode="Ignore">
+                    <ui:VisualElement class="tabs-row" picking-mode="Position">
+                        <ui:Button class="btn tab tab--active accent-cyan" name="etab-name">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="USERNAME" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan" name="etab-avatar">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="AVATAR" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan" name="etab-title">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="TITLE" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan" name="etab-frame">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="FRAME" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="pstore__pages" picking-mode="Ignore">
+                        <ui:VisualElement class="page" name="edit-page-name" picking-mode="Ignore">
+                            <ui:Label class="eyebrow section-label" text="USERNAME" picking-mode="Ignore" />
+                            <ui:TextField class="name-field" name="username-field" max-length="16" value="NOVA_RUNNER" />
+                            <ui:VisualElement class="name-status" picking-mode="Ignore">
+                                <ui:VisualElement class="check" picking-mode="Ignore" />
+                                <ui:Label class="name-status__text" text="AVAILABLE" name="username-status" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="name-status__count" text="10 / 16" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Label class="hint" text="3 TO 16 CHARACTERS. LETTERS, NUMBERS AND UNDERSCORES ONLY." picking-mode="Ignore" />
+                            <ui:Label class="eyebrow section-label section-label--gap" text="SUGGESTIONS" picking-mode="Ignore" />
+                            <ui:VisualElement class="chips" picking-mode="Ignore">
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="NOVA_RUNNER_X" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="N0VA_DRIFT" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="RUNNER_NOVA" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="NOVA_APEX" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:VisualElement class="fee-box" picking-mode="Ignore">
+                                <ui:Label class="fee-box__title" text="NAME CHANGE" picking-mode="Ignore" />
+                                <ui:Label class="fee-box__text" text="FIRST CHANGE EACH SEASON IS FREE. AFTER THAT IT COSTS" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta fee-box__price" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="200" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="page page--hidden" name="edit-page-avatar" picking-mode="Ignore">
+                            <ui:VisualElement class="chips" picking-mode="Ignore">
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label class="chip__label" text="ALL" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="DRIVERS" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="ICONS" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="SEASONAL" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="ACHIEVEMENT" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <!-- Avatar images: set background-image on each .av__img. -->
+                            <ui:ScrollView class="grid av-grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:Button class="btn av av--on">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(0,229,255,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="av__badge" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__name" text="KAI NOVA" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(255,190,0,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__name" text="DAX" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(70,255,160,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__name" text="JUNO" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(255,46,176,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__name" text="VIPER" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(64,150,255,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__name" text="HALO" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(200,210,225,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__name" text="ROOKIE" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av av--locked av--sel">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(255,46,176,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="av__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__req" text="BUY MIRA" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av av--locked">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(176,96,255,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="av__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__req" text="BUY ZERO-7" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av av--locked">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(255,110,60,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="av__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__req" text="BUY LYRA" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av av--locked">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(255,190,0,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="av__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__req" text="RANKED GOLD" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av av--locked">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(255,46,176,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="av__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__req" text="LEVEL 50" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn av av--locked">
+                                    <ui:VisualElement class="av__img" style="background-color: rgba(120,134,156,0.26);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="av__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="av__cap" picking-mode="Ignore">
+                                        <ui:Label class="av__req" text="SECRET" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="page page--hidden" name="edit-page-title" picking-mode="Ignore">
+                            <ui:ScrollView class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:Button class="btn ttl rarity-epic ttl--on">
+                                    <ui:VisualElement class="ttl__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="tag ttl__tag" text="EPIC" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__name" text="VELOCITY KING" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ttl__lockrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                        <ui:Label class="ttl__on" text="EQUIPPED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn ttl rarity-common">
+                                    <ui:VisualElement class="ttl__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="tag ttl__tag" text="COMMON" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__name" text="ROOKIE RACER" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__own" text="OWNED" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn ttl rarity-rare">
+                                    <ui:VisualElement class="ttl__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="tag ttl__tag" text="RARE" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__name" text="NEON PHANTOM" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__own" text="OWNED" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn ttl rarity-rare ttl--locked">
+                                    <ui:VisualElement class="ttl__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="tag ttl__tag" text="RARE" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__name" text="DRIFT KING" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ttl__lockrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="ttl__req" text="ACHIEVEMENT: DRIFT 10,000 M" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn ttl rarity-epic ttl--locked">
+                                    <ui:VisualElement class="ttl__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="tag ttl__tag" text="EPIC" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__name" text="SPEED DEMON" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ttl__lockrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="ttl__req" text="ACHIEVEMENT: 400 KM/H" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn ttl rarity-legendary ttl--locked">
+                                    <ui:VisualElement class="ttl__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="tag ttl__tag" text="LEGENDARY" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__name" text="SEASON 4 CHAMPION" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ttl__lockrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="ttl__req" text="SEASON PASS TIER 40" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn ttl rarity-legendary ttl--locked">
+                                    <ui:VisualElement class="ttl__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="tag ttl__tag" text="LEGENDARY" picking-mode="Ignore" />
+                                    <ui:Label class="ttl__name" text="LEGEND" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ttl__lockrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="ttl__req" text="PILOT LEVEL 50" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="page page--hidden" name="edit-page-frame" picking-mode="Ignore">
+                            <ui:ScrollView class="grid av-grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:Button class="btn frm frm--on">
+                                    <ui:VisualElement class="frm__demo" picking-mode="Ignore">
+                                        <ui:VisualElement class="frm__ring" style="border-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="frm__name" text="STANDARD" picking-mode="Ignore" />
+                                    <ui:Label class="frm__state" text="EQUIPPED" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn frm">
+                                    <ui:VisualElement class="frm__demo" picking-mode="Ignore">
+                                        <ui:VisualElement class="frm__ring" style="border-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="frm__name" text="MAGENTA PULSE" picking-mode="Ignore" />
+                                    <ui:Label class="frm__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn frm">
+                                    <ui:VisualElement class="frm__demo" picking-mode="Ignore">
+                                        <ui:VisualElement class="frm__ring" style="border-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="frm__name" text="SOLAR" picking-mode="Ignore" />
+                                    <ui:Label class="frm__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn frm frm--locked">
+                                    <ui:VisualElement class="frm__demo" picking-mode="Ignore">
+                                        <ui:VisualElement class="frm__ring" style="border-color: rgb(200,210,225);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="frm__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="frm__name" text="PLATINUM" picking-mode="Ignore" />
+                                    <ui:Label class="frm__req" text="RANKED PLAT" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn frm frm--locked">
+                                    <ui:VisualElement class="frm__demo" picking-mode="Ignore">
+                                        <ui:VisualElement class="frm__ring" style="border-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="frm__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="frm__name" text="CHAMPION" picking-mode="Ignore" />
+                                    <ui:Label class="frm__req" text="SEASON 4 PASS" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn frm frm--locked">
+                                    <ui:VisualElement class="frm__demo" picking-mode="Ignore">
+                                        <ui:VisualElement class="frm__ring" style="border-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="frm__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="frm__name" text="PRISM" picking-mode="Ignore" />
+                                    <ui:Label class="frm__req" text="LEVEL 40" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="edit-footer" picking-mode="Ignore">
+                <ui:VisualElement class="edit-footer__state" picking-mode="Ignore">
+                    <ui:VisualElement class="dirty-dot" picking-mode="Ignore" />
+                    <ui:Label class="edit-footer__text" text="UNSAVED CHANGES" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:Button class="btn btn-ghost edit-footer__cancel accent-cyan" name="btn-edit-cancel">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:Label class="btn-ghost__label" text="CANCEL" picking-mode="Ignore" />
+                </ui:Button>
+                <ui:Button class="btn btn-cta edit-footer__save accent-cyan" name="btn-edit-save">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:Label class="btn-cta__label" text="SAVE CHANGES" picking-mode="Ignore" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

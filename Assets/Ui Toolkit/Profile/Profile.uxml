@@ -1,0 +1,611 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Profile/Profile.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Profile hub. The equipped driver renders in the 3D scene behind. Modals at the bottom are hidden by default; remove the hidden class from C# to show them. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="PILOT PROFILE  /  JOINED MARCH 2026" />
+                <ui:AttributeOverrides element-name="screen-title" text="PROFILE" />
+            </ui:Instance>
+            <ui:VisualElement class="body" picking-mode="Ignore">
+                <ui:VisualElement class="pcard accent-cyan" picking-mode="Ignore">
+                    <ui:VisualElement class="pcard__top" picking-mode="Ignore">
+                        <ui:VisualElement class="pavatar" picking-mode="Ignore">
+                            <ui:VisualElement class="pavatar__img" name="profile-avatar" picking-mode="Ignore" />
+                            <ui:VisualElement class="pavatar__frame" picking-mode="Ignore" />
+                            <ui:VisualElement class="pavatar__lvl" picking-mode="Ignore">
+                                <ui:VisualElement class="pavatar__lvl-in" picking-mode="Ignore">
+                                    <ui:Label class="pavatar__lvl-num" text="27" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pcard__names" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="PILOT" picking-mode="Ignore" />
+                            <ui:Label class="pcard__name" text="NOVA_RUNNER" name="profile-name" picking-mode="Ignore" />
+                            <ui:Label class="tag tag--accent pcard__title" text="VELOCITY KING" name="profile-title" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="rank" picking-mode="Ignore">
+                        <ui:VisualElement class="rank__badge" picking-mode="Ignore">
+                            <ui:VisualElement class="rank__core" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="rank__text" picking-mode="Ignore">
+                            <ui:VisualElement class="rank__row" picking-mode="Ignore">
+                                <ui:Label class="rank__name" text="PLATINUM II" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="rank__num" text="2,340 / 3,000 RP" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pbar" picking-mode="Ignore">
+                                <ui:VisualElement class="pbar__fill" style="width: 78%;" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="xp" picking-mode="Ignore">
+                        <ui:VisualElement class="rank__row" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="LEVEL 27" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="rank__num" text="6,200 / 10,000 XP" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                            <ui:VisualElement class="pbar__fill" style="width: 62%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Button class="btn pid" name="btn-copy-id">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="pid__text" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="PILOT ID" picking-mode="Ignore" />
+                            <ui:Label class="pid__value" text="48-221-097" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="pid__copy" text="COPY" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn btn-cta pcard__edit" name="btn-edit-profile">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="EDIT PROFILE" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:VisualElement class="pcard__row" picking-mode="Ignore">
+                        <ui:Button class="btn btn-ghost pcard__ghost accent-cyan" name="btn-switch-account">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-ghost__label" text="SWITCH ACCOUNT" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn btn-ghost pcard__ghost accent-red" name="btn-logout">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-ghost__label" text="LOG OUT" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:Label class="pcard__linked" text="SIGNED IN WITH GOOGLE PLAY  /  CLOUD SAVE SYNCED" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:VisualElement class="pstore accent-cyan" name="profile-panel" picking-mode="Ignore">
+                    <ui:VisualElement class="tabs-row" picking-mode="Position">
+                        <ui:Button class="btn tab tab--active accent-cyan" name="tab-overview">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="OVERVIEW" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan" name="tab-achievements">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="ACHIEVEMENTS" picking-mode="Ignore" />
+                            <ui:Label class="tab__badge tab__badge--amber" text="1" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan" name="tab-career">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="CAREER" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="pstore__pages" picking-mode="Ignore">
+                        <ui:VisualElement class="page" name="page-overview" picking-mode="Ignore">
+                            <ui:ScrollView class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:VisualElement class="season" picking-mode="Ignore">
+                                    <ui:VisualElement class="season__top" picking-mode="Ignore">
+                                        <ui:Label class="eyebrow eyebrow--accent" text="SEASON 04  /  NEON DRIFT" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:Label class="season__tier" text="TIER 18 / 40" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="pbar" picking-mode="Ignore">
+                                        <ui:VisualElement class="pbar__fill" style="width: 45%;" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="season__next" text="NEXT REWARD: LEGENDARY EXHAUST  /  3 TIERS AWAY" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="kpis" picking-mode="Ignore">
+                                    <ui:VisualElement class="kpi" picking-mode="Ignore">
+                                        <ui:Label class="kpi__num" text="1,284" picking-mode="Ignore" />
+                                        <ui:Label class="kpi__label" text="RACES" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="kpi accent-amber" picking-mode="Ignore">
+                                        <ui:Label class="kpi__num" text="412" picking-mode="Ignore" />
+                                        <ui:Label class="kpi__label" text="WINS" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="kpi" picking-mode="Ignore">
+                                        <ui:Label class="kpi__num" text="806" picking-mode="Ignore" />
+                                        <ui:Label class="kpi__label" text="PODIUMS" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="kpi accent-magenta" picking-mode="Ignore">
+                                        <ui:Label class="kpi__num" text="32%" picking-mode="Ignore" />
+                                        <ui:Label class="kpi__label" text="WIN RATE" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="section-head" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow eyebrow--accent" text="RECENT ACHIEVEMENTS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Button class="btn link" name="btn-view-all-ach">
+                                        <ui:Label class="link__text" text="VIEW ALL" picking-mode="Ignore" />
+                                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-rare ach--claim ach--compact" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="PERFECT START" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 100%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="25 / 25" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="5,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Button class="btn ach__claim accent-amber">
+                                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                            <ui:Label class="ach__claim-text" text="CLAIM" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-common ach--claimed ach--compact" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="FIRST BLOOD" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 100%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="COMPLETE" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="1,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ach__done" picking-mode="Ignore">
+                                            <ui:VisualElement class="check" picking-mode="Ignore" />
+                                            <ui:Label class="ach__done-text" text="CLAIMED" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-rare ach--progress ach--compact" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="DRIFT KING" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 74%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="7,420 / 10,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:Label class="ach__title-reward" text="TITLE  DRIFT KING" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="section-head" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow eyebrow--accent" text="FAVORITES" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="favs" picking-mode="Ignore">
+                                    <ui:VisualElement class="fav" picking-mode="Ignore">
+                                        <ui:VisualElement class="fav__thumb fav__thumb--driver" picking-mode="Ignore">
+                                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="fav__text" picking-mode="Ignore">
+                                            <ui:Label class="eyebrow" text="DRIVER" picking-mode="Ignore" />
+                                            <ui:Label class="fav__name" text="KAI NOVA" picking-mode="Ignore" />
+                                            <ui:Label class="fav__sub" text="612 RACES" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="fav" picking-mode="Ignore">
+                                        <ui:VisualElement class="fav__thumb fav__thumb--car" picking-mode="Ignore">
+                                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="fav__text" picking-mode="Ignore">
+                                            <ui:Label class="eyebrow" text="VEHICLE" picking-mode="Ignore" />
+                                            <ui:Label class="fav__name" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                                            <ui:Label class="fav__sub" text="804 RACES" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="page page--hidden" name="page-achievements" picking-mode="Ignore">
+                            <ui:VisualElement class="ach-summary" picking-mode="Ignore">
+                                <ui:VisualElement class="ach-summary__main" picking-mode="Ignore">
+                                    <ui:VisualElement class="ach-summary__nums" picking-mode="Ignore">
+                                        <ui:Label class="ach-summary__big" text="42" picking-mode="Ignore" />
+                                        <ui:Label class="ach-summary__of" text="/ 120 UNLOCKED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="pbar" picking-mode="Ignore">
+                                        <ui:VisualElement class="pbar__fill" style="width: 35%;" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach-summary__tiers" picking-mode="Ignore">
+                                    <ui:VisualElement class="tier tier--bronze" picking-mode="Ignore">
+                                        <ui:Label class="tier__num" text="20" picking-mode="Ignore" />
+                                        <ui:Label class="tier__label" text="BRONZE" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tier tier--silver" picking-mode="Ignore">
+                                        <ui:Label class="tier__num" text="14" picking-mode="Ignore" />
+                                        <ui:Label class="tier__label" text="SILVER" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tier tier--gold" picking-mode="Ignore">
+                                        <ui:Label class="tier__num" text="6" picking-mode="Ignore" />
+                                        <ui:Label class="tier__label" text="GOLD" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tier tier--plat" picking-mode="Ignore">
+                                        <ui:Label class="tier__num" text="2" picking-mode="Ignore" />
+                                        <ui:Label class="tier__label" text="PLATINUM" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="chips" picking-mode="Ignore">
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label class="chip__label" text="ALL" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="CLAIMABLE" picking-mode="Ignore" />
+                                    <ui:Label class="chip__badge" text="1" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="IN PROGRESS" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="COMPLETED" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label class="chip__label" text="SECRET" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:ScrollView class="grid ach-list" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:VisualElement class="ach rarity-rare ach--claim" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="PERFECT START" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="25 PERFECT LAUNCHES" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 100%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="25 / 25" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="5,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Button class="btn ach__claim accent-amber">
+                                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                            <ui:Label class="ach__claim-text" text="CLAIM" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-common ach--claimed" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="FIRST BLOOD" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="WIN YOUR FIRST RACE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 100%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="COMPLETE" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="1,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ach__done" picking-mode="Ignore">
+                                            <ui:VisualElement class="check" picking-mode="Ignore" />
+                                            <ui:Label class="ach__done-text" text="CLAIMED" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-rare ach--progress" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="DRIFT KING" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="DRIFT 10,000 M IN TOTAL" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 74%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="7,420 / 10,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:Label class="ach__title-reward" text="TITLE  DRIFT KING" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-epic ach--progress" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="SPEED DEMON" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="REACH 400 KM/H" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 97%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="388 / 400" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="50" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-epic ach--progress" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="COLLECTOR" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="OWN 10 VEHICLES" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 40%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="4 / 10" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="80" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-rare ach--progress" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="SQUAD GOALS" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="WIN 10 RACES WITH FRIENDS" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 30%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="3 / 10" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="8,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-legendary ach--progress" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="FULL SET" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="UNLOCK EVERY OUTFIT FOR ONE DRIVER" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 42%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="3 / 7" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="150" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-legendary ach--progress" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="LEGEND" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="REACH PILOT LEVEL 50" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ach__prog" picking-mode="Ignore">
+                                            <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                                <ui:VisualElement class="pbar__fill" style="width: 54%;" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ach__count" text="27 / 50" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:Label class="ach__title-reward" text="TITLE  LEGEND" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ach rarity-legendary ach--locked" picking-mode="Position">
+                                    <ui:VisualElement class="ach__icon" picking-mode="Ignore">
+                                        <ui:VisualElement class="ach__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__text" picking-mode="Ignore">
+                                        <ui:Label class="ach__name" text="???" picking-mode="Ignore" />
+                                        <ui:Label class="ach__desc" text="SECRET ACHIEVEMENT. KEEP RACING TO DISCOVER IT." picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ach__side" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="page page--hidden" name="page-career" picking-mode="Ignore">
+                            <ui:ScrollView class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:VisualElement class="section-head" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow eyebrow--accent" text="CAREER STATS" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="TOTAL DISTANCE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="18,420 KM" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="TOP SPEED" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="412 KM/H" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="DRIFT SCORE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="2,480,500" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="PERFECT STARTS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="112" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="LONGEST WIN STREAK" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="9" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="TIME RACING" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="142 H 18 M" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="MULTIPLAYER RATING" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="2,340 RP" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                                    <ui:Label class="crow__label" text="BEST WEEKLY RANK" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    <ui:Label class="crow__value" text="#184" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="section-head" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow eyebrow--accent" text="RECORDS" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="kpis" picking-mode="Ignore">
+                                    <ui:VisualElement class="kpi" picking-mode="Ignore">
+                                        <ui:Label class="kpi__num" text="1:42.318" picking-mode="Ignore" />
+                                        <ui:Label class="kpi__label" text="BEST LAP  /  NEON DISTRICT" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="kpi" picking-mode="Ignore">
+                                        <ui:Label class="kpi__num" text="388 KM/H" picking-mode="Ignore" />
+                                        <ui:Label class="kpi__label" text="BEST SPEED TRAP" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="modal-layer hidden" name="modal-logout" picking-mode="Position">
+            <ui:VisualElement class="modal accent-red" picking-mode="Ignore">
+                <ui:VisualElement class="modal__bar" picking-mode="Ignore" />
+                <ui:Label class="eyebrow eyebrow--accent" text="ACCOUNT" picking-mode="Ignore" />
+                <ui:Label class="modal__title" text="LOG OUT?" picking-mode="Ignore" />
+                <ui:Label class="modal__text" text="YOU WILL RETURN TO THE LOGIN SCREEN. YOUR PROGRESS IS SAVED TO YOUR ACCOUNT AND WILL BE HERE WHEN YOU COME BACK." picking-mode="Ignore" />
+                <ui:VisualElement class="modal__buttons" picking-mode="Ignore">
+                    <ui:Button class="btn btn-ghost modal__btn accent-cyan" name="btn-logout-cancel">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="CANCEL" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn btn-cta modal__btn accent-red" name="btn-logout-confirm">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="LOG OUT" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="modal-layer hidden" name="modal-switch" picking-mode="Position">
+            <ui:VisualElement class="modal modal--wide accent-cyan" picking-mode="Ignore">
+                <ui:VisualElement class="modal__bar" picking-mode="Ignore" />
+                <ui:Label class="eyebrow eyebrow--accent" text="ACCOUNT" picking-mode="Ignore" />
+                <ui:Label class="modal__title" text="SWITCH ACCOUNT" picking-mode="Ignore" />
+                <ui:Label class="modal__text" text="PICK A SAVED ACCOUNT OR SIGN IN WITH A DIFFERENT ONE." picking-mode="Ignore" />
+                <ui:VisualElement class="acct-list" picking-mode="Ignore">
+                    <ui:Button class="btn acct acct--active">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="acct__avatar" style="background-color: rgba(0,229,255,0.28);" picking-mode="Ignore" />
+                        <ui:VisualElement class="acct__text" picking-mode="Ignore">
+                            <ui:Label class="acct__name" text="NOVA_RUNNER" picking-mode="Ignore" />
+                            <ui:Label class="acct__sub" text="LEVEL 27  /  GOOGLE PLAY" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="tag tag--accent acct__tag" text="ACTIVE" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn acct">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="acct__avatar" style="background-color: rgba(255,46,176,0.28);" picking-mode="Ignore" />
+                        <ui:VisualElement class="acct__text" picking-mode="Ignore">
+                            <ui:Label class="acct__name" text="DRIFT_GHOST" picking-mode="Ignore" />
+                            <ui:Label class="acct__sub" text="LEVEL 12  /  APPLE GAME CENTER" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn acct">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="acct__avatar" style="background-color: rgba(255,190,0,0.28);" picking-mode="Ignore" />
+                        <ui:VisualElement class="acct__text" picking-mode="Ignore">
+                            <ui:Label class="acct__name" text="GUEST_4821" picking-mode="Ignore" />
+                            <ui:Label class="acct__sub" text="LEVEL 3  /  GUEST" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn acct acct--add" name="btn-add-account">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="acct__plus" picking-mode="Ignore">
+                            <ui:VisualElement class="plus-h" picking-mode="Ignore" />
+                            <ui:VisualElement class="plus-v" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="acct__add-text" text="ADD ANOTHER ACCOUNT" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="modal__buttons" picking-mode="Ignore">
+                    <ui:Button class="btn btn-ghost modal__btn accent-cyan" name="btn-switch-cancel">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="CLOSE" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

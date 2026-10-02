@@ -1,0 +1,344 @@
+/* =====================================================================
+   PROFILE EDIT  (requires Common.uss + Profile.uss)
+   Tabs: USERNAME / AVATAR / TITLE / FRAME. Left card previews changes
+   live. Locked avatars, titles and frames stay visible with their
+   unlock requirement. Footer shows the unsaved indicator.
+   ===================================================================== */
+
+.pcard--preview { min-width: 460px; }
+
+.pcard__center { align-items: center; margin-top: 30px; }
+
+.pcard__name--center {
+    margin-top: 34px;
+    -unity-text-align: middle-center;
+}
+
+.pcard--preview .pcard__title { align-self: center; margin-top: 8px; }
+.pcard--preview .pavatar { width: 200px; height: 200px; }
+
+.preview-level {
+    margin-top: 16px;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+}
+
+.preview-note {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--c-text-3);
+    white-space: normal;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.edit-panel { width: 56%; max-width: 1060px; }
+
+.section-label { margin: 6px 0 12px 0; }
+.section-label--gap { margin-top: 26px; }
+
+/* ---------------------------------------------------------------------
+   1. USERNAME
+   --------------------------------------------------------------------- */
+.name-field { margin: 0; }
+
+.name-field .unity-base-text-field__input {
+    height: 92px;
+    margin: 0;
+    padding: 0 28px 0 28px;
+    color: var(--c-text);
+    font-size: 38px;
+    letter-spacing: 6px;
+    background-color: var(--c-fill-soft);
+    border-width: 0;
+    border-bottom-width: 4px;
+    border-radius: 0;
+    border-color: var(--accent);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.name-field .unity-base-text-field__input:focus {
+    background-color: var(--accent-soft);
+    border-color: var(--accent-hi);
+}
+
+.name-status {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.name-status__text {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--c-good);
+    -unity-font-style: bold;
+}
+
+.name-status .check { border-color: var(--c-good); }
+
+.name-status__count {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+.hint {
+    margin-top: 8px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.fee-box {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 18px 22px 18px 22px;
+    background-color: rgba(255, 46, 176, 0.08);
+    border-left-width: 3px;
+    border-color: rgb(255, 46, 176);
+}
+
+.fee-box__title {
+    margin-right: 22px;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: rgb(255, 46, 176);
+    -unity-font-style: bold;
+}
+
+.fee-box__text {
+    flex-grow: 1;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.fee-box__price .price__value { font-size: 24px; }
+
+/* ---------------------------------------------------------------------
+   2. AVATAR + FRAME GRIDS
+   --------------------------------------------------------------------- */
+.av-grid .unity-scroll-view__content-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.av {
+    width: 150px;
+    height: 176px;
+    margin: 0 10px 10px 0;
+    background-color: var(--c-fill-soft);
+    border-width: 1px;
+    border-color: var(--c-hair);
+}
+
+.av:focus { border-color: var(--c-hair); }
+.av:hover { border-color: var(--accent); background-color: var(--c-fill-mid); scale: 1.06 1.06; translate: 0 -3px; }
+.av--on, .av--on:focus { border-color: var(--accent); background-color: var(--accent-soft); }
+.av--sel, .av--sel:focus { border-width: 2px; border-color: rgb(255, 255, 255); }
+
+/* IMAGE SLOT: avatar picture */
+.av__img {
+    height: 134px;
+    overflow: hidden;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.av__veil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 134px;
+    background-color: rgba(3, 6, 13, 0.60);
+}
+
+.av__lock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 134px;
+    align-items: center;
+    justify-content: center;
+}
+
+.av__badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+}
+
+.av__badge .check { margin: 0 0 3px 0; border-color: var(--c-ink); }
+
+.av__cap { height: 38px; justify-content: center; }
+
+.av__name {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.av__req {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgb(255, 190, 0);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.frm {
+    width: 190px;
+    height: 200px;
+    margin: 0 10px 10px 0;
+    align-items: center;
+    background-color: var(--c-fill-soft);
+    border-width: 1px;
+    border-color: var(--c-hair);
+}
+
+.frm:focus { border-color: var(--c-hair); }
+.frm:hover { border-color: var(--accent); background-color: var(--c-fill-mid); scale: 1.06 1.06; }
+.frm--on, .frm--on:focus { border-color: var(--accent); background-color: var(--accent-soft); }
+.frm--locked { opacity: 0.7; }
+.frm--locked:hover { opacity: 1; }
+
+.frm__demo { width: 100%; height: 118px; align-items: center; justify-content: center; }
+.frm__ring { width: 78px; height: 78px; border-width: 4px; background-color: var(--c-fill-soft); }
+
+.frm__lock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 118px;
+    align-items: center;
+    justify-content: center;
+}
+
+.frm__name {
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+}
+
+.frm__state, .frm__req {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+.frm__req { color: rgb(255, 190, 0); }
+
+/* ---------------------------------------------------------------------
+   3. TITLE LIST
+   --------------------------------------------------------------------- */
+.ttl {
+    flex-direction: row;
+    align-items: center;
+    height: 80px;
+    margin-bottom: 8px;
+    padding: 0 24px 0 28px;
+    background-color: var(--c-fill-soft);
+}
+
+.ttl:hover { background-color: var(--c-fill-mid); translate: -6px 0; }
+.ttl--on, .ttl--on:hover { background-color: var(--accent-soft); }
+
+.ttl__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--rarity);
+}
+
+.ttl__tag { margin-right: 22px; width: 110px; }
+
+.ttl__name {
+    font-size: 26px;
+    letter-spacing: 4px;
+    color: var(--c-text);
+    white-space: nowrap;
+    -unity-font-style: bold-and-italic;
+}
+
+.ttl--locked .ttl__name { color: var(--c-text-2); }
+
+.ttl__lockrow { flex-direction: row; align-items: center; }
+
+.ttl__req {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgb(255, 190, 0);
+    -unity-font-style: bold;
+}
+
+.ttl__on {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    -unity-font-style: bold;
+}
+
+.ttl__own {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+/* ---------------------------------------------------------------------
+   4. FOOTER
+   --------------------------------------------------------------------- */
+.edit-footer {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top-width: 1px;
+    border-color: var(--c-hair);
+}
+
+.edit-footer__state { flex-direction: row; align-items: center; }
+
+.dirty-dot {
+    width: 10px;
+    height: 10px;
+    margin-right: 14px;
+    rotate: 45deg;
+    background-color: rgb(255, 190, 0);
+}
+
+.edit-footer__text {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: rgb(255, 190, 0);
+    -unity-font-style: bold;
+}
+
+.edit-footer__cancel { min-width: 220px; height: 76px; margin-right: 12px; }
+.edit-footer__save { min-width: 340px; height: 76px; }

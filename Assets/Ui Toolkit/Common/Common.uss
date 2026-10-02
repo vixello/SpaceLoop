@@ -660,3 +660,13 @@
 .glyph--perf .g-a    { left: 6px; top: 8px; width: 26px; height: 5px; }
 .glyph--perf .g-b    { left: 6px; top: 17px; width: 26px; height: 5px; opacity: 0.6; }
 .glyph--perf .g-c    { left: 6px; top: 26px; width: 26px; height: 5px; opacity: 0.3; }
+
+/* ---------------------------------------------------------------------
+   13. DANGER ACCENT (logout, destructive confirmations)
+   --------------------------------------------------------------------- */
+.accent-red {
+    --accent: rgb(255, 82, 96);
+    --accent-hi: rgb(255, 140, 150);
+    --accent-soft: rgba(255, 82, 96, 0.14);
+    --accent-mid: rgba(255, 82, 96, 0.42);
+}
