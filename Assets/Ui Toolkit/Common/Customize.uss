@@ -1,0 +1,442 @@
+/* =====================================================================
+   CUSTOMIZE  (shared by VehicleCustomization and DriverCustomization)
+   Layout: category rail (left) | 3D view (center) | item detail (right)
+           item strip (bottom, horizontal).
+   Tile states: --equipped, --locked, --selected. Locked items stay
+   visible and selectable so players can preview what they are working
+   toward; the detail panel explains how to unlock them.
+   Requires Common.uss.
+   ===================================================================== */
+
+.cz-body {
+    flex-direction: row;
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+/* ---------------------------------------------------------------------
+   1. CATEGORY RAIL
+   --------------------------------------------------------------------- */
+.cz-rail {
+    width: 156px;
+    flex-shrink: 0;
+}
+
+.cat {
+    height: 84px;
+    margin-bottom: 6px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-surface);
+}
+
+.cat .glyph { margin-bottom: 6px; opacity: 0.75; transition-property: opacity, scale; transition-duration: 0.18s; }
+
+.cat__label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.cat .edge { width: 0; }
+
+.cat:hover { background-color: var(--c-surface-hi); translate: 6px 0; }
+.cat:hover .glyph { opacity: 1; scale: 1.12 1.12; }
+.cat:hover .cat__label { color: var(--c-text); }
+.cat:hover .edge { width: 4px; }
+
+.cat--active, .cat--active:hover { background-color: var(--accent-soft); }
+.cat--active .glyph { opacity: 1; }
+.cat--active .cat__label { color: var(--c-text); }
+.cat--active .edge, .cat--active:hover .edge { width: 6px; }
+
+/* ---------------------------------------------------------------------
+   2. CENTER (camera presets)
+   --------------------------------------------------------------------- */
+.cz-center {
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: center;
+    margin: 0 24px 0 24px;
+}
+
+.cz-cams { justify-content: center; }
+
+/* ---------------------------------------------------------------------
+   3. DETAIL PANEL
+   --------------------------------------------------------------------- */
+.cz-detail {
+    width: 29%;
+    min-width: 440px;
+    max-width: 560px;
+    padding: 22px 24px 22px 28px;
+    background-color: var(--c-surface);
+    border-top-width: 2px;
+    border-color: var(--rarity);
+}
+
+.cz-detail__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: var(--rarity);
+}
+
+.cz-detail__name {
+    margin-top: 2px;
+    font-size: 42px;
+    letter-spacing: 5px;
+    color: var(--c-text);
+    white-space: nowrap;
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.cz-detail__tags {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.cz-detail__state {
+    margin-left: 14px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: rgb(255, 190, 0);
+    -unity-font-style: bold;
+}
+
+.cz-detail__desc {
+    margin-top: 12px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--c-text-2);
+    white-space: normal;
+    -unity-text-align: upper-left;
+}
+
+.cz-detail__optlabel { margin: 18px 0 10px 0; }
+
+.cz-detail__actions {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.cz-detail__main { flex-grow: 1; height: 80px; }
+.cz-detail__shop { min-width: 140px; height: 80px; margin-right: 10px; padding: 0 20px 0 20px; }
+
+.btn-cta--disabled, .btn-cta--disabled:hover {
+    background-color: var(--c-fill-mid);
+    scale: 1 1;
+}
+
+.btn-cta--disabled .btn-cta__label { color: var(--c-text-3); }
+
+/* Unlock requirement box */
+.unlock-box {
+    margin-top: 16px;
+    padding: 14px 16px 14px 16px;
+    background-color: rgba(255, 190, 0, 0.08);
+    border-left-width: 3px;
+    border-color: rgb(255, 190, 0);
+}
+
+.unlock-box__row { flex-direction: row; align-items: center; }
+.unlock-box .lock { margin-right: 16px; }
+.unlock-box .lock__shackle { border-color: rgb(255, 190, 0); }
+.unlock-box .lock__body { background-color: rgb(255, 190, 0); }
+
+.unlock-box__title {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgb(255, 190, 0);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.unlock-box__req {
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.unlock-box__bar {
+    height: 6px;
+    margin-top: 12px;
+    background-color: var(--c-fill-mid);
+}
+
+.unlock-box__fill { height: 100%; background-color: rgb(255, 190, 0); }
+
+.unlock-box__prog {
+    margin-top: 6px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-right;
+}
+
+/* Color swatches (detail panel) */
+.cz-swatches { flex-direction: row; flex-wrap: wrap; }
+
+.swatch {
+    width: 52px;
+    height: 52px;
+    margin: 0 10px 10px 0;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.swatch:focus { border-color: rgba(255, 255, 255, 0.12); }
+.swatch:hover { scale: 1.14 1.14; border-color: rgb(255, 255, 255); }
+.swatch--on, .swatch--on:focus { border-width: 4px; border-color: rgb(255, 255, 255); }
+
+/* ---------------------------------------------------------------------
+   4. BOTTOM ITEM STRIP
+   --------------------------------------------------------------------- */
+.cz-strip {
+    flex-shrink: 0;
+    margin-top: 16px;
+}
+
+.cz-strip__head {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.cz-strip__title {
+    font-size: 26px;
+    letter-spacing: 6px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+}
+
+.carousel-count {
+    margin-left: 18px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+}
+
+.cz-strip .chips { margin-top: 8px; }
+.cz-strip .chip { height: 36px; margin-bottom: 0; }
+
+.cz-strip__pages { height: 270px; }
+
+.cz-list { flex-grow: 1; }
+
+.cz-list .unity-scroll-view__content-container {
+    flex-direction: row;
+    align-items: flex-end;
+    padding-top: 12px;
+}
+
+/* ---------------------------------------------------------------------
+   5. ITEM TILE
+   --------------------------------------------------------------------- */
+.tile {
+    width: 176px;
+    height: 200px;
+    margin-right: 10px;
+    background-color: var(--c-fill-soft);
+    border-width: 1px;
+    border-color: var(--c-hair);
+}
+
+.tile--tall { width: 188px; height: 256px; }
+
+.tile:focus { border-color: var(--c-hair); }
+
+.tile:hover {
+    background-color: var(--c-fill-mid);
+    border-color: var(--rarity);
+    scale: 1.06 1.06;
+    translate: 0 -6px;
+}
+
+.tile--equipped, .tile--equipped:focus { background-color: var(--rarity-soft); border-color: var(--accent); }
+.tile--selected, .tile--selected:focus { border-width: 2px; border-color: rgb(255, 255, 255); }
+
+.tile__bar { height: 3px; background-color: var(--rarity); }
+
+.tile__art {
+    height: 118px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgba(3, 6, 13, 0.35);
+}
+
+.tile--tall .tile__art { height: 172px; }
+
+.tile__veil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(3, 6, 13, 0.58);
+}
+
+.tile__lock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile__badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+}
+
+.tile__badge .check { margin: 0 0 3px 0; border-color: var(--c-ink); }
+
+.tile__info { padding: 8px 12px 8px 14px; }
+
+.tile__name {
+    font-size: 17px;
+    letter-spacing: 2px;
+    color: var(--c-text);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.tile__state {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.tile__state--on { color: var(--accent); }
+
+.tile__reqrow { flex-direction: row; align-items: center; }
+
+.tile__req {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgb(255, 190, 0);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.tile--locked .tile__name { color: var(--c-text-2); }
+
+/* ---------------------------------------------------------------------
+   6. TILE ART (stand-ins; replace with icons or render captures)
+   --------------------------------------------------------------------- */
+.tile__none {
+    width: 54px;
+    height: 54px;
+    border-radius: 27px;
+    border-width: 3px;
+    border-color: var(--c-text-3);
+    align-items: center;
+    justify-content: center;
+}
+
+.tile__none-line {
+    width: 56px;
+    height: 3px;
+    rotate: -45deg;
+    background-color: var(--c-text-3);
+}
+
+.tile__swatch {
+    width: 84px;
+    height: 84px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.35);
+    rotate: 45deg;
+    overflow: hidden;
+}
+
+.tile--tall .tile__swatch { width: 96px; height: 96px; }
+
+.tile__shine {
+    position: absolute;
+    left: -20%;
+    top: 0;
+    width: 40%;
+    height: 200%;
+    background-color: rgba(255, 255, 255, 0.22);
+    rotate: 20deg;
+}
+
+.tile__glow {
+    width: 76px;
+    height: 76px;
+    border-radius: 38px;
+    border-width: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile__glow-core {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.tile__wrap { width: 96px; height: 64px; overflow: hidden; background-color: rgba(255, 255, 255, 0.06); }
+.tw { position: absolute; top: -20px; height: 110px; rotate: 24deg; }
+.tw-a { left: 14px; width: 16px; }
+.tw-b { left: 40px; width: 8px; }
+.tw-c { left: 58px; width: 22px; opacity: 0.7; }
+
+.tile__trail { width: 110px; height: 70px; }
+.tr { position: absolute; right: 0; height: 6px; }
+.tr-a { top: 14px; width: 110px; }
+.tr-b { top: 32px; width: 76px; opacity: 0.65; }
+.tr-c { top: 50px; width: 44px; opacity: 0.35; }
+
+.tile__aero { width: 100px; height: 70px; }
+.aero-wing { position: absolute; left: 4px; top: 10px; width: 92px; height: 10px; rotate: -8deg; }
+.aero-fin { position: absolute; top: 20px; width: 8px; height: 34px; }
+.aero-fin--l { left: 20px; }
+.aero-fin--r { right: 20px; }
+
+.tile__portrait {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.car__slash {
+    position: absolute;
+    right: 22%;
+    top: -50%;
+    width: 26px;
+    height: 220%;
+    rotate: 24deg;
+    background-color: var(--c-fill-soft);
+}
+
+.tile__glyph { scale: 1.9 1.9; }

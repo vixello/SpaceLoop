@@ -1,0 +1,72 @@
+/* =====================================================================
+   VEHICLE CUSTOMIZATION  (requires Common.uss + Customize.uss)
+   Pages: paint, wrap, exhaust, trail, glow, aero, perf (tuning).
+   Locked parts are unlocked by level, events, mastery or the shop.
+   Exhaust, trail and underglow are earned here, not bought in the shop.
+   ===================================================================== */
+
+/* Tuning cards (horizontal upgrade cards instead of item tiles) */
+.upgc {
+    width: 300px;
+    height: 200px;
+    margin-right: 10px;
+    padding: 16px 18px 0 22px;
+    background-color: var(--c-fill-soft);
+    border-left-width: 4px;
+    border-color: var(--accent);
+}
+
+.upgc__name {
+    margin-top: 2px;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    white-space: nowrap;
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.upgc__effect {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--c-good);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.pips { flex-direction: row; margin-top: 12px; }
+
+.pip {
+    width: 14px;
+    height: 26px;
+    margin-right: 6px;
+    rotate: 14deg;
+    background-color: var(--c-fill-mid);
+}
+
+.pip--on { background-color: var(--accent); }
+
+.upgc__btn {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    margin: 0 -18px 0 -22px;
+    padding: 0 22px 0 22px;
+    background-color: var(--accent-soft);
+}
+
+.upgc__btn:hover { background-color: var(--accent); scale: 1.03 1.03; }
+
+.upgc__btn-text {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    -unity-font-style: bold;
+}
+
+.upgc__btn:hover .upgc__btn-text, .upgc__btn:hover .price__value { color: var(--c-ink); }
+.upgc__btn:hover .price__icon { background-color: var(--c-ink); }
+
+.upgc__btn--max, .upgc__btn--max:hover { justify-content: center; background-color: var(--c-fill-soft); scale: 1 1; }
+.upgc__btn--max .upgc__btn-text, .upgc__btn--max:hover .upgc__btn-text { color: var(--c-text-3); }

@@ -1,0 +1,14 @@
+/* =====================================================================
+   DRIVER CUSTOMIZATION  (requires Common.uss + Customize.uss)
+   Pages: outfit, helmet, visor, emote, badge. Outfits use tall tiles so
+   the portrait or render capture is readable. Outfits can be bought in
+   the shop or unlocked through mastery, level and passes.
+   ===================================================================== */
+
+/* Accent is magenta for the driver side of the garage */
+.tile__glyph .g { background-color: var(--accent); }
+
+/* Slightly warmer scrim feel for portraits */
+.tile--tall .tile__portrait { background-color: rgba(255, 46, 176, 0.12); }
+
+.cz-detail__optlabel { margin-top: 16px; }

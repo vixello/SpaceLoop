@@ -1,0 +1,1105 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Customize.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Garage/VehicleCustomization.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Separate customization view. Category buttons toggle which page in the bottom strip is visible. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="ZEPHYR GT-X  /  8 PARTS UNLOCKED OF 42" />
+                <ui:AttributeOverrides element-name="screen-title" text="CUSTOMIZE" />
+            </ui:Instance>
+            <ui:VisualElement class="cz-body" picking-mode="Ignore">
+                <ui:VisualElement class="cz-rail accent-cyan" picking-mode="Ignore">
+                    <ui:Button class="btn cat cat--active" name="cat-paint">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="glyph glyph--paint" picking-mode="Ignore">
+                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="cat__label" text="PAINT" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn cat" name="cat-wrap">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="glyph glyph--wrap" picking-mode="Ignore">
+                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="cat__label" text="WRAP" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn cat" name="cat-exhaust">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="glyph glyph--exhaust" picking-mode="Ignore">
+                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="cat__label" text="EXHAUST" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn cat" name="cat-trail">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="glyph glyph--trail" picking-mode="Ignore">
+                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="cat__label" text="TRAIL" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn cat" name="cat-glow">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="glyph glyph--glow" picking-mode="Ignore">
+                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="cat__label" text="UNDERGLOW" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn cat" name="cat-aero">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="glyph glyph--aero" picking-mode="Ignore">
+                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="cat__label" text="AERO" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn cat accent-amber" name="cat-perf">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="glyph glyph--perf" picking-mode="Ignore">
+                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="cat__label" text="TUNING" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="cz-center" picking-mode="Ignore">
+                    <ui:VisualElement class="chips cz-cams" picking-mode="Ignore">
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="FRONT" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip chip--active">
+                            <ui:Label class="chip__label" text="SIDE" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="REAR" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="DETAIL" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:Label class="drag-hint" text="DRAG TO ORBIT" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="cz-detail rarity-epic accent-cyan" picking-mode="Ignore">
+                    <ui:VisualElement class="cz-detail__bar" picking-mode="Ignore" />
+                    <ui:Label class="eyebrow eyebrow--accent" text="PAINT" name="detail-category" picking-mode="Ignore" />
+                    <ui:Label class="cz-detail__name" text="PLASMA VIOLET" name="detail-name" picking-mode="Ignore" />
+                    <ui:VisualElement class="cz-detail__tags" picking-mode="Ignore">
+                        <ui:Label class="tag" text="EPIC" picking-mode="Ignore" />
+                        <ui:Label class="cz-detail__state" text="LOCKED" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:Label class="cz-detail__desc" text="DEEP VIOLET BASE WITH A SHIFTING PLASMA SHEEN THAT BRIGHTENS UNDER BOOST." picking-mode="Ignore" />
+                    <ui:VisualElement class="unlock-box" picking-mode="Ignore">
+                        <ui:VisualElement class="unlock-box__row" picking-mode="Ignore">
+                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="unlock-box__text" picking-mode="Ignore">
+                                <ui:Label class="unlock-box__title" text="HOW TO UNLOCK" picking-mode="Ignore" />
+                                <ui:Label class="unlock-box__req" text="REACH PILOT LEVEL 18" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="unlock-box__bar" picking-mode="Ignore">
+                            <ui:VisualElement class="unlock-box__fill" style="width: 78%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="unlock-box__prog" text="LEVEL 14 / 18" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:Label class="eyebrow cz-detail__optlabel" text="FINISH" picking-mode="Ignore" />
+                    <ui:VisualElement class="chips" picking-mode="Position">
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="GLOSS" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="MATTE" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip chip--active">
+                            <ui:Label class="chip__label" text="METALLIC" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="HOLO" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:VisualElement class="cz-detail__actions" picking-mode="Ignore">
+                        <ui:Button class="btn btn-ghost cz-detail__shop hidden" name="btn-goto-shop">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-ghost__label" text="SHOP" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn btn-cta cz-detail__main hidden" name="btn-equip-item">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-cta__label" text="EQUIP" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn btn-cta btn-cta--disabled cz-detail__main" name="btn-locked-item">
+                            <ui:Label class="btn-cta__label" text="LOCKED" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="cz-strip" picking-mode="Ignore">
+                <ui:VisualElement class="cz-strip__head" picking-mode="Ignore">
+                    <ui:Label class="cz-strip__title" text="PAINT" name="strip-title" picking-mode="Ignore" />
+                    <ui:Label class="carousel-count" text="7 / 10 UNLOCKED" name="strip-count" picking-mode="Ignore" />
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:VisualElement class="chips" picking-mode="Ignore">
+                        <ui:Button class="btn chip chip--active">
+                            <ui:Label class="chip__label" text="ALL" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="UNLOCKED" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn chip">
+                            <ui:Label class="chip__label" text="LOCKED" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="cz-strip__pages" picking-mode="Ignore">
+                    <ui:VisualElement class="page" name="page-paint" picking-mode="Ignore">
+                        <ui:ScrollView class="cz-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:Button class="btn tile rarity-rare tile--equipped">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(20,40,120);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__badge" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="VOID BLUE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state tile__state--on" text="EQUIPPED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(0,229,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="NEON CYAN" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(255,46,176);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="HOT PINK" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(255,190,0);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="SOLAR GOLD" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(70,255,160);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="TOXIC GREEN" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(200,210,225);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="CHROME SILVER" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(14,18,30);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="OBSIDIAN" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic tile--locked tile--selected">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(150,80,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="PLASMA VIOLET" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="PILOT LVL 18" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(255,60,80);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="CRIMSON FLARE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="EVENT: NEON GP" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__swatch" style="background-color: rgb(240,248,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__shine" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="ICE WHITE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="KAI MASTERY 5" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page page--hidden" name="page-wrap" picking-mode="Ignore">
+                        <ui:ScrollView class="cz-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__none" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__none-line" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="NONE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare tile--equipped">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__wrap" picking-mode="Ignore">
+                                        <ui:VisualElement class="tw tw-a" style="background-color: rgb(40,48,64);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-b" style="background-color: rgb(70,82,104);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-c" style="background-color: rgb(40,48,64);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__badge" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="CARBON WEAVE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state tile__state--on" text="EQUIPPED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__wrap" picking-mode="Ignore">
+                                        <ui:VisualElement class="tw tw-a" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-b" style="background-color: rgb(0,120,160);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-c" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="CIRCUIT" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__wrap" picking-mode="Ignore">
+                                        <ui:VisualElement class="tw tw-a" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-b" style="background-color: rgb(30,30,30);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-c" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="HAZARD" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-legendary tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__wrap" picking-mode="Ignore">
+                                        <ui:VisualElement class="tw tw-a" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-b" style="background-color: rgb(20,20,40);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-c" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="PHANTOM STRIPE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="SEASON 4 PASS" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-legendary tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__wrap" picking-mode="Ignore">
+                                        <ui:VisualElement class="tw tw-a" style="background-color: rgb(70,255,160);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-b" style="background-color: rgb(64,150,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tw tw-c" style="background-color: rgb(70,255,160);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="AURORA FLOW" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="1,200 CORES" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page page--hidden" name="page-exhaust" picking-mode="Ignore">
+                        <ui:ScrollView class="cz-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:Button class="btn tile rarity-rare tile--equipped">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(0,229,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__badge" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="PLASMA CYAN" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state tile__state--on" text="EQUIPPED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(255,110,60);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(255,110,60);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="IGNITION ORANGE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(176,96,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="VOID VIOLET" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(70,255,160);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(70,255,160);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="TOXIC GREEN" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(236,244,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(236,244,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="SOLAR WHITE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(255,60,80);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(255,60,80);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="CRIMSON" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-legendary tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(255,46,176);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="PRISM SPECTRUM" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="PILOT LVL 40" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(90,60,200);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(90,60,200);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="DARK MATTER" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="WIN 50 RACES" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page page--hidden" name="page-trail" picking-mode="Ignore">
+                        <ui:ScrollView class="cz-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__none" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__none-line" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="NONE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__trail" picking-mode="Ignore">
+                                        <ui:VisualElement class="tr tr-a" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-b" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-c" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="SPARK" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare tile--equipped">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__trail" picking-mode="Ignore">
+                                        <ui:VisualElement class="tr tr-a" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-b" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-c" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__badge" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="STREAK" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state tile__state--on" text="EQUIPPED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__trail" picking-mode="Ignore">
+                                        <ui:VisualElement class="tr tr-a" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-b" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-c" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="PULSE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__trail" picking-mode="Ignore">
+                                        <ui:VisualElement class="tr tr-a" style="background-color: rgb(255,110,60);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-b" style="background-color: rgb(255,110,60);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-c" style="background-color: rgb(255,110,60);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="COMET" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="PILOT LVL 28" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-legendary tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__trail" picking-mode="Ignore">
+                                        <ui:VisualElement class="tr tr-a" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-b" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="tr tr-c" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="SINGULARITY" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="RANKED GOLD" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page page--hidden" name="page-glow" picking-mode="Ignore">
+                        <ui:ScrollView class="cz-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__none" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__none-line" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="NONE" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare tile--equipped">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(255,46,176);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__badge" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="NEON PINK" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state tile__state--on" text="EQUIPPED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(0,229,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="ICE CYAN" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(255,190,0);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="AMBER" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(176,96,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="VIOLET" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(200,255,0);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(200,255,0);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="LIME" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(64,150,255);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(64,150,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="REACTIVE RGB" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="PILOT LVL 25" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-legendary tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__glow" style="border-color: rgb(255,46,176);" picking-mode="Ignore">
+                                        <ui:VisualElement class="tile__glow-core" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="PULSE SYNC" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="800 CORES" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page page--hidden" name="page-aero" picking-mode="Ignore">
+                        <ui:ScrollView class="cz-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:Button class="btn tile rarity-common">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__aero" picking-mode="Ignore">
+                                        <ui:VisualElement class="aero-wing" style="background-color: rgb(120,134,156);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--l" style="background-color: rgb(120,134,156);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--r" style="background-color: rgb(120,134,156);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="STOCK" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__aero" picking-mode="Ignore">
+                                        <ui:VisualElement class="aero-wing" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--l" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--r" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="BLADE FIN" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic tile--equipped">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__aero" picking-mode="Ignore">
+                                        <ui:VisualElement class="aero-wing" style="background-color: rgb(236,244,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--l" style="background-color: rgb(236,244,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--r" style="background-color: rgb(236,244,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__badge" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="DELTA WING" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state tile__state--on" text="EQUIPPED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-rare">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__aero" picking-mode="Ignore">
+                                        <ui:VisualElement class="aero-wing" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--l" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--r" style="background-color: rgb(255,190,0);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="TWIN SPOILER" picking-mode="Ignore" />
+                                    <ui:Label class="tile__state" text="OWNED" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-epic tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__aero" picking-mode="Ignore">
+                                        <ui:VisualElement class="aero-wing" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--l" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--r" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="GHOST RAIL" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="DAX MASTERY 3" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn tile rarity-legendary tile--locked">
+                                <ui:VisualElement class="tile__bar" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__art" picking-mode="Ignore">
+                                    <ui:VisualElement class="tile__aero" picking-mode="Ignore">
+                                        <ui:VisualElement class="aero-wing" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--l" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                        <ui:VisualElement class="aero-fin aero-fin--r" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="tile__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="tile__info" picking-mode="Ignore">
+                                    <ui:Label class="tile__name" text="HALO RING" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tile__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tile__req" text="SEASON 4 PASS" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page page--hidden" name="page-perf" picking-mode="Ignore">
+                        <ui:ScrollView class="cz-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:VisualElement class="upgc accent-amber" picking-mode="Position">
+                                <ui:Label class="eyebrow eyebrow--accent" text="LEVEL 4 / 5" picking-mode="Ignore" />
+                                <ui:Label class="upgc__name" text="ENGINE" picking-mode="Ignore" />
+                                <ui:Label class="upgc__effect" text="+8 SPEED   +3 BOOST" picking-mode="Ignore" />
+                                <ui:VisualElement class="pips" picking-mode="Ignore">
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Button class="btn upgc__btn">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="upgc__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                        <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                        <ui:Label class="price__value" text="48,000" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="upgc accent-amber" picking-mode="Position">
+                                <ui:Label class="eyebrow eyebrow--accent" text="LEVEL 3 / 5" picking-mode="Ignore" />
+                                <ui:Label class="upgc__name" text="TURBO" picking-mode="Ignore" />
+                                <ui:Label class="upgc__effect" text="+6 ACCELERATION" picking-mode="Ignore" />
+                                <ui:VisualElement class="pips" picking-mode="Ignore">
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Button class="btn upgc__btn">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="upgc__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                        <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                        <ui:Label class="price__value" text="36,500" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="upgc accent-amber" picking-mode="Position">
+                                <ui:Label class="eyebrow eyebrow--accent" text="LEVEL 2 / 5" picking-mode="Ignore" />
+                                <ui:Label class="upgc__name" text="TRANSMISSION" picking-mode="Ignore" />
+                                <ui:Label class="upgc__effect" text="+5 ACCEL   +2 SPEED" picking-mode="Ignore" />
+                                <ui:VisualElement class="pips" picking-mode="Ignore">
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Button class="btn upgc__btn">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="upgc__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                        <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                        <ui:Label class="price__value" text="22,000" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="upgc accent-amber" picking-mode="Position">
+                                <ui:Label class="eyebrow eyebrow--accent" text="LEVEL 5 / 5" picking-mode="Ignore" />
+                                <ui:Label class="upgc__name" text="TIRES" picking-mode="Ignore" />
+                                <ui:Label class="upgc__effect" text="+7 HANDLING" picking-mode="Ignore" />
+                                <ui:VisualElement class="pips" picking-mode="Ignore">
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Button class="btn upgc__btn upgc__btn--max">
+                                    <ui:Label class="upgc__btn-text" text="MAX" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="upgc accent-amber" picking-mode="Position">
+                                <ui:Label class="eyebrow eyebrow--accent" text="LEVEL 1 / 5" picking-mode="Ignore" />
+                                <ui:Label class="upgc__name" text="WEIGHT REDUCTION" picking-mode="Ignore" />
+                                <ui:Label class="upgc__effect" text="+4 HANDLING" picking-mode="Ignore" />
+                                <ui:VisualElement class="pips" picking-mode="Ignore">
+                                    <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Button class="btn upgc__btn">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="upgc__btn-text" text="UPGRADE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                        <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                        <ui:Label class="price__value" text="18,000" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
