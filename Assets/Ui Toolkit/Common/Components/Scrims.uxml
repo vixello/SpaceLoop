@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/UI/Common/Common.uss" />
+    <ui:VisualElement name="scrims" class="layer" picking-mode="Ignore">
+        <ui:VisualElement class="scrim scrim-l" picking-mode="Ignore">
+            <ui:VisualElement class="s s1" picking-mode="Ignore" />
+            <ui:VisualElement class="s s2" picking-mode="Ignore" />
+            <ui:VisualElement class="s s3" picking-mode="Ignore" />
+            <ui:VisualElement class="s s4" picking-mode="Ignore" />
+            <ui:VisualElement class="s s5" picking-mode="Ignore" />
+            <ui:VisualElement class="s s6" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement class="scrim scrim-r" picking-mode="Ignore">
+            <ui:VisualElement class="s s1" picking-mode="Ignore" />
+            <ui:VisualElement class="s s2" picking-mode="Ignore" />
+            <ui:VisualElement class="s s3" picking-mode="Ignore" />
+            <ui:VisualElement class="s s4" picking-mode="Ignore" />
+            <ui:VisualElement class="s s5" picking-mode="Ignore" />
+            <ui:VisualElement class="s s6" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement class="scrim scrim-t" picking-mode="Ignore">
+            <ui:VisualElement class="s s1" picking-mode="Ignore" />
+            <ui:VisualElement class="s s2" picking-mode="Ignore" />
+            <ui:VisualElement class="s s3" picking-mode="Ignore" />
+            <ui:VisualElement class="s s4" picking-mode="Ignore" />
+            <ui:VisualElement class="s s5" picking-mode="Ignore" />
+            <ui:VisualElement class="s s6" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement class="scrim scrim-b" picking-mode="Ignore">
+            <ui:VisualElement class="s s1" picking-mode="Ignore" />
+            <ui:VisualElement class="s s2" picking-mode="Ignore" />
+            <ui:VisualElement class="s s3" picking-mode="Ignore" />
+            <ui:VisualElement class="s s4" picking-mode="Ignore" />
+            <ui:VisualElement class="s s5" picking-mode="Ignore" />
+            <ui:VisualElement class="s s6" picking-mode="Ignore" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

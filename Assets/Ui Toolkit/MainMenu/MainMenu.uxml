@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/MainMenu/MainMenu.uss" />
+
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="Currencies" src="project://database/Assets/Ui Toolkit/Common/Components/Currencies.uxml" />
+
+    <ui:VisualElement name="root" class="screen">
+
+        <!-- The 3D scene (equipped car + driver) renders behind this UI. Drag anywhere to rotate it. -->
+        <ui:VisualElement name="rotate-drag-zone" class="layer drag-zone" />
+        <ui:Instance template="Scrims" class="layer" picking-mode="Ignore" />
+
+        <ui:VisualElement name="hud" class="layer hud" picking-mode="Ignore">
+
+            <!-- TOP BAR -->
+            <ui:VisualElement class="top-bar" picking-mode="Ignore">
+                <ui:Button name="btn-profile" class="btn profile accent-cyan">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:VisualElement class="avatar" picking-mode="Ignore">
+                        <ui:VisualElement name="avatar-image" class="avatar__img" picking-mode="Ignore" />
+                        <ui:VisualElement class="avatar__lvl" picking-mode="Ignore">
+                            <ui:Label name="player-level" class="avatar__lvl-text" text="27" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="profile__info" picking-mode="Ignore">
+                        <ui:Label name="player-name" class="profile__name" text="NOVA_RUNNER" picking-mode="Ignore" />
+                        <ui:Label class="eyebrow eyebrow--accent" text="PLATINUM II" picking-mode="Ignore" />
+                        <ui:VisualElement class="profile__xp" picking-mode="Ignore">
+                            <ui:VisualElement name="xp-fill" class="profile__xp-fill" style="width: 62%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:Button>
+
+                <ui:VisualElement class="top-right" picking-mode="Ignore">
+                    <ui:Instance template="Currencies" picking-mode="Ignore" />
+                    <ui:Button name="btn-settings" class="btn settings accent-cyan">
+                        <ui:VisualElement class="settings__bar settings__bar--a" picking-mode="Ignore" />
+                        <ui:VisualElement class="settings__bar settings__bar--b" picking-mode="Ignore" />
+                        <ui:VisualElement class="settings__bar settings__bar--c" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- MAIN ROW -->
+            <ui:VisualElement class="main-row" picking-mode="Ignore">
+
+                <!-- LEFT: event banner, missions, loadout -->
+                <ui:VisualElement name="col-left" class="col-left" picking-mode="Ignore">
+
+                    <ui:Button name="btn-event" class="btn event accent-magenta">
+                        <ui:VisualElement class="event__art" picking-mode="Ignore" />
+                        <ui:VisualElement class="event__slash event__slash--a" picking-mode="Ignore" />
+                        <ui:VisualElement class="event__slash event__slash--b" picking-mode="Ignore" />
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="event__body" picking-mode="Ignore">
+                            <ui:VisualElement class="event__top" picking-mode="Ignore">
+                                <ui:VisualElement class="live" picking-mode="Ignore">
+                                    <ui:VisualElement class="live__dot" picking-mode="Ignore" />
+                                    <ui:Label class="live__text" text="LIVE EVENT" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label name="event-timer" class="event__timer" text="02D 14H 33M" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Label name="event-title" class="event__title" text="NEON GRAND PRIX" picking-mode="Ignore" />
+                            <ui:Label class="event__desc" text="WIN 5 RACES TO UNLOCK THE PHANTOM WRAP" picking-mode="Ignore" />
+                            <ui:VisualElement class="event__track" picking-mode="Ignore">
+                                <ui:VisualElement class="event__bar" picking-mode="Ignore">
+                                    <ui:VisualElement class="event__bar-fill" style="width: 58%;" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="event__count" text="7 / 12" picking-mode="Ignore" />
+                                <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+
+                    <ui:Button name="btn-missions" class="btn missions accent-amber">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="missions__icon" picking-mode="Ignore">
+                            <ui:VisualElement class="missions__line missions__line--a" picking-mode="Ignore" />
+                            <ui:VisualElement class="missions__line missions__line--b" picking-mode="Ignore" />
+                            <ui:VisualElement class="missions__line missions__line--c" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="missions__text" picking-mode="Ignore">
+                            <ui:Label class="missions__title" text="MISSIONS" picking-mode="Ignore" />
+                            <ui:Label class="missions__sub" text="DAILY 3/5   WEEKLY 1/4" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label name="missions-badge" class="missions__badge" text="2 READY" picking-mode="Ignore" />
+                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                    </ui:Button>
+
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+                    <ui:VisualElement class="loadout-row" picking-mode="Ignore">
+                        <ui:Button name="btn-driver" class="btn loadout accent-cyan">
+                            <ui:VisualElement class="loadout__art loadout__art--driver" picking-mode="Ignore" />
+                            <ui:VisualElement class="loadout__slash" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="loadout__info" picking-mode="Ignore">
+                                <ui:Label class="eyebrow eyebrow--accent" text="DRIVER" picking-mode="Ignore" />
+                                <ui:Label name="driver-name" class="loadout__name" text="KAI NOVA" picking-mode="Ignore" />
+                                <ui:VisualElement class="loadout__cta" picking-mode="Ignore">
+                                    <ui:Label class="loadout__cta-text" text="CHANGE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+
+                        <ui:Button name="btn-vehicle" class="btn loadout accent-cyan">
+                            <ui:VisualElement class="loadout__art loadout__art--vehicle" picking-mode="Ignore" />
+                            <ui:VisualElement class="loadout__slash" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="loadout__info" picking-mode="Ignore">
+                                <ui:Label class="eyebrow eyebrow--accent" text="VEHICLE" picking-mode="Ignore" />
+                                <ui:Label name="vehicle-name-card" class="loadout__name" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                                <ui:VisualElement class="loadout__cta" picking-mode="Ignore">
+                                    <ui:Label class="loadout__cta-text" text="CHANGE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- CENTER: stage controls only, the 3D scene is the star -->
+                <ui:VisualElement name="col-center" class="col-center" picking-mode="Ignore">
+                    <ui:VisualElement class="stage" picking-mode="Ignore">
+                        <ui:Button name="rotate-left" class="btn rot-btn accent-cyan">
+                            <ui:VisualElement class="chevron chevron--left" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:VisualElement class="stage__plate" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent stage__eyebrow" text="EQUIPPED  /  CLASS S" picking-mode="Ignore" />
+                            <ui:Label name="vehicle-name" class="stage__name" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Button name="rotate-right" class="btn rot-btn accent-cyan">
+                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:Label class="drag-hint" text="DRAG TO ROTATE" picking-mode="Ignore" />
+                </ui:VisualElement>
+
+                <!-- RIGHT: navigation cascade -->
+                <ui:VisualElement name="col-right" class="col-right" picking-mode="Ignore">
+
+                    <ui:Button name="btn-solo" class="btn nav-play accent-cyan">
+                        <ui:VisualElement class="nav-play__slash nav-play__slash--a" picking-mode="Ignore" />
+                        <ui:VisualElement class="nav-play__slash nav-play__slash--b" picking-mode="Ignore" />
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="nav-play__text" picking-mode="Ignore">
+                            <ui:Label class="nav-play__eyebrow" text="01  /  CAMPAIGN" picking-mode="Ignore" />
+                            <ui:Label class="nav-play__title" text="SOLO RACING" picking-mode="Ignore" />
+                            <ui:Label class="nav-play__sub" text="CHAPTER 7  /  NEON DISTRICT" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="nav-play__arrow" picking-mode="Ignore" />
+                    </ui:Button>
+
+                    <ui:Button name="btn-multiplayer" class="btn nav-card accent-magenta">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="nav-card__text" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="02  /  RANKED" picking-mode="Ignore" />
+                            <ui:Label class="nav-card__title" text="MULTIPLAYER" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="nav-card__online" picking-mode="Ignore">
+                            <ui:Label class="nav-card__online-num" text="12,480" picking-mode="Ignore" />
+                            <ui:Label class="nav-card__online-lbl" text="ONLINE" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+
+                    <ui:VisualElement class="nav-row" picking-mode="Ignore">
+                        <ui:Button name="btn-garage" class="btn nav-tile accent-cyan">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="eyebrow eyebrow--accent" text="03" picking-mode="Ignore" />
+                            <ui:Label class="nav-tile__title" text="GARAGE" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button name="btn-shop" class="btn nav-tile accent-amber">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="eyebrow eyebrow--accent" text="04" picking-mode="Ignore" />
+                            <ui:Label class="nav-tile__title" text="SHOP" picking-mode="Ignore" />
+                            <ui:Label class="tag tag--sale nav-tile__badge" text="SALE" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

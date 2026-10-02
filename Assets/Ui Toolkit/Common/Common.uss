@@ -1,0 +1,507 @@
+/* =====================================================================
+   APEX VELOCITY - COMMON.USS  (shared design system)
+   Target: Unity 2022.3+ / Unity 6, landscape mobile.
+   Panel Settings: Scale With Screen Size, reference 1920 x 1080, Match 0.5.
+
+   Design rules used across every screen:
+   - One dominant accent per element, inherited through USS variables.
+   - Flat translucent surfaces + hairlines instead of heavy outlines.
+   - Interaction = fill sweep (.sheen) + accent edge growth + small scale.
+   - All text is written UPPERCASE in UXML (USS has no text-transform).
+   - Screens are transparent: the 3D scene (car + driver) renders behind.
+   - Optional: set -unity-font-definition on .screen for a wide/italic
+     display font (e.g. Eurostile, Orbitron, Rajdhani) for an AAA look.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. TOKENS
+   --------------------------------------------------------------------- */
+:root {
+    --c-ink: rgb(3, 6, 13);
+    --c-surface: rgba(9, 14, 27, 0.74);
+    --c-surface-hi: rgba(17, 26, 47, 0.88);
+    --c-fill-soft: rgba(255, 255, 255, 0.05);
+    --c-fill-mid: rgba(255, 255, 255, 0.10);
+    --c-hair: rgba(150, 200, 255, 0.16);
+    --c-hair-strong: rgba(150, 200, 255, 0.34);
+    --c-text: rgb(236, 244, 255);
+    --c-text-2: rgb(152, 174, 202);
+    --c-text-3: rgb(94, 116, 145);
+    --c-good: rgb(70, 255, 160);
+    --c-bad: rgb(255, 82, 96);
+
+    --accent: rgb(0, 229, 255);
+    --accent-hi: rgb(128, 245, 255);
+    --accent-soft: rgba(0, 229, 255, 0.12);
+    --accent-mid: rgba(0, 229, 255, 0.38);
+
+    --rarity: rgb(140, 158, 182);
+    --rarity-soft: rgba(140, 158, 182, 0.14);
+}
+
+.accent-cyan {
+    --accent: rgb(0, 229, 255);
+    --accent-hi: rgb(128, 245, 255);
+    --accent-soft: rgba(0, 229, 255, 0.12);
+    --accent-mid: rgba(0, 229, 255, 0.38);
+}
+
+.accent-magenta {
+    --accent: rgb(255, 46, 176);
+    --accent-hi: rgb(255, 132, 210);
+    --accent-soft: rgba(255, 46, 176, 0.14);
+    --accent-mid: rgba(255, 46, 176, 0.42);
+}
+
+.accent-amber {
+    --accent: rgb(255, 190, 0);
+    --accent-hi: rgb(255, 226, 110);
+    --accent-soft: rgba(255, 190, 0, 0.14);
+    --accent-mid: rgba(255, 190, 0, 0.42);
+}
+
+.rarity-common    { --rarity: rgb(140, 158, 182); --rarity-soft: rgba(140, 158, 182, 0.14); }
+.rarity-rare      { --rarity: rgb(64, 150, 255);  --rarity-soft: rgba(64, 150, 255, 0.16); }
+.rarity-epic      { --rarity: rgb(176, 96, 255);  --rarity-soft: rgba(176, 96, 255, 0.18); }
+.rarity-legendary { --rarity: rgb(255, 176, 32);  --rarity-soft: rgba(255, 176, 32, 0.18); }
+
+/* ---------------------------------------------------------------------
+   2. BASE LAYOUT
+   --------------------------------------------------------------------- */
+.screen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    color: var(--c-text);
+}
+
+/* Handy while previewing in the UI Builder (no 3D scene there). */
+.dev-bg { background-color: rgb(8, 12, 22); }
+
+.layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.drag-zone { background-color: rgba(0, 0, 0, 0); }
+
+.hud {
+    flex-direction: column;
+    /* Bump left/right padding (or apply panel.safeArea from C#) on notched phones. */
+    padding: 24px 56px 28px 56px;
+}
+
+.page {
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.page--hidden { display: none; }
+
+.spacer { flex-grow: 1; }
+
+/* ---------------------------------------------------------------------
+   3. SCRIMS (stacked translucent strips fake a gradient behind the HUD)
+   --------------------------------------------------------------------- */
+.scrim { position: absolute; }
+.scrim-l { left: 0;  top: 0;   bottom: 0; width: 48%; }
+.scrim-r { right: 0; top: 0;   bottom: 0; width: 44%; }
+.scrim-t { left: 0;  right: 0; top: 0;    height: 22%; }
+.scrim-b { left: 0;  right: 0; bottom: 0; height: 32%; }
+
+.s { position: absolute; background-color: rgba(2, 5, 12, 0.11); }
+
+.scrim-l .s { left: 0;  top: 0;   bottom: 0; }
+.scrim-r .s { right: 0; top: 0;   bottom: 0; }
+.scrim-t .s { left: 0;  right: 0; top: 0; }
+.scrim-b .s { left: 0;  right: 0; bottom: 0; }
+
+.scrim-l .s1, .scrim-r .s1 { width: 100%; }
+.scrim-l .s2, .scrim-r .s2 { width: 82%; }
+.scrim-l .s3, .scrim-r .s3 { width: 64%; }
+.scrim-l .s4, .scrim-r .s4 { width: 46%; }
+.scrim-l .s5, .scrim-r .s5 { width: 30%; }
+.scrim-l .s6, .scrim-r .s6 { width: 16%; }
+
+.scrim-t .s1, .scrim-b .s1 { height: 100%; }
+.scrim-t .s2, .scrim-b .s2 { height: 82%; }
+.scrim-t .s3, .scrim-b .s3 { height: 64%; }
+.scrim-t .s4, .scrim-b .s4 { height: 46%; }
+.scrim-t .s5, .scrim-b .s5 { height: 30%; }
+.scrim-t .s6, .scrim-b .s6 { height: 16%; }
+
+/* ---------------------------------------------------------------------
+   4. TYPOGRAPHY HELPERS
+   --------------------------------------------------------------------- */
+.eyebrow {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--c-text-3);
+    white-space: nowrap;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.eyebrow--accent { color: var(--accent); }
+
+/* ---------------------------------------------------------------------
+   5. BUTTON BASE + INTERACTION PRIMITIVES
+   Every interactive element uses class "btn" (resets Unity's default look).
+   Children: .sheen (hover fill sweep), .edge (accent bar), .chevron.
+   --------------------------------------------------------------------- */
+.btn {
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    color: var(--c-text);
+    transition-property: scale, translate, background-color, border-color, opacity;
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out;
+}
+
+.btn:active { scale: 0.97 0.97; }
+
+.sheen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.12);
+    scale: 0 1;
+    transform-origin: 0% 50%;
+    transition-property: scale;
+    transition-duration: 0.28s;
+    transition-timing-function: ease-out;
+}
+
+.btn:hover .sheen { scale: 1 1; }
+
+.edge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--accent);
+    transition-property: width, height;
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out;
+}
+
+.btn:hover .edge { width: 7px; }
+
+.chevron {
+    width: 14px;
+    height: 14px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-color: var(--accent);
+    rotate: 45deg;
+    transition-property: translate, border-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.chevron--left { rotate: -135deg; }
+.btn:hover .chevron { translate: 6px 0; border-color: rgb(255, 255, 255); }
+.btn:hover .chevron--left { translate: -6px 0; }
+
+/* Primary call to action: solid accent fill, dark ink text */
+.btn-cta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 76px;
+    min-width: 260px;
+    padding: 0 36px 0 36px;
+    background-color: var(--accent);
+}
+
+.btn-cta:hover { background-color: var(--accent-hi); scale: 1.04 1.04; }
+
+.btn-cta__label {
+    font-size: 26px;
+    letter-spacing: 6px;
+    color: var(--c-ink);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-center;
+}
+
+.btn-cta .sheen { background-color: rgba(255, 255, 255, 0.28); }
+
+/* Secondary action: glass with hairline */
+.btn-ghost {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 76px;
+    min-width: 170px;
+    padding: 0 28px 0 28px;
+    background-color: var(--c-surface);
+    border-width: 1px;
+    border-color: var(--c-hair-strong);
+}
+
+.btn-ghost:focus { border-color: var(--c-hair-strong); }
+.btn-ghost:hover { background-color: var(--c-surface-hi); border-color: var(--accent); scale: 1.04 1.04; }
+
+.btn-ghost__label {
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+/* ---------------------------------------------------------------------
+   6. SCREEN HEADER + BACK BUTTON
+   --------------------------------------------------------------------- */
+.header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 96px;
+    flex-shrink: 0;
+    border-bottom-width: 1px;
+    border-color: var(--c-hair);
+}
+
+.header__accent {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 190px;
+    height: 3px;
+    background-color: var(--accent);
+}
+
+.header__left {
+    flex-direction: row;
+    align-items: center;
+}
+
+.back-btn {
+    width: 60px;
+    height: 60px;
+    margin-right: 26px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-surface);
+}
+
+.back-btn:hover { background-color: var(--accent); scale: 1.08 1.08; }
+.back-btn:hover .chevron { border-color: var(--c-ink); translate: -3px 0; }
+
+.header__titles { justify-content: center; }
+
+.header__title {
+    font-size: 46px;
+    letter-spacing: 9px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+/* ---------------------------------------------------------------------
+   7. CURRENCY PILLS
+   --------------------------------------------------------------------- */
+.currencies {
+    flex-direction: row;
+    align-items: center;
+}
+
+.currency {
+    flex-direction: row;
+    align-items: center;
+    height: 56px;
+    margin-left: 12px;
+    padding-left: 18px;
+    background-color: var(--c-surface);
+    border-bottom-width: 2px;
+    border-color: var(--accent);
+}
+
+.currency__icon {
+    width: 14px;
+    height: 14px;
+    rotate: 45deg;
+    background-color: var(--accent);
+}
+
+.currency__value {
+    min-width: 112px;
+    margin-left: 16px;
+    margin-right: 8px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.currency__add {
+    width: 50px;
+    height: 100%;
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    font-size: 30px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.currency__add:hover { background-color: var(--accent); color: var(--c-ink); scale: 1.1 1.1; }
+
+/* Inline price (cards, upgrade rows) */
+.price {
+    flex-direction: row;
+    align-items: center;
+}
+
+.price__icon {
+    width: 10px;
+    height: 10px;
+    rotate: 45deg;
+    margin-right: 9px;
+    background-color: var(--accent);
+}
+
+.price__value {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+/* ---------------------------------------------------------------------
+   8. TABS (vertical rail or horizontal row) + FILTER CHIPS
+   --------------------------------------------------------------------- */
+.tab {
+    flex-direction: row;
+    align-items: center;
+    height: 66px;
+    margin-bottom: 8px;
+    padding: 0 22px 0 26px;
+    background-color: var(--c-fill-soft);
+}
+
+.tab__label {
+    flex-grow: 1;
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.tab .edge { width: 0; }
+
+.tab:hover { background-color: var(--c-fill-mid); translate: 6px 0; }
+.tab:hover .tab__label { color: var(--c-text); }
+.tab:hover .edge { width: 4px; }
+
+.tab--active { background-color: var(--accent-soft); }
+.tab--active .tab__label { color: var(--c-text); }
+.tab--active .edge, .tab--active:hover .edge { width: 6px; }
+
+.tabs-row { flex-direction: row; flex-shrink: 0; }
+
+.tabs-row .tab {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 58px;
+    margin-bottom: 0;
+    margin-right: 6px;
+    padding: 0;
+    justify-content: center;
+}
+
+.tabs-row .tab:last-child { margin-right: 0; }
+.tabs-row .tab:hover { translate: 0 -2px; }
+.tabs-row .tab__label { flex-grow: 0; font-size: 17px; letter-spacing: 4px; -unity-text-align: middle-center; }
+.tabs-row .tab .edge { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 0; }
+.tabs-row .tab:hover .edge { width: auto; height: 3px; }
+.tabs-row .tab--active .edge, .tabs-row .tab--active:hover .edge { width: auto; height: 4px; }
+
+.chips { flex-direction: row; flex-wrap: wrap; flex-shrink: 0; }
+
+.chip {
+    height: 42px;
+    margin: 0 8px 8px 0;
+    padding: 0 20px 0 20px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
+    border-color: var(--c-hair);
+}
+
+.chip:focus { border-color: var(--c-hair); }
+.chip:hover { border-color: var(--accent); background-color: var(--accent-soft); scale: 1.06 1.06; }
+
+.chip__label {
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.chip:hover .chip__label { color: var(--c-text); }
+
+.chip--active, .chip--active:focus { background-color: var(--accent); border-color: var(--accent); }
+.chip--active:hover { background-color: var(--accent-hi); border-color: var(--accent-hi); }
+.chip--active .chip__label, .chip--active:hover .chip__label { color: var(--c-ink); }
+
+/* ---------------------------------------------------------------------
+   9. TAGS, HAIRLINES
+   --------------------------------------------------------------------- */
+.tag {
+    align-self: flex-start;
+    padding: 3px 10px 3px 10px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--c-ink);
+    background-color: var(--rarity);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.tag--accent { background-color: var(--accent); }
+.tag--sale { background-color: rgb(255, 46, 176); color: rgb(255, 255, 255); }
+
+.hairline { height: 1px; background-color: var(--c-hair); flex-shrink: 0; }
+
+/* ---------------------------------------------------------------------
+   10. ROTATE BUTTONS (shared by Main Menu, Shop, Garage)
+   --------------------------------------------------------------------- */
+.rot-btn {
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-surface);
+    border-bottom-width: 2px;
+    border-color: var(--accent);
+}
+
+.rot-btn:focus { border-color: var(--accent); }
+.rot-btn:hover { background-color: var(--accent); scale: 1.1 1.1; }
+.rot-btn:hover .chevron { border-color: var(--c-ink); }
+
+.drag-hint {
+    margin-top: 10px;
+    font-size: 12px;
+    letter-spacing: 7px;
+    color: var(--c-text-3);
+    -unity-text-align: middle-center;
+}
