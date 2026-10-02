@@ -1,0 +1,212 @@
+/* =====================================================================
+   SHOP  (requires Common.uss)
+   Pages: Drivers / Vehicles / Cosmetics share the same .shop-card.
+   Toggle .page--hidden on the page elements and .tab--active on the
+   rail buttons from C#. Selected card gets .shop-card--selected.
+   ===================================================================== */
+
+.body {
+    flex-direction: row;
+    flex-grow: 1;
+    margin-top: 22px;
+}
+
+/* ---------------------------------------------------------------------
+   1. CATEGORY RAIL
+   --------------------------------------------------------------------- */
+.rail {
+    width: 15%;
+    min-width: 250px;
+    max-width: 330px;
+}
+
+.rail__hint { -unity-text-align: middle-left; margin-top: 0; }
+
+/* ---------------------------------------------------------------------
+   2. STAGE (center)
+   --------------------------------------------------------------------- */
+.stage {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0 28px 0 28px;
+}
+
+.stage__tools {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.stage__tools .rot-btn { margin: 0 6px 0 6px; }
+
+.detail {
+    flex-direction: row;
+    align-items: center;
+    padding: 18px 20px 18px 28px;
+    background-color: var(--c-surface);
+    border-top-width: 1px;
+    border-color: var(--c-hair);
+}
+
+.detail__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: var(--rarity);
+}
+
+.detail__text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 24px;
+}
+
+.detail__name {
+    margin-top: 8px;
+    font-size: 40px;
+    letter-spacing: 6px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.detail__desc {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--c-text-2);
+    white-space: normal;
+    -unity-text-align: upper-left;
+}
+
+.detail__buy { align-items: flex-end; flex-shrink: 0; }
+.detail__price { margin-bottom: 12px; }
+.detail__price .price__icon { width: 14px; height: 14px; }
+.detail__price-value { font-size: 30px; }
+.detail__buttons { flex-direction: row; }
+
+.detail__try { min-width: 160px; margin-right: 10px; padding: 0 22px 0 22px; }
+.detail__buy-btn { min-width: 220px; }
+
+/* ---------------------------------------------------------------------
+   3. STORE PANEL (right)
+   --------------------------------------------------------------------- */
+.store {
+    width: 39%;
+    min-width: 560px;
+    max-width: 800px;
+    padding: 20px 20px 8px 20px;
+    background-color: var(--c-surface);
+    border-top-width: 2px;
+    border-color: var(--accent);
+}
+
+.grid { flex-grow: 1; }
+
+.grid .unity-scroll-view__content-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+/* ---------------------------------------------------------------------
+   4. SHOP CARD
+   --------------------------------------------------------------------- */
+.shop-card {
+    width: 31%;
+    margin: 0 2% 14px 0;
+    background-color: var(--c-fill-soft);
+    border-width: 1px;
+    border-color: var(--c-hair);
+    transform-origin: 50% 50%;
+}
+
+.shop-card:focus { border-color: var(--c-hair); }
+
+.shop-card:hover {
+    background-color: var(--c-fill-mid);
+    border-color: var(--rarity);
+    scale: 1.05 1.05;
+    translate: 0 -3px;
+}
+
+.shop-card--selected, .shop-card--selected:focus { border-color: var(--rarity); background-color: var(--rarity-soft); }
+
+.shop-card__art {
+    height: 150px;
+    overflow: hidden;
+    background-color: var(--rarity-soft);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+/* Placeholder tints per item. Replace with thumbnails via background-image. */
+.art-hero-1, .art-car-1, .art-cos-5 { background-color: rgba(0, 229, 255, 0.16); }
+.art-hero-2, .art-car-2, .art-cos-1 { background-color: rgba(255, 46, 176, 0.16); }
+.art-hero-3, .art-car-3, .art-cos-2 { background-color: rgba(255, 190, 0, 0.14); }
+.art-hero-4, .art-car-4, .art-cos-3 { background-color: rgba(176, 96, 255, 0.18); }
+.art-cos-4 { background-color: rgba(70, 255, 160, 0.12); }
+.art-cos-6 { background-color: rgba(64, 150, 255, 0.16); }
+.art-cos-7 { background-color: rgba(255, 110, 60, 0.14); }
+.art-cos-8 { background-color: rgba(150, 110, 255, 0.16); }
+
+.shop-card__slash {
+    position: absolute;
+    left: 52%;
+    top: -50%;
+    width: 30px;
+    height: 220%;
+    rotate: 24deg;
+    background-color: var(--c-fill-soft);
+    transition-property: translate;
+    transition-duration: 0.3s;
+}
+
+.shop-card:hover .shop-card__slash { translate: -24px 0; }
+
+.shop-card__rarity {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.shop-card__sale {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.shop-card__bar {
+    height: 3px;
+    background-color: var(--rarity);
+}
+
+.shop-card__info { padding: 12px 14px 14px 14px; }
+
+.shop-card__name {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--c-text);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.shop-card__type {
+    margin-bottom: 8px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.shop-card__owned {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--c-good);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}

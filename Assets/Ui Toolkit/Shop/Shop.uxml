@@ -1,0 +1,379 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Shop/Shop.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <ui:VisualElement name="root" class="screen">
+
+        <!-- 3D preview scene renders behind. Drag to rotate the previewed item. -->
+        <ui:VisualElement name="rotate-drag-zone" class="layer drag-zone" />
+        <ui:Instance template="Scrims" class="layer" picking-mode="Ignore" />
+
+        <ui:VisualElement name="hud" class="layer hud" picking-mode="Ignore">
+
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="STORE  /  DAILY REFRESH 06:12:44" />
+                <ui:AttributeOverrides element-name="screen-title" text="SHOP" />
+            </ui:Instance>
+
+            <ui:VisualElement class="body" picking-mode="Ignore">
+
+                <!-- LEFT: category rail -->
+                <ui:VisualElement name="rail" class="rail" picking-mode="Ignore">
+                    <ui:Button name="tab-characters" class="btn tab accent-cyan">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="tab__label" text="DRIVERS" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="tab-vehicles" class="btn tab accent-cyan">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="tab__label" text="VEHICLES" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="tab-cosmetics" class="btn tab tab--active accent-cyan">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="tab__label" text="COSMETICS" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="tab-bundles" class="btn tab accent-amber">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="tab__label" text="BUNDLES" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:Label class="drag-hint rail__hint" text="DRAG TO ROTATE" picking-mode="Ignore" />
+                </ui:VisualElement>
+
+                <!-- CENTER: preview controls + selected item plate -->
+                <ui:VisualElement name="stage" class="stage" picking-mode="Ignore">
+                    <ui:VisualElement class="stage__tools" picking-mode="Ignore">
+                        <ui:Button name="rotate-left" class="btn rot-btn accent-cyan">
+                            <ui:VisualElement class="chevron chevron--left" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button name="rotate-right" class="btn rot-btn accent-cyan">
+                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+                    <ui:VisualElement name="detail" class="detail rarity-legendary accent-amber" picking-mode="Ignore">
+                        <ui:VisualElement class="detail__bar" picking-mode="Ignore" />
+                        <ui:VisualElement class="detail__text" picking-mode="Ignore">
+                            <ui:Label name="detail-rarity" class="tag" text="LEGENDARY" picking-mode="Ignore" />
+                            <ui:Label name="detail-name" class="detail__name" text="PHANTOM WRAP" picking-mode="Ignore" />
+                            <ui:Label name="detail-desc" class="detail__desc" text="MATTE BLACK BODY WITH REACTIVE VIOLET PINSTRIPES. PULSES ON BOOST." picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="detail__buy" picking-mode="Ignore">
+                            <ui:VisualElement class="price detail__price accent-magenta" picking-mode="Ignore">
+                                <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                <ui:Label name="detail-price" class="price__value detail__price-value" text="1,200" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="detail__buttons" picking-mode="Ignore">
+                                <ui:Button name="btn-try" class="btn btn-ghost detail__try accent-cyan">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="btn-ghost__label" text="PREVIEW" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button name="btn-buy" class="btn btn-cta detail__buy-btn accent-amber">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="btn-cta__label" text="PURCHASE" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- RIGHT: store panel with one page per category (show or hide pages from C#) -->
+                <ui:VisualElement name="store" class="store accent-cyan" picking-mode="Ignore">
+            <ui:VisualElement name="page-characters" class="page page--hidden" picking-mode="Ignore">
+                <ui:VisualElement class="chips" picking-mode="Ignore">
+                    <ui:Button class="btn chip chip--active"><ui:Label class="chip__label" text="ALL" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="OWNED" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="NEW" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="LEGENDARY" picking-mode="Ignore" /></ui:Button>
+                </ui:VisualElement>
+                <ui:ScrollView name="grid-characters" class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <ui:Button class="btn shop-card rarity-epic">
+                            <ui:VisualElement class="shop-card__art art-hero-1" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="EPIC" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="KAI NOVA" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="DRIVER  /  VANGUARD" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__owned" text="OWNED" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-legendary shop-card--selected">
+                            <ui:VisualElement class="shop-card__art art-hero-2" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="LEGENDARY" picking-mode="Ignore" />
+                                <ui:Label class="tag tag--sale shop-card__sale" text="-20%" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="MIRA VOSS" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="DRIVER  /  DRIFTER" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="1,800" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-rare">
+                            <ui:VisualElement class="shop-card__art art-hero-3" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="RARE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="DAX OROZCO" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="DRIVER  /  BRUISER" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="45,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-legendary">
+                            <ui:VisualElement class="shop-card__art art-hero-4" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="LEGENDARY" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="ZERO-7" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="DRIVER  /  SPECTER" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="2,400" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="page-vehicles" class="page page--hidden" picking-mode="Ignore">
+                <ui:VisualElement class="chips" picking-mode="Ignore">
+                    <ui:Button class="btn chip chip--active"><ui:Label class="chip__label" text="ALL" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="HYPERCAR" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="MUSCLE" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="TUNER" picking-mode="Ignore" /></ui:Button>
+                </ui:VisualElement>
+                <ui:ScrollView name="grid-vehicles" class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <ui:Button class="btn shop-card rarity-epic">
+                            <ui:VisualElement class="shop-card__art art-car-1" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="EPIC" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="HYPERCAR  /  CLASS S" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__owned" text="OWNED" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-rare">
+                            <ui:VisualElement class="shop-card__art art-car-2" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="RARE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="VANTA R9" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="TUNER  /  CLASS A" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="180,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-rare">
+                            <ui:VisualElement class="shop-card__art art-car-3" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="RARE" picking-mode="Ignore" />
+                                <ui:Label class="tag tag--sale shop-card__sale" text="-15%" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="HELIX 88" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="MUSCLE  /  CLASS A" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="220,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-legendary">
+                            <ui:VisualElement class="shop-card__art art-car-4" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="LEGENDARY" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="OBSIDIAN KING" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="HYPERCAR  /  CLASS S" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="3,200" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="page-cosmetics" class="page" picking-mode="Ignore">
+                <ui:VisualElement class="chips" picking-mode="Ignore">
+                    <ui:Button class="btn chip chip--active"><ui:Label class="chip__label" text="ALL" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="WRAPS" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="WHEELS" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="NEON" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="TRAILS" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="EMOTES" picking-mode="Ignore" /></ui:Button>
+                    <ui:Button class="btn chip"><ui:Label class="chip__label" text="GEAR" picking-mode="Ignore" /></ui:Button>
+                </ui:VisualElement>
+                <ui:ScrollView name="grid-cosmetics" class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <ui:Button class="btn shop-card rarity-legendary shop-card--selected">
+                            <ui:VisualElement class="shop-card__art art-cos-1" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="LEGENDARY" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="PHANTOM WRAP" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="VEHICLE WRAP" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="1,200" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-rare">
+                            <ui:VisualElement class="shop-card__art art-cos-2" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="RARE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="CRIMSON STRIPE" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="VEHICLE WRAP" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="32,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-epic">
+                            <ui:VisualElement class="shop-card__art art-cos-3" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="EPIC" picking-mode="Ignore" />
+                                <ui:Label class="tag tag--sale shop-card__sale" text="-30%" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="VOLT RIMS" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="WHEELS" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="900" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-rare">
+                            <ui:VisualElement class="shop-card__art art-cos-4" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="RARE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="GHOST BLADE" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="WHEELS" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="28,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-epic">
+                            <ui:VisualElement class="shop-card__art art-cos-5" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="EPIC" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="AURORA UNDERGLOW" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="NEON" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="650" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-rare">
+                            <ui:VisualElement class="shop-card__art art-cos-6" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="RARE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="PULSE TRAIL" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="BOOST TRAIL" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="24,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-common">
+                            <ui:VisualElement class="shop-card__art art-cos-7" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="COMMON" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="VICTORY SPIN" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="EMOTE" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="8,000" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn shop-card rarity-epic">
+                            <ui:VisualElement class="shop-card__art art-cos-8" picking-mode="Ignore">
+                                <ui:VisualElement class="shop-card__slash" picking-mode="Ignore" />
+                                <ui:Label class="tag shop-card__rarity" text="EPIC" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="shop-card__bar" picking-mode="Ignore" />
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="shop-card__info" picking-mode="Ignore">
+                                <ui:Label class="shop-card__name" text="HELMET: VIPER" picking-mode="Ignore" />
+                                <ui:Label class="shop-card__type" text="DRIVER GEAR" picking-mode="Ignore" />
+                                <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                    <ui:Label class="price__value" text="750" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:Button>
+                </ui:ScrollView>
+            </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
