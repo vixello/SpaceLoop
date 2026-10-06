@@ -10,8 +10,8 @@
         <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
         <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
             <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
-                <ui:AttributeOverride element-name="screen-eyebrow" text="SOLO RACING  /  CAMPAIGN" />
-                <ui:AttributeOverride element-name="screen-title" text="STORY" />
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="SOLO RACING  /  CAMPAIGN" />
+                <ui:AttributeOverrides element-name="screen-title" text="STORY" />
             </ui:Instance>
             <ui:VisualElement class="body" picking-mode="Ignore">
                 <ui:VisualElement class="arc-rail" picking-mode="Ignore">
