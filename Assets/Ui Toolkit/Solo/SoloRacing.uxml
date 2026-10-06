@@ -1,0 +1,175 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Solo/SoloRacing.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Solo racing hub. Image slots: .mcard__art, .resume__thumb. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="CAMPAIGN  /  RANKED  /  FREE RACE" />
+                <ui:AttributeOverrides element-name="screen-title" text="SOLO RACING" />
+            </ui:Instance>
+            <ui:VisualElement class="modes" picking-mode="Ignore">
+                <ui:Button class="btn mcard mcard--lg accent-magenta" name="mode-story">
+                    <ui:VisualElement class="mcard__art art-s1" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__slash mcard__slash--a" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__slash mcard__slash--b" picking-mode="Ignore" />
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__content" picking-mode="Ignore">
+                        <ui:VisualElement class="mcard__top" picking-mode="Ignore">
+                            <ui:Label class="mcard__index" text="01" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="tag tag--accent" text="CAMPAIGN" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="mcard__title" text="STORY" picking-mode="Ignore" />
+                        <ui:Label class="mcard__sub" text="CHARACTER CAMPAIGNS" picking-mode="Ignore" />
+                        <ui:VisualElement class="mcard__body" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="ACTIVE ARC" picking-mode="Ignore" />
+                            <ui:Label class="mcard__stat" text="KAI NOVA  /  EMBER RUN" picking-mode="Ignore" />
+                            <ui:VisualElement class="pbar" picking-mode="Ignore">
+                                <ui:VisualElement class="pbar__fill" style="width: 39%;" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="mcard__row" picking-mode="Ignore">
+                                <ui:Label class="mcard__small" text="PART II  /  CHAPTER 7" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="mcard__small" text="7 / 18" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="arc-dots" picking-mode="Ignore">
+                                <ui:VisualElement class="arc-dot arc-dot--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="arc-dot arc-dot--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="arc-dot arc-dot--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="arc-dot" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                        <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="arc-dot" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                        <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label class="mcard__small arc-dots__text" text="3 OF 5 ARCS OPEN" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="mcard__cta" picking-mode="Ignore">
+                            <ui:Label class="mcard__cta-text" text="CONTINUE" picking-mode="Ignore" />
+                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:Button>
+                <ui:Button class="btn mcard mcard--md accent-amber" name="mode-ranked">
+                    <ui:VisualElement class="mcard__art art-s2" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__slash mcard__slash--a" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__slash mcard__slash--b" picking-mode="Ignore" />
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__content" picking-mode="Ignore">
+                        <ui:VisualElement class="mcard__top" picking-mode="Ignore">
+                            <ui:Label class="mcard__index" text="02" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="tag tag--accent" text="SEASON 04" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="mcard__title" text="RANKED" picking-mode="Ignore" />
+                        <ui:Label class="mcard__sub" text="CLIMB THE DIVISIONS" picking-mode="Ignore" />
+                        <ui:VisualElement class="mcard__body" picking-mode="Ignore">
+                            <ui:VisualElement class="mcard__rank" picking-mode="Ignore">
+                                <ui:VisualElement class="emblem" picking-mode="Ignore">
+                                    <ui:VisualElement class="emblem__core" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="mcard__rank-text" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow eyebrow--accent" text="DIVISION" picking-mode="Ignore" />
+                                    <ui:Label class="mcard__stat" text="PLATINUM II" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pbar" picking-mode="Ignore">
+                                <ui:VisualElement class="pbar__fill" style="width: 78%;" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="mcard__row" picking-mode="Ignore">
+                                <ui:Label class="mcard__small" text="2,340 / 3,000 RP" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="mcard__small" text="SEASON ENDS 12D" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="mcard__cta" picking-mode="Ignore">
+                            <ui:Label class="mcard__cta-text" text="ENTER LADDER" picking-mode="Ignore" />
+                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:Button>
+                <ui:Button class="btn mcard mcard--sm accent-cyan" name="mode-free">
+                    <ui:VisualElement class="mcard__art art-s3" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__slash mcard__slash--a" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__slash mcard__slash--b" picking-mode="Ignore" />
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                    <ui:VisualElement class="mcard__content" picking-mode="Ignore">
+                        <ui:VisualElement class="mcard__top" picking-mode="Ignore">
+                            <ui:Label class="mcard__index" text="03" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="tag tag--accent" text="UNRANKED" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="mcard__title" text="FREE RACE" picking-mode="Ignore" />
+                        <ui:Label class="mcard__sub" text="ANY TRACK, ANY RULES" picking-mode="Ignore" />
+                        <ui:VisualElement class="mcard__body" picking-mode="Ignore">
+                            <ui:VisualElement class="facts" picking-mode="Ignore">
+                                <ui:VisualElement class="fact" picking-mode="Ignore">
+                                    <ui:Label class="fact__num" text="21" picking-mode="Ignore" />
+                                    <ui:Label class="fact__label" text="TRACKS" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="fact" picking-mode="Ignore">
+                                    <ui:Label class="fact__num" text="6" picking-mode="Ignore" />
+                                    <ui:Label class="fact__label" text="PLANETS" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="fact" picking-mode="Ignore">
+                                    <ui:Label class="fact__num" text="4" picking-mode="Ignore" />
+                                    <ui:Label class="fact__label" text="AI LEVELS" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label class="mcard__small" text="NO RANK POINTS  /  REDUCED REWARDS" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="mcard__cta" picking-mode="Ignore">
+                            <ui:Label class="mcard__cta-text" text="SET UP RACE" picking-mode="Ignore" />
+                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement class="hub-bottom" picking-mode="Ignore">
+                <ui:Button class="btn resume accent-magenta" name="btn-resume">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                    <ui:VisualElement class="resume__thumb" picking-mode="Ignore">
+                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="resume__text" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="CONTINUE STORY" picking-mode="Ignore" />
+                        <ui:Label class="resume__title" text="KAI NOVA  /  PART II  /  CHAPTER 7: EMBER RUN" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                </ui:Button>
+                <ui:Button class="btn daily accent-amber" name="btn-daily">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                    <ui:VisualElement class="daily__text" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="DAILY SOLO CHALLENGE" picking-mode="Ignore" />
+                        <ui:Label class="daily__title" text="WIN WITH A CLASS A CAR" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                        <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                        <ui:Label class="price__value" text="2,500" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

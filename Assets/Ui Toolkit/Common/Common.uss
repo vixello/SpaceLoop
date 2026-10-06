@@ -670,3 +670,24 @@
     --accent-soft: rgba(255, 82, 96, 0.14);
     --accent-mid: rgba(255, 82, 96, 0.42);
 }
+
+/* ---------------------------------------------------------------------
+   14. EXTRA ACCENTS (character arc colors) + PROGRESS BAR
+   --------------------------------------------------------------------- */
+.accent-green {
+    --accent: rgb(70, 255, 160);
+    --accent-hi: rgb(150, 255, 205);
+    --accent-soft: rgba(70, 255, 160, 0.12);
+    --accent-mid: rgba(70, 255, 160, 0.38);
+}
+
+.accent-violet {
+    --accent: rgb(176, 96, 255);
+    --accent-hi: rgb(206, 156, 255);
+    --accent-soft: rgba(176, 96, 255, 0.16);
+    --accent-mid: rgba(176, 96, 255, 0.42);
+}
+
+.pbar { height: 8px; background-color: var(--c-fill-mid); }
+.pbar--thin { height: 5px; }
+.pbar__fill { height: 100%; background-color: var(--accent); }
