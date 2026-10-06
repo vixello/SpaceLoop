@@ -1,0 +1,571 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Solo/Story.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Story screen. Arc rail on the left, parts and chapter path in the center, chapter detail on the right. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverride element-name="screen-eyebrow" text="SOLO RACING  /  CAMPAIGN" />
+                <ui:AttributeOverride element-name="screen-title" text="STORY" />
+            </ui:Instance>
+            <ui:VisualElement class="body" picking-mode="Ignore">
+                <ui:VisualElement class="arc-rail" picking-mode="Ignore">
+                    <ui:Label class="eyebrow rail-label" text="CHARACTER ARCS" picking-mode="Ignore" />
+                    <ui:Button class="btn arc accent-cyan arc--active" name="arc-kai">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="arc__portrait" picking-mode="Ignore">
+                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="arc__text" picking-mode="Ignore">
+                            <ui:Label class="arc__char" text="KAI NOVA" picking-mode="Ignore" />
+                            <ui:Label class="arc__title" text="EMBER RUN" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__prog" picking-mode="Ignore">
+                                <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                    <ui:VisualElement class="pbar__fill" style="width: 38%;" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="arc__count" text="7 / 18" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn arc accent-amber arc--open" name="arc-dax">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="arc__portrait" picking-mode="Ignore">
+                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="arc__text" picking-mode="Ignore">
+                            <ui:Label class="arc__char" text="DAX OROZCO" picking-mode="Ignore" />
+                            <ui:Label class="arc__title" text="IRON CIRCUIT" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__prog" picking-mode="Ignore">
+                                <ui:VisualElement class="pbar pbar--thin" picking-mode="Ignore">
+                                    <ui:VisualElement class="pbar__fill" style="width: 20%;" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="arc__count" text="3 / 15" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn arc accent-green arc--lock-prog" name="arc-juno">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="arc__portrait" picking-mode="Ignore">
+                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__veil" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="arc__text" picking-mode="Ignore">
+                            <ui:Label class="arc__char" text="JUNO PARK" picking-mode="Ignore" />
+                            <ui:Label class="arc__title" text="STARLIGHT" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__req" picking-mode="Ignore">
+                                <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="arc__req-text" text="FINISH KAI PART II" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn arc accent-magenta arc--lock-char" name="arc-mira">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="arc__portrait" picking-mode="Ignore">
+                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__veil" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="arc__text" picking-mode="Ignore">
+                            <ui:Label class="arc__char" text="MIRA VOSS" picking-mode="Ignore" />
+                            <ui:Label class="arc__title" text="BLACK TIDE" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__req" picking-mode="Ignore">
+                                <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="arc__req-text" text="UNLOCK MIRA VOSS" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn arc accent-violet arc--lock-char" name="arc-zero">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="arc__portrait" picking-mode="Ignore">
+                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__veil" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="arc__text" picking-mode="Ignore">
+                            <ui:Label class="arc__char" text="ZERO-7" picking-mode="Ignore" />
+                            <ui:Label class="arc__title" text="NULL SIGNAL" picking-mode="Ignore" />
+                            <ui:VisualElement class="arc__req" picking-mode="Ignore">
+                                <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="arc__req-text" text="UNLOCK ZERO-7" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="story-center" picking-mode="Ignore">
+                    <ui:VisualElement class="arc-banner accent-cyan" picking-mode="Ignore">
+                        <ui:VisualElement class="arc-banner__text" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="KAI NOVA  /  VANGUARD" name="arc-char" picking-mode="Ignore" />
+                            <ui:Label class="arc-banner__title" text="EMBER RUN" name="arc-title" picking-mode="Ignore" />
+                            <ui:Label class="arc-banner__desc" text="A BURNED-OUT PILOT RETURNS TO AURELIA TO FIND WHO SABOTAGED THE LAST GRAND PRIX." name="arc-desc" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="arc-banner__stats" picking-mode="Ignore">
+                            <ui:VisualElement class="fact" picking-mode="Ignore">
+                                <ui:Label class="fact__num" text="7 / 18" picking-mode="Ignore" />
+                                <ui:Label class="fact__label" text="CHAPTERS" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="fact" picking-mode="Ignore">
+                                <ui:Label class="fact__num" text="12 / 54" picking-mode="Ignore" />
+                                <ui:Label class="fact__label" text="STARS" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="tabs-row part-tabs" picking-mode="Position">
+                        <ui:Button class="btn tab accent-cyan" name="part-1">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="check part-check" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="PART I  /  IGNITION" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan tab--active" name="part-2">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="PART II  /  EMBER RUN" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan tab--locked" name="part-3">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Label class="tab__label" text="PART III  /  ZENITH" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="story-pages" picking-mode="Ignore">
+                        <ui:VisualElement class="page" name="page-arc-kai-part2" picking-mode="Ignore">
+                            <ui:ScrollView class="ch-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:Button class="btn ch ch--current ch--sel">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="07" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="RACE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__play" picking-mode="Ignore">
+                                            <ui:VisualElement class="ch__play-tri" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="EMBER RUN" picking-mode="Ignore" />
+                                        <ui:VisualElement class="stars" picking-mode="Ignore">
+                                            <ui:VisualElement class="star" picking-mode="Ignore" />
+                                            <ui:VisualElement class="star" picking-mode="Ignore" />
+                                            <ui:VisualElement class="star" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="ch__state ch__state--on" text="PLAY NOW" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--now" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-prog">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="08" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="DUEL" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="SMOKE AND MIRRORS" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="FINISH CH. 7" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-prog">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="09" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="RACE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="THE LONG WAY DOWN" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="FINISH CH. 8" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-prog">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="10" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="STORY" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="BROKEN SIGNAL" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="FINISH CH. 9" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-prog">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="11" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="RACE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="RED HORIZON" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="FINISH CH. 10" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-prog ch--boss">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="12" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="BOSS" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="ASHES OF AURELIA" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="FINISH CH. 11" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                        <!-- Locked character arc example: every chapter shows the same lock reason. C# builds one page per arc and part. -->
+                        <ui:VisualElement class="page page--hidden" name="page-arc-mira-part1" picking-mode="Ignore">
+                            <ui:ScrollView class="ch-list" mode="Horizontal" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:Button class="btn ch ch--lock-char">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="01" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="RACE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="TIDE LINES" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="UNLOCK MIRA VOSS" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-char">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="02" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="DUEL" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="UNDERCURRENT" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="UNLOCK MIRA VOSS" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-char">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="03" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="RACE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="DROWNED CITY" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="UNLOCK MIRA VOSS" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-char">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="04" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="STORY" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="LOW TIDE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="UNLOCK MIRA VOSS" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:VisualElement class="ch-link ch-link--lock" picking-mode="Ignore" />
+                                <ui:Button class="btn ch ch--lock-char ch--boss">
+                                    <ui:VisualElement class="ch__art" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__num" picking-mode="Ignore">
+                                            <ui:Label class="ch__num-text" text="05" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag ch__kind" text="BOSS" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__veil" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__info" picking-mode="Ignore">
+                                        <ui:Label class="ch__title" text="BLACK TIDE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="ch__reqrow" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:Label class="ch__req" text="UNLOCK MIRA VOSS" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:ScrollView>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="sd accent-cyan" picking-mode="Ignore">
+                    <ui:VisualElement class="sd__bar" picking-mode="Ignore" />
+                    <ui:Label class="eyebrow eyebrow--accent" text="PART II  /  CHAPTER 07" name="detail-eyebrow" picking-mode="Ignore" />
+                    <ui:Label class="sd__title" text="EMBER RUN" name="detail-title" picking-mode="Ignore" />
+                    <ui:VisualElement class="sd__tags" picking-mode="Ignore">
+                        <ui:Label class="tag tag--accent" text="RACE" picking-mode="Ignore" />
+                        <ui:Label class="sd__meta" text="AURELIA  /  SOLAR RIDGE  /  3 LAPS" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:Label class="sd__desc" text="KAI'S FIRST RACE BACK. THE TRACK IS BURNING AND SOMEONE WANTS HIM TO LOSE." picking-mode="Ignore" />
+                    <ui:Label class="eyebrow sd__label" text="OBJECTIVES" picking-mode="Ignore" />
+                    <ui:VisualElement class="obj" picking-mode="Ignore">
+                        <ui:VisualElement class="obj__box" picking-mode="Ignore" />
+                        <ui:Label class="obj__text" text="FINISH THE RACE" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="obj" picking-mode="Ignore">
+                        <ui:VisualElement class="obj__box" picking-mode="Ignore" />
+                        <ui:Label class="obj__text" text="FINISH IN THE TOP 3" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="obj" picking-mode="Ignore">
+                        <ui:VisualElement class="obj__box" picking-mode="Ignore" />
+                        <ui:Label class="obj__text" text="COMPLETE WITHOUT LEAVING THE TRACK" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:Label class="eyebrow sd__label" text="REWARDS" picking-mode="Ignore" />
+                    <ui:VisualElement class="rewards" picking-mode="Ignore">
+                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                            <ui:Label class="price__value" text="5,000" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                            <ui:Label class="price__value" text="30" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="sd__reward-item" text="OUTFIT: CRIMSON PILOT" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="sd__meta-row" picking-mode="Ignore">
+                        <ui:VisualElement class="sd__diff" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="DIFFICULTY" picking-mode="Ignore" />
+                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="sd__time" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="EST. TIME" picking-mode="Ignore" />
+                            <ui:Label class="sd__time-val" text="6 MIN" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:VisualElement class="sd__actions" picking-mode="Ignore">
+                        <ui:Button class="btn btn-ghost sd__shop hidden accent-amber" name="btn-goto-shop">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-ghost__label" text="GO TO SHOP" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn btn-cta btn-cta--disabled sd__main hidden" name="btn-chapter-locked">
+                            <ui:Label class="btn-cta__label" text="LOCKED" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn btn-cta sd__main" name="btn-start-chapter">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-cta__label" text="START CHAPTER" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
