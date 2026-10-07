@@ -1,0 +1,409 @@
+/* =====================================================================
+   TRAINING SETUP  (requires Common.uss)
+   Solar rail (planets, drifting left to right) | 3D planet + info plate |
+   flight plan (tracks) and training rig (toggles, traffic, weather).
+   Training gives no rank points. Locked planets and tracks stay visible
+   with their unlock reason.
+   Toggle .orb--sel on the rail, .track--sel on tracks, .tog--on on
+   toggles from C#.
+   ===================================================================== */
+
+.body {
+    flex-direction: row;
+    flex-grow: 1;
+    margin-top: 22px;
+}
+
+/* ---------------------------------------------------------------------
+   1. SOLAR RAIL
+   --------------------------------------------------------------------- */
+.solar { width: 330px; flex-shrink: 0; margin-right: 22px; }
+.rail-label { margin-bottom: 8px; }
+
+.orb {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4px;
+    padding: 6px 16px 6px 12px;
+    overflow: visible;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 3px;
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.orb:focus { border-color: rgba(0, 0, 0, 0); }
+.orb:hover { background-color: var(--c-fill-soft); translate: 8px 0; }
+.orb--sel, .orb--sel:focus, .orb--sel:hover { background-color: var(--accent-soft); border-color: var(--accent); }
+
+.orb--off0 { margin-left: 0; }
+.orb--off1 { margin-left: 30px; }
+.orb--off2 { margin-left: 52px; }
+.orb--off3 { margin-left: 18px; }
+
+.orb__atmo {
+    position: absolute;
+    left: 1px;
+    top: 50%;
+    translate: 0 -50%;
+    border-width: 2px;
+}
+
+.orb__body {
+    flex-shrink: 0;
+    margin-right: 22px;
+    overflow: hidden;
+}
+
+.orb--lg .orb__body { width: 104px; height: 104px; border-radius: 52px; }
+.orb--md .orb__body { width: 80px;  height: 80px;  border-radius: 40px; }
+.orb--sm .orb__body { width: 64px;  height: 64px;  border-radius: 32px; }
+
+.orb--lg .orb__atmo { width: 126px; height: 126px; border-radius: 63px; }
+.orb--md .orb__atmo { width: 102px; height: 102px; border-radius: 51px; }
+.orb--sm .orb__atmo { width: 86px;  height: 86px;  border-radius: 43px; }
+
+.orb__shade {
+    position: absolute;
+    left: 38%;
+    top: -12%;
+    width: 120%;
+    height: 130%;
+    border-radius: 70px;
+    background-color: rgba(2, 5, 12, 0.55);
+}
+
+.orb__band { position: absolute; left: 0; right: 0; background-color: rgba(255, 255, 255, 0.14); }
+.orb__band--a { top: 32%; height: 10%; }
+.orb__band--b { top: 62%; height: 6%; }
+
+.orb__ring {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    border-width: 3px;
+    border-radius: 100px;
+    border-color: rgba(236, 244, 255, 0.45);
+    rotate: -16deg;
+}
+
+.orb--md .orb__ring { left: -14px; width: 124px; height: 30px; }
+.orb--sm .orb__ring { left: -12px; width: 104px; height: 26px; }
+
+.orb__lock {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    left: 12px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(3, 6, 13, 0.55);
+}
+
+.orb--md .orb__lock { width: 80px; height: 80px; border-radius: 40px; }
+.orb--sm .orb__lock { width: 64px; height: 64px; border-radius: 32px; }
+.orb__lock .lock { scale: 0.8 0.8; }
+
+.orb__text { flex-grow: 1; flex-shrink: 1; }
+
+.orb__name {
+    font-size: 26px;
+    letter-spacing: 5px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.orb--sm .orb__name, .orb--md .orb__name { font-size: 22px; }
+.orb--locked .orb__name { color: var(--c-text-2); }
+
+.orb__sub {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.orb__req { flex-direction: row; align-items: center; }
+
+.orb__req-text {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgb(255, 190, 0);
+    white-space: nowrap;
+    -unity-font-style: bold;
+}
+
+/* ---------------------------------------------------------------------
+   2. CENTER PLATE
+   --------------------------------------------------------------------- */
+.center {
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: center;
+    margin: 0 22px 0 22px;
+}
+
+.plate { align-items: center; }
+
+.plate__name {
+    font-size: 112px;
+    letter-spacing: 16px;
+    color: var(--c-text);
+    white-space: nowrap;
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-center;
+}
+
+.pstats { flex-direction: row; margin-top: 4px; }
+
+.pstat {
+    margin: 0 14px 0 14px;
+    padding: 6px 18px 6px 18px;
+    align-items: center;
+    background-color: var(--c-surface);
+    border-bottom-width: 2px;
+    border-color: var(--accent);
+}
+
+.pstat__label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+.pstat__val {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+}
+
+.plate__desc {
+    max-width: 700px;
+    margin-top: 14px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    white-space: normal;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+}
+
+/* ---------------------------------------------------------------------
+   3. FLIGHT PLAN + RIG
+   --------------------------------------------------------------------- */
+.flight { width: 37%; min-width: 580px; max-width: 760px; flex-shrink: 0; }
+.flight .tabs-row { margin-bottom: 8px; }
+
+.flight__body {
+    flex-grow: 1;
+    padding: 16px 18px 18px 18px;
+    background-color: var(--c-surface);
+    border-top-width: 2px;
+    border-color: var(--accent);
+}
+
+.flight__head { flex-direction: row; align-items: center; margin-bottom: 10px; flex-shrink: 0; }
+
+.carousel-count {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+}
+
+.track-list { flex-grow: 1; }
+
+.track {
+    flex-direction: row;
+    align-items: center;
+    height: 96px;
+    margin-bottom: 6px;
+    padding: 0 16px 0 0;
+    background-color: var(--c-fill-soft);
+}
+
+.track:hover { background-color: var(--c-fill-mid); translate: 8px 0; }
+.track--sel, .track--sel:hover { background-color: var(--accent-soft); }
+.track--sel .edge { width: 7px; }
+
+/* IMAGE SLOT: track preview */
+.track__img {
+    width: 150px;
+    height: 100%;
+    margin-right: 18px;
+    overflow: hidden;
+    background-color: var(--accent-soft);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.track__veil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(3, 6, 13, 0.62);
+}
+
+.track__lock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.track__text { flex-grow: 1; flex-shrink: 1; }
+
+.track__name {
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    white-space: nowrap;
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.track--locked .track__name { color: var(--c-text-2); }
+
+.track__meta {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.track__right { align-items: flex-end; }
+
+.track__best-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+.track__best {
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+}
+
+.track__reqrow { flex-direction: row; align-items: center; }
+
+.track__req {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgb(255, 190, 0);
+    -unity-font-style: bold;
+}
+
+.stars { flex-direction: row; margin-top: 4px; }
+
+.star {
+    width: 11px;
+    height: 11px;
+    margin-left: 10px;
+    rotate: 45deg;
+    border-width: 2px;
+    border-color: var(--c-text-3);
+}
+
+.star--on { background-color: rgb(255, 190, 0); border-color: rgb(255, 190, 0); }
+
+.pips { flex-direction: row; margin-top: 4px; }
+
+.pip {
+    width: 12px;
+    height: 22px;
+    margin-right: 5px;
+    rotate: 14deg;
+    background-color: var(--c-fill-mid);
+}
+
+.pip--sm { width: 9px; height: 14px; margin-right: 4px; }
+.pip--on { background-color: var(--accent); }
+
+.car__slash {
+    position: absolute;
+    right: 22%;
+    top: -50%;
+    width: 26px;
+    height: 220%;
+    rotate: 24deg;
+    background-color: var(--c-fill-soft);
+}
+
+/* Rig */
+.rig { flex-shrink: 0; margin-top: 8px; padding-top: 12px; border-top-width: 1px; border-color: var(--c-hair); }
+.rig__label { margin-bottom: 10px; }
+
+.togs { flex-direction: row; margin-bottom: 10px; }
+
+.tog {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 96px;
+    margin-right: 8px;
+    padding: 12px 14px 10px 16px;
+    justify-content: space-between;
+    background-color: var(--c-fill-soft);
+    border-bottom-width: 3px;
+    border-color: var(--c-hair-strong);
+}
+
+.tog:last-child { margin-right: 0; }
+.tog:focus { border-color: var(--c-hair-strong); }
+.tog:hover { background-color: var(--c-fill-mid); scale: 1.04 1.04; }
+.tog--on, .tog--on:focus { border-color: var(--accent); background-color: var(--accent-soft); }
+.tog--on:hover { background-color: var(--accent-mid); }
+
+.tog__label {
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.tog__sub {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.switch {
+    width: 56px;
+    height: 24px;
+    background-color: var(--c-fill-mid);
+}
+
+.switch__knob {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--c-text-2);
+    transition-property: left, background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.tog--on .switch { background-color: var(--accent-mid); }
+.tog--on .switch__knob { left: 35px; background-color: var(--accent); }
+
+.opt-line { flex-direction: row; align-items: center; margin-bottom: 2px; }
+.opt-line__label { width: 130px; flex-shrink: 0; margin-bottom: 8px; }
+.opt-line .chip { height: 38px; margin: 0 8px 8px 0; padding: 0 16px 0 16px; }
+
+.launch { width: 100%; height: 88px; margin-top: 8px; flex-shrink: 0; }
+.launch .btn-cta__label { font-size: 28px; letter-spacing: 8px; }

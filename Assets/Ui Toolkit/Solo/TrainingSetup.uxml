@@ -1,0 +1,426 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Solo/TrainingSetup.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Training setup. The 3D scene shows the selected planet in the center. Training has no rank points. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="SOLO RACING  /  TRAINING" />
+                <ui:AttributeOverrides element-name="screen-title" text="TRAINING GROUNDS" />
+            </ui:Instance>
+            <ui:VisualElement class="body" picking-mode="Ignore">
+                <ui:VisualElement class="solar" picking-mode="Ignore">
+                    <ui:Label class="eyebrow rail-label" text="SOLAR SYSTEM" picking-mode="Ignore" />
+                    <ui:Button class="btn orb orb--lg orb--off0 orb--sel" name="planet-aurelia">
+                        <ui:VisualElement class="orb__atmo" style="border-color: rgba(255,140,60,0.55);" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__body" style="background-color: rgb(255,140,60);" picking-mode="Ignore">
+                            <ui:VisualElement class="orb__band orb__band--a" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__band orb__band--b" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__shade" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__text" picking-mode="Ignore">
+                            <ui:Label class="orb__name" text="AURELIA" picking-mode="Ignore" />
+                            <ui:Label class="orb__sub" text="5 TRACKS" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn orb orb--md orb--off1" name="planet-kryos">
+                        <ui:VisualElement class="orb__atmo" style="border-color: rgba(100,200,255,0.55);" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__body" style="background-color: rgb(100,200,255);" picking-mode="Ignore">
+                            <ui:VisualElement class="orb__band orb__band--a" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__band orb__band--b" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__shade" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__ring" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__text" picking-mode="Ignore">
+                            <ui:Label class="orb__name" text="KRYOS" picking-mode="Ignore" />
+                            <ui:Label class="orb__sub" text="4 TRACKS" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn orb orb--md orb--off2 orb--locked" name="planet-vesper">
+                        <ui:VisualElement class="orb__atmo" style="border-color: rgba(176,96,255,0.55);" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__body" style="background-color: rgb(176,96,255);" picking-mode="Ignore">
+                            <ui:VisualElement class="orb__band orb__band--a" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__band orb__band--b" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__shade" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__lock" picking-mode="Ignore">
+                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__text" picking-mode="Ignore">
+                            <ui:Label class="orb__name" text="VESPER" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__req" picking-mode="Ignore">
+                                <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="orb__req-text" text="LEVEL 20" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn orb orb--sm orb--off3 orb--locked" name="planet-helion">
+                        <ui:VisualElement class="orb__atmo" style="border-color: rgba(255,200,80,0.55);" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__body" style="background-color: rgb(255,200,80);" picking-mode="Ignore">
+                            <ui:VisualElement class="orb__band orb__band--a" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__band orb__band--b" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__shade" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__lock" picking-mode="Ignore">
+                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__text" picking-mode="Ignore">
+                            <ui:Label class="orb__name" text="HELION" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__req" picking-mode="Ignore">
+                                <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="orb__req-text" text="KAI PART III" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn orb orb--sm orb--off2 orb--locked" name="planet-nyx">
+                        <ui:VisualElement class="orb__atmo" style="border-color: rgba(90,100,150,0.55);" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__body" style="background-color: rgb(90,100,150);" picking-mode="Ignore">
+                            <ui:VisualElement class="orb__band orb__band--a" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__band orb__band--b" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__shade" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__ring" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__lock" picking-mode="Ignore">
+                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__text" picking-mode="Ignore">
+                            <ui:Label class="orb__name" text="NYX" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__req" picking-mode="Ignore">
+                                <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="orb__req-text" text="LEVEL 28" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn orb orb--sm orb--off1 orb--locked" name="planet-orin">
+                        <ui:VisualElement class="orb__atmo" style="border-color: rgba(70,255,160,0.55);" picking-mode="Ignore" />
+                        <ui:VisualElement class="orb__body" style="background-color: rgb(70,255,160);" picking-mode="Ignore">
+                            <ui:VisualElement class="orb__band orb__band--a" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__band orb__band--b" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__shade" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__lock" picking-mode="Ignore">
+                            <ui:VisualElement class="lock" picking-mode="Ignore">
+                                <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="orb__text" picking-mode="Ignore">
+                            <ui:Label class="orb__name" text="ORIN" picking-mode="Ignore" />
+                            <ui:VisualElement class="orb__req" picking-mode="Ignore">
+                                <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                    <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                    <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="orb__req-text" text="LEVEL 35" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="center" picking-mode="Ignore">
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:VisualElement class="plate" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="PLANET 01 / 06" name="planet-eyebrow" picking-mode="Ignore" />
+                        <ui:Label class="plate__name" text="AURELIA" name="planet-name" picking-mode="Ignore" />
+                        <ui:VisualElement class="pstats" picking-mode="Ignore">
+                            <ui:VisualElement class="pstat" picking-mode="Ignore">
+                                <ui:Label class="pstat__label" text="GRAVITY" picking-mode="Ignore" />
+                                <ui:Label class="pstat__val" text="0.8 G" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pstat" picking-mode="Ignore">
+                                <ui:Label class="pstat__label" text="ATMOSPHERE" picking-mode="Ignore" />
+                                <ui:Label class="pstat__val" text="ASH" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pstat" picking-mode="Ignore">
+                                <ui:Label class="pstat__label" text="SURFACE" picking-mode="Ignore" />
+                                <ui:Label class="pstat__val" text="212 C" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pstat" picking-mode="Ignore">
+                                <ui:Label class="pstat__label" text="RECORDS" picking-mode="Ignore" />
+                                <ui:Label class="pstat__val" text="3 / 5 GOLD" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label class="plate__desc" text="A BURNED WORLD OF GLASS RIDGES AND SOLAR FLATS. FAST, OPEN AND UNFORGIVING." picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="flight accent-cyan" picking-mode="Ignore">
+                    <ui:VisualElement class="tabs-row" picking-mode="Position">
+                        <ui:Button class="btn tab tab--active accent-cyan" name="tab-practice">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="FREE PRACTICE" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan" name="tab-trial">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="TIME TRIAL" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn tab accent-cyan" name="tab-drift">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:Label class="tab__label" text="DRIFT LAB" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="flight__body" picking-mode="Ignore">
+                        <ui:VisualElement class="flight__head" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="FLIGHT PLAN" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="carousel-count" text="5 TRACKS  /  3 OPEN" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:ScrollView class="track-list" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:Button class="btn track">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                <ui:VisualElement class="track__img" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__text" picking-mode="Ignore">
+                                    <ui:Label class="track__name" text="SOLAR RIDGE" picking-mode="Ignore" />
+                                    <ui:Label class="track__meta" text="5.4 KM  /  3 LAPS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pips" picking-mode="Ignore">
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__right" picking-mode="Ignore">
+                                    <ui:Label class="track__best-label" text="BEST" picking-mode="Ignore" />
+                                    <ui:Label class="track__best" text="1:42.318" picking-mode="Ignore" />
+                                    <ui:VisualElement class="stars" picking-mode="Ignore">
+                                        <ui:VisualElement class="star star--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="star star--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="star star--on" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn track">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                <ui:VisualElement class="track__img" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__text" picking-mode="Ignore">
+                                    <ui:Label class="track__name" text="CRYSTAL CANYON" picking-mode="Ignore" />
+                                    <ui:Label class="track__meta" text="4.8 KM  /  3 LAPS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pips" picking-mode="Ignore">
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__right" picking-mode="Ignore">
+                                    <ui:Label class="track__best-label" text="BEST" picking-mode="Ignore" />
+                                    <ui:Label class="track__best" text="1:55.021" picking-mode="Ignore" />
+                                    <ui:VisualElement class="stars" picking-mode="Ignore">
+                                        <ui:VisualElement class="star star--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="star star--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="star" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn track track--sel">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                <ui:VisualElement class="track__img" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__text" picking-mode="Ignore">
+                                    <ui:Label class="track__name" text="EMBER STRAIGHTS" picking-mode="Ignore" />
+                                    <ui:Label class="track__meta" text="6.1 KM  /  2 LAPS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pips" picking-mode="Ignore">
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__right" picking-mode="Ignore">
+                                    <ui:Label class="track__best-label" text="BEST" picking-mode="Ignore" />
+                                    <ui:Label class="track__best" text="--:--.---" picking-mode="Ignore" />
+                                    <ui:VisualElement class="stars" picking-mode="Ignore">
+                                        <ui:VisualElement class="star" picking-mode="Ignore" />
+                                        <ui:VisualElement class="star" picking-mode="Ignore" />
+                                        <ui:VisualElement class="star" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn track track--locked">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                <ui:VisualElement class="track__img" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="track__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="track__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__text" picking-mode="Ignore">
+                                    <ui:Label class="track__name" text="GLASS DUNES" picking-mode="Ignore" />
+                                    <ui:Label class="track__meta" text="5.0 KM  /  3 LAPS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pips" picking-mode="Ignore">
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__right" picking-mode="Ignore">
+                                    <ui:VisualElement class="track__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="track__req" text="FINISH 3 TRACKS HERE" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:Button class="btn track track--locked">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                <ui:VisualElement class="track__img" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="track__veil" picking-mode="Ignore" />
+                                    <ui:VisualElement class="track__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__text" picking-mode="Ignore">
+                                    <ui:Label class="track__name" text="HELION GATE" picking-mode="Ignore" />
+                                    <ui:Label class="track__meta" text="7.2 KM  /  2 LAPS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="pips" picking-mode="Ignore">
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                        <ui:VisualElement class="pip pip--sm pip--on" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="track__right" picking-mode="Ignore">
+                                    <ui:VisualElement class="track__reqrow" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="track__req" text="PILOT LEVEL 22" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                        </ui:ScrollView>
+                        <ui:VisualElement class="rig" picking-mode="Ignore">
+                            <ui:Label class="eyebrow rig__label" text="TRAINING RIG" picking-mode="Ignore" />
+                            <ui:VisualElement class="togs" picking-mode="Ignore">
+                                <ui:Button class="btn tog tog--on" name="tog-ghost">
+                                    <ui:Label class="tog__label" text="GHOST LAP" picking-mode="Ignore" />
+                                    <ui:VisualElement class="switch" picking-mode="Ignore">
+                                        <ui:VisualElement class="switch__knob" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="tog__sub" text="BEST LAP" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn tog tog--on" name="tog-line">
+                                    <ui:Label class="tog__label" text="RACING LINE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="switch" picking-mode="Ignore">
+                                        <ui:VisualElement class="switch__knob" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="tog__sub" text="BRAKE GUIDE" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn tog" name="tog-assist">
+                                    <ui:Label class="tog__label" text="ASSISTS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="switch" picking-mode="Ignore">
+                                        <ui:VisualElement class="switch__knob" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="tog__sub" text="STEERING" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="opt-line" picking-mode="Ignore">
+                                <ui:Label class="eyebrow opt-line__label" text="TRAFFIC" picking-mode="Ignore" />
+                                <ui:VisualElement class="chips" picking-mode="Ignore">
+                                    <ui:Button class="btn chip chip--active">
+                                        <ui:Label class="chip__label" text="0" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="1" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="3" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="5" picking-mode="Ignore" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="opt-line" picking-mode="Ignore">
+                                <ui:Label class="eyebrow opt-line__label" text="WEATHER" picking-mode="Ignore" />
+                                <ui:VisualElement class="chips" picking-mode="Ignore">
+                                    <ui:Button class="btn chip chip--active">
+                                        <ui:Label class="chip__label" text="CLEAR" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="STORM" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="FOG" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="ASH" picking-mode="Ignore" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="opt-line" picking-mode="Ignore">
+                                <ui:Label class="eyebrow opt-line__label" text="TIME" picking-mode="Ignore" />
+                                <ui:VisualElement class="chips" picking-mode="Ignore">
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="DAY" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip chip--active">
+                                        <ui:Label class="chip__label" text="DUSK" picking-mode="Ignore" />
+                                    </ui:Button>
+                                    <ui:Button class="btn chip">
+                                        <ui:Label class="chip__label" text="NIGHT" picking-mode="Ignore" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Button class="btn btn-cta launch accent-cyan" name="btn-start-training">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-cta__label" text="LAUNCH TRAINING" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
