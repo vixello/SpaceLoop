@@ -1,0 +1,264 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Multiplayer/Multiplayer.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Multiplayer: ranked and unranked live only here. The two halves expand and collapse; toggle the active class from C#. The queue overlay at the end is hidden by default. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="ONLINE  /  SEASON 04  /  EU CENTRAL" />
+                <ui:AttributeOverrides element-name="screen-title" text="MULTIPLAYER" />
+            </ui:Instance>
+            <ui:VisualElement class="halves" name="halves-container" picking-mode="Ignore">
+                
+                <!-- RANKED HALF -->
+                <ui:VisualElement class="half accent-amber half--active" name="half-ranked" picking-mode="Position">
+                    <ui:VisualElement class="half__art" name="ranked-art" picking-mode="Ignore" />
+                    <ui:VisualElement class="half__slash half__slash--a" picking-mode="Ignore" />
+                    <ui:VisualElement class="half__slash half__slash--b" picking-mode="Ignore" />
+                    <ui:Button class="btn half__compact" name="half-ranked-select">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="half__vert" picking-mode="Ignore">
+                            <ui:VisualElement class="emblem emblem--lg" picking-mode="Ignore">
+                                <ui:VisualElement class="emblem__core" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Label class="half__vert-title" text="RANKED" picking-mode="Ignore" />
+                            <ui:Label class="half__vert-sub" name="compact-rank-label" text="PLATINUM II" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:VisualElement class="half__content" name="ranked-content" picking-mode="Ignore">
+                        <ui:VisualElement class="half__top" picking-mode="Ignore">
+                            <ui:Label class="tag tag--accent" text="SEASON 04" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="half__timer" name="season-timer" text="ENDS IN 12D 06H" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="half__title" text="RANKED" picking-mode="Ignore" />
+                        <ui:VisualElement class="rk-head" picking-mode="Ignore">
+                            <ui:VisualElement class="emblem emblem--lg" name="division-emblem" picking-mode="Ignore">
+                                <ui:VisualElement class="emblem__core" name="division-emblem-core" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rk-head__text" picking-mode="Ignore">
+                                <ui:Label class="eyebrow eyebrow--accent" text="YOUR DIVISION" picking-mode="Ignore" />
+                                <ui:Label class="rk-head__name" name="division-name" text="PLATINUM II" picking-mode="Ignore" />
+                                <ui:Label class="rk-head__rp" name="division-rp-text" text="2,340 / 3,000 RP" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pbar" name="rank-pbar" picking-mode="Ignore">
+                            <ui:VisualElement class="pbar__fill" name="rank-pbar-fill" style="width: 78%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+
+                        <!-- Rank Ladder -->
+                        <ui:VisualElement class="ladder" name="rank-ladder" picking-mode="Ignore">
+                            <ui:VisualElement class="rung rung--done" name="rung-bronze" picking-mode="Ignore">
+                                <ui:VisualElement class="rung__bar" name="rung-bar-bronze" picking-mode="Ignore" />
+                                <ui:VisualElement class="rung__gem" name="rung-gem-bronze" picking-mode="Ignore" />
+                                <ui:Label class="rung__name" name="rung-label-bronze" text="BRONZE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rung rung--done" name="rung-silver" picking-mode="Ignore">
+                                <ui:VisualElement class="rung__bar" name="rung-bar-silver" picking-mode="Ignore" />
+                                <ui:VisualElement class="rung__gem" name="rung-gem-silver" picking-mode="Ignore" />
+                                <ui:Label class="rung__name" name="rung-label-silver" text="SILVER" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rung rung--done" name="rung-gold" picking-mode="Ignore">
+                                <ui:VisualElement class="rung__bar" name="rung-bar-gold" picking-mode="Ignore" />
+                                <ui:VisualElement class="rung__gem" name="rung-gem-gold" picking-mode="Ignore" />
+                                <ui:Label class="rung__name" name="rung-label-gold" text="GOLD" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rung rung--now" name="rung-platinum" picking-mode="Ignore">
+                                <ui:VisualElement class="rung__bar" name="rung-bar-platinum" picking-mode="Ignore" />
+                                <ui:VisualElement class="rung__gem" name="rung-gem-platinum" picking-mode="Ignore" />
+                                <ui:Label class="rung__name" name="rung-label-platinum" text="PLATINUM" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rung rung--next" name="rung-diamond" picking-mode="Ignore">
+                                <ui:VisualElement class="rung__bar" name="rung-bar-diamond" picking-mode="Ignore" />
+                                <ui:VisualElement class="rung__gem" name="rung-gem-diamond" picking-mode="Ignore" />
+                                <ui:Label class="rung__name" name="rung-label-diamond" text="DIAMOND" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rung rung--next" name="rung-apex" picking-mode="Ignore">
+                                <ui:VisualElement class="rung__bar" name="rung-bar-apex" picking-mode="Ignore" />
+                                <ui:VisualElement class="rung__gem" name="rung-gem-apex" picking-mode="Ignore" />
+                                <ui:Label class="rung__name" name="rung-label-apex" text="APEX" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+
+                        <!-- Promotion Series Box -->
+                        <ui:VisualElement class="promo-box" name="promo-box" picking-mode="Ignore">
+                            <ui:VisualElement class="promo-box__text" picking-mode="Ignore">
+                                <ui:Label class="eyebrow eyebrow--accent" text="PROMOTION SERIES" picking-mode="Ignore" />
+                                <ui:Label class="promo-box__desc" name="promo-desc" text="WIN 2 OF 3 RACES FOR PLATINUM I" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="pips" name="promo-pips" picking-mode="Ignore">
+                                <ui:VisualElement class="pip pip--on" name="promo-pip-0" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip pip--on" name="promo-pip-1" picking-mode="Ignore" />
+                                <ui:VisualElement class="pip" name="promo-pip-2" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+
+                        <!-- Next Rank Reward Section (Replaces Planets) -->
+                        <ui:VisualElement class="next-reward" name="next-reward-box" picking-mode="Ignore">
+                            <ui:VisualElement class="next-reward__icon" name="next-reward-icon" picking-mode="Ignore" />
+                            <ui:VisualElement class="next-reward__text" picking-mode="Ignore">
+                                <ui:Label class="eyebrow eyebrow--accent" text="NEXT RANK REWARD" picking-mode="Ignore" />
+                                <ui:Label class="next-reward__title" name="next-reward-title" text="PLATINUM I SPOILER" picking-mode="Ignore" />
+                                <ui:Label class="next-reward__desc" name="next-reward-desc" text="REACH 2,500 RP TO UNLOCK" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+
+                        <ui:VisualElement class="rules" name="ranked-rules" picking-mode="Ignore">
+                            <ui:Label class="rules__item" text="6 RACERS" picking-mode="Ignore" />
+                            <ui:Label class="rules__item" text="3 LAPS" picking-mode="Ignore" />
+                            <ui:Label class="rules__item" text="NO ASSISTS" picking-mode="Ignore" />
+                            <ui:Label class="rules__item" text="FIXED WEATHER" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Button class="btn btn-cta find-btn" name="btn-find-ranked">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-cta__label" text="FIND RANKED MATCH" picking-mode="Ignore" />
+                            <ui:Label class="find-btn__eta" name="ranked-eta" text="EST. 00:18" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- UNRANKED HALF -->
+                <ui:VisualElement class="half accent-cyan" name="half-unranked" picking-mode="Position">
+                    <ui:VisualElement class="half__art" name="unranked-art" picking-mode="Ignore" />
+                    <ui:VisualElement class="half__slash half__slash--a" picking-mode="Ignore" />
+                    <ui:VisualElement class="half__slash half__slash--b" picking-mode="Ignore" />
+                    <ui:Button class="btn half__compact" name="half-unranked-select">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="half__vert" picking-mode="Ignore">
+                            <ui:VisualElement class="emblem emblem--lg" picking-mode="Ignore">
+                                <ui:VisualElement class="emblem__core" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:Label class="half__vert-title" text="UNRANKED" picking-mode="Ignore" />
+                            <ui:Label class="half__vert-sub" text="CASUAL" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:VisualElement class="half__content" name="unranked-content" picking-mode="Ignore">
+                        <ui:VisualElement class="half__top" picking-mode="Ignore">
+                            <ui:Label class="tag tag--accent" text="NO RP" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="half__timer" name="online-count" text="4,812 RACERS ONLINE" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="half__title" text="UNRANKED" picking-mode="Ignore" />
+                        <ui:Label class="half__sub" text="CASUAL RACES WITH REDUCED REWARDS. PICK YOUR MODE AND PLAY." picking-mode="Ignore" />
+                        <ui:Label class="eyebrow sec-label" text="MATCH TYPE" picking-mode="Ignore" />
+                        <ui:VisualElement class="chips" name="match-type-chips" picking-mode="Ignore">
+                            <ui:Button class="btn chip chip--active" name="chip-race">
+                                <ui:Label class="chip__label" text="RACE" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn chip" name="chip-elimination">
+                                <ui:Label class="chip__label" text="ELIMINATION" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn chip" name="chip-drift">
+                                <ui:Label class="chip__label" text="DRIFT BATTLE" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn chip" name="chip-timeattack">
+                                <ui:Label class="chip__label" text="TIME ATTACK" picking-mode="Ignore" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:VisualElement class="un-actions" picking-mode="Ignore">
+                            <ui:Button class="btn btn-cta find-btn" name="btn-quick-match">
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:Label class="btn-cta__label" text="QUICK MATCH" picking-mode="Ignore" />
+                                <ui:Label class="find-btn__eta" name="quickmatch-eta" text="EST. 00:06" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:VisualElement class="un-row" picking-mode="Ignore">
+                                <ui:Button class="btn btn-ghost un-ghost accent-cyan" name="btn-custom-room">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="btn-ghost__label" text="CUSTOM ROOM" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn btn-ghost un-ghost accent-cyan" name="btn-join-code">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="btn-ghost__label" text="JOIN WITH CODE" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Party Bar -->
+            <ui:VisualElement class="party" name="party-bar" picking-mode="Ignore">
+                <ui:VisualElement class="party__label" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="PARTY" picking-mode="Ignore" />
+                    <ui:Label class="party__count" name="party-count-label" text="1 / 4" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="party__slots" name="party-slots" picking-mode="Ignore">
+                    <ui:VisualElement class="pslot pslot--me" name="party-slot-0" picking-mode="Position">
+                        <ui:VisualElement class="pslot__avatar" name="slot-0-avatar" picking-mode="Ignore" />
+                        <ui:VisualElement class="pslot__text" picking-mode="Ignore">
+                            <ui:Label class="pslot__name" name="slot-0-name" text="NOVA_RUNNER" picking-mode="Ignore" />
+                            <ui:Label class="pslot__sub" name="slot-0-sub" text="ZEPHYR GT-X  /  KAI NOVA" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="tag tag--accent" text="LEADER" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:Button class="btn pslot pslot--empty" name="party-slot-1">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="pslot__plus" picking-mode="Ignore">
+                            <ui:VisualElement class="plus-h" picking-mode="Ignore" />
+                            <ui:VisualElement class="plus-v" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="pslot__invite" text="INVITE" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn pslot pslot--empty" name="party-slot-2">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="pslot__plus" picking-mode="Ignore">
+                            <ui:VisualElement class="plus-h" picking-mode="Ignore" />
+                            <ui:VisualElement class="plus-v" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="pslot__invite" text="INVITE" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn pslot pslot--empty" name="party-slot-3">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="pslot__plus" picking-mode="Ignore">
+                            <ui:VisualElement class="plus-h" picking-mode="Ignore" />
+                            <ui:VisualElement class="plus-v" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="pslot__invite" text="INVITE" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:VisualElement class="net" name="net-status" picking-mode="Ignore">
+                    <ui:VisualElement class="net__bars" picking-mode="Ignore">
+                        <ui:VisualElement class="net__bar net__bar--1" picking-mode="Ignore" />
+                        <ui:VisualElement class="net__bar net__bar--2" picking-mode="Ignore" />
+                        <ui:VisualElement class="net__bar net__bar--3" picking-mode="Ignore" />
+                        <ui:VisualElement class="net__bar net__bar--4" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="net__text" picking-mode="Ignore">
+                        <ui:Label class="net__region" name="net-region" text="EU CENTRAL" picking-mode="Ignore" />
+                        <ui:Label class="net__ping" name="net-ping" text="24 MS" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Button class="btn friends accent-cyan" name="btn-friends">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:Label class="friends__text" text="FRIENDS" picking-mode="Ignore" />
+                    <ui:Label class="tag tag--accent friends__badge" name="friends-badge" text="3 ONLINE" picking-mode="Ignore" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="modal-layer hidden" name="modal-queue" picking-mode="Position">
+            <ui:VisualElement class="queue accent-amber" picking-mode="Ignore">
+                <ui:VisualElement class="queue__ring" picking-mode="Ignore">
+                    <ui:VisualElement class="queue__ring-arc" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:Label class="eyebrow eyebrow--accent queue__eyebrow" name="queue-eyebrow" text="RANKED  /  PLATINUM II" picking-mode="Ignore" />
+                <ui:Label class="queue__title" name="queue-title" text="SEARCHING FOR RACERS" picking-mode="Ignore" />
+                <ui:Label class="queue__time" name="queue-time" text="00:12" picking-mode="Ignore" />
+                <ui:Label class="queue__eta" name="queue-eta" text="ESTIMATED WAIT 00:18" picking-mode="Ignore" />
+                <ui:Button class="btn btn-ghost queue__cancel accent-red" name="btn-cancel-queue">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:Label class="btn-ghost__label" text="CANCEL SEARCH" picking-mode="Ignore" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
