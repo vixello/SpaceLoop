@@ -1,0 +1,144 @@
+/* =====================================================================
+   LOADING SCREEN USS
+   ===================================================================== */
+
+/* Dynamic Fullscreen Background Art */
+.loading-art {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--c-surface);
+    -unity-background-scale-mode: scale-and-crop;
+    transition-property: background-image;
+    transition-duration: 0.5s;
+}
+
+.loading-hud {
+    padding: 60px 80px;
+    justify-content: space-between;
+}
+
+/* Header Text */
+.loading-header {
+    max-width: 800px;
+}
+
+.loading-title {
+    font-size: 72px;
+    letter-spacing: 10px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    white-space: nowrap;
+}
+
+.loading-subtitle {
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: var(--c-accent-amber);
+    -unity-font-style: bold;
+}
+
+/* Bottom Progress Deck */
+.loading-deck {
+    width: 100%;
+    max-width: 960px;
+}
+
+/* Tip Box Container */
+
+.tip-box {
+    padding: 18px 24px;
+    margin-bottom: 24px;
+    background-color: var(--c-surface);
+    border-left-width: 5px;
+    border-color: var(--accent);
+}
+
+/* Bumped header label for better hierarchy */
+.tip-box .eyebrow {
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+}
+
+/* Increased font size from 15px -> 18px & relaxed line height/spacing */
+.tip-box__text {
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    color: var(--c-text);
+    white-space: normal;
+    -unity-font-style: bold;
+    /* Extra spacing between lines for smaller screens */
+    line-height: 125%;
+}
+/* Progress Row Layout */
+.progress-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Spinner Element */
+.spinner-ring {
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+    border-radius: 24px;
+    border-width: 4px;
+    border-color: var(--c-fill-mid);
+}
+
+.spinner-arc {
+    position: absolute;
+    left: -4px; top: -4px; right: -4px; bottom: -4px;
+    border-radius: 24px;
+    border-width: 4px;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: var(--accent);
+    rotate: 45deg;
+}
+
+/* Progress Bar Meta & Fill */
+.loading-pbar-container {
+    flex-grow: 1;
+}
+
+.loading-pbar__meta {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.loading-status {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+}
+
+.loading-percent {
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    -unity-font-style: bold-and-italic;
+}
+
+.pbar--thick {
+    height: 12px;
+    background-color: var(--c-fill-mid);
+}
+
+/* Continue CTA Button */
+.continue-btn {
+    width: 100%;
+    height: 80px;
+    margin-top: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.continue-btn .btn-cta__label {
+    font-size: 26px;
+    letter-spacing: 6px;
+}

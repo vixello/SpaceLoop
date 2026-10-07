@@ -1,0 +1,66 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Loading/MapLoading.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+
+    <!-- Loading Screen Container -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        
+        <!-- Dynamic Background Art (Swappable via C# or USS) -->
+        <ui:VisualElement class="loading-art" name="loading-bg-art" picking-mode="Ignore" />
+        
+        <!-- UI Overlay Layer -->
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer loading-hud" name="loading-hud" picking-mode="Ignore">
+            
+            <!-- Top Map & Game Info -->
+            <ui:VisualElement class="loading-header" name="loading-header" picking-mode="Ignore">
+                <ui:Label class="eyebrow eyebrow--accent" name="loading-eyebrow" text="SEASON 04  /  SPEED TRIAL" picking-mode="Ignore" />
+                <ui:Label class="loading-title" name="loading-title" text="AURELIA CIRCUIT" picking-mode="Ignore" />
+                <ui:Label class="loading-subtitle" name="loading-subtitle" text="TRACK HAZARD: NIGHT CONDITIONS" picking-mode="Ignore" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+            <!-- Unique Game Start / Map Load Bottom Deck -->
+            <ui:VisualElement class="loading-deck" name="game-start-container" picking-mode="Ignore">
+                
+                <!-- Tip Ticker -->
+                <ui:VisualElement class="tip-box" name="tip-box" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="PRO TIP" picking-mode="Ignore" />
+                    <ui:Label class="tip-box__text" name="tip-text" text="Hold drift during sharp turn apexes to build Boost Gauge faster without losing top speed." picking-mode="Ignore" />
+                </ui:VisualElement>
+
+                <!-- Progress Bar & Spinner Row -->
+                <ui:VisualElement class="progress-row" picking-mode="Ignore">
+                    
+                    <!-- Circular Pulse Spinner -->
+                    <ui:VisualElement class="spinner-ring" name="spinner-ring" picking-mode="Ignore">
+                        <ui:VisualElement class="spinner-arc" name="spinner-arc" picking-mode="Ignore" />
+                    </ui:VisualElement>
+
+                    <!-- Main Loading Bar -->
+                    <ui:VisualElement class="loading-pbar-container" picking-mode="Ignore">
+                        <ui:VisualElement class="loading-pbar__meta" picking-mode="Ignore">
+                            <ui:Label class="loading-status" name="loading-status-text" text="INITIALIZING TRACK ASSETS..." picking-mode="Ignore" />
+                            <ui:Label class="loading-percent" name="loading-percent-text" text="78%" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        
+                        <ui:VisualElement class="pbar pbar--thick" name="loading-pbar" picking-mode="Ignore">
+                            <ui:VisualElement class="pbar__fill" name="loading-pbar-fill" style="width: 78%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <!-- Interactive 'Continue' Button (Shown when loading hits 100%) -->
+                <ui:Button class="btn btn-cta continue-btn hidden" name="btn-continue">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:Label class="btn-cta__label" text="PRESS ANY BUTTON TO START" picking-mode="Ignore" />
+                </ui:Button>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
