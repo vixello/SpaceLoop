@@ -152,108 +152,112 @@
                             <ui:Label class="eyebrow eyebrow--accent" text="6 SLOTS" picking-mode="Ignore" />
                         </ui:VisualElement>
                         <ui:VisualElement class="slots" picking-mode="Ignore">
-                            <ui:Button class="btn slot" name="slot-paint">
-                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                                <ui:VisualElement class="edge" picking-mode="Ignore" />
-                                <ui:VisualElement class="slot__ico" picking-mode="Ignore">
-                                    <ui:VisualElement class="glyph glyph--paint" picking-mode="Ignore">
-                                        <ui:VisualElement class="g g-a" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-b" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                            <ui:ScrollView name="slots-carousel" mode="Vertical" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+
+                                <ui:Button class="btn slot" name="slot-paint">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__ico" picking-mode="Ignore">
+                                        <ui:VisualElement class="glyph glyph--paint" picking-mode="Ignore">
+                                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                        </ui:VisualElement>
                                     </ui:VisualElement>
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__text" picking-mode="Ignore">
-                                    <ui:Label class="slot__label" text="PAINT" picking-mode="Ignore" />
-                                    <ui:Label class="slot__value" text="VOID BLUE  /  METALLIC" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__chip" style="background-color: rgb(20,40,120);" picking-mode="Ignore" />
-                                <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                            </ui:Button>
-                            <ui:Button class="btn slot" name="slot-wrap">
-                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                                <ui:VisualElement class="edge" picking-mode="Ignore" />
-                                <ui:VisualElement class="slot__ico" picking-mode="Ignore">
-                                    <ui:VisualElement class="glyph glyph--wrap" picking-mode="Ignore">
-                                        <ui:VisualElement class="g g-a" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-b" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__text" picking-mode="Ignore">
+                                        <ui:Label class="slot__label" text="PAINT" picking-mode="Ignore" />
+                                        <ui:Label class="slot__value" text="VOID BLUE  /  METALLIC" picking-mode="Ignore" />
                                     </ui:VisualElement>
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__text" picking-mode="Ignore">
-                                    <ui:Label class="slot__label" text="WRAP" picking-mode="Ignore" />
-                                    <ui:Label class="slot__value" text="CARBON WEAVE" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__chip" style="background-color: rgb(60,70,90);" picking-mode="Ignore" />
-                                <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                            </ui:Button>
-                            <ui:Button class="btn slot" name="slot-exhaust">
-                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                                <ui:VisualElement class="edge" picking-mode="Ignore" />
-                                <ui:VisualElement class="slot__ico" picking-mode="Ignore">
-                                    <ui:VisualElement class="glyph glyph--exhaust" picking-mode="Ignore">
-                                        <ui:VisualElement class="g g-a" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-b" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__chip" style="background-color: rgb(20,40,120);" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn slot" name="slot-wrap">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__ico" picking-mode="Ignore">
+                                        <ui:VisualElement class="glyph glyph--wrap" picking-mode="Ignore">
+                                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                        </ui:VisualElement>
                                     </ui:VisualElement>
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__text" picking-mode="Ignore">
-                                    <ui:Label class="slot__label" text="EXHAUST" picking-mode="Ignore" />
-                                    <ui:Label class="slot__value" text="PLASMA CYAN" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__chip" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
-                                <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                            </ui:Button>
-                            <ui:Button class="btn slot" name="slot-trail">
-                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                                <ui:VisualElement class="edge" picking-mode="Ignore" />
-                                <ui:VisualElement class="slot__ico" picking-mode="Ignore">
-                                    <ui:VisualElement class="glyph glyph--trail" picking-mode="Ignore">
-                                        <ui:VisualElement class="g g-a" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-b" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__text" picking-mode="Ignore">
+                                        <ui:Label class="slot__label" text="WRAP" picking-mode="Ignore" />
+                                        <ui:Label class="slot__value" text="CARBON WEAVE" picking-mode="Ignore" />
                                     </ui:VisualElement>
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__text" picking-mode="Ignore">
-                                    <ui:Label class="slot__label" text="ENERGY TRAIL" picking-mode="Ignore" />
-                                    <ui:Label class="slot__value" text="STREAK" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__chip" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
-                                <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                            </ui:Button>
-                            <ui:Button class="btn slot" name="slot-glow">
-                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                                <ui:VisualElement class="edge" picking-mode="Ignore" />
-                                <ui:VisualElement class="slot__ico" picking-mode="Ignore">
-                                    <ui:VisualElement class="glyph glyph--glow" picking-mode="Ignore">
-                                        <ui:VisualElement class="g g-a" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-b" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__chip" style="background-color: rgb(60,70,90);" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn slot" name="slot-exhaust">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__ico" picking-mode="Ignore">
+                                        <ui:VisualElement class="glyph glyph--exhaust" picking-mode="Ignore">
+                                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                        </ui:VisualElement>
                                     </ui:VisualElement>
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__text" picking-mode="Ignore">
-                                    <ui:Label class="slot__label" text="UNDERGLOW" picking-mode="Ignore" />
-                                    <ui:Label class="slot__value" text="NEON PINK" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__chip" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
-                                <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                            </ui:Button>
-                            <ui:Button class="btn slot" name="slot-aero">
-                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                                <ui:VisualElement class="edge" picking-mode="Ignore" />
-                                <ui:VisualElement class="slot__ico" picking-mode="Ignore">
-                                    <ui:VisualElement class="glyph glyph--aero" picking-mode="Ignore">
-                                        <ui:VisualElement class="g g-a" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-b" picking-mode="Ignore" />
-                                        <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__text" picking-mode="Ignore">
+                                        <ui:Label class="slot__label" text="EXHAUST" picking-mode="Ignore" />
+                                        <ui:Label class="slot__value" text="PLASMA CYAN" picking-mode="Ignore" />
                                     </ui:VisualElement>
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__text" picking-mode="Ignore">
-                                    <ui:Label class="slot__label" text="AERO KIT" picking-mode="Ignore" />
-                                    <ui:Label class="slot__value" text="DELTA WING" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="slot__chip" style="background-color: rgb(236,244,255);" picking-mode="Ignore" />
-                                <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                            </ui:Button>
+                                    <ui:VisualElement class="slot__chip" style="background-color: rgb(0,229,255);" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn slot" name="slot-trail">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__ico" picking-mode="Ignore">
+                                        <ui:VisualElement class="glyph glyph--trail" picking-mode="Ignore">
+                                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="slot__text" picking-mode="Ignore">
+                                        <ui:Label class="slot__label" text="ENERGY TRAIL" picking-mode="Ignore" />
+                                        <ui:Label class="slot__value" text="STREAK" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="slot__chip" style="background-color: rgb(176,96,255);" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn slot" name="slot-glow">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__ico" picking-mode="Ignore">
+                                        <ui:VisualElement class="glyph glyph--glow" picking-mode="Ignore">
+                                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="slot__text" picking-mode="Ignore">
+                                        <ui:Label class="slot__label" text="UNDERGLOW" picking-mode="Ignore" />
+                                        <ui:Label class="slot__value" text="NEON PINK" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="slot__chip" style="background-color: rgb(255,46,176);" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn slot" name="slot-aero">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="edge" picking-mode="Ignore" />
+                                    <ui:VisualElement class="slot__ico" picking-mode="Ignore">
+                                        <ui:VisualElement class="glyph glyph--aero" picking-mode="Ignore">
+                                            <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                            <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="slot__text" picking-mode="Ignore">
+                                        <ui:Label class="slot__label" text="AERO KIT" picking-mode="Ignore" />
+                                        <ui:Label class="slot__value" text="DELTA WING" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="slot__chip" style="background-color: rgb(236,244,255);" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:ScrollView>
+
                         </ui:VisualElement>
                         <ui:Button class="btn btn-cta customize-cta" name="btn-customize-vehicle">
                             <ui:VisualElement class="sheen" picking-mode="Ignore" />
