@@ -1,0 +1,517 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Missions/Events.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Events: a weekly schedule timeline selects the event, the hero panel shows its details, the reward path winds across the screen (premium above, free below) and a community goal runs along the bottom. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="LIVE  /  UPCOMING  /  SEASONAL" />
+                <ui:AttributeOverrides element-name="screen-title" text="EVENTS" />
+            </ui:Instance>
+            <ui:VisualElement class="sched" picking-mode="Ignore">
+                <ui:VisualElement class="sched__days" picking-mode="Ignore">
+                    <ui:Label class="sched__day" text="MON" picking-mode="Ignore" />
+                    <ui:Label class="sched__day" text="TUE" picking-mode="Ignore" />
+                    <ui:Label class="sched__day" text="WED" picking-mode="Ignore" />
+                    <ui:Label class="sched__day sched__day--today" text="THU" picking-mode="Ignore" />
+                    <ui:Label class="sched__day" text="FRI" picking-mode="Ignore" />
+                    <ui:Label class="sched__day" text="SAT" picking-mode="Ignore" />
+                    <ui:Label class="sched__day" text="SUN" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="sched__lanes" picking-mode="Ignore">
+                    <ui:VisualElement class="sched__line" style="left: 14.29%;" picking-mode="Ignore" />
+                    <ui:VisualElement class="sched__line" style="left: 28.57%;" picking-mode="Ignore" />
+                    <ui:VisualElement class="sched__line" style="left: 42.86%;" picking-mode="Ignore" />
+                    <ui:VisualElement class="sched__line" style="left: 57.14%;" picking-mode="Ignore" />
+                    <ui:VisualElement class="sched__line" style="left: 71.43%;" picking-mode="Ignore" />
+                    <ui:VisualElement class="sched__line" style="left: 85.71%;" picking-mode="Ignore" />
+                    <ui:VisualElement class="sched__today" style="left: 50.00%;" picking-mode="Ignore" />
+                    <ui:VisualElement class="lane" picking-mode="Ignore">
+                        <ui:Button class="btn sbar accent-magenta sbar--live sbar--sel" style="left: 0.40%; width: 99.20%;" name="evt-neon-grand-prix">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="sbar__name" text="NEON GRAND PRIX" picking-mode="Ignore" />
+                            <ui:Label class="sbar__time" text="LIVE  /  ENDS SUN" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="lane" picking-mode="Ignore">
+                        <ui:Button class="btn sbar accent-cyan sbar--live" style="left: 28.97%; width: 27.77%;" name="evt-ghost-rush">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="sbar__name" text="GHOST RUSH" picking-mode="Ignore" />
+                            <ui:Label class="sbar__time" text="ENDS FRI" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="lane" picking-mode="Ignore">
+                        <ui:Button class="btn sbar accent-amber sbar--soon" style="left: 57.54%; width: 42.06%;" name="evt-weekend-overdrive">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="sbar__name" text="WEEKEND OVERDRIVE" picking-mode="Ignore" />
+                            <ui:Label class="sbar__time" text="STARTS IN 1D" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="lane" picking-mode="Ignore">
+                        <ui:Button class="btn sbar accent-violet sbar--locked" style="left: 71.83%; width: 27.77%;" name="evt-season-05-teaser">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="sbar__name" text="SEASON 05 TEASER" picking-mode="Ignore" />
+                            <ui:Label class="sbar__time" text="SECRET" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="ev-body" picking-mode="Ignore">
+                <ui:VisualElement class="ev accent-magenta" picking-mode="Ignore">
+                    <ui:VisualElement class="ev__art" picking-mode="Ignore">
+                        <ui:VisualElement class="ev__slash ev__slash--a" picking-mode="Ignore" />
+                        <ui:VisualElement class="ev__slash ev__slash--b" picking-mode="Ignore" />
+                        <ui:VisualElement class="live" picking-mode="Ignore">
+                            <ui:VisualElement class="live__dot" picking-mode="Ignore" />
+                            <ui:Label class="live__text" text="LIVE EVENT" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ev__timer" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="ENDS IN" picking-mode="Ignore" />
+                            <ui:VisualElement class="timer" picking-mode="Ignore">
+                                <ui:VisualElement class="timer__cell" picking-mode="Ignore">
+                                    <ui:Label class="timer__num" text="02" picking-mode="Ignore" />
+                                    <ui:Label class="timer__unit" text="D" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="timer__cell" picking-mode="Ignore">
+                                    <ui:Label class="timer__num" text="14" picking-mode="Ignore" />
+                                    <ui:Label class="timer__unit" text="H" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="timer__cell" picking-mode="Ignore">
+                                    <ui:Label class="timer__num" text="33" picking-mode="Ignore" />
+                                    <ui:Label class="timer__unit" text="M" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ev__body" picking-mode="Ignore">
+                        <ui:Label class="ev__title" text="NEON GRAND PRIX" picking-mode="Ignore" />
+                        <ui:Label class="ev__desc" text="RACE ANYWHERE, EARN NEON POINTS AND CLIMB THE REWARD PATH." picking-mode="Ignore" />
+                        <ui:VisualElement class="ev__pts" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="NEON POINTS" picking-mode="Ignore" />
+                            <ui:Label class="ev__pts-num" text="1,840" picking-mode="Ignore" />
+                            <ui:Label class="ev__pts-of" text="/ 2,400  TO TIER 10" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pbar" picking-mode="Ignore">
+                            <ui:VisualElement class="pbar__fill" style="width: 77%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="eyebrow ev__label" text="HOW TO EARN" picking-mode="Ignore" />
+                        <ui:VisualElement class="earn" picking-mode="Ignore">
+                            <ui:VisualElement class="earn__dot" picking-mode="Ignore" />
+                            <ui:Label class="earn__text" text="WIN A RACE" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="earn__pts" text="+100" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="earn" picking-mode="Ignore">
+                            <ui:VisualElement class="earn__dot" picking-mode="Ignore" />
+                            <ui:Label class="earn__text" text="FINISH A STORY CHAPTER" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="earn__pts" text="+150" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="earn" picking-mode="Ignore">
+                            <ui:VisualElement class="earn__dot" picking-mode="Ignore" />
+                            <ui:Label class="earn__text" text="COMPLETE A DAILY MISSION" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="earn__pts" text="+50" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Button class="btn btn-cta ev__buy accent-magenta" name="btn-premium">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-cta__label" text="UNLOCK PREMIUM" picking-mode="Ignore" />
+                            <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                <ui:Label class="price__value" text="1,200" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="ev-center" picking-mode="Ignore">
+                    <ui:VisualElement class="ev-center__head" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="REWARD PATH  /  TIER 9 OF 40" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="mnote" text="PREMIUM LANE LOCKED" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="rpath" picking-mode="Ignore">
+                        <ui:VisualElement class="rpath__canvas" picking-mode="Ignore">
+                            <ui:Label class="lane-tag lane-tag--p" text="PREMIUM" picking-mode="Ignore" />
+                            <ui:Label class="lane-tag lane-tag--f" text="FREE" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 56.0px; top: 244.8px; width: 97.6px; rotate: 34.21deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 136.7px; top: 299.7px; width: 81.6px; rotate: -8.32deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 217.5px; top: 287.9px; width: 106.0px; rotate: -40.37deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 298.2px; top: 219.3px; width: 105.6px; rotate: -40.12deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 378.9px; top: 151.3px; width: 81.4px; rotate: -7.43deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 459.6px; top: 140.7px; width: 98.1px; rotate: 34.65deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 540.4px; top: 196.5px; width: 110.5px; rotate: 43.05deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--done" style="left: 621.1px; top: 272.0px; width: 86.8px; rotate: 21.60deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--lock" style="left: 701.8px; top: 303.9px; width: 89.3px; rotate: -25.35deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--lock" style="left: 782.5px; top: 265.7px; width: 111.2px; rotate: -43.44deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="map-link map-link--lock" style="left: 863.3px; top: 189.2px; width: 95.3px; rotate: -32.13deg;" picking-mode="Ignore" />
+                            <ui:VisualElement class="rw-pos" style="left: 19.0px; top: 137.8px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--wrap" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="WRAP" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 19.0px; top: 279.8px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--cr" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="2,000" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 31.0px; top: 221.8px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="01" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 99.7px; top: 192.7px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="50" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 99.7px; top: 334.7px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--avatar" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="AVATAR" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 111.7px; top: 276.7px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="02" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 180.5px; top: 180.9px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--trail" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="TRAIL" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 180.5px; top: 322.9px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--cr" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="3,000" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 192.5px; top: 264.9px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="03" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 261.2px; top: 112.3px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="75" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 261.2px; top: 254.3px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="10" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 273.2px; top: 196.3px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="04" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 341.9px; top: 44.3px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--outfit" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="OUTFIT" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 341.9px; top: 186.3px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--cr" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="4,000" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 353.9px; top: 128.3px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="05" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 422.6px; top: 33.7px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="100" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 422.6px; top: 175.7px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--title" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="TITLE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 434.6px; top: 117.7px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="06" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 503.4px; top: 89.5px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--exhaust" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="EXHAUST" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 503.4px; top: 231.5px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--cr" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="5,000" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 515.4px; top: 173.5px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="07" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 584.1px; top: 165.0px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="120" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 584.1px; top: 307.0px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--claimed">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="20" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__check" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--done" style="left: 596.1px; top: 249.0px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="08" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 664.8px; top: 196.9px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--emote" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="EMOTE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 664.8px; top: 338.9px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--ready">
+                                    <ui:VisualElement class="rw__ico rw__ico--cr" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="6,000" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="rw__claim" text="CLAIM" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--current" style="left: 676.8px; top: 280.9px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="09" picking-mode="Ignore" />
+                                <ui:VisualElement class="tn__flag" picking-mode="Ignore">
+                                    <ui:Label class="tn__flag-text" text="YOU ARE HERE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="tn__flag-tip" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 745.5px; top: 158.7px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="150" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 745.5px; top: 300.7px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--emote" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="EMOTE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--locked" style="left: 757.5px; top: 242.7px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="10" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 826.3px; top: 82.2px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--title" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="TITLE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 826.3px; top: 224.2px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--cr" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="8,000" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--locked" style="left: 838.3px; top: 166.2px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="11" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 907.0px; top: 25.5px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--prem rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--wrap" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="LEGENDARY" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="rw__lock" picking-mode="Ignore">
+                                        <ui:VisualElement class="lock lock--sm" picking-mode="Ignore">
+                                            <ui:VisualElement class="lock__shackle" picking-mode="Ignore" />
+                                            <ui:VisualElement class="lock__body" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rw-pos" style="left: 907.0px; top: 179.5px;" picking-mode="Ignore">
+                                <ui:Button class="btn rw rw--free rw--locked">
+                                    <ui:VisualElement class="rw__ico rw__ico--core" picking-mode="Ignore" />
+                                    <ui:Label class="rw__label" text="50" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="tn tn--locked tn--last" style="left: 913.0px; top: 109.5px;" picking-mode="Ignore">
+                                <ui:VisualElement class="tn__shape" picking-mode="Ignore" />
+                                <ui:Label class="tn__num" text="12" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="cg accent-green" picking-mode="Ignore">
+                <ui:VisualElement class="cg__text" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="COMMUNITY GOAL" picking-mode="Ignore" />
+                    <ui:Label class="cg__title" text="ONE MILLION LAPS" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="cg__mid" picking-mode="Ignore">
+                    <ui:VisualElement class="cg__nums" picking-mode="Ignore">
+                        <ui:Label class="cg__big" text="742,310" picking-mode="Ignore" />
+                        <ui:Label class="cg__of" text="/ 1,000,000 LAPS" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="cg__bar" picking-mode="Ignore">
+                        <ui:VisualElement class="cg__fill" style="width: 74%;" picking-mode="Ignore" />
+                        <ui:VisualElement class="cg__tick" style="left: 25%;" picking-mode="Ignore" />
+                        <ui:VisualElement class="cg__tick" style="left: 50%;" picking-mode="Ignore" />
+                        <ui:VisualElement class="cg__tick" style="left: 75%;" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="cg__marks" picking-mode="Ignore">
+                        <ui:VisualElement class="gm gm--done" picking-mode="Ignore">
+                            <ui:Label class="gm__pct" text="25%" picking-mode="Ignore" />
+                            <ui:Label class="gm__txt" text="5,000" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="gm gm--done" picking-mode="Ignore">
+                            <ui:Label class="gm__pct" text="50%" picking-mode="Ignore" />
+                            <ui:Label class="gm__txt" text="25 CORES" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="gm gm--done" picking-mode="Ignore">
+                            <ui:Label class="gm__pct" text="75%" picking-mode="Ignore" />
+                            <ui:Label class="gm__txt" text="NEON TRAIL" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="gm" picking-mode="Ignore">
+                            <ui:Label class="gm__pct" text="100%" picking-mode="Ignore" />
+                            <ui:Label class="gm__txt" text="LEGENDARY" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="cg__you" picking-mode="Ignore">
+                    <ui:Label class="eyebrow" text="YOUR LAPS" picking-mode="Ignore" />
+                    <ui:Label class="cg__you-num" text="184" picking-mode="Ignore" />
+                    <ui:Label class="cg__you-note" text="50 LAPS MINIMUM TO EARN" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
