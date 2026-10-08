@@ -1,0 +1,503 @@
+/* =====================================================================
+   LOGIN  (requires Common.uss)
+   Three pages inside the card, toggle .page--hidden from C#:
+     page-signin    Google button (+ optional "continue as" quick resume)
+     page-wait      waiting for the Google Identity popup / token exchange
+     page-callsign  first-time registration: pick callsign + avatar
+
+   Notes:
+   - Auth is Google Identity only for now. Use the OFFICIAL Google "G" logo
+     asset on .lg-google__mark (background-image) and keep the button text
+     "Sign in with Google" to stay inside Google's branding rules.
+   - Background art is swappable: set background-image on .lg-bg__art.
+   - Intro animation: add .lg-bg--intro on awake, remove it next frame.
+   - Spinner has no looping USS animation. Rotate .lg-spinner from C#
+     with schedule.Execute(...).Every(16) and style.rotate.
+   - Error banner: remove .lg-error--hidden and set the label text.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. BACKGROUND
+   --------------------------------------------------------------------- */
+.lg-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: var(--c-ink);
+}
+
+.lg-bg__art {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 229, 255, 0.10);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.lg-bg__slash {
+    position: absolute;
+    top: -60%;
+    height: 240%;
+    rotate: 24deg;
+    translate: 0 0;
+    transition-property: translate, opacity;
+    transition-duration: 0.9s;
+    transition-timing-function: ease-out;
+}
+
+.lg-bg__slash--a { right: 46%; width: 200px; background-color: rgba(0, 229, 255, 0.07); }
+.lg-bg__slash--b { right: 38%; width: 34px;  background-color: rgba(255, 46, 176, 0.18); }
+.lg-bg__slash--c { right: 35%; width: 8px;   background-color: rgba(0, 229, 255, 0.45); }
+.lg-bg__slash--d { right: 12%; width: 90px;  background-color: rgba(255, 190, 0, 0.06); }
+
+.lg-bg--intro .lg-bg__slash { translate: 520px 0; opacity: 0; }
+
+/* ---------------------------------------------------------------------
+   2. LAYOUT
+   --------------------------------------------------------------------- */
+.lg-main {
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lg-brand {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 48px;
+}
+
+.lg-card {
+    width: 32%;
+    min-width: 500px;
+    max-width: 580px;
+    padding: 34px 38px 30px 38px;
+    background-color: var(--c-surface);
+    border-top-width: 2px;
+    border-color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------
+   3. BRAND BLOCK (left)
+   --------------------------------------------------------------------- */
+.lg-brand__tags { flex-direction: row; align-items: center; }
+.lg-brand__tags .tag { margin-right: 10px; }
+
+.lg-brand__title {
+    margin-top: 14px;
+    font-size: 128px;
+    letter-spacing: 12px;
+    color: var(--c-text);
+    white-space: nowrap;
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.lg-brand__title--accent { color: var(--accent); margin-top: -34px; }
+
+.lg-brand__tagline {
+    margin-top: 6px;
+    font-size: 16px;
+    letter-spacing: 6px;
+    color: var(--c-text-2);
+    -unity-text-align: middle-left;
+}
+
+.lg-stats { flex-direction: row; margin-top: 44px; }
+
+.lg-stat {
+    min-width: 170px;
+    margin-right: 14px;
+    padding: 12px 20px 12px 18px;
+    background-color: var(--c-fill-soft);
+    border-left-width: 3px;
+    border-color: var(--accent);
+}
+
+.lg-stat__num {
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-stat__lbl {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-tip {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 28px;
+}
+
+.lg-tip__text {
+    margin-left: 14px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+}
+
+/* ---------------------------------------------------------------------
+   4. CARD TYPOGRAPHY
+   --------------------------------------------------------------------- */
+.lg-title {
+    margin-top: 6px;
+    font-size: 58px;
+    letter-spacing: 6px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.lg-desc {
+    margin-top: 6px;
+    margin-bottom: 22px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--c-text-2);
+    white-space: normal;
+    -unity-text-align: upper-left;
+}
+
+/* ---------------------------------------------------------------------
+   5. QUICK RESUME (returning player)
+   --------------------------------------------------------------------- */
+.lg-resume {
+    flex-direction: row;
+    align-items: center;
+    height: 92px;
+    margin-bottom: 14px;
+    padding: 0 22px 0 14px;
+    background-color: var(--accent);
+    transform-origin: 50% 50%;
+}
+
+.lg-resume:hover { background-color: var(--accent-hi); scale: 1.03 1.03; }
+.lg-resume--hidden { display: none; }
+.lg-resume .sheen { background-color: rgba(255, 255, 255, 0.3); }
+
+.lg-resume__avatar {
+    width: 64px;
+    height: 64px;
+    background-color: rgba(3, 6, 13, 0.25);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.lg-resume__text { flex-grow: 1; margin-left: 16px; }
+
+.lg-resume__eyebrow {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: rgba(3, 6, 13, 0.7);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-resume__name {
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--c-ink);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.lg-resume__mail {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(3, 6, 13, 0.7);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-resume .chevron { border-color: var(--c-ink); }
+.lg-resume:hover .chevron { border-color: var(--c-ink); }
+
+.lg-or {
+    flex-direction: row;
+    align-items: center;
+    margin: 4px 0 14px 0;
+}
+
+.lg-or__line { flex-grow: 1; height: 1px; background-color: var(--c-hair-strong); }
+
+.lg-or__text {
+    margin: 0 14px 0 14px;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+/* ---------------------------------------------------------------------
+   6. GOOGLE BUTTON (light, per Google's button guidance)
+   --------------------------------------------------------------------- */
+.lg-google {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 78px;
+    padding: 0 24px 0 24px;
+    background-color: rgb(255, 255, 255);
+    transform-origin: 50% 50%;
+}
+
+.lg-google:hover { background-color: rgb(232, 240, 254); scale: 1.03 1.03; }
+.lg-google:active { background-color: rgb(210, 227, 252); scale: 0.99 0.99; }
+.lg-google:disabled { opacity: 0.5; }
+
+.lg-google__mark {
+    width: 30px;
+    height: 30px;
+    margin-right: 18px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/* Placeholder until the official logo is assigned. Remove once set. */
+.lg-google__fallback {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 26px;
+    color: rgb(66, 133, 244);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.lg-google__label {
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: rgb(60, 64, 67);
+    -unity-font-style: bold;
+}
+
+.lg-error {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 14px;
+    padding: 10px 14px 10px 12px;
+    background-color: rgba(255, 70, 90, 0.14);
+    border-left-width: 4px;
+    border-color: rgb(255, 70, 90);
+}
+
+.lg-error--hidden { display: none; }
+
+.lg-error__text {
+    flex-shrink: 1;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgb(255, 150, 160);
+    white-space: normal;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-legal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 22px;
+}
+
+.lg-legal__text {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+.lg-link {
+    margin: 0 4px 0 4px;
+    padding: 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    -unity-font-style: bold;
+}
+
+.lg-link:hover { color: var(--accent-hi); }
+
+/* ---------------------------------------------------------------------
+   7. WAIT PAGE
+   --------------------------------------------------------------------- */
+.lg-wait { align-items: center; padding: 26px 0 8px 0; }
+
+.lg-spinner {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 26px;
+    border-radius: 32px;
+    border-width: 5px;
+    border-color: var(--c-hair-strong);
+    border-top-color: var(--accent);
+}
+
+.lg-wait__title {
+    font-size: 32px;
+    letter-spacing: 6px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+}
+
+.lg-wait__sub {
+    margin: 6px 0 26px 0;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+.lg-wait .btn-ghost { width: 240px; height: 56px; }
+
+/* ---------------------------------------------------------------------
+   8. CALLSIGN PAGE (first-time registration)
+   --------------------------------------------------------------------- */
+.lg-linked {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 8px 14px 8px 12px;
+    background-color: var(--c-fill-soft);
+    border-left-width: 3px;
+    border-color: var(--c-good);
+}
+
+.lg-linked__text {
+    margin-left: 12px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+}
+
+.lg-linked__ok {
+    width: 8px;
+    height: 8px;
+    rotate: 45deg;
+    background-color: var(--c-good);
+}
+
+.lg-field__label {
+    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-input {
+    height: 64px;
+    margin: 0;
+}
+
+.lg-input > .unity-base-text-field__input {
+    height: 64px;
+    padding: 0 18px 0 18px;
+    font-size: 26px;
+    letter-spacing: 5px;
+    color: var(--c-text);
+    background-color: var(--c-fill-soft);
+    border-width: 0;
+    border-bottom-width: 2px;
+    border-color: var(--c-hair-strong);
+    border-radius: 0;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-input > .unity-base-text-field__input:focus { border-color: var(--accent); background-color: var(--c-fill-mid); }
+
+.lg-field__hint {
+    margin-top: 6px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.lg-field__hint--ok  { color: var(--c-good); }
+.lg-field__hint--bad { color: rgb(255, 110, 125); }
+
+.lg-avatars { flex-direction: row; margin: 6px 0 22px 0; }
+
+.lg-avatar {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 74px;
+    margin-right: 8px;
+    padding: 0;
+    background-color: var(--c-fill-soft);
+    border-width: 2px;
+    border-color: var(--c-hair);
+}
+
+.lg-avatar:last-child { margin-right: 0; }
+.lg-avatar:hover { scale: 1.08 1.08; translate: 0 -3px; border-color: var(--c-hair-strong); }
+.lg-avatar--selected, .lg-avatar--selected:hover { border-color: var(--accent); background-color: var(--accent-soft); }
+
+.lg-avatar__art {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.lg-cta { height: 72px; }
+.lg-back { align-self: center; margin-top: 12px; }
+
+/* Placeholder tints. Replace with images via background-image. */
+.art-a1 { background-color: rgba(0, 229, 255, 0.16); }
+.art-a2 { background-color: rgba(255, 46, 176, 0.16); }
+.art-a3 { background-color: rgba(255, 190, 0, 0.14); }
+.art-a4 { background-color: rgba(176, 96, 255, 0.18); }
+.art-a5 { background-color: rgba(70, 255, 160, 0.12); }
+.art-a6 { background-color: rgba(255, 110, 60, 0.14); }
+
+/* ---------------------------------------------------------------------
+   9. FOOTER
+   --------------------------------------------------------------------- */
+.lg-footer {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    height: 40px;
+}
+
+.lg-footer__text {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+}
+
+.lg-dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 10px 0 28px;
+    border-radius: 4px;
+    background-color: var(--c-good);
+}
+
+.lg-dot--down { background-color: rgb(255, 70, 90); }
