@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Missions/MissionCenter.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+    <!-- Missions: channel rail on the left, bento cards whose background fills like liquid as progress grows, and a vertical chest track. Channels toggle the three pages. Events live in their own screen. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="DAILY  /  WEEKLY  /  BOUNTIES" />
+                <ui:AttributeOverrides element-name="screen-title" text="MISSIONS" />
+            </ui:Instance>
+            <ui:VisualElement class="body" picking-mode="Ignore">
+                <ui:VisualElement class="mrail" picking-mode="Ignore">
+                    <ui:Label class="eyebrow rail-label" text="CHANNELS" picking-mode="Ignore" />
+                    <ui:Button class="btn chan accent-cyan chan--on" name="chan-daily">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="chan__ico" picking-mode="Ignore">
+                            <ui:VisualElement class="glyph glyph--perf" picking-mode="Ignore">
+                                <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__text" picking-mode="Ignore">
+                            <ui:Label class="chan__name" text="DAILY" picking-mode="Ignore" />
+                            <ui:Label class="chan__sub" text="3 / 5 DONE" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__right" picking-mode="Ignore">
+                            <ui:Label class="chan__timer" text="06:12:44" picking-mode="Ignore" />
+                            <ui:Label class="tag tag--accent" text="2 READY" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__bar" picking-mode="Ignore">
+                            <ui:VisualElement class="chan__fill" style="width: 60%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn chan accent-amber" name="chan-weekly">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="chan__ico" picking-mode="Ignore">
+                            <ui:VisualElement class="glyph glyph--trail" picking-mode="Ignore">
+                                <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__text" picking-mode="Ignore">
+                            <ui:Label class="chan__name" text="WEEKLY" picking-mode="Ignore" />
+                            <ui:Label class="chan__sub" text="2 / 6 DONE" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__right" picking-mode="Ignore">
+                            <ui:Label class="chan__timer" text="4D 06H" picking-mode="Ignore" />
+                            <ui:Label class="tag tag--accent" text="1 READY" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__bar" picking-mode="Ignore">
+                            <ui:VisualElement class="chan__fill" style="width: 33%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button class="btn chan accent-magenta" name="chan-bounty">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:VisualElement class="chan__ico" picking-mode="Ignore">
+                            <ui:VisualElement class="glyph glyph--badge" picking-mode="Ignore">
+                                <ui:VisualElement class="g g-a" picking-mode="Ignore" />
+                                <ui:VisualElement class="g g-b" picking-mode="Ignore" />
+                                <ui:VisualElement class="g g-c" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__text" picking-mode="Ignore">
+                            <ui:Label class="chan__name" text="BOUNTIES" picking-mode="Ignore" />
+                            <ui:Label class="chan__sub" text="1 / 3 CAUGHT" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__right" picking-mode="Ignore">
+                            <ui:Label class="chan__timer" text="NEW IN 14H" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chan__bar" picking-mode="Ignore">
+                            <ui:VisualElement class="chan__fill" style="width: 33%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:VisualElement class="sm accent-amber" picking-mode="Ignore">
+                        <ui:VisualElement class="sm__head" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="LOGIN STREAK" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="sm__num" text="5 DAYS" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="sm__days" picking-mode="Ignore">
+                            <ui:VisualElement class="sm__d sm__d--done" picking-mode="Ignore">
+                                <ui:Label class="sm__dn" text="1" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="sm__d sm__d--done" picking-mode="Ignore">
+                                <ui:Label class="sm__dn" text="2" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="sm__d sm__d--done" picking-mode="Ignore">
+                                <ui:Label class="sm__dn" text="3" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="sm__d sm__d--done" picking-mode="Ignore">
+                                <ui:Label class="sm__dn" text="4" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="sm__d sm__d--today" picking-mode="Ignore">
+                                <ui:Label class="sm__dn" text="5" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="sm__d sm__d--future" picking-mode="Ignore">
+                                <ui:Label class="sm__dn" text="6" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="sm__d sm__d--prize" picking-mode="Ignore">
+                                <ui:Label class="sm__dn" text="7" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="sm__today" picking-mode="Ignore">
+                            <ui:Label class="sm__today-label" text="TODAY" picking-mode="Ignore" />
+                            <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                <ui:Label class="price__value" text="2,500" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Label class="sm__note" text="A MISSED DAY PAUSES THE STREAK. IT NEVER RESETS." picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="mpages" picking-mode="Ignore">
+                    <ui:VisualElement class="page mpage" name="page-daily" picking-mode="Ignore">
+                        <ui:VisualElement class="bento" picking-mode="Ignore">
+                            <ui:Button class="btn mc mc--feature mc--claim rarity-epic">
+                                <ui:VisualElement class="mc__fill" style="height: 100%;" picking-mode="Ignore">
+                                    <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                    <ui:Label class="tag" text="MISSION OF THE DAY" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                    <ui:Label class="mc__big" text="3" picking-mode="Ignore" />
+                                    <ui:Label class="mc__of" text="/ 3" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="mc__title" text="PERFECT LAUNCH" picking-mode="Ignore" />
+                                <ui:Label class="mc__desc" text="DO 3 PERFECT STARTS" picking-mode="Ignore" />
+                                <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                    <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                        <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                        <ui:Label class="price__value" text="3,000" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ap" picking-mode="Ignore">
+                                        <ui:Label class="ap__num" text="+20" picking-mode="Ignore" />
+                                        <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="mc__claim" picking-mode="Ignore">
+                                    <ui:Label class="mc__claim-text" text="TAP TO CLAIM" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:VisualElement class="bento__grid" picking-mode="Ignore">
+                                <ui:Button class="btn mc mc--small mc--progress rarity-rare">
+                                    <ui:VisualElement class="mc__fill" style="height: 62%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="RARE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:Button class="btn mc__reroll">
+                                            <ui:VisualElement class="reroll-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="reroll-b" picking-mode="Ignore" />
+                                            <ui:Label class="mc__reroll-text" text="REROLL" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="1,240" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 2,000" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="DRIFT MASTER" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="DRIFT 2,000 M IN ONE RACE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="2,500" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+15" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--progress rarity-epic">
+                                    <ui:VisualElement class="mc__fill" style="height: 33%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="EPIC" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:Button class="btn mc__reroll">
+                                            <ui:VisualElement class="reroll-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="reroll-b" picking-mode="Ignore" />
+                                            <ui:Label class="mc__reroll-text" text="REROLL" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="1" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 3" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="PODIUM HUNTER" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="FINISH ON THE PODIUM 3 TIMES" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="10" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+20" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--progress rarity-common">
+                                    <ui:VisualElement class="mc__fill" style="height: 72%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="COMMON" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:Button class="btn mc__reroll">
+                                            <ui:VisualElement class="reroll-a" picking-mode="Ignore" />
+                                            <ui:VisualElement class="reroll-b" picking-mode="Ignore" />
+                                            <ui:Label class="mc__reroll-text" text="REROLL" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="18" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 25" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="BOOST ADDICT" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="USE BOOST 25 TIMES" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="1,500" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+10" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--done rarity-rare">
+                                    <ui:VisualElement class="mc__fill" style="height: 100%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="RARE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="mc__done" picking-mode="Ignore">
+                                            <ui:VisualElement class="check" picking-mode="Ignore" />
+                                            <ui:Label class="mc__done-text" text="CLAIMED" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="100%" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="TEAM PLAYER" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="RACE WITH A FRIEND IN A ROOM" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="2,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+15" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="vchest accent-amber" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="DAILY ACTIVITY" picking-mode="Ignore" />
+                            <ui:VisualElement class="vchest__num" picking-mode="Ignore">
+                                <ui:Label class="vchest__big" text="60" picking-mode="Ignore" />
+                                <ui:Label class="vchest__of" text="/ 100" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="vchest__track" picking-mode="Ignore">
+                                <ui:VisualElement class="vchest__bar" picking-mode="Ignore">
+                                    <ui:VisualElement class="vchest__fill" style="height: 60%;" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Button class="btn vcrate vcrate--claimed" style="bottom: 20%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="20 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="CLAIMED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--claimed" style="bottom: 40%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="40 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="CLAIMED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--ready" style="bottom: 60%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="60 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="CLAIM" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--locked" style="bottom: 80%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="80 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="LOCKED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--locked" style="bottom: 100%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="100 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="LOCKED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:Label class="vchest__reset" text="RESETS 06:12:44" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page mpage page--hidden" name="page-weekly" picking-mode="Ignore">
+                        <ui:VisualElement class="bento" picking-mode="Ignore">
+                            <ui:Button class="btn mc mc--feature mc--progress rarity-legendary">
+                                <ui:VisualElement class="mc__fill" style="height: 66%;" picking-mode="Ignore">
+                                    <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                    <ui:Label class="tag" text="WEEKLY BOSS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                    <ui:Label class="mc__big" text="2" picking-mode="Ignore" />
+                                    <ui:Label class="mc__of" text="/ 3" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="mc__title" text="GRID LEGEND" picking-mode="Ignore" />
+                                <ui:Label class="mc__desc" text="THREE CHALLENGES, ONE LEGENDARY PART" picking-mode="Ignore" />
+                                <ui:VisualElement class="mc__steps" picking-mode="Ignore">
+                                    <ui:VisualElement class="obj obj--done" picking-mode="Ignore">
+                                        <ui:VisualElement class="obj__box" picking-mode="Ignore">
+                                            <ui:VisualElement class="check" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="obj__text" text="WIN ON EVERY OPEN PLANET" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="obj obj--done" picking-mode="Ignore">
+                                        <ui:VisualElement class="obj__box" picking-mode="Ignore">
+                                            <ui:VisualElement class="check" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="obj__text" text="TOP 5 TIME ON ANY TRACK" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="obj" picking-mode="Ignore">
+                                        <ui:VisualElement class="obj__box" picking-mode="Ignore" />
+                                        <ui:Label class="obj__text" text="WIN 5 ONLINE RACES  2 / 5" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                    <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                        <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                        <ui:Label class="price__value" text="100" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="ap" picking-mode="Ignore">
+                                        <ui:Label class="ap__num" text="+100" picking-mode="Ignore" />
+                                        <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:Button>
+                            <ui:VisualElement class="bento__grid bento__grid--3" picking-mode="Ignore">
+                                <ui:Button class="btn mc mc--small mc--progress rarity-rare">
+                                    <ui:VisualElement class="mc__fill" style="height: 62%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="RARE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="312" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 500" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="MARATHON" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="DRIVE 500 KM" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="6,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+30" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--progress rarity-epic">
+                                    <ui:VisualElement class="mc__fill" style="height: 66%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="EPIC" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="2" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 3" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="STORYTELLER" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="FINISH 3 CHAPTERS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="25" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+30" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--claim rarity-epic">
+                                    <ui:VisualElement class="mc__fill" style="height: 100%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="EPIC" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="5" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 5" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="RANKED GRIND" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="PLAY 5 RANKED RACES" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="30" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+40" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__claim" picking-mode="Ignore">
+                                        <ui:Label class="mc__claim-text" text="TAP TO CLAIM" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--done rarity-rare">
+                                    <ui:VisualElement class="mc__fill" style="height: 100%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="RARE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:VisualElement class="mc__done" picking-mode="Ignore">
+                                            <ui:VisualElement class="check" picking-mode="Ignore" />
+                                            <ui:Label class="mc__done-text" text="CLAIMED" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="100%" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="WORLD TOUR" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="RACE ON 3 PLANETS" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="5,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+30" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--progress rarity-legendary">
+                                    <ui:VisualElement class="mc__fill" style="height: 0%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="LEGENDARY" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="0" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 1" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="CLEAN SWEEP" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="WIN WITHOUT A CRASH" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="50" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+50" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn mc mc--small mc--progress rarity-common">
+                                    <ui:VisualElement class="mc__fill" style="height: 50%;" picking-mode="Ignore">
+                                        <ui:VisualElement class="mc__edge" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__slash" picking-mode="Ignore" />
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__top" picking-mode="Ignore">
+                                        <ui:Label class="tag" text="COMMON" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="mc__mid" picking-mode="Ignore">
+                                        <ui:Label class="mc__big" text="1" picking-mode="Ignore" />
+                                        <ui:Label class="mc__of" text="/ 2" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="mc__title" text="CHOP SHOP" picking-mode="Ignore" />
+                                    <ui:Label class="mc__desc" text="UPGRADE ANY PART TWICE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="mc__rewards" picking-mode="Ignore">
+                                        <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                            <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                            <ui:Label class="price__value" text="4,000" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="ap" picking-mode="Ignore">
+                                            <ui:Label class="ap__num" text="+20" picking-mode="Ignore" />
+                                            <ui:Label class="ap__label" text="AP" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="vchest accent-amber" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="WEEKLY ACTIVITY" picking-mode="Ignore" />
+                            <ui:VisualElement class="vchest__num" picking-mode="Ignore">
+                                <ui:Label class="vchest__big" text="120" picking-mode="Ignore" />
+                                <ui:Label class="vchest__of" text="/ 300" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="vchest__track" picking-mode="Ignore">
+                                <ui:VisualElement class="vchest__bar" picking-mode="Ignore">
+                                    <ui:VisualElement class="vchest__fill" style="height: 40%;" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Button class="btn vcrate vcrate--claimed" style="bottom: 33%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="100 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="CLAIMED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--locked" style="bottom: 50%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="150 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="LOCKED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--locked" style="bottom: 66%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="200 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="LOCKED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--locked" style="bottom: 83%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="250 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="LOCKED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button class="btn vcrate vcrate--locked" style="bottom: 100%;">
+                                    <ui:VisualElement class="vcrate__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="vcrate__core" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="vcrate__text" picking-mode="Ignore">
+                                        <ui:Label class="vcrate__ap" text="300 AP" picking-mode="Ignore" />
+                                        <ui:Label class="vcrate__state" text="LOCKED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:Label class="vchest__reset" text="RESETS 06:12:44" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="page mpage page--hidden" name="page-bounties" picking-mode="Ignore">
+                        <ui:VisualElement class="bounty-wrap" picking-mode="Ignore">
+                            <ui:VisualElement class="b-head" picking-mode="Ignore">
+                                <ui:VisualElement class="b-head__text" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow eyebrow--accent" text="BOUNTY BOARD" picking-mode="Ignore" />
+                                    <ui:Label class="b-head__title" text="BEAT THE GHOSTS" picking-mode="Ignore" />
+                                    <ui:Label class="b-head__desc" text="RIVAL GHOSTS ROAM THE TRACKS. BEAT THEIR RECORD TO COLLECT THE BOUNTY." picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:VisualElement class="b-head__timer" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow" text="NEW POSTERS IN" picking-mode="Ignore" />
+                                    <ui:VisualElement class="timer" picking-mode="Ignore">
+                                        <ui:VisualElement class="timer__cell" picking-mode="Ignore">
+                                            <ui:Label class="timer__num" text="14" picking-mode="Ignore" />
+                                            <ui:Label class="timer__unit" text="H" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="timer__cell" picking-mode="Ignore">
+                                            <ui:Label class="timer__num" text="02" picking-mode="Ignore" />
+                                            <ui:Label class="timer__unit" text="M" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="bounties" picking-mode="Ignore">
+                                <ui:VisualElement class="wanted accent-cyan wanted--open" picking-mode="Position">
+                                    <ui:VisualElement class="wanted__art art-w1" picking-mode="Ignore">
+                                        <ui:VisualElement class="wanted__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="wanted__stamp" picking-mode="Ignore">
+                                        <ui:Label class="wanted__stamp-text" text="WANTED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="wanted__body" picking-mode="Ignore">
+                                        <ui:Label class="eyebrow eyebrow--accent" text="KRYOS  /  FROZEN RUN" picking-mode="Ignore" />
+                                        <ui:Label class="wanted__alias" text="VANTA QUEEN" picking-mode="Ignore" />
+                                        <ui:Label class="wanted__rule" text="BEAT HER GHOST BY 2 SECONDS" picking-mode="Ignore" />
+                                        <ui:VisualElement class="wanted__diff" picking-mode="Ignore">
+                                            <ui:Label class="eyebrow" text="THREAT" picking-mode="Ignore" />
+                                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="wanted__bounty" picking-mode="Ignore">
+                                            <ui:VisualElement class="wanted__bounty-main" picking-mode="Ignore">
+                                                <ui:Label class="eyebrow" text="BOUNTY" picking-mode="Ignore" />
+                                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                                    <ui:Label class="price__value" text="12,000" picking-mode="Ignore" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:Label class="wanted__extra" text="+ 15 CORES" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Button class="btn btn-cta wanted__cta">
+                                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                            <ui:Label class="btn-cta__label" text="ACCEPT" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="wanted accent-amber wanted--active" picking-mode="Position">
+                                    <ui:VisualElement class="wanted__art art-w2" picking-mode="Ignore">
+                                        <ui:VisualElement class="wanted__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="wanted__stamp" picking-mode="Ignore">
+                                        <ui:Label class="wanted__stamp-text" text="WANTED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="wanted__body" picking-mode="Ignore">
+                                        <ui:Label class="eyebrow eyebrow--accent" text="AURELIA  /  SOLAR RIDGE" picking-mode="Ignore" />
+                                        <ui:Label class="wanted__alias" text="IRON SAINT" picking-mode="Ignore" />
+                                        <ui:Label class="wanted__rule" text="WIN WITHOUT USING BOOST" picking-mode="Ignore" />
+                                        <ui:VisualElement class="wanted__diff" picking-mode="Ignore">
+                                            <ui:Label class="eyebrow" text="THREAT" picking-mode="Ignore" />
+                                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="wanted__bounty" picking-mode="Ignore">
+                                            <ui:VisualElement class="wanted__bounty-main" picking-mode="Ignore">
+                                                <ui:Label class="eyebrow" text="BOUNTY" picking-mode="Ignore" />
+                                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                                    <ui:Label class="price__value" text="20,000" picking-mode="Ignore" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:Label class="wanted__extra" text="+ 25 CORES" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Button class="btn btn-cta wanted__cta">
+                                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                            <ui:Label class="btn-cta__label" text="TRACKING" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="wanted accent-magenta wanted--done" picking-mode="Position">
+                                    <ui:VisualElement class="wanted__art art-w3" picking-mode="Ignore">
+                                        <ui:VisualElement class="wanted__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="wanted__stamp" picking-mode="Ignore">
+                                        <ui:Label class="wanted__stamp-text" text="WANTED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="wanted__captured" picking-mode="Ignore">
+                                        <ui:Label class="wanted__captured-text" text="CAPTURED" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="wanted__body" picking-mode="Ignore">
+                                        <ui:Label class="eyebrow eyebrow--accent" text="VESPER  /  GLASS DUNES" picking-mode="Ignore" />
+                                        <ui:Label class="wanted__alias" text="NULL" picking-mode="Ignore" />
+                                        <ui:Label class="wanted__rule" text="BEAT HIS GHOST AT 2 LAPS" picking-mode="Ignore" />
+                                        <ui:VisualElement class="wanted__diff" picking-mode="Ignore">
+                                            <ui:Label class="eyebrow" text="THREAT" picking-mode="Ignore" />
+                                            <ui:VisualElement class="pips" picking-mode="Ignore">
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                                <ui:VisualElement class="pip pip--on" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="wanted__bounty" picking-mode="Ignore">
+                                            <ui:VisualElement class="wanted__bounty-main" picking-mode="Ignore">
+                                                <ui:Label class="eyebrow" text="BOUNTY" picking-mode="Ignore" />
+                                                <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                                    <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                                    <ui:Label class="price__value" text="40,000" picking-mode="Ignore" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:Label class="wanted__extra" text="+ LEGENDARY TRAIL" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Button class="btn btn-cta wanted__cta">
+                                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                            <ui:Label class="btn-cta__label" text="COLLECTED" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
