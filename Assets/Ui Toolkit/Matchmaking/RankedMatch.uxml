@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Template name="Scrims" src="project://database/Assets/Ui%20Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui%20Toolkit/Common/Components/ScreenHeader.uxml" />
+    <Style src="project://database/Assets/Ui%20Toolkit/Common/Common.uss"/>
+    <Style src="project://database/Assets/Ui%20Toolkit/Matchmaking/MatchmakingRanked.uss" />
+    
+    <ui:VisualElement name="root" class="screen">
+        <ui:VisualElement name="rotate-drag-zone" class="layer drag-zone" />
+        <ui:Instance template="Scrims" picking-mode="Ignore" class="layer" />
+        <ui:VisualElement name="hud" picking-mode="Ignore" class="layer hud">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <AttributeOverrides element-name="screen-eyebrow" text="MULTIPLAYER  /  SEASON 04 ENDS IN 12D" />
+                <AttributeOverrides element-name="screen-title" text="RANKED" />
+            </ui:Instance>
+            
+            <!-- DIAL SWITCH -->
+            <ui:VisualElement class="mm-dial-row">
+                <ui:VisualElement class="mm-dial">
+                    <ui:Button name="mode-ranked" class="btn mm-dial__segment mm-dial__segment--left tab--active accent-amber">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="RANKED" picking-mode="Ignore" class="tab__label" />
+                        <ui:Label text="SEASON 04" picking-mode="Ignore" class="tab__badge" />
+                    </ui:Button>
+                    <ui:VisualElement picking-mode="Ignore" class="mm-dial__divider" />
+                    <ui:Button name="mode-unranked" class="btn mm-dial__segment mm-dial__segment--right accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="UNRANKED" picking-mode="Ignore" class="tab__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement picking-mode="Ignore" class="mm-body mm-body--attached">
+                
+                <!-- STAGE & VEHICLE PLATE -->
+                <ui:VisualElement picking-mode="Ignore" class="mm-stage">
+                    <!-- connection info (region + ping) -->
+                    <ui:VisualElement picking-mode="Ignore" class="mm-conn">
+                        <ui:VisualElement name="conn-dot" picking-mode="Ignore" class="mm-conn__dot" />
+                        <ui:Label name="conn-region" text="EU-WEST" picking-mode="Ignore" class="mm-conn__text" />
+                        <ui:Label name="queue-ping" text="42 MS" picking-mode="Ignore" class="mm-conn__text mm-conn__ping" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                    <ui:VisualElement picking-mode="Ignore" class="mm-plate accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="mm-plate__bar" />
+                        <ui:VisualElement picking-mode="Ignore" class="mm-plate__text">
+                            <ui:Label text="YOUR RIDE" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                            <ui:Label name="vehicle-name" text="ZEPHYR GT-X" picking-mode="Ignore" class="mm-plate__name" />
+                            <ui:Label text="DRIVER  /  KAI NOVA" picking-mode="Ignore" class="mm-plate__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="btn-change-loadout" class="btn btn-ghost accent-cyan">
+                            <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                            <ui:Label text="CHANGE" picking-mode="Ignore" class="btn-ghost__label" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- MAIN PANEL -->
+                <ui:VisualElement name="queue-panel" picking-mode="Ignore" class="mm-panel mm-panel--narrow accent-amber">
+                    <!-- CURRENT RANK OVERVIEW -->
+                    <ui:VisualElement picking-mode="Ignore" class="rk-card rk-card--hero accent-amber rk-tier--platinum">
+                        <ui:VisualElement picking-mode="Ignore" class="rk-top">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-emblem">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-emblem__outer" />
+                                <ui:VisualElement picking-mode="Ignore" class="rk-emblem__inner" />
+                                <ui:Label name="rank-roman" text="II" picking-mode="Ignore" class="rk-emblem__roman" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="rk-info">
+                                <ui:Label text="CURRENT RANK" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                                <ui:Label name="rank-name" text="PLATINUM II" picking-mode="Ignore" class="rk-name" />
+                                <ui:VisualElement picking-mode="Ignore" class="rk-bar">
+                                    <ui:VisualElement name="rank-fill" picking-mode="Ignore" class="rk-bar__fill" style="width: 72%;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-rp">
+                                    <ui:Label name="rank-rp" text="1,284 / 1,500 RP" picking-mode="Ignore" class="rk-rp__text" />
+                                    <ui:Label text="216 TO PLATINUM I" picking-mode="Ignore" class="rk-rp__text rk-rp__text--accent" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="rk-stats">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-stat">
+                                <ui:Label text="214" picking-mode="Ignore" class="rk-stat__num" />
+                                <ui:Label text="WINS" picking-mode="Ignore" class="rk-stat__lbl" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="rk-stat">
+                                <ui:Label text="54%" picking-mode="Ignore" class="rk-stat__num" />
+                                <ui:Label text="WIN RATE" picking-mode="Ignore" class="rk-stat__lbl" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="rk-stat">
+                                <ui:Label text="W3" picking-mode="Ignore" class="rk-stat__num rk-stat__num--good" />
+                                <ui:Label text="STREAK" picking-mode="Ignore" class="rk-stat__lbl" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="rk-stat">
+                                <ui:Label text="1,611" picking-mode="Ignore" class="rk-stat__num" />
+                                <ui:Label text="SEASON PEAK" picking-mode="Ignore" class="rk-stat__lbl" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- NEXT REWARD: opens the ladder overlay -->
+                    <ui:Button name="btn-open-ladder" class="btn rk-next rk-tier--diamond">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:VisualElement picking-mode="Ignore" class="rk-next__icon art-a5" />
+                        <ui:VisualElement picking-mode="Ignore" class="rk-next__text">
+                            <ui:Label text="NEXT REWARD  /  DIAMOND" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                            <ui:Label text="PRISM BOOST TRAIL" picking-mode="Ignore" class="rk-next__title" />
+                            <ui:Label text="216 RP TO GO" picking-mode="Ignore" class="rk-next__desc" />
+                        </ui:VisualElement>
+                        <ui:Label text="LADDER" picking-mode="Ignore" class="tag tag--accent rk-next__tag" />
+                        <ui:VisualElement picking-mode="Ignore" class="chevron" />
+                    </ui:Button>
+
+                    <!-- IDLE STATE -->
+                    <ui:VisualElement name="state-idle" picking-mode="Ignore" class="page">
+                        <ui:Label text="LEAVING OR DISCONNECTING FROM A RANKED RACE COSTS RP AND CAN LOCK THE QUEUE." picking-mode="Ignore" class="mm-note" />
+                        <ui:Button name="btn-find" class="btn mm-cta accent-amber">
+                            <ui:VisualElement picking-mode="Ignore" class="mm-cta__slash mm-cta__slash--a" />
+                            <ui:VisualElement picking-mode="Ignore" class="mm-cta__slash mm-cta__slash--b" />
+                            <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                            <ui:VisualElement picking-mode="Ignore" class="mm-cta__text">
+                                <ui:Label name="cta-eyebrow" text="RANKED  /  SOLO QUEUE" picking-mode="Ignore" class="mm-cta__eyebrow" />
+                                <ui:Label text="FIND MATCH" picking-mode="Ignore" class="mm-cta__title" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="mm-cta__arrow" />
+                        </ui:Button>
+                    </ui:VisualElement>
+
+                    <!-- SEARCHING STATE -->
+                    <ui:VisualElement name="state-search" picking-mode="Ignore" class="page page--hidden">
+                        <ui:VisualElement picking-mode="Ignore" class="mm-search">
+                            <ui:VisualElement picking-mode="Ignore" class="mm-search__top">
+                                <ui:VisualElement name="queue-spinner" picking-mode="Ignore" class="mm-spinner" />
+                                <ui:VisualElement picking-mode="Ignore" class="mm-search__text">
+                                    <ui:Label text="SEARCHING" picking-mode="Ignore" class="mm-search__title" />
+                                    <ui:Label name="search-sub" text="ESTIMATED WAIT 00:30  /  3,120 IN QUEUE" picking-mode="Ignore" class="mm-search__sub" />
+                                </ui:VisualElement>
+                                <ui:Label name="search-clock" text="00:23" picking-mode="Ignore" class="mm-search__clock" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="mm-slots">
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot"><ui:Label text="---" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot"><ui:Label text="---" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot"><ui:Label text="---" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Button name="btn-cancel" class="btn btn-ghost accent-amber">
+                                <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                                <ui:Label text="CANCEL SEARCH" picking-mode="Ignore" class="btn-ghost__label" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- MATCH FOUND STATE -->
+                    <ui:VisualElement name="state-found" picking-mode="Ignore" class="page page--hidden">
+                        <ui:VisualElement picking-mode="Ignore" class="mm-found">
+                            <ui:VisualElement picking-mode="Ignore" class="mm-found__row">
+                                <ui:VisualElement picking-mode="Ignore">
+                                    <ui:Label text="ALL RACERS FOUND" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                                    <ui:Label text="MATCH FOUND" picking-mode="Ignore" class="mm-found__title" />
+                                </ui:VisualElement>
+                                <ui:Label name="accept-count" text="08" picking-mode="Ignore" class="mm-found__count" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="mm-slots">
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--ready"><ui:Label text="READY" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--ready"><ui:Label text="READY" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--ready"><ui:Label text="READY" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--ready"><ui:Label text="READY" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--ready"><ui:Label text="READY" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="mm-slot mm-slot--in"><ui:Label text="JOINED" picking-mode="Ignore" class="mm-slot__lbl" /></ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="mm-found__buttons">
+                                <ui:Button name="btn-decline" class="btn btn-ghost accent-amber">
+                                    <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                                    <ui:Label text="DECLINE" picking-mode="Ignore" class="btn-ghost__label" />
+                                </ui:Button>
+                                <ui:Button name="btn-accept" class="btn btn-cta accent-amber">
+                                    <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                                    <ui:Label text="ACCEPT" picking-mode="Ignore" class="btn-cta__label" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <!-- LADDER OVERLAY: hidden by default (hidden modifier on rk-overlay), remove it to show. Click a column to fill the detail strip. -->
+        <ui:VisualElement name="rank-overlay" class="rk-overlay rk-overlay--hidden" picking-mode="Position">
+            <ui:VisualElement picking-mode="Ignore" class="rk-sheet accent-amber">
+                <ui:VisualElement picking-mode="Ignore" class="rk-sheet__head">
+                    <ui:VisualElement picking-mode="Ignore">
+                        <ui:Label text="SEASON 04  /  ENDS IN 12D" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="RANK LADDER" picking-mode="Ignore" class="rk-sheet__title" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                    <ui:Label name="ladder-rank-tag" text="PLATINUM II  /  1,284 RP" picking-mode="Ignore" class="tag tag--accent" />
+                    <ui:Button name="btn-close-ladder" class="btn rk-close">
+                        <ui:VisualElement picking-mode="Ignore" class="rk-close__bar" />
+                        <ui:VisualElement picking-mode="Ignore" class="rk-close__bar rk-close__bar--b" />
+                    </ui:Button>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="rk-cols">
+                        <ui:Button name="col-bronze" class="btn rk-col rk-tier--bronze rk-col--reached rk-col--claimed">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__track">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__line"><ui:VisualElement picking-mode="Ignore" class="rk-col__fill" style="width: 100%;" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__node" />
+                            </ui:VisualElement>
+                            <ui:Label text="BRONZE" picking-mode="Ignore" class="rk-col__name" />
+                            <ui:Label text="0 RP" picking-mode="Ignore" class="rk-col__rp" />
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__reward art-a1"><ui:Label text="CLAIMED" picking-mode="Ignore" class="rk-col__badge" /></ui:VisualElement>
+                            <ui:Label text="BRONZE DECAL" picking-mode="Ignore" class="rk-col__reward-name" />
+                        </ui:Button>
+                        <ui:Button name="col-silver" class="btn rk-col rk-tier--silver rk-col--reached rk-col--claimed">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__track">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__line"><ui:VisualElement picking-mode="Ignore" class="rk-col__fill" style="width: 100%;" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__node" />
+                            </ui:VisualElement>
+                            <ui:Label text="SILVER" picking-mode="Ignore" class="rk-col__name" />
+                            <ui:Label text="300 RP" picking-mode="Ignore" class="rk-col__rp" />
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__reward art-a2"><ui:Label text="CLAIMED" picking-mode="Ignore" class="rk-col__badge" /></ui:VisualElement>
+                            <ui:Label text="SILVER TRAIL" picking-mode="Ignore" class="rk-col__reward-name" />
+                        </ui:Button>
+                        <ui:Button name="col-gold" class="btn rk-col rk-tier--gold rk-col--reached rk-col--claimed">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__track">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__line"><ui:VisualElement picking-mode="Ignore" class="rk-col__fill" style="width: 100%;" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__node" />
+                            </ui:VisualElement>
+                            <ui:Label text="GOLD" picking-mode="Ignore" class="rk-col__name" />
+                            <ui:Label text="700 RP" picking-mode="Ignore" class="rk-col__rp" />
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__reward art-a3"><ui:Label text="CLAIMED" picking-mode="Ignore" class="rk-col__badge" /></ui:VisualElement>
+                            <ui:Label text="GOLD WRAP" picking-mode="Ignore" class="rk-col__reward-name" />
+                        </ui:Button>
+                        <ui:Button name="col-platinum" class="btn rk-col rk-tier--platinum rk-col--reached rk-col--claimable rk-col--current">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__track">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__line"><ui:VisualElement picking-mode="Ignore" class="rk-col__fill" style="width: 73%;" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__node" />
+                            </ui:VisualElement>
+                            <ui:Label text="PLATINUM" picking-mode="Ignore" class="rk-col__name" />
+                            <ui:Label text="1,100 RP" picking-mode="Ignore" class="rk-col__rp" />
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__reward art-a3"><ui:Label text="CLAIM" picking-mode="Ignore" class="rk-col__badge" /></ui:VisualElement>
+                            <ui:Label text="PLATINUM EMBLEM" picking-mode="Ignore" class="rk-col__reward-name" />
+                        </ui:Button>
+                        <ui:Button name="col-diamond" class="btn rk-col rk-tier--diamond rk-col--selected">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__track">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__line"><ui:VisualElement picking-mode="Ignore" class="rk-col__fill" style="width: 0%;" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__node" />
+                            </ui:VisualElement>
+                            <ui:Label text="DIAMOND" picking-mode="Ignore" class="rk-col__name" />
+                            <ui:Label text="1,500 RP" picking-mode="Ignore" class="rk-col__rp" />
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__reward rk-col__reward--rare art-a5"><ui:Label text="LOCKED" picking-mode="Ignore" class="rk-col__badge" /></ui:VisualElement>
+                            <ui:Label text="PRISM BOOST TRAIL" picking-mode="Ignore" class="rk-col__reward-name" />
+                        </ui:Button>
+                        <ui:Button name="col-master" class="btn rk-col rk-tier--master">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__track">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__line"><ui:VisualElement picking-mode="Ignore" class="rk-col__fill" style="width: 0%;" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__node" />
+                            </ui:VisualElement>
+                            <ui:Label text="MASTER" picking-mode="Ignore" class="rk-col__name" />
+                            <ui:Label text="1,900 RP" picking-mode="Ignore" class="rk-col__rp" />
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__reward rk-col__reward--rare art-a6"><ui:Label text="LOCKED" picking-mode="Ignore" class="rk-col__badge" /></ui:VisualElement>
+                            <ui:Label text="NEON MASTER SKIN" picking-mode="Ignore" class="rk-col__reward-name" />
+                        </ui:Button>
+                        <ui:Button name="col-champ" class="btn rk-col rk-tier--champ">
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__track">
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__line"><ui:VisualElement picking-mode="Ignore" class="rk-col__fill" style="width: 0%;" /></ui:VisualElement>
+                                <ui:VisualElement picking-mode="Ignore" class="rk-col__node" />
+                            </ui:VisualElement>
+                            <ui:Label text="CHAMPION" picking-mode="Ignore" class="rk-col__name" />
+                            <ui:Label text="2,300 RP" picking-mode="Ignore" class="rk-col__rp" />
+                            <ui:VisualElement picking-mode="Ignore" class="rk-col__reward rk-col__reward--epic art-a2"><ui:Label text="LOCKED" picking-mode="Ignore" class="rk-col__badge" /></ui:VisualElement>
+                            <ui:Label text="APEX CHAMPION CAR" picking-mode="Ignore" class="rk-col__reward-name" />
+                        </ui:Button>
+                </ui:VisualElement>
+
+                <!-- selected reward -->
+                <ui:VisualElement name="reward-detail" picking-mode="Ignore" class="rk-detail rk-tier--diamond">
+                    <ui:VisualElement name="detail-art" picking-mode="Ignore" class="rk-detail__art art-a5" />
+                    <ui:VisualElement picking-mode="Ignore" class="rk-detail__text">
+                        <ui:Label text="SELECTED REWARD" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label name="detail-title" text="PRISM BOOST TRAIL" picking-mode="Ignore" class="rk-detail__title" />
+                        <ui:Label name="detail-desc" text="A SEASON-EXCLUSIVE BOOST TRAIL. KEEP IT FOREVER ONCE UNLOCKED." picking-mode="Ignore" class="rk-detail__desc" />
+                        <ui:VisualElement picking-mode="Ignore" class="rk-detail__tags">
+                            <ui:Label name="detail-req" text="REACH DIAMOND  /  1,500 RP" picking-mode="Ignore" class="tag tag--sale" />
+                            <ui:Label text="SEASON EXCLUSIVE" picking-mode="Ignore" class="tag" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Button name="btn-detail-claim" class="btn btn-cta accent-amber">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label name="detail-claim-label" text="216 RP TO UNLOCK" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
