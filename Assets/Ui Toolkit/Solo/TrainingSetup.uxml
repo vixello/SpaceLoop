@@ -4,8 +4,25 @@
     <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
     <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
 
-    <!-- Training setup. The 3D scene shows the selected planet in the center. Training has no rank points. -->
+    <!-- Training setup (cinematic). Backdrop tint/art behind (tint it with the planet color from C#). The 3D scene shows the selected planet in the center. Training has no rank points. -->
     <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <!-- Backdrop: set background-image or a tinted background-color on cine-bg-art from C#. -->
+        <ui:VisualElement class="cine-bg cine-bg--intro accent-cyan" name="cine-bg" picking-mode="Ignore">
+            <ui:VisualElement class="cine-bg__art" name="cine-bg-art" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-bg__shaft cine-bg__shaft--a" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-bg__shaft cine-bg__shaft--b" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-bg__shaft cine-bg__shaft--c" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--b1" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--b2" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--b3" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--b4" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--b5" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--b6" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--t1" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--t2" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--t3" picking-mode="Ignore" />
+            <ui:VisualElement class="cine-vig cine-vig--t4" picking-mode="Ignore" />
+        </ui:VisualElement>
         <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
         <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
         <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">

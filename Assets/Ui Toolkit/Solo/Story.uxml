@@ -4,8 +4,25 @@
     <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
     <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
 
-    <!-- Story screen. Arc rail on the left, parts and chapter path in the center, chapter detail on the right. -->
+    <!-- Story screen (cinematic). Backdrop art + vignette behind. Arc rail on the left, big title card, part tabs and poster chapter path in the center, glass chapter detail on the right. -->
     <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <!-- Backdrop: set background-image on story-bg-art from C# (arc or chapter key art). Put the arc accent class on story-bg. -->
+        <ui:VisualElement class="story-bg story-bg--intro accent-cyan" name="story-bg" picking-mode="Ignore">
+            <ui:VisualElement class="story-bg__art" name="story-bg-art" picking-mode="Ignore" />
+            <ui:VisualElement class="story-bg__shaft story-bg__shaft--a" picking-mode="Ignore" />
+            <ui:VisualElement class="story-bg__shaft story-bg__shaft--b" picking-mode="Ignore" />
+            <ui:VisualElement class="story-bg__shaft story-bg__shaft--c" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--b1" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--b2" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--b3" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--b4" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--b5" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--b6" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--t1" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--t2" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--t3" picking-mode="Ignore" />
+            <ui:VisualElement class="story-vig story-vig--t4" picking-mode="Ignore" />
+        </ui:VisualElement>
         <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
         <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
         <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
@@ -182,6 +199,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="EMBER RUN" picking-mode="Ignore" />
                                         <ui:VisualElement class="stars" picking-mode="Ignore">
@@ -210,6 +229,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="SMOKE AND MIRRORS" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -240,6 +261,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="THE LONG WAY DOWN" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -270,6 +293,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="BROKEN SIGNAL" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -300,6 +325,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="RED HORIZON" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -330,6 +357,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="ASHES OF AURELIA" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -364,6 +393,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="TIDE LINES" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -394,6 +425,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="UNDERCURRENT" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -424,6 +457,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="DROWNED CITY" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -454,6 +489,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="LOW TIDE" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />
@@ -484,6 +521,8 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement class="ch__bar" picking-mode="Ignore" />
                                     <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--a" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ch__fade ch__fade--b" picking-mode="Ignore" />
                                     <ui:VisualElement class="ch__info" picking-mode="Ignore">
                                         <ui:Label class="ch__title" text="BLACK TIDE" picking-mode="Ignore" />
                                         <ui:VisualElement class="spacer" picking-mode="Ignore" />

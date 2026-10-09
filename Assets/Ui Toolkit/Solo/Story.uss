@@ -1,33 +1,98 @@
 /* =====================================================================
-   STORY  (requires Common.uss)
-   Arc rail (characters) | parts + chapter path | chapter detail.
-   Chapter states:
-     ch--done, ch--current, ch--open,
-     ch--lock-prog  = blocked by story progression (finish earlier chapter)
-     ch--lock-char  = blocked because the character is not unlocked yet
+   STORY  (requires Common.uss)  /  CINEMATIC PASS
+   Arc rail (characters) | parts + big poster path | chapter detail.
+
+   WHAT CHANGED
+   - Chapters are tall posters (340x520, boss 400x560). The art fills the
+     whole card, number / kind tag sit on the art, the title sits on a
+     faded caption at the bottom. Hover / selected cards lift and glow.
+   - Full-screen backdrop (#story-bg) with an image slot for the selected
+     arc or chapter, vignette bands and light shafts. Put accent-xxx on
+     #story-bg from C# so the shafts follow the arc color.
+   - Rail is slimmer, detail panel is glass, so the center gets the space.
+   Sizes are tuned for a 1920x1080 reference (Scale With Screen Size).
+
+   IMAGE SLOTS
+     .story-bg__art   backdrop picture (arc or chapter key art)
+     .arc__portrait   character portrait
+     .ch__art         chapter poster art (portrait crop, ~2:3)
+
+   Chapter states: ch--done, ch--current, ch--open, ch--sel,
+     ch--lock-prog (finish earlier chapter), ch--lock-char (character locked)
    Arc states: arc--active, arc--open, arc--lock-prog, arc--lock-char.
-   Each arc and part gets its own page; C# toggles .page--hidden.
+   Intro animation: add .story-bg--intro on awake, remove it next frame.
    ===================================================================== */
 
 .body {
     flex-direction: row;
     flex-grow: 1;
-    margin-top: 22px;
+    margin-top: 18px;
 }
+
+/* ---------------------------------------------------------------------
+   0. CINEMATIC BACKDROP
+   --------------------------------------------------------------------- */
+.story-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.story-bg__art {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 229, 255, 0.05);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.story-bg__shaft {
+    position: absolute;
+    top: -60%;
+    height: 240%;
+    rotate: 24deg;
+    translate: 0 0;
+    transition-property: translate, opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+}
+
+.story-bg__shaft--a { left: 30%; width: 260px; background-color: rgba(255, 255, 255, 0.025); }
+.story-bg__shaft--b { left: 41%; width: 40px;  background-color: var(--accent-soft); }
+.story-bg__shaft--c { left: 43%; width: 6px;   background-color: var(--accent-mid); }
+.story-bg--intro .story-bg__shaft { translate: 500px 0; opacity: 0; }
+
+/* Stacked low-alpha bands fake a gradient (USS has no gradients). */
+.story-vig { position: absolute; left: 0; right: 0; background-color: rgba(3, 6, 13, 0.11); }
+.story-vig--b1 { bottom: 0; height: 70%; }
+.story-vig--b2 { bottom: 0; height: 55%; }
+.story-vig--b3 { bottom: 0; height: 42%; }
+.story-vig--b4 { bottom: 0; height: 30%; }
+.story-vig--b5 { bottom: 0; height: 20%; }
+.story-vig--b6 { bottom: 0; height: 11%; }
+.story-vig--t1 { top: 0; height: 26%; }
+.story-vig--t2 { top: 0; height: 18%; }
+.story-vig--t3 { top: 0; height: 10%; }
+.story-vig--t4 { top: 0; height: 4%; }
 
 /* ---------------------------------------------------------------------
    1. ARC RAIL
    --------------------------------------------------------------------- */
-.arc-rail { width: 310px; flex-shrink: 0; margin-right: 24px; }
+.arc-rail { width: 270px; flex-shrink: 0; margin-right: 24px; }
 .rail-label { margin-bottom: 10px; }
 
 .arc {
     flex-direction: row;
     align-items: center;
-    height: 112px;
+    height: 104px;
     margin-bottom: 8px;
-    padding: 0 18px 0 0;
-    background-color: var(--c-surface);
+    padding: 0 14px 0 0;
+    background-color: rgba(6, 10, 20, 0.72);
 }
 
 .arc:hover { background-color: var(--c-surface-hi); translate: 8px 0; }
@@ -36,9 +101,9 @@
 
 /* IMAGE SLOT: character portrait */
 .arc__portrait {
-    width: 92px;
+    width: 84px;
     height: 100%;
-    margin-right: 16px;
+    margin-right: 14px;
     overflow: hidden;
     background-color: var(--accent-soft);
     -unity-background-scale-mode: scale-and-crop;
@@ -66,7 +131,7 @@
 .arc__text { flex-grow: 1; flex-shrink: 1; }
 
 .arc__char {
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 4px;
     color: var(--accent);
     white-space: nowrap;
@@ -75,7 +140,7 @@
 }
 
 .arc__title {
-    font-size: 24px;
+    font-size: 21px;
     letter-spacing: 3px;
     color: var(--c-text);
     white-space: nowrap;
@@ -88,7 +153,7 @@
 
 .arc__count {
     margin-left: 10px;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 2px;
     color: var(--c-text-2);
     -unity-font-style: bold;
@@ -97,8 +162,8 @@
 .arc__req { flex-direction: row; align-items: center; margin-top: 6px; }
 
 .arc__req-text {
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-size: 10px;
+    letter-spacing: 2px;
     color: rgb(255, 190, 0);
     white-space: nowrap;
     -unity-font-style: bold;
@@ -108,7 +173,7 @@
 .arc--lock-char .arc__char { color: var(--c-text-3); }
 
 /* ---------------------------------------------------------------------
-   2. CENTER: BANNER, PART TABS, CHAPTER PATH
+   2. CENTER: TITLE CARD, PART TABS, POSTER PATH
    --------------------------------------------------------------------- */
 .story-center {
     flex-grow: 1;
@@ -120,15 +185,15 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 4px 0 18px 0;
+    padding: 0 0 14px 0;
     flex-shrink: 0;
 }
 
 .arc-banner__text { flex-shrink: 1; margin-right: 24px; }
 
 .arc-banner__title {
-    font-size: 78px;
-    letter-spacing: 9px;
+    font-size: 84px;
+    letter-spacing: 12px;
     color: var(--c-text);
     white-space: nowrap;
     -unity-font-style: bold-and-italic;
@@ -136,19 +201,19 @@
 }
 
 .arc-banner__desc {
-    max-width: 640px;
+    max-width: 700px;
     font-size: 14px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: var(--c-text-2);
     white-space: normal;
     -unity-text-align: upper-left;
 }
 
 .arc-banner__stats { flex-direction: row; flex-shrink: 0; }
-.fact { margin-left: 28px; }
+.fact { margin-left: 32px; }
 
 .fact__num {
-    font-size: 34px;
+    font-size: 36px;
     letter-spacing: 2px;
     color: var(--c-text);
     -unity-font-style: bold-and-italic;
@@ -163,72 +228,80 @@
     -unity-text-align: middle-right;
 }
 
-.part-tabs .tab { flex-direction: row; }
+.part-tabs .tab { flex-direction: row; min-width: 270px; height: 60px; background-color: rgba(6, 10, 20, 0.72); }
+.part-tabs .tab--active { background-color: var(--accent-soft); }
 .part-tabs .tab__label { flex-grow: 0; }
 .part-tabs .lock--sm { margin-right: 10px; }
 .part-tabs .check { margin: 0 12px 0 0; border-color: var(--c-good); }
 .tab--locked { opacity: 0.6; }
 .tab--locked:hover { opacity: 1; }
 
-.story-pages { flex-grow: 1; margin-top: 8px; }
+.story-pages { flex-grow: 1; margin-top: 4px; }
 
 .ch-list { flex-grow: 1; }
 
 .ch-list .unity-scroll-view__content-container {
     flex-direction: row;
     align-items: center;
-    padding: 24px 40px 24px 4px;
+    padding: 28px 80px 28px 10px;
 }
 
 /* ---------------------------------------------------------------------
-   3. CHAPTER NODES
+   3. CHAPTER POSTERS
    --------------------------------------------------------------------- */
 .ch {
-    width: 250px;
-    height: 330px;
+    width: 340px;
+    height: 520px;
     flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     background-color: var(--c-surface);
     border-width: 1px;
     border-color: var(--c-hair);
+    transition-property: scale, translate, border-color;
+    transition-duration: 0.2s;
 }
 
-.ch--boss { width: 290px; height: 366px; }
+.ch--boss { width: 400px; height: 560px; }
 
 .ch:focus { border-color: var(--c-hair); }
-.ch:hover { background-color: var(--c-surface-hi); border-color: var(--accent); scale: 1.05 1.05; translate: 0 -6px; }
+.ch:hover { border-color: var(--accent); scale: 1.05 1.05; translate: 0 -8px; }
 
-.ch--current, .ch--current:focus { border-color: var(--accent); background-color: var(--accent-soft); }
-.ch--sel, .ch--sel:focus { border-width: 2px; border-color: rgb(255, 255, 255); }
+.ch--current, .ch--current:focus { border-color: var(--accent); border-width: 2px; }
+.ch--sel, .ch--sel:focus { border-width: 3px; border-color: rgb(255, 255, 255); scale: 1.03 1.03; }
 
-/* IMAGE SLOT: chapter key art */
+/* IMAGE SLOT: poster art fills the whole card */
 .ch__art {
-    height: 170px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     overflow: hidden;
     background-color: var(--accent-soft);
     -unity-background-scale-mode: scale-and-crop;
 }
 
-.ch--boss .ch__art { height: 200px; }
-
+/* Big chapter numeral on the art */
 .ch__num {
     position: absolute;
-    left: 14px;
-    top: 14px;
-    width: 46px;
-    height: 46px;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--accent);
+    left: 20px;
+    top: 10px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .ch__num-text {
-    font-size: 22px;
-    color: var(--c-ink);
+    font-size: 76px;
+    letter-spacing: 2px;
+    color: var(--accent);
     -unity-font-style: bold-and-italic;
-    -unity-text-align: middle-center;
+    -unity-text-align: middle-left;
 }
 
-.ch__kind { position: absolute; right: 12px; top: 14px; }
+.ch--lock-prog .ch__num-text, .ch--lock-char .ch__num-text { color: var(--c-text-2); }
+
+.ch__kind { position: absolute; right: 16px; top: 22px; }
 
 .ch__veil {
     position: absolute;
@@ -236,7 +309,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(3, 6, 13, 0.62);
+    background-color: rgba(3, 6, 13, 0.7);
 }
 
 .ch__lock {
@@ -244,17 +317,18 @@
     left: 0;
     top: 0;
     right: 0;
-    bottom: 0;
+    bottom: 38%;
     align-items: center;
     justify-content: center;
+    scale: 1.8 1.8;
 }
 
 .ch__done {
     position: absolute;
     right: 0;
-    bottom: 0;
-    width: 36px;
-    height: 36px;
+    top: 0;
+    width: 44px;
+    height: 44px;
     align-items: center;
     justify-content: center;
     background-color: var(--c-good);
@@ -262,36 +336,68 @@
 
 .ch__done .check { margin: 0 0 3px 0; border-color: var(--c-ink); }
 
+/* Big play button, centered on the poster (current chapter only) */
 .ch__play {
     position: absolute;
-    right: 14px;
-    bottom: 14px;
-    width: 52px;
-    height: 52px;
+    left: 50%;
+    top: 36%;
+    width: 88px;
+    height: 88px;
+    translate: -50% -50%;
     align-items: center;
     justify-content: center;
     background-color: var(--accent);
+    transition-property: scale;
+    transition-duration: 0.2s;
 }
+
+.ch:hover .ch__play { scale: 1.12 1.12; }
 
 .ch__play-tri {
     width: 0;
     height: 0;
-    margin-left: 4px;
-    border-top-width: 11px;
-    border-bottom-width: 11px;
-    border-left-width: 18px;
+    margin-left: 6px;
+    border-top-width: 17px;
+    border-bottom-width: 17px;
+    border-left-width: 28px;
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     border-left-color: var(--c-ink);
 }
 
-.ch__bar { height: 3px; background-color: var(--accent); }
-.ch--lock-prog .ch__bar, .ch--lock-char .ch__bar { background-color: var(--c-hair-strong); }
+/* Caption: two soft bands + solid block fake a fade into the title */
+.ch__fade { position: absolute; left: 0; right: 0; height: 44px; }
+.ch__fade--a { bottom: 181px; background-color: rgba(3, 6, 13, 0.18); }
+.ch__fade--b { bottom: 137px; background-color: rgba(3, 6, 13, 0.46); }
+.ch--boss .ch__fade--a { bottom: 189px; }
+.ch--boss .ch__fade--b { bottom: 145px; }
 
-.ch__info { padding: 12px 16px 14px 18px; flex-grow: 1; }
+.ch__bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    background-color: var(--accent);
+}
+
+.ch--lock-prog .ch__bar, .ch--lock-char .ch__bar { background-color: var(--c-hair-strong); }
+.ch--done .ch__bar { background-color: var(--c-good); }
+
+.ch__info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    height: 132px;
+    padding: 12px 20px 14px 22px;
+    background-color: rgba(3, 6, 13, 0.84);
+}
+
+.ch--boss .ch__info { height: 140px; }
 
 .ch__title {
-    font-size: 21px;
+    font-size: 26px;
     letter-spacing: 2px;
     color: var(--c-text);
     white-space: normal;
@@ -299,11 +405,12 @@
     -unity-text-align: upper-left;
 }
 
+.ch--boss .ch__title { font-size: 30px; }
 .ch--lock-prog .ch__title, .ch--lock-char .ch__title { color: var(--c-text-2); }
 
 .ch__state {
-    font-size: 11px;
-    letter-spacing: 4px;
+    font-size: 12px;
+    letter-spacing: 5px;
     color: var(--c-text-3);
     -unity-font-style: bold;
     -unity-text-align: middle-left;
@@ -314,18 +421,18 @@
 .ch__reqrow { flex-direction: row; align-items: center; }
 
 .ch__req {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 3px;
     color: rgb(255, 190, 0);
     -unity-font-style: bold;
 }
 
-.stars { flex-direction: row; margin: 6px 0 6px 0; }
+.stars { flex-direction: row; margin: 8px 0 8px 0; }
 
 .star {
-    width: 14px;
-    height: 14px;
-    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
     rotate: 45deg;
     border-width: 2px;
     border-color: var(--c-text-3);
@@ -333,9 +440,9 @@
 
 .star--on { background-color: rgb(255, 190, 0); border-color: rgb(255, 190, 0); }
 
-/* Path connectors between chapters */
+/* Path connectors between posters */
 .ch-link {
-    width: 44px;
+    width: 30px;
     height: 4px;
     flex-shrink: 0;
     background-color: var(--c-hair-strong);
@@ -355,15 +462,15 @@
 }
 
 /* ---------------------------------------------------------------------
-   4. CHAPTER DETAIL
+   4. CHAPTER DETAIL (glass panel)
    --------------------------------------------------------------------- */
 .sd {
-    width: 30%;
-    min-width: 440px;
-    max-width: 540px;
+    width: 28%;
+    min-width: 400px;
+    max-width: 460px;
     flex-shrink: 0;
-    padding: 24px 24px 22px 30px;
-    background-color: var(--c-surface);
+    padding: 26px 26px 24px 32px;
+    background-color: rgba(6, 10, 20, 0.8);
     border-top-width: 2px;
     border-color: var(--accent);
 }
@@ -379,15 +486,15 @@
 
 .sd__title {
     margin-top: 2px;
-    font-size: 50px;
-    letter-spacing: 6px;
+    font-size: 46px;
+    letter-spacing: 5px;
     color: var(--c-text);
-    white-space: nowrap;
+    white-space: normal;
     -unity-font-style: bold-and-italic;
-    -unity-text-align: middle-left;
+    -unity-text-align: upper-left;
 }
 
-.sd__tags { flex-direction: row; align-items: center; margin-top: 4px; }
+.sd__tags { flex-direction: row; align-items: center; flex-wrap: wrap; margin-top: 6px; }
 
 .sd__meta {
     margin-left: 14px;
@@ -398,7 +505,7 @@
 }
 
 .sd__desc {
-    margin-top: 12px;
+    margin-top: 14px;
     font-size: 14px;
     letter-spacing: 2px;
     color: var(--c-text-2);
@@ -406,7 +513,7 @@
     -unity-text-align: upper-left;
 }
 
-.sd__label { margin: 20px 0 10px 0; }
+.sd__label { margin: 22px 0 10px 0; }
 
 .obj { flex-direction: row; align-items: center; margin-bottom: 8px; }
 
@@ -424,9 +531,11 @@
 .obj__box .check { margin: 0 0 3px 0; border-color: var(--c-good); }
 
 .obj__text {
-    font-size: 15px;
+    flex-shrink: 1;
+    font-size: 14px;
     letter-spacing: 3px;
     color: var(--c-text);
+    white-space: normal;
     -unity-font-style: bold;
 }
 
@@ -440,7 +549,7 @@
     -unity-font-style: bold;
 }
 
-.sd__meta-row { flex-direction: row; margin-top: 20px; }
+.sd__meta-row { flex-direction: row; margin-top: 22px; }
 .sd__diff { margin-right: 40px; }
 
 .sd__time-val {
@@ -463,8 +572,8 @@
 .pip--on { background-color: var(--accent); }
 
 .sd__actions { flex-direction: row; justify-content: flex-end; }
-.sd__main { flex-grow: 1; height: 82px; }
-.sd__shop { min-width: 170px; height: 82px; margin-right: 10px; padding: 0 20px 0 20px; }
+.sd__main { flex-grow: 1; height: 96px; }
+.sd__shop { min-width: 170px; height: 96px; margin-right: 10px; padding: 0 20px 0 20px; }
 
 .btn-cta--disabled, .btn-cta--disabled:hover { background-color: var(--c-fill-mid); scale: 1 1; }
 .btn-cta--disabled .btn-cta__label { color: var(--c-text-3); }
