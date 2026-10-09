@@ -1,150 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
     <ui:Style src="project://database/Assets/Ui Toolkit/Login/Login.uss" />
     <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
 
-    <!-- Background art slot: .lg-bg__art (set background-image). Card pages toggle with the hidden page modifier (see Login.uss). -->
-    <ui:VisualElement name="root" class="screen" picking-mode="Position">
-        <ui:VisualElement name="bg" class="lg-bg lg-bg--intro" picking-mode="Ignore">
-            <ui:VisualElement name="bg-art" class="lg-bg__art" picking-mode="Ignore" />
-            <ui:VisualElement class="lg-bg__slash lg-bg__slash--a" picking-mode="Ignore" />
-            <ui:VisualElement class="lg-bg__slash lg-bg__slash--b" picking-mode="Ignore" />
-            <ui:VisualElement class="lg-bg__slash lg-bg__slash--c" picking-mode="Ignore" />
-            <ui:VisualElement class="lg-bg__slash lg-bg__slash--d" picking-mode="Ignore" />
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <!-- FULL SCREEN SPLASH BACKDROP -->
+        <ui:VisualElement class="layer login-art" name="login-art" picking-mode="Ignore" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+
+        <!-- SPEED LINES & DECORATIVE BACKDROP -->
+        <ui:VisualElement class="lines" picking-mode="Ignore">
+            <ui:VisualElement class="sline sline--a" picking-mode="Ignore" />
+            <ui:VisualElement class="sline sline--b" picking-mode="Ignore" />
+            <ui:VisualElement class="sline sline--c" picking-mode="Ignore" />
         </ui:VisualElement>
-        <ui:Instance template="Scrims" class="layer" picking-mode="Ignore" />
 
-        <ui:VisualElement name="hud" class="layer hud" picking-mode="Ignore">
-            <ui:VisualElement class="lg-main" picking-mode="Ignore">
+        <!-- TACHOMETER (RIGHT SIDE) -->
+        <ui:VisualElement class="tach" picking-mode="Ignore">
+            <ui:VisualElement class="tach__ring tach__ring--a" picking-mode="Ignore" />
+            <ui:VisualElement class="tach__ring tach__ring--b" picking-mode="Ignore" />
+            <ui:VisualElement class="needle" style="rotate: -52deg;" name="tach-needle" picking-mode="Ignore">
+                <ui:VisualElement class="needle__bar" picking-mode="Ignore" />
+                <ui:VisualElement class="needle__tip" picking-mode="Ignore" />
+            </ui:VisualElement>
+            <ui:VisualElement class="tach__hub" picking-mode="Ignore">
+                <ui:VisualElement class="tach__hub-core" picking-mode="Ignore" />
+            </ui:VisualElement>
+            <ui:Label class="tach__speed" text="000" name="tach-speed" picking-mode="Ignore" />
+            <ui:Label class="tach__unit" text="KM/H" picking-mode="Ignore" />
+        </ui:VisualElement>
 
-                <!-- LEFT: brand -->
-                <ui:VisualElement class="lg-brand" picking-mode="Ignore">
-                    <ui:VisualElement class="lg-brand__tags" picking-mode="Ignore">
-                        <ui:Label class="tag tag--accent" text="SEASON 04" picking-mode="Ignore" />
-                        <ui:Label class="tag tag--sale" text="NEW MAPS" picking-mode="Ignore" />
-                    </ui:VisualElement>
-                    <ui:Label name="game-title" class="lg-brand__title" text="NEON" picking-mode="Ignore" />
-                    <ui:Label class="lg-brand__title lg-brand__title--accent" text="DRIFT" picking-mode="Ignore" />
-                    <ui:Label class="lg-brand__tagline" text="RACE ACROSS THE PLANETS. OWN THE LEADERBOARD." picking-mode="Ignore" />
-                    <ui:VisualElement class="lg-stats" picking-mode="Ignore">
-                        <ui:VisualElement class="lg-stat accent-cyan" picking-mode="Ignore">
-                            <ui:Label name="stat-online" class="lg-stat__num" text="12,480" picking-mode="Ignore" />
-                            <ui:Label class="lg-stat__lbl" text="RACERS ONLINE" picking-mode="Ignore" />
-                        </ui:VisualElement>
-                        <ui:VisualElement class="lg-stat accent-magenta" picking-mode="Ignore">
-                            <ui:Label name="stat-races" class="lg-stat__num" text="318K" picking-mode="Ignore" />
-                            <ui:Label class="lg-stat__lbl" text="RACES TODAY" picking-mode="Ignore" />
-                        </ui:VisualElement>
-                        <ui:VisualElement class="lg-stat accent-amber" picking-mode="Ignore">
-                            <ui:Label class="lg-stat__num" text="12" picking-mode="Ignore" />
-                            <ui:Label class="lg-stat__lbl" text="MAPS / 4 PLANETS" picking-mode="Ignore" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement class="lg-tip accent-cyan" picking-mode="Ignore">
-                        <ui:Label class="tag tag--accent" text="TIP" picking-mode="Ignore" />
-                        <ui:Label name="tip-text" class="lg-tip__text" text="DRIFTING THROUGH A CORNER CHARGES YOUR BOOST FASTER THAN DRAFTING." picking-mode="Ignore" />
-                    </ui:VisualElement>
+        <!-- MAIN HUD LAYER -->
+        <ui:VisualElement class="layer login-hud" name="hud" picking-mode="Ignore">
+            <!-- TOP BAR / CODM STYLE SEASON INFO (BACKGROUND-LESS, FLOATING UNMODESTLY) -->
+            <ui:VisualElement class="login-top" picking-mode="Ignore">
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:VisualElement class="season-banner" picking-mode="Ignore">
+                    <ui:Label class="season-banner__eyebrow" text="CURRENT SEASON" picking-mode="Ignore" />
+                    <ui:Label class="season-banner__title" text="SEASON 04  /  NEON DRIFT" picking-mode="Ignore" />
                 </ui:VisualElement>
+            </ui:VisualElement>
 
-                <!-- RIGHT: login card -->
-                <ui:VisualElement name="login-card" class="lg-card accent-cyan" picking-mode="Position">
-
-                    <!-- PAGE 1: SIGN IN -->
-                    <ui:VisualElement name="page-signin" class="page" picking-mode="Ignore">
-                        <ui:Label class="eyebrow eyebrow--accent" text="01  /  ACCESS" picking-mode="Ignore" />
-                        <ui:Label class="lg-title" text="SIGN IN" picking-mode="Ignore" />
-                        <ui:Label class="lg-desc" text="NO PASSWORD. YOUR GOOGLE ACCOUNT IS YOUR RACING LICENSE. FIRST TIME HERE? YOUR PROFILE IS CREATED AUTOMATICALLY." picking-mode="Ignore" />
-
-                        <!-- Shown only when a previous session exists. C#: remove the lg-resume hidden modifier. -->
-                        <ui:Button name="btn-resume" class="btn lg-resume lg-resume--hidden accent-cyan">
-                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                            <ui:VisualElement name="resume-avatar" class="lg-resume__avatar" picking-mode="Ignore" />
-                            <ui:VisualElement class="lg-resume__text" picking-mode="Ignore">
-                                <ui:Label class="lg-resume__eyebrow" text="CONTINUE AS" picking-mode="Ignore" />
-                                <ui:Label name="resume-name" class="lg-resume__name" text="NOVA_RUNNER" picking-mode="Ignore" />
-                                <ui:Label name="resume-mail" class="lg-resume__mail" text="n*****r@gmail.com" picking-mode="Ignore" />
-                            </ui:VisualElement>
-                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                        </ui:Button>
-                        <ui:VisualElement class="lg-or" picking-mode="Ignore">
-                            <ui:VisualElement class="lg-or__line" picking-mode="Ignore" />
-                            <ui:Label class="lg-or__text" text="OR USE ANOTHER ACCOUNT" picking-mode="Ignore" />
-                            <ui:VisualElement class="lg-or__line" picking-mode="Ignore" />
+            <!-- MIDDLE CONTENT -->
+            <ui:VisualElement class="login-main" picking-mode="Ignore">
+                <ui:VisualElement class="login-left" picking-mode="Ignore">
+                    <ui:VisualElement class="wordmark" picking-mode="Ignore">
+                        <ui:Label class="wordmark__eyebrow" text="SCI-FI RACING" picking-mode="Ignore" />
+                        <ui:VisualElement class="wl" picking-mode="Ignore">
+                            <ui:Label class="wordmark__title wordmark__ghost wordmark__ghost--c" text="APEX" picking-mode="Ignore" />
+                            <ui:Label class="wordmark__title wordmark__ghost wordmark__ghost--m" text="APEX" picking-mode="Ignore" />
+                            <ui:Label class="wordmark__title" text="APEX" picking-mode="Ignore" />
                         </ui:VisualElement>
-
-                        <ui:Button name="btn-google" class="btn lg-google">
-                            <ui:VisualElement name="google-mark" class="lg-google__mark" picking-mode="Ignore">
-                                <ui:Label class="lg-google__fallback" text="G" picking-mode="Ignore" />
-                            </ui:VisualElement>
-                            <ui:Label class="lg-google__label" text="SIGN IN WITH GOOGLE" picking-mode="Ignore" />
-                        </ui:Button>
-
-                        <ui:VisualElement name="login-error" class="lg-error lg-error--hidden" picking-mode="Ignore">
-                            <ui:Label name="login-error-text" class="lg-error__text" text="SIGN-IN WAS CANCELLED. TRY AGAIN WHEN YOU ARE READY." picking-mode="Ignore" />
-                        </ui:VisualElement>
-
-                        <ui:VisualElement class="lg-legal" picking-mode="Position">
-                            <ui:Label class="lg-legal__text" text="BY CONTINUING YOU AGREE TO THE" picking-mode="Ignore" />
-                            <ui:Button name="link-terms" class="lg-link" text="TERMS" />
-                            <ui:Label class="lg-legal__text" text="AND" picking-mode="Ignore" />
-                            <ui:Button name="link-privacy" class="lg-link" text="PRIVACY POLICY" />
+                        <ui:VisualElement class="wl" picking-mode="Ignore">
+                            <ui:Label class="wordmark__title wordmark__ghost wordmark__ghost--c wordmark__title--b" text="VELOCITY" picking-mode="Ignore" />
+                            <ui:Label class="wordmark__title wordmark__ghost wordmark__ghost--m wordmark__title--b" text="VELOCITY" picking-mode="Ignore" />
+                            <ui:Label class="wordmark__title wordmark__title--b" text="VELOCITY" picking-mode="Ignore" />
                         </ui:VisualElement>
                     </ui:VisualElement>
 
-                    <!-- PAGE 2: WAITING FOR GOOGLE -->
-                    <ui:VisualElement name="page-wait" class="page page--hidden" picking-mode="Ignore">
-                        <ui:VisualElement class="lg-wait" picking-mode="Ignore">
-                            <ui:VisualElement name="spinner" class="lg-spinner" picking-mode="Ignore" />
-                            <ui:Label name="wait-title" class="lg-wait__title" text="CONNECTING" picking-mode="Ignore" />
-                            <ui:Label name="wait-sub" class="lg-wait__sub" text="COMPLETE THE SIGN-IN IN YOUR BROWSER, THEN COME BACK HERE." picking-mode="Ignore" />
-                            <ui:Button name="btn-wait-cancel" class="btn btn-ghost accent-cyan">
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+                    <!-- RETURNING PLAYER PAGE -->
+                    <ui:VisualElement class="page page--hidden" picking-mode="Ignore">
+                        <ui:VisualElement class="lp accent-cyan" name="page-returning" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="WELCOME BACK, PILOT" picking-mode="Ignore" />
+                            <ui:VisualElement class="ret" picking-mode="Ignore">
+                                <ui:VisualElement class="ret__av" picking-mode="Ignore">
+                                    <ui:VisualElement class="ret__lvl" picking-mode="Ignore">
+                                        <ui:Label class="ret__lvl-text" text="27" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ret__text" picking-mode="Ignore">
+                                    <ui:Label class="ret__name" text="NOVA_RUNNER" picking-mode="Ignore" />
+                                    <ui:Label class="ret__sub" text="PLATINUM II  /  SIGNED IN WITH GOOGLE" picking-mode="Ignore" />
+                                    <ui:VisualElement class="ret__bar" picking-mode="Ignore">
+                                        <ui:VisualElement class="ret__fill" style="width: 62%;" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Button class="btn btn-cta ret__go" name="btn-continue">
                                 <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                                <ui:Label class="btn-ghost__label" text="CANCEL" picking-mode="Ignore" />
+                                <ui:Label class="btn-cta__label" text="IGNITE" picking-mode="Ignore" />
+                                <ui:Label class="ret__go-sub" text="CONTINUE AS NOVA_RUNNER" picking-mode="Ignore" />
                             </ui:Button>
+                            <ui:VisualElement class="ret__more" picking-mode="Ignore">
+                                <ui:Button class="btn link" name="btn-other-account">
+                                    <ui:Label class="link__text" text="USE ANOTHER ACCOUNT" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Button class="btn link" name="btn-sign-out">
+                                    <ui:Label class="link__text" text="SIGN OUT" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
 
-                    <!-- PAGE 3: FIRST-TIME REGISTRATION -->
-                    <ui:VisualElement name="page-callsign" class="page page--hidden" picking-mode="Ignore">
-                        <ui:Label class="eyebrow eyebrow--accent" text="02  /  REGISTRATION" picking-mode="Ignore" />
-                        <ui:Label class="lg-title" text="YOUR CALLSIGN" picking-mode="Ignore" />
-                        <ui:Label class="lg-desc" text="THIS IS THE NAME OTHER RACERS SEE ON THE GRID AND THE LEADERBOARD." picking-mode="Ignore" />
+                    <!-- CLEAN LOGIN PAGE (MULTIPLE AUTH PROVIDERS EXTENSIBLE) -->
+                    <ui:VisualElement class="page" picking-mode="Ignore">
+                        <ui:VisualElement class="lp accent-cyan" name="page-login" picking-mode="Ignore">
+                            <ui:Label class="eyebrow eyebrow--accent" text="WELCOME, PILOT" picking-mode="Ignore" />
+                            <ui:Label class="lp__title" text="SIGN IN TO RACE" picking-mode="Ignore" />
+                            <ui:Label class="lp__text" text="SELECT YOUR PREFERRED SIGN-IN METHOD TO ACCESS YOUR GARAGE AND DRIVERS." picking-mode="Ignore" />
 
-                        <ui:VisualElement class="lg-linked" picking-mode="Ignore">
-                            <ui:VisualElement class="lg-linked__ok" picking-mode="Ignore" />
-                            <ui:Label name="linked-mail" class="lg-linked__text" text="GOOGLE LINKED  /  nova.runner@gmail.com" picking-mode="Ignore" />
+                            <!-- MAIN GOOGLE BUTTON -->
+                            <ui:Button class="btn google" name="btn-google-signin">
+                                <ui:VisualElement class="sheen sheen--dark" picking-mode="Ignore" />
+                                <ui:VisualElement class="google__logo" picking-mode="Ignore">
+                                    <ui:VisualElement class="google__q google__q--b" picking-mode="Ignore" />
+                                    <ui:VisualElement class="google__q google__q--r" picking-mode="Ignore" />
+                                    <ui:VisualElement class="google__q google__q--y" picking-mode="Ignore" />
+                                    <ui:VisualElement class="google__q google__q--g" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="google__text" text="Sign in with Google" picking-mode="Ignore" />
+                            </ui:Button>
+
+                            <!-- OTHER AUTH OPTIONS (FOR EASY FUTURE EXPANSION) -->
+                            <ui:VisualElement class="auth-options" picking-mode="Ignore">
+                                <ui:Button class="btn auth-opt" name="btn-auth-guest">
+                                    <ui:Label class="auth-opt__text" text="GUEST" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn auth-opt" name="btn-auth-email">
+                                    <ui:Label class="auth-opt__text" text="EMAIL" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Button class="btn auth-opt" name="btn-auth-more">
+                                    <ui:Label class="auth-opt__text" text="MORE..." picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
+
+                            <ui:VisualElement class="legal" picking-mode="Ignore">
+                                <ui:Label class="legal__text" text="BY CONTINUING YOU AGREE TO THE" picking-mode="Ignore" />
+                                <ui:Button class="btn link" name="btn-terms">
+                                    <ui:Label class="link__text" text="TERMS" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:Label class="legal__text" text="AND" picking-mode="Ignore" />
+                                <ui:Button class="btn link" name="btn-privacy">
+                                    <ui:Label class="link__text" text="PRIVACY POLICY" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
                         </ui:VisualElement>
+                    </ui:VisualElement>
 
-                        <ui:Label class="lg-field__label" text="CALLSIGN" picking-mode="Ignore" />
-                        <ui:TextField name="callsign-input" class="lg-input" max-length="16" />
-                        <ui:Label name="callsign-hint" class="lg-field__hint lg-field__hint--ok" text="3 TO 16 CHARACTERS.  A-Z  0-9  _" picking-mode="Ignore" />
-
-                        <ui:Label class="lg-field__label" text="STARTER AVATAR" picking-mode="Ignore" />
-                        <ui:VisualElement class="lg-avatars" picking-mode="Position">
-                            <ui:Button name="avatar-0" class="btn lg-avatar lg-avatar--selected"><ui:VisualElement class="lg-avatar__art art-a1" picking-mode="Ignore" /></ui:Button>
-                            <ui:Button name="avatar-1" class="btn lg-avatar"><ui:VisualElement class="lg-avatar__art art-a2" picking-mode="Ignore" /></ui:Button>
-                            <ui:Button name="avatar-2" class="btn lg-avatar"><ui:VisualElement class="lg-avatar__art art-a3" picking-mode="Ignore" /></ui:Button>
-                            <ui:Button name="avatar-3" class="btn lg-avatar"><ui:VisualElement class="lg-avatar__art art-a4" picking-mode="Ignore" /></ui:Button>
-                            <ui:Button name="avatar-4" class="btn lg-avatar"><ui:VisualElement class="lg-avatar__art art-a5" picking-mode="Ignore" /></ui:Button>
-                            <ui:Button name="avatar-5" class="btn lg-avatar"><ui:VisualElement class="lg-avatar__art art-a6" picking-mode="Ignore" /></ui:Button>
+                    <!-- FIRST-TIME REGISTRATION PAGE -->
+                    <ui:VisualElement class="page page--hidden" picking-mode="Ignore">
+                        <ui:VisualElement class="rp accent-cyan" name="page-register" picking-mode="Ignore">
+                            <ui:VisualElement class="rp__top" picking-mode="Ignore">
+                                <ui:VisualElement class="steps" picking-mode="Ignore">
+                                    <ui:VisualElement class="step step--on" picking-mode="Ignore">
+                                        <ui:Label class="step__n" text="1" picking-mode="Ignore" />
+                                        <ui:Label class="step__label" text="PILOT" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement class="step__sep" picking-mode="Ignore" />
+                                    <ui:VisualElement class="step" picking-mode="Ignore">
+                                        <ui:Label class="step__n" text="2" picking-mode="Ignore" />
+                                        <ui:Label class="step__label" text="STARTER" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="eyebrow" text="FIRST TIME SETUP" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rp__cols" picking-mode="Ignore">
+                                <ui:VisualElement class="rp__left" picking-mode="Ignore">
+                                    <ui:VisualElement class="acct-chip" picking-mode="Ignore">
+                                        <ui:VisualElement class="acct-chip__av" picking-mode="Ignore" />
+                                        <ui:VisualElement class="acct-chip__text" picking-mode="Ignore">
+                                            <ui:Label class="acct-chip__name" text="Nova Runner" picking-mode="Ignore" />
+                                            <ui:Label class="acct-chip__mail" text="nova.runner@gmail.com" picking-mode="Ignore" />
+                                        </ui:VisualElement>
+                                        <ui:Label class="tag tag--accent" text="GOOGLE" picking-mode="Ignore" />
+                                        <ui:Button class="btn link" name="btn-switch-google">
+                                            <ui:Label class="link__text" text="NOT YOU?" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                    <ui:Label class="eyebrow section-label" text="CHOOSE YOUR PILOT NAME" picking-mode="Ignore" />
+                                    <ui:TextField class="name-field" name="pilot-name" max-length="16" value="NOVA_RUNNER" />
+                                    <ui:VisualElement class="name-status" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                        <ui:Label class="name-status__text" text="AVAILABLE" picking-mode="Ignore" />
+                                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                        <ui:Label class="name-status__count" text="10 / 16" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="hint" text="3 TO 16 CHARACTERS. LETTERS, NUMBERS AND UNDERSCORES. YOU CAN CHANGE IT LATER." picking-mode="Ignore" />
+                                    <ui:Label class="eyebrow section-label section-label--gap" text="REGION" picking-mode="Ignore" />
+                                    <ui:VisualElement class="chips" picking-mode="Ignore">
+                                        <ui:Button class="btn chip chip--active">
+                                            <ui:Label class="chip__label" text="EUROPE" picking-mode="Ignore" />
+                                        </ui:Button>
+                                        <ui:Button class="btn chip">
+                                            <ui:Label class="chip__label" text="N. AMERICA" picking-mode="Ignore" />
+                                        </ui:Button>
+                                        <ui:Button class="btn chip">
+                                            <ui:Label class="chip__label" text="ASIA" picking-mode="Ignore" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement class="rp__right" picking-mode="Ignore">
+                                    <ui:Label class="eyebrow section-label" text="CHOOSE YOUR STARTER DRIVER" picking-mode="Ignore" />
+                                    <ui:VisualElement class="starters" picking-mode="Ignore">
+                                        <ui:Button class="btn st accent-cyan st--on">
+                                            <ui:VisualElement class="st__art" style="background-color: rgba(0,229,255,0.22);" picking-mode="Ignore">
+                                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                            <ui:VisualElement class="st__body" picking-mode="Ignore">
+                                                <ui:Label class="st__role" text="VANGUARD" picking-mode="Ignore" />
+                                                <ui:Label class="st__name" text="KAI NOVA" picking-mode="Ignore" />
+                                                <ui:VisualElement class="st__veh" picking-mode="Ignore">
+                                                    <ui:VisualElement class="st__veh-dot" picking-mode="Ignore" />
+                                                    <ui:Label class="st__veh-text" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                                                </ui:VisualElement>
+                                                <ui:VisualElement class="st__sel" picking-mode="Ignore">
+                                                    <ui:VisualElement class="check" picking-mode="Ignore" />
+                                                    <ui:Label class="st__sel-text" text="SELECTED" picking-mode="Ignore" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                        </ui:Button>
+                                        <ui:Button class="btn st accent-cyan">
+                                            <ui:VisualElement class="st__art" style="background-color: rgba(255,190,0,0.22);" picking-mode="Ignore">
+                                                <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                            <ui:VisualElement class="st__body" picking-mode="Ignore">
+                                                <ui:Label class="st__role" text="BRUISER" picking-mode="Ignore" />
+                                                <ui:Label class="st__name" text="DAX OROZCO" picking-mode="Ignore" />
+                                                <ui:VisualElement class="st__veh" picking-mode="Ignore">
+                                                    <ui:VisualElement class="st__veh-dot" picking-mode="Ignore" />
+                                                    <ui:Label class="st__veh-text" text="HELIX 88" picking-mode="Ignore" />
+                                                </ui:VisualElement>
+                                                <ui:Label class="st__pick" text="SELECT" picking-mode="Ignore" />
+                                            </ui:VisualElement>
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="rp__foot" picking-mode="Ignore">
+                                <ui:Button class="btn cb cb--on" name="cb-terms">
+                                    <ui:VisualElement class="cb__box" picking-mode="Ignore">
+                                        <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="cb__text" text="I AM 13 OR OLDER AND AGREE TO THE TERMS AND PRIVACY POLICY" picking-mode="Ignore" />
+                                </ui:Button>
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Button class="btn btn-cta start" name="btn-start-engine">
+                                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                                    <ui:Label class="btn-cta__label" text="START ENGINE" picking-mode="Ignore" />
+                                </ui:Button>
+                            </ui:VisualElement>
                         </ui:VisualElement>
-
-                        <ui:Button name="btn-register" class="btn btn-cta lg-cta accent-cyan">
-                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
-                            <ui:Label class="btn-cta__label" text="START RACING" picking-mode="Ignore" />
-                        </ui:Button>
-                        <ui:Button name="btn-use-other" class="lg-link lg-back" text="USE A DIFFERENT GOOGLE ACCOUNT" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
 
-            <ui:VisualElement class="lg-footer" picking-mode="Ignore">
-                <ui:Label name="build-version" class="lg-footer__text" text="V0.9.3  /  BUILD 2104" picking-mode="Ignore" />
-                <ui:VisualElement name="server-dot" class="lg-dot" picking-mode="Ignore" />
-                <ui:Label name="server-status" class="lg-footer__text" text="SERVERS ONLINE  /  EU-WEST  /  42 MS" picking-mode="Ignore" />
+            <!-- BOOT / DOWNLOAD PROGRESS & OPTIONAL MINIGAME TRIGGER -->
+            <ui:VisualElement class="boot" picking-mode="Ignore">
+                <ui:VisualElement class="boot__top" picking-mode="Ignore">
+                    <ui:Label class="boot__tip-tag" text="TIP" picking-mode="Ignore" />
+                    <ui:Label class="boot__tip" text="DRIFT THROUGH CORNERS TO CHARGE YOUR BOOST METER." picking-mode="Ignore" />
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+                    <!-- OPTIONAL GALACTIC SHOOTER MINIGAME TRIGGER -->
+                    <ui:Button class="btn btn-minigame" name="btn-minigame">
+                        <ui:VisualElement class="minigame__icon" picking-mode="Ignore" />
+                        <ui:Label class="minigame__text" text="PLAY 2D SHOOTER WHILE WAITING" picking-mode="Ignore" />
+                    </ui:Button>
+
+                    <ui:Label class="boot__pct" text="DOWNLOADING ASSETS  82%" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="boot__bar" picking-mode="Ignore">
+                    <ui:VisualElement class="boot__fill" style="width: 82%;" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- FOOTER -->
+            <ui:VisualElement class="login-foot" picking-mode="Ignore">
+                <ui:Label class="foot__version" text="V 0.9.4  /  BUILD 1287" picking-mode="Ignore" />
+                <ui:VisualElement class="foot__status" picking-mode="Ignore">
+                    <ui:VisualElement class="foot__dot" picking-mode="Ignore" />
+                    <ui:Label class="foot__status-text" text="SERVERS ONLINE" picking-mode="Ignore" />
+                </ui:VisualElement>
                 <ui:VisualElement class="spacer" picking-mode="Ignore" />
-                <ui:Button name="link-support" class="lg-link" text="SUPPORT" />
+                <ui:Button class="btn foot__btn" name="btn-language">
+                    <ui:Label class="foot__btn-text" text="ENGLISH" picking-mode="Ignore" />
+                </ui:Button>
+                <ui:Button class="btn foot__btn" name="btn-support">
+                    <ui:Label class="foot__btn-text" text="SUPPORT" picking-mode="Ignore" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- OVERLAYS -->
+        <ui:VisualElement class="modal-layer hidden" name="overlay-signing" picking-mode="Position">
+            <ui:VisualElement class="dlg accent-cyan" picking-mode="Ignore">
+                <ui:VisualElement class="spin" picking-mode="Ignore">
+                    <ui:VisualElement class="spin__arc" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:Label class="eyebrow eyebrow--accent" text="SIGN-IN" picking-mode="Ignore" />
+                <ui:Label class="dlg__title" text="CONNECTING" picking-mode="Ignore" />
+                <ui:Label class="dlg__text" text="AUTHENTICATING YOUR ACCOUNT. PLEASE WAIT..." picking-mode="Ignore" />
+                <ui:Button class="btn btn-ghost dlg__btn accent-cyan" name="btn-signin-cancel">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:Label class="btn-ghost__label" text="CANCEL" picking-mode="Ignore" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="modal-layer hidden" name="overlay-error" picking-mode="Position">
+            <ui:VisualElement class="dlg accent-red" picking-mode="Ignore">
+                <ui:VisualElement class="dlg__bar" picking-mode="Ignore" />
+                <ui:Label class="eyebrow eyebrow--accent" text="ERROR" picking-mode="Ignore" />
+                <ui:Label class="dlg__title" text="SIGN-IN FAILED" picking-mode="Ignore" />
+                <ui:Label class="dlg__text" text="COULD NOT AUTHENTICATE ACCOUNT. CHECK YOUR CONNECTION AND TRY AGAIN." name="error-text" picking-mode="Ignore" />
+                <ui:Label class="dlg__code" text="CODE AUTH-12501" name="error-code" picking-mode="Ignore" />
+                <ui:VisualElement class="dlg__row" picking-mode="Ignore">
+                    <ui:Button class="btn btn-ghost dlg__btn accent-cyan" name="btn-error-close">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="CLOSE" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn btn-cta dlg__btn accent-red" name="btn-error-retry">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="TRY AGAIN" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

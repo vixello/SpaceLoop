@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Login/ShooterMinigame.uss" />
+
+    <ui:VisualElement name="minigame-root" class="mg-layer mg-layer--hidden">
+        <!-- BACKGROUND DECORATION -->
+        <ui:VisualElement class="mg-bg" picking-mode="Ignore" />
+
+        <!-- GAMEPLAY CONTAINER (ENTITIES SPAWN INSIDE THIS) -->
+        <ui:VisualElement name="game-space" class="mg-space" picking-mode="Position">
+            <!-- PLAYER SHIP -->
+            <ui:VisualElement name="player-ship" class="mg-ship" picking-mode="Ignore">
+                <ui:VisualElement class="mg-ship__thruster" picking-mode="Ignore" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- TOP HUD -->
+        <ui:VisualElement class="mg-hud" picking-mode="Ignore">
+            <ui:VisualElement class="mg-hud__left" picking-mode="Ignore">
+                <ui:Label text="GALACTIC SHOOTER" class="eyebrow eyebrow--accent" picking-mode="Ignore" />
+                <ui:Label name="score-label" text="SCORE  0000" class="mg-hud__score" picking-mode="Ignore" />
+            </ui:VisualElement>
+
+            <!-- HEALTH BAR -->
+            <ui:VisualElement class="mg-hud__hp" picking-mode="Ignore">
+                <ui:Label text="HULL STRENGTH" class="mg-hud__hplbl" picking-mode="Ignore" />
+                <ui:VisualElement class="mg-hpbar" picking-mode="Ignore">
+                    <ui:VisualElement name="hp-fill" class="mg-hpbar__fill" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+            <!-- CLOSE MINIGAME BUTTON -->
+            <ui:Button name="btn-close-minigame" class="btn mg-close">
+                <ui:Label text="EXIT MINIGAME" class="mg-close__text" picking-mode="Ignore" />
+            </ui:Button>
+        </ui:VisualElement>
+
+        <!-- GAME OVER OVERLAY -->
+        <ui:VisualElement name="game-over-screen" class="mg-overlay mg-overlay--hidden">
+            <ui:VisualElement class="mg-dialog accent-cyan">
+                <ui:Label text="SYSTEM CRITICAL" class="eyebrow eyebrow--accent" picking-mode="Ignore" />
+                <ui:Label text="SHIP DESTROYED" class="mg-dialog__title" picking-mode="Ignore" />
+                <ui:Label name="final-score-label" text="FINAL SCORE: 0" class="mg-dialog__score" picking-mode="Ignore" />
+                <ui:VisualElement class="mg-dialog__buttons">
+                    <ui:Button name="btn-restart" class="btn btn-cta accent-cyan mg-btn">
+                        <ui:Label text="RESTART" class="btn-cta__label" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button name="btn-exit-gameover" class="btn btn-ghost accent-cyan mg-btn">
+                        <ui:Label text="EXIT" class="btn-ghost__label" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

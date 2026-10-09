@@ -1,0 +1,179 @@
+/* =====================================================================
+   2D GALACTIC SHOOTER MINIGAME USS
+   ===================================================================== */
+
+.mg-layer {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(2, 5, 12, 0.92);
+}
+
+.mg-layer--hidden {
+    display: none;
+}
+
+.mg-bg {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgb(3, 8, 18);
+}
+
+/* Gameplay Bounds */
+.mg-space {
+    position: absolute;
+    left: 40px; top: 80px; right: 40px; bottom: 40px;
+    overflow: hidden;
+    border-width: 1px;
+    border-color: var(--c-hair-strong);
+    background-color: rgba(5, 12, 26, 0.6);
+}
+
+/* HUD Top Bar */
+.mg-hud {
+    position: absolute;
+    left: 40px; top: 16px; right: 40px; height: 54px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mg-hud__score {
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    -unity-font-style: bold-and-italic;
+}
+
+.mg-hud__hp {
+    margin-left: 40px;
+    width: 220px;
+}
+
+.mg-hud__hplbl {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+}
+
+.mg-hpbar {
+    height: 8px;
+    margin-top: 4px;
+    background-color: var(--c-fill-mid);
+}
+
+.mg-hpbar__fill {
+    height: 100%;
+    width: 100%;
+    background-color: var(--c-good);
+}
+
+.mg-close {
+    height: 40px;
+    padding: 0 16px;
+    background-color: var(--c-fill-soft);
+    border-width: 1px;
+    border-color: var(--c-hair-strong);
+}
+
+.mg-close:hover {
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+}
+
+.mg-close__text {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    -unity-font-style: bold;
+}
+
+/* Gameplay Entities */
+.mg-ship {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    rotate: 45deg;
+    background-color: var(--accent);
+    border-width: 2px;
+    border-color: var(--accent-hi);
+}
+
+.mg-ship__thruster {
+    position: absolute;
+    left: 10px; bottom: -8px; width: 12px; height: 8px;
+    background-color: rgb(255, 46, 176);
+}
+
+.mg-laser {
+    position: absolute;
+    width: 4px;
+    height: 16px;
+    background-color: #ff0055;
+    border-radius: 2px;
+}
+
+.mg-asteroid {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    rotate: 20deg;
+    background-color: rgb(255, 190, 0);
+    border-width: 1px;
+    border-color: rgb(255, 230, 100);
+}
+
+.mg-alien {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: rgb(255, 46, 176);
+    border-width: 2px;
+    border-color: rgb(255, 160, 220);
+}
+
+/* Dialog Overlay */
+.mg-overlay {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(3, 6, 13, 0.85);
+}
+
+.mg-overlay--hidden {
+    display: none;
+}
+
+.mg-dialog {
+    width: 420px;
+    padding: 28px;
+    align-items: center;
+    background-color: var(--c-surface);
+    border-top-width: 3px;
+    border-color: var(--accent);
+}
+
+.mg-dialog__title {
+    font-size: 36px;
+    letter-spacing: 5px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+}
+
+.mg-dialog__score {
+    margin: 12px 0 20px 0;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    -unity-font-style: bold;
+}
+
+.mg-dialog__buttons {
+    flex-direction: row;
+}
+
+.mg-btn {
+    width: 150px;
+    height: 52px;
+    margin: 0 6px;
+}
