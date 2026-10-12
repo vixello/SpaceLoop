@@ -1,7 +1,11 @@
 /* =====================================================================
    PROFILE  (requires Common.uss)
-   Left: identity card (avatar, name, title, rank, account actions).
-   Right: Overview / Achievements / Career tabs.
+   Left: identity card (avatar, name, rank + level, favorites, account actions).
+   Right: one panel with Overview / Achievements / Career tabs.
+   LAYOUT (redo): two columns that fill the screen, no gap in the middle.
+   Card and panel share the same top and bottom edge (both have the 2px
+   accent top border, tabs live inside the panel). Overview is a dashboard:
+   season, 4 KPIs, then achievements and records side by side.
    Modals (logout, switch account) sit at the end of the UXML and are
    hidden by default. Remove .hidden from C# to open them.
    Also loaded by ProfileEdit.uxml for the shared avatar and card styles.
@@ -17,20 +21,22 @@
    1. IDENTITY CARD
    --------------------------------------------------------------------- */
 .pcard {
-    width: 30%;
-    min-width: 500px;
-    max-width: 620px;
-    padding: 26px 26px 20px 26px;
+    width: 28%;
+    min-width: 460px;
+    max-width: 540px;
+    flex-shrink: 0;
+    margin-right: 22px;
+    padding: 24px 24px 20px 24px;
     background-color: var(--c-surface);
     border-top-width: 2px;
     border-color: var(--accent);
 }
 
-.pcard__top { flex-direction: row; align-items: center; margin-bottom: 26px; }
-.pcard__names { flex-grow: 1; flex-shrink: 1; margin-left: 30px; }
+.pcard__top { flex-direction: row; align-items: center; margin-bottom: 20px; }
+.pcard__names { flex-grow: 1; flex-shrink: 1; margin-left: 22px; }
 
 .pcard__name {
-    font-size: 40px;
+    font-size: 36px;
     letter-spacing: 4px;
     color: var(--c-text);
     white-space: nowrap;
@@ -38,12 +44,13 @@
     -unity-text-align: middle-left;
 }
 
-.pcard__title { margin-top: 6px; }
+.pcard__title { align-self: flex-start; margin-top: 6px; }
+.pcard__label { margin: 2px 0 8px 0; }
 
-/* Avatar with frame and diamond level badge */
+/* Avatar: frame and level chip stay inside the avatar box (no overhang) */
 .pavatar {
-    width: 150px;
-    height: 150px;
+    width: 128px;
+    height: 128px;
     flex-shrink: 0;
     background-color: var(--accent-soft);
 }
@@ -61,30 +68,24 @@
 
 .pavatar__frame {
     position: absolute;
-    left: -4px;
-    top: -4px;
-    right: -4px;
-    bottom: -4px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     border-width: 3px;
     border-color: var(--accent);
 }
 
 .pavatar__lvl {
     position: absolute;
-    right: -16px;
-    bottom: -16px;
+    right: 0;
+    bottom: 0;
     width: 50px;
-    height: 50px;
-    rotate: 45deg;
+    height: 42px;
     background-color: var(--accent);
 }
 
-.pavatar__lvl-in {
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-    rotate: -45deg;
-}
+.pavatar__lvl-in { flex-grow: 1; align-items: center; justify-content: center; }
 
 .pavatar__lvl-num {
     font-size: 22px;
@@ -93,19 +94,21 @@
     -unity-text-align: middle-center;
 }
 
-/* Rank + XP */
-.rank {
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 14px;
-    padding: 14px 18px 14px 14px;
+/* Rank + XP live in one block so both bars share the same edges */
+.prog {
+    margin-bottom: 18px;
+    padding: 16px 18px 16px 18px;
     background-color: var(--c-fill-soft);
+    border-left-width: 3px;
+    border-color: var(--accent);
 }
 
+.rank { flex-direction: row; align-items: center; margin-bottom: 16px; }
+
 .rank__badge {
-    width: 40px;
-    height: 40px;
-    margin: 0 28px 0 14px;
+    width: 34px;
+    height: 34px;
+    margin: 0 26px 0 10px;
     align-items: center;
     justify-content: center;
     rotate: 45deg;
@@ -113,8 +116,7 @@
     border-color: var(--accent);
 }
 
-.rank__core { width: 14px; height: 14px; background-color: var(--accent); }
-
+.rank__core { width: 12px; height: 12px; background-color: var(--accent); }
 .rank__text { flex-grow: 1; }
 .rank__row { flex-direction: row; align-items: center; margin-bottom: 8px; }
 
@@ -132,23 +134,64 @@
     -unity-font-style: bold;
 }
 
-.xp { margin-bottom: 14px; padding: 0 4px 0 4px; }
+.xp { margin: 0; padding: 0; }
 
 .pbar { height: 8px; background-color: var(--c-fill-mid); }
 .pbar--thin { height: 5px; }
 .pbar__fill { height: 100%; background-color: var(--accent); }
 
+/* Favorites (driver + vehicle) */
+.favs { flex-direction: column; }
+
+.fav {
+    flex-direction: row;
+    align-items: center;
+    height: 88px;
+    margin-bottom: 8px;
+    background-color: var(--c-fill-soft);
+}
+
+.fav__thumb { width: 110px; height: 100%; margin-right: 18px; overflow: hidden; }
+.fav__thumb--driver { background-color: rgba(255, 46, 176, 0.20); }
+.fav__thumb--car { background-color: rgba(0, 229, 255, 0.18); }
+.fav__text { flex-grow: 1; }
+
+.fav__name {
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.fav__sub {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--c-text-2);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+.car__slash {
+    position: absolute;
+    right: 22%;
+    top: -50%;
+    width: 26px;
+    height: 220%;
+    rotate: 24deg;
+    background-color: var(--c-fill-soft);
+}
+
 .pid {
     flex-direction: row;
     align-items: center;
     height: 58px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     padding: 0 20px 0 20px;
     background-color: var(--c-fill-soft);
 }
 
 .pid:hover { background-color: var(--c-fill-mid); scale: 1.02 1.02; }
-
 .pid__text { flex-grow: 1; }
 
 .pid__value {
@@ -159,14 +202,9 @@
     -unity-text-align: middle-left;
 }
 
-.pid__copy {
-    font-size: 12px;
-    letter-spacing: 4px;
-    color: var(--accent);
-    -unity-font-style: bold;
-}
+.pid__copy { font-size: 12px; letter-spacing: 4px; color: var(--accent); -unity-font-style: bold; }
 
-.pcard__edit { width: 100%; height: 78px; }
+.pcard__edit { width: 100%; height: 72px; }
 .pcard__edit .btn-cta__label { font-size: 26px; letter-spacing: 8px; }
 
 .pcard__row { flex-direction: row; margin-top: 10px; }
@@ -175,7 +213,7 @@
     flex-grow: 1;
     flex-basis: 0;
     min-width: 0;
-    height: 64px;
+    height: 60px;
     margin-right: 10px;
     padding: 0 10px 0 10px;
 }
@@ -185,7 +223,7 @@
 .pcard__ghost:hover .btn-ghost__label { color: var(--accent); }
 
 .pcard__linked {
-    margin-top: 14px;
+    margin-top: 12px;
     font-size: 11px;
     letter-spacing: 3px;
     color: var(--c-text-3);
@@ -194,23 +232,22 @@
 }
 
 /* ---------------------------------------------------------------------
-   2. RIGHT PANEL + TABS
+   2. MAIN PANEL (tabs live inside, same top edge as the card)
    --------------------------------------------------------------------- */
 .pstore {
-    width: 52%;
-    min-width: 640px;
-    max-width: 1000px;
-}
-
-.pstore .tabs-row { margin-bottom: 8px; }
-
-.pstore__pages {
     flex-grow: 1;
-    padding: 18px 18px 6px 18px;
+    flex-shrink: 1;
+    min-width: 0;
     background-color: var(--c-surface);
     border-top-width: 2px;
     border-color: var(--accent);
 }
+
+.pstore .tabs-row { flex-shrink: 0; margin: 0; }
+.pstore .tab { height: 60px; background-color: var(--c-fill-soft); }
+.pstore .tab--active { background-color: var(--accent-soft); }
+
+.pstore__pages { flex-grow: 1; padding: 20px 20px 12px 20px; }
 
 .tab__badge {
     position: absolute;
@@ -241,129 +278,47 @@
 
 .grid { flex-grow: 1; }
 
-.section-head {
-    flex-direction: row;
-    align-items: center;
-    margin: 14px 0 10px 0;
-}
-
-.link {
-    flex-direction: row;
-    align-items: center;
-}
-
-.link__text {
-    margin-right: 12px;
-    font-size: 12px;
-    letter-spacing: 4px;
-    color: var(--c-text-2);
-    -unity-font-style: bold;
-}
-
+.section-head { flex-direction: row; align-items: center; margin: 4px 0 10px 0; }
+.link { flex-direction: row; align-items: center; }
+.link__text { margin-right: 12px; font-size: 12px; letter-spacing: 4px; color: var(--c-text-2); -unity-font-style: bold; }
 .link:hover .link__text { color: var(--accent); }
 
 /* ---------------------------------------------------------------------
-   3. OVERVIEW
+   3. OVERVIEW (dashboard that fills the panel height)
    --------------------------------------------------------------------- */
+.pov .unity-scroll-view__content-container { flex-grow: 1; }
+
 .season {
-    padding: 16px 20px 14px 20px;
+    padding: 20px 26px 18px 26px;
     background-color: var(--c-fill-soft);
     border-left-width: 4px;
     border-color: var(--accent);
 }
 
-.season__top { flex-direction: row; align-items: center; margin-bottom: 10px; }
+.season__top { flex-direction: row; align-items: center; margin-bottom: 12px; }
+.season .pbar { height: 10px; }
+.season__tier { font-size: 30px; letter-spacing: 3px; color: var(--c-text); -unity-font-style: bold-and-italic; }
+.season__next { margin-top: 10px; font-size: 12px; letter-spacing: 3px; color: var(--c-text-2); -unity-font-style: bold; -unity-text-align: middle-left; }
 
-.season__tier {
-    font-size: 22px;
-    letter-spacing: 3px;
-    color: var(--c-text);
-    -unity-font-style: bold-and-italic;
-}
-
-.season__next {
-    margin-top: 8px;
-    font-size: 12px;
-    letter-spacing: 3px;
-    color: var(--c-text-2);
-    -unity-font-style: bold;
-    -unity-text-align: middle-left;
-}
-
-.kpis { flex-direction: row; margin-top: 12px; }
+.kpis { flex-direction: row; margin: 12px 0 18px 0; }
 
 .kpi {
     flex-grow: 1;
     flex-basis: 0;
     margin-right: 10px;
-    padding: 16px 18px 14px 18px;
+    padding: 20px 22px 16px 22px;
     background-color: var(--c-fill-soft);
     border-bottom-width: 3px;
     border-color: var(--accent);
 }
 
 .kpi:last-child { margin-right: 0; }
+.kpi__num { font-size: 44px; letter-spacing: 2px; color: var(--c-text); -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.kpi__label { font-size: 11px; letter-spacing: 4px; color: var(--c-text-3); white-space: nowrap; -unity-font-style: bold; -unity-text-align: middle-left; }
 
-.kpi__num {
-    font-size: 34px;
-    letter-spacing: 2px;
-    color: var(--c-text);
-    -unity-font-style: bold-and-italic;
-    -unity-text-align: middle-left;
-}
-
-.kpi__label {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--c-text-3);
-    white-space: nowrap;
-    -unity-font-style: bold;
-    -unity-text-align: middle-left;
-}
-
-.favs { flex-direction: row; }
-
-.fav {
-    flex-grow: 1;
-    flex-basis: 0;
-    flex-direction: row;
-    align-items: center;
-    height: 96px;
-    margin-right: 10px;
-    background-color: var(--c-fill-soft);
-}
-
-.fav:last-child { margin-right: 0; }
-
-.fav__thumb { width: 120px; height: 100%; margin-right: 18px; overflow: hidden; }
-.fav__thumb--driver { background-color: rgba(255, 46, 176, 0.20); }
-.fav__thumb--car { background-color: rgba(0, 229, 255, 0.18); }
-
-.fav__name {
-    font-size: 22px;
-    letter-spacing: 3px;
-    color: var(--c-text);
-    -unity-font-style: bold-and-italic;
-    -unity-text-align: middle-left;
-}
-
-.fav__sub {
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--c-text-2);
-    -unity-font-style: bold;
-    -unity-text-align: middle-left;
-}
-
-.car__slash {
-    position: absolute;
-    right: 22%;
-    top: -50%;
-    width: 26px;
-    height: 220%;
-    rotate: 24deg;
-    background-color: var(--c-fill-soft);
-}
+.ov-cols { flex-direction: row; flex-grow: 1; }
+.ov-col { flex-grow: 1; flex-basis: 0; }
+.ov-col--l { margin-right: 18px; }
 
 /* ---------------------------------------------------------------------
    4. ACHIEVEMENTS
@@ -427,6 +382,8 @@
 }
 
 .ach-list { margin-top: 4px; }
+.ach-list .unity-scroll-view__content-container { flex-direction: row; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; }
+.ach-list .ach { width: 49.2%; margin-right: 0.8%; }
 
 .ach {
     flex-direction: row;
@@ -446,7 +403,7 @@
 .ach__icon {
     width: 50px;
     height: 50px;
-    margin-right: 40px;
+    margin-right: 28px;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
@@ -473,7 +430,7 @@
     font-size: 12px;
     letter-spacing: 3px;
     color: var(--c-text-2);
-    white-space: nowrap;
+    white-space: normal;
     -unity-font-style: bold;
     -unity-text-align: middle-left;
 }
@@ -493,7 +450,7 @@
 }
 
 .ach__side {
-    min-width: 170px;
+    min-width: 150px;
     margin-left: 20px;
     align-items: flex-end;
     justify-content: center;
@@ -548,7 +505,7 @@
 .crow {
     flex-direction: row;
     align-items: center;
-    height: 60px;
+    height: 56px;
     margin-bottom: 4px;
     padding: 0 20px 0 20px;
     background-color: var(--c-fill-soft);
@@ -567,6 +524,26 @@
     color: var(--c-text);
     -unity-font-style: bold-and-italic;
 }
+
+.pcar .unity-scroll-view__content-container { flex-grow: 1; }
+.career-cols { flex-direction: row; flex-grow: 1; }
+.career-col { flex-grow: 1; flex-basis: 0; }
+.career-col--stats { flex-grow: 1.15; margin-right: 18px; }
+.recs { flex-grow: 1; }
+
+.rec {
+    flex-grow: 1;
+    margin-bottom: 10px;
+    padding: 16px 26px 16px 26px;
+    justify-content: center;
+    background-color: var(--c-fill-soft);
+    border-left-width: 4px;
+    border-color: var(--accent);
+}
+
+.rec:last-child { margin-bottom: 0; }
+.rec__num { font-size: 54px; letter-spacing: 2px; color: var(--c-text); -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.rec__label { font-size: 11px; letter-spacing: 4px; color: var(--c-text-3); -unity-font-style: bold; -unity-text-align: middle-left; }
 
 /* ---------------------------------------------------------------------
    6. MODALS (logout confirm, switch account)

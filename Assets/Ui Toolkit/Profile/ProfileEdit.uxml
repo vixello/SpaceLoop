@@ -34,7 +34,6 @@
                     <ui:VisualElement class="spacer" picking-mode="Ignore" />
                     <ui:Label class="preview-note" text="THIS IS HOW OTHER PLAYERS SEE YOU IN LOBBIES AND ON LEADERBOARDS." picking-mode="Ignore" />
                 </ui:VisualElement>
-                <ui:VisualElement class="spacer" picking-mode="Ignore" />
                 <ui:VisualElement class="pstore edit-panel accent-cyan" picking-mode="Ignore">
                     <ui:VisualElement class="tabs-row" picking-mode="Position">
                         <ui:Button class="btn tab tab--active accent-cyan" name="etab-name">

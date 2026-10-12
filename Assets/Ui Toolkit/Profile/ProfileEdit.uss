@@ -6,6 +6,8 @@
    ===================================================================== */
 
 .pcard--preview { min-width: 460px; }
+.pcard--preview .pavatar__lvl { width: 64px; height: 52px; }
+.pcard--preview .pavatar__lvl-num { font-size: 28px; }
 
 .pcard__center { align-items: center; margin-top: 30px; }
 
@@ -34,7 +36,8 @@
     -unity-text-align: middle-center;
 }
 
-.edit-panel { width: 56%; max-width: 1060px; }
+/* panel fills the rest of the row (no fixed width, no gap) */
+.edit-panel { flex-grow: 1; }
 
 .section-label { margin: 6px 0 12px 0; }
 .section-label--gap { margin-top: 26px; }
@@ -136,9 +139,9 @@
 }
 
 .av {
-    width: 150px;
-    height: 176px;
-    margin: 0 10px 10px 0;
+    width: 15.8%;
+    height: 220px;
+    margin: 0 0.84% 12px 0;
     background-color: var(--c-fill-soft);
     border-width: 1px;
     border-color: var(--c-hair);
@@ -151,7 +154,7 @@
 
 /* IMAGE SLOT: avatar picture */
 .av__img {
-    height: 134px;
+    flex-grow: 1;
     overflow: hidden;
     -unity-background-scale-mode: scale-and-crop;
 }
@@ -161,7 +164,7 @@
     left: 0;
     top: 0;
     right: 0;
-    height: 134px;
+    bottom: 38px;
     background-color: rgba(3, 6, 13, 0.60);
 }
 
@@ -170,7 +173,7 @@
     left: 0;
     top: 0;
     right: 0;
-    height: 134px;
+    bottom: 38px;
     align-items: center;
     justify-content: center;
 }
@@ -207,9 +210,9 @@
 }
 
 .frm {
-    width: 190px;
-    height: 200px;
-    margin: 0 10px 10px 0;
+    width: 23.6%;
+    height: 220px;
+    margin: 0 1.2% 12px 0;
     align-items: center;
     background-color: var(--c-fill-soft);
     border-width: 1px;
@@ -222,15 +225,15 @@
 .frm--locked { opacity: 0.7; }
 .frm--locked:hover { opacity: 1; }
 
-.frm__demo { width: 100%; height: 118px; align-items: center; justify-content: center; }
-.frm__ring { width: 78px; height: 78px; border-width: 4px; background-color: var(--c-fill-soft); }
+.frm__demo { width: 100%; height: 138px; align-items: center; justify-content: center; }
+.frm__ring { width: 92px; height: 92px; border-width: 4px; background-color: var(--c-fill-soft); }
 
 .frm__lock {
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
-    height: 118px;
+    height: 138px;
     align-items: center;
     justify-content: center;
 }

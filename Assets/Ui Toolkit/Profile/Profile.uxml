@@ -4,7 +4,7 @@
     <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
     <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
 
-    <!-- Profile hub. The equipped driver renders in the 3D scene behind. Modals at the bottom are hidden by default; remove the hidden class from C# to show them. -->
+    <!-- Profile hub (redo): identity card + one panel, no gap between them. The equipped driver renders in the 3D scene behind the layout. Modals at the bottom are hidden by default; remove the hidden class from C# to show them. -->
     <ui:VisualElement class="screen" name="root" picking-mode="Position">
         <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
         <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
@@ -31,7 +31,8 @@
                             <ui:Label class="tag tag--accent pcard__title" text="VELOCITY KING" name="profile-title" picking-mode="Ignore" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement class="rank" picking-mode="Ignore">
+                                        <ui:VisualElement class="prog" picking-mode="Ignore">
+<ui:VisualElement class="rank" picking-mode="Ignore">
                         <ui:VisualElement class="rank__badge" picking-mode="Ignore">
                             <ui:VisualElement class="rank__core" picking-mode="Ignore" />
                         </ui:VisualElement>
@@ -56,6 +57,19 @@
                             <ui:VisualElement class="pbar__fill" style="width: 62%;" picking-mode="Ignore" />
                         </ui:VisualElement>
                     </ui:VisualElement>
+                                        </ui:VisualElement>
+                    <ui:Label class="eyebrow eyebrow--accent pcard__label" text="FAVORITES" picking-mode="Ignore" />
+                    <ui:VisualElement class="favs" picking-mode="Ignore">
+                    <ui:VisualElement class="fav" picking-mode="Ignore">
+                        <ui:VisualElement class="fav__thumb fav__thumb--driver" picking-mode="Ignore"><ui:VisualElement class="car__slash" picking-mode="Ignore" /></ui:VisualElement>
+                        <ui:VisualElement class="fav__text" picking-mode="Ignore"><ui:Label class="eyebrow" text="DRIVER" picking-mode="Ignore" /><ui:Label class="fav__name" text="KAI NOVA" picking-mode="Ignore" /><ui:Label class="fav__sub" text="612 RACES" picking-mode="Ignore" /></ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="fav" picking-mode="Ignore">
+                        <ui:VisualElement class="fav__thumb fav__thumb--car" picking-mode="Ignore"><ui:VisualElement class="car__slash" picking-mode="Ignore" /></ui:VisualElement>
+                        <ui:VisualElement class="fav__text" picking-mode="Ignore"><ui:Label class="eyebrow" text="VEHICLE" picking-mode="Ignore" /><ui:Label class="fav__name" text="ZEPHYR GT-X" picking-mode="Ignore" /><ui:Label class="fav__sub" text="804 RACES" picking-mode="Ignore" /></ui:VisualElement>
+                    </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
                     <ui:Button class="btn pid" name="btn-copy-id">
                         <ui:VisualElement class="sheen" picking-mode="Ignore" />
                         <ui:VisualElement class="pid__text" picking-mode="Ignore">
@@ -79,8 +93,8 @@
                         </ui:Button>
                     </ui:VisualElement>
                     <ui:Label class="pcard__linked" text="SIGNED IN WITH GOOGLE PLAY  /  CLOUD SAVE SYNCED" picking-mode="Ignore" />
+                
                 </ui:VisualElement>
-                <ui:VisualElement class="spacer" picking-mode="Ignore" />
                 <ui:VisualElement class="pstore accent-cyan" name="profile-panel" picking-mode="Ignore">
                     <ui:VisualElement class="tabs-row" picking-mode="Position">
                         <ui:Button class="btn tab tab--active accent-cyan" name="tab-overview">
@@ -102,7 +116,7 @@
                     </ui:VisualElement>
                     <ui:VisualElement class="pstore__pages" picking-mode="Ignore">
                         <ui:VisualElement class="page" name="page-overview" picking-mode="Ignore">
-                            <ui:ScrollView class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                            <ui:ScrollView class="grid pov" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
                                 <ui:VisualElement class="season" picking-mode="Ignore">
                                     <ui:VisualElement class="season__top" picking-mode="Ignore">
                                         <ui:Label class="eyebrow eyebrow--accent" text="SEASON 04  /  NEON DRIFT" picking-mode="Ignore" />
@@ -132,15 +146,13 @@
                                         <ui:Label class="kpi__label" text="WIN RATE" picking-mode="Ignore" />
                                     </ui:VisualElement>
                                 </ui:VisualElement>
-                                <ui:VisualElement class="section-head" picking-mode="Ignore">
-                                    <ui:Label class="eyebrow eyebrow--accent" text="RECENT ACHIEVEMENTS" picking-mode="Ignore" />
-                                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
-                                    <ui:Button class="btn link" name="btn-view-all-ach">
+                                <ui:VisualElement class="ov-cols" picking-mode="Ignore">
+                                    <ui:VisualElement class="ov-col ov-col--l" picking-mode="Ignore">
+                                        <ui:VisualElement class="section-head" picking-mode="Ignore"><ui:Label class="eyebrow eyebrow--accent" text="RECENT ACHIEVEMENTS" picking-mode="Ignore" /><ui:VisualElement class="spacer" picking-mode="Ignore" /><ui:Button class="btn link" name="btn-view-all-ach">
                                         <ui:Label class="link__text" text="VIEW ALL" picking-mode="Ignore" />
                                         <ui:VisualElement class="chevron" picking-mode="Ignore" />
-                                    </ui:Button>
-                                </ui:VisualElement>
-                                <ui:VisualElement class="ach rarity-rare ach--claim ach--compact" picking-mode="Position">
+                                    </ui:Button></ui:VisualElement>
+                                        <ui:VisualElement class="ach rarity-rare ach--claim ach--compact" picking-mode="Position">
                                     <ui:VisualElement class="ach__icon" picking-mode="Ignore">
                                         <ui:VisualElement class="ach__core" picking-mode="Ignore" />
                                     </ui:VisualElement>
@@ -208,29 +220,15 @@
                                         <ui:Label class="ach__title-reward" text="TITLE  DRIFT KING" picking-mode="Ignore" />
                                     </ui:VisualElement>
                                 </ui:VisualElement>
-                                <ui:VisualElement class="section-head" picking-mode="Ignore">
-                                    <ui:Label class="eyebrow eyebrow--accent" text="FAVORITES" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="favs" picking-mode="Ignore">
-                                    <ui:VisualElement class="fav" picking-mode="Ignore">
-                                        <ui:VisualElement class="fav__thumb fav__thumb--driver" picking-mode="Ignore">
-                                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
-                                        </ui:VisualElement>
-                                        <ui:VisualElement class="fav__text" picking-mode="Ignore">
-                                            <ui:Label class="eyebrow" text="DRIVER" picking-mode="Ignore" />
-                                            <ui:Label class="fav__name" text="KAI NOVA" picking-mode="Ignore" />
-                                            <ui:Label class="fav__sub" text="612 RACES" picking-mode="Ignore" />
-                                        </ui:VisualElement>
+                                
                                     </ui:VisualElement>
-                                    <ui:VisualElement class="fav" picking-mode="Ignore">
-                                        <ui:VisualElement class="fav__thumb fav__thumb--car" picking-mode="Ignore">
-                                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
-                                        </ui:VisualElement>
-                                        <ui:VisualElement class="fav__text" picking-mode="Ignore">
-                                            <ui:Label class="eyebrow" text="VEHICLE" picking-mode="Ignore" />
-                                            <ui:Label class="fav__name" text="ZEPHYR GT-X" picking-mode="Ignore" />
-                                            <ui:Label class="fav__sub" text="804 RACES" picking-mode="Ignore" />
-                                        </ui:VisualElement>
+                                    <ui:VisualElement class="ov-col" picking-mode="Ignore">
+                                        <ui:VisualElement class="section-head" picking-mode="Ignore"><ui:Label class="eyebrow eyebrow--accent" text="RECORDS" picking-mode="Ignore" /></ui:VisualElement>
+                                        <ui:VisualElement class="crow" picking-mode="Ignore"><ui:Label class="crow__label" text="BEST LAP  /  NEON DISTRICT" picking-mode="Ignore" /><ui:VisualElement class="spacer" picking-mode="Ignore" /><ui:Label class="crow__value" text="1:42.318" picking-mode="Ignore" /></ui:VisualElement>
+<ui:VisualElement class="crow" picking-mode="Ignore"><ui:Label class="crow__label" text="BEST SPEED TRAP" picking-mode="Ignore" /><ui:VisualElement class="spacer" picking-mode="Ignore" /><ui:Label class="crow__value" text="388 KM/H" picking-mode="Ignore" /></ui:VisualElement>
+<ui:VisualElement class="crow" picking-mode="Ignore"><ui:Label class="crow__label" text="LONGEST WIN STREAK" picking-mode="Ignore" /><ui:VisualElement class="spacer" picking-mode="Ignore" /><ui:Label class="crow__value" text="9" picking-mode="Ignore" /></ui:VisualElement>
+<ui:VisualElement class="crow" picking-mode="Ignore"><ui:Label class="crow__label" text="DRIFT SCORE" picking-mode="Ignore" /><ui:VisualElement class="spacer" picking-mode="Ignore" /><ui:Label class="crow__value" text="2,480,500" picking-mode="Ignore" /></ui:VisualElement>
+
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:ScrollView>
@@ -472,11 +470,11 @@
                             </ui:ScrollView>
                         </ui:VisualElement>
                         <ui:VisualElement class="page page--hidden" name="page-career" picking-mode="Ignore">
-                            <ui:ScrollView class="grid" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
-                                <ui:VisualElement class="section-head" picking-mode="Ignore">
-                                    <ui:Label class="eyebrow eyebrow--accent" text="CAREER STATS" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="crow" picking-mode="Ignore">
+                            <ui:ScrollView class="grid pcar" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                                <ui:VisualElement class="career-cols" picking-mode="Ignore">
+                                    <ui:VisualElement class="career-col career-col--stats" picking-mode="Ignore">
+                                        <ui:VisualElement class="section-head" picking-mode="Ignore"><ui:Label class="eyebrow eyebrow--accent" text="CAREER STATS" picking-mode="Ignore" /></ui:VisualElement>
+                                        <ui:VisualElement class="crow" picking-mode="Ignore">
                                     <ui:Label class="crow__label" text="TOTAL DISTANCE" picking-mode="Ignore" />
                                     <ui:VisualElement class="spacer" picking-mode="Ignore" />
                                     <ui:Label class="crow__value" text="18,420 KM" picking-mode="Ignore" />
@@ -516,17 +514,16 @@
                                     <ui:VisualElement class="spacer" picking-mode="Ignore" />
                                     <ui:Label class="crow__value" text="#184" picking-mode="Ignore" />
                                 </ui:VisualElement>
-                                <ui:VisualElement class="section-head" picking-mode="Ignore">
-                                    <ui:Label class="eyebrow eyebrow--accent" text="RECORDS" picking-mode="Ignore" />
-                                </ui:VisualElement>
-                                <ui:VisualElement class="kpis" picking-mode="Ignore">
-                                    <ui:VisualElement class="kpi" picking-mode="Ignore">
-                                        <ui:Label class="kpi__num" text="1:42.318" picking-mode="Ignore" />
-                                        <ui:Label class="kpi__label" text="BEST LAP  /  NEON DISTRICT" picking-mode="Ignore" />
+                                
                                     </ui:VisualElement>
-                                    <ui:VisualElement class="kpi" picking-mode="Ignore">
-                                        <ui:Label class="kpi__num" text="388 KM/H" picking-mode="Ignore" />
-                                        <ui:Label class="kpi__label" text="BEST SPEED TRAP" picking-mode="Ignore" />
+                                    <ui:VisualElement class="career-col" picking-mode="Ignore">
+                                        <ui:VisualElement class="section-head" picking-mode="Ignore"><ui:Label class="eyebrow eyebrow--accent" text="RECORDS" picking-mode="Ignore" /></ui:VisualElement>
+                                        <ui:VisualElement class="recs" picking-mode="Ignore">
+                                            <ui:VisualElement class="rec" picking-mode="Ignore"><ui:Label class="rec__num" text="1:42.318" picking-mode="Ignore" /><ui:Label class="rec__label" text="BEST LAP  /  NEON DISTRICT" picking-mode="Ignore" /></ui:VisualElement>
+<ui:VisualElement class="rec" picking-mode="Ignore"><ui:Label class="rec__num" text="388 KM/H" picking-mode="Ignore" /><ui:Label class="rec__label" text="BEST SPEED TRAP" picking-mode="Ignore" /></ui:VisualElement>
+<ui:VisualElement class="rec" picking-mode="Ignore"><ui:Label class="rec__num" text="184,200" picking-mode="Ignore" /><ui:Label class="rec__label" text="BEST DRIFT CHAIN" picking-mode="Ignore" /></ui:VisualElement>
+
+                                        </ui:VisualElement>
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:ScrollView>
