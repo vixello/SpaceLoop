@@ -1,0 +1,159 @@
+/* =====================================================================
+   PAUSE MENU  (requires Common.uss)
+   Overlay on top of the race view. Left: menu. Right: race info,
+   pause timer (multiplayer) and a ranked leave warning.
+
+   Buttons by mode:
+     Solo / training : Resume, Settings, Restart, Quit Training
+     Story           : Resume, Settings, Restart, Abandon Mission
+     Multiplayer     : Resume, Settings, Quit Race (no restart)
+   Set #btn-leave-label from C#. In ranked, show .warn and put the RP
+   cost in #btn-leave-warn. Leaving always goes through a confirmation
+   dialog; the ranked dialog uses hold-to-leave (animate .holdbtn__fill).
+   ===================================================================== */
+
+.phud { padding: 0; }
+.pdim { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(2, 5, 12, 0.76); }
+.pbody { flex-direction: row; flex-grow: 1; padding: 70px 90px 70px 90px; }
+
+/* ---------------------------------------------------------------------
+   1. MENU
+   --------------------------------------------------------------------- */
+.pmenu { width: 640px; justify-content: center; }
+
+.pmenu__title {
+    font-size: 120px;
+    letter-spacing: 16px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+    text-shadow: 0px 4px 14px rgba(0, 0, 0, 0.9);
+}
+
+.pmenu__tags { flex-direction: row; margin: 2px 0 26px 0; }
+.pmenu__tags .tag { margin-right: 8px; }
+
+.pbtn {
+    flex-direction: row;
+    align-items: center;
+    height: 104px;
+    margin-bottom: 10px;
+    padding: 0 28px 0 30px;
+    background-color: rgba(8, 13, 26, 0.82);
+    transform-origin: 0% 50%;
+}
+
+/* Cascade: each button steps in */
+.pbtn--0 { margin-left: 0; }
+.pbtn--1 { margin-left: 24px; }
+.pbtn--2 { margin-left: 48px; }
+.pbtn--3 { margin-left: 72px; }
+
+.pbtn:hover { background-color: rgba(17, 26, 47, 0.95); scale: 1.04 1.04; translate: 8px 0; }
+
+.pbtn__idx { width: 40px; font-size: 20px; letter-spacing: 2px; color: var(--accent); -unity-font-style: bold-and-italic; }
+.pbtn__text { flex-grow: 1; flex-shrink: 1; }
+.pbtn__title { font-size: 34px; letter-spacing: 7px; color: var(--c-text); white-space: nowrap; -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.pbtn__sub { font-size: 11px; letter-spacing: 4px; color: var(--c-text-2); -unity-font-style: bold; -unity-text-align: middle-left; }
+.pbtn__warn { margin-right: 18px; padding: 4px 12px 4px 12px; font-size: 14px; letter-spacing: 3px; color: rgb(3, 6, 13); background-color: rgb(255, 190, 0); -unity-font-style: bold; }
+
+.pbtn--main { background-color: var(--accent); }
+.pbtn--main:hover { background-color: var(--accent-hi); }
+.pbtn--main .pbtn__idx, .pbtn--main .pbtn__title { color: var(--c-ink); }
+.pbtn--main .pbtn__sub { color: rgba(3, 6, 13, 0.7); }
+.pbtn--main .sheen { background-color: rgba(255, 255, 255, 0.28); }
+.pbtn--main .chevron, .pbtn--main:hover .chevron { border-color: var(--c-ink); }
+
+/* ---------------------------------------------------------------------
+   2. INFO COLUMN
+   --------------------------------------------------------------------- */
+.pinfo { width: 600px; justify-content: center; }
+
+.pinfo__name {
+    font-size: 54px;
+    letter-spacing: 8px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+    text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.9);
+}
+
+.pstats { flex-direction: row; flex-wrap: wrap; margin-top: 14px; }
+
+.pstat {
+    width: 48.5%;
+    margin: 0 1.5% 8px 0;
+    padding: 12px 18px 10px 18px;
+    background-color: rgba(8, 13, 26, 0.82);
+    border-bottom-width: 3px;
+    border-color: var(--accent);
+}
+
+.pstat__label { font-size: 10px; letter-spacing: 5px; color: var(--c-text-3); -unity-font-style: bold; -unity-text-align: middle-left; }
+.pstat__val { font-size: 30px; letter-spacing: 2px; color: var(--c-text); -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+
+.pcar { flex-direction: row; align-items: center; height: 96px; margin-top: 4px; background-color: rgba(8, 13, 26, 0.82); }
+.pcar__art { width: 150px; height: 100%; margin-right: 18px; overflow: hidden; background-color: rgba(0, 229, 255, 0.18); -unity-background-scale-mode: scale-and-crop; }
+.pcar__name { font-size: 24px; letter-spacing: 4px; color: var(--c-text); -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.pcar__sub { font-size: 11px; letter-spacing: 3px; color: var(--c-text-2); -unity-font-style: bold; -unity-text-align: middle-left; }
+
+.car__slash { position: absolute; right: 22%; top: -50%; width: 26px; height: 220%; rotate: 24deg; background-color: var(--c-fill-soft); }
+
+.ptimer { margin-top: 12px; padding: 14px 18px 12px 18px; background-color: rgba(8, 13, 26, 0.82); }
+.ptimer__row { flex-direction: row; align-items: center; }
+.ptimer__num { font-size: 30px; letter-spacing: 3px; color: var(--accent); -unity-font-style: bold; }
+.ptimer__bar { height: 6px; margin: 8px 0 8px 0; background-color: var(--c-fill-mid); }
+.ptimer__fill { height: 100%; background-color: var(--accent); }
+.ptimer__note { font-size: 10px; letter-spacing: 2px; color: var(--c-text-3); white-space: normal; -unity-font-style: bold; -unity-text-align: upper-left; }
+
+/* Ranked warning */
+.warn { flex-direction: row; align-items: center; margin-top: 12px; padding: 16px 20px 16px 18px; background-color: rgba(255, 82, 96, 0.14); border-left-width: 5px; border-color: var(--accent); }
+.warn__tri { width: 0; height: 0; margin-right: 18px; border-left-width: 20px; border-right-width: 20px; border-bottom-width: 36px; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-bottom-color: var(--accent); align-items: center; }
+.warn__tri-mark { position: absolute; left: -2px; top: 10px; width: 4px; height: 14px; background-color: rgb(3, 6, 13); }
+.warn__tri--lg { margin-right: 22px; border-left-width: 28px; border-right-width: 28px; border-bottom-width: 50px; }
+.warn__tri--lg .warn__tri-mark { left: -3px; top: 14px; width: 6px; height: 20px; }
+.warn__text { flex-grow: 1; flex-shrink: 1; }
+.warn__title { font-size: 16px; letter-spacing: 5px; color: var(--accent); -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.warn__body { margin-top: 4px; font-size: 12px; letter-spacing: 2px; color: var(--c-text); white-space: normal; -unity-font-style: bold; -unity-text-align: upper-left; }
+.warn__rp { flex-direction: row; align-items: flex-end; margin-top: 8px; }
+.warn__rp-num { font-size: 40px; color: var(--accent); -unity-font-style: bold-and-italic; }
+.warn__rp-label { margin: 0 0 8px 12px; font-size: 10px; letter-spacing: 4px; color: var(--c-text-2); -unity-font-style: bold; }
+
+/* ---------------------------------------------------------------------
+   3. CONFIRMATION DIALOGS
+   --------------------------------------------------------------------- */
+.modal-layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; background-color: rgba(2, 5, 12, 0.88); }
+.dlg { width: 760px; padding: 34px 40px 30px 44px; background-color: rgb(10, 16, 30); border-top-width: 3px; border-color: var(--accent); }
+.dlg--wide { width: 900px; }
+.dlg__bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background-color: var(--accent); }
+.dlg__head { flex-direction: row; align-items: center; margin-bottom: 8px; }
+.dlg__headtext { flex-grow: 1; }
+.dlg__title { font-size: 50px; letter-spacing: 7px; color: var(--c-text); -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.dlg__text { margin: 4px 0 16px 0; font-size: 13px; letter-spacing: 3px; color: var(--c-text-2); white-space: normal; -unity-font-style: bold; -unity-text-align: upper-left; }
+.dlg__row { flex-direction: row; margin-top: 22px; }
+.dlg__btn { flex-grow: 1; flex-basis: 0; height: 88px; margin-right: 10px; }
+
+.breakdown { padding: 6px 20px 6px 20px; background-color: var(--c-fill-soft); }
+.brow { flex-direction: row; align-items: center; height: 46px; border-bottom-width: 1px; border-color: var(--c-hair); }
+.brow__label { font-size: 12px; letter-spacing: 4px; color: var(--c-text-2); -unity-font-style: bold; }
+.brow__val { font-size: 17px; letter-spacing: 3px; color: var(--c-text); -unity-font-style: bold-and-italic; }
+.brow--bad .brow__val { color: var(--accent); }
+
+/* Hold-to-leave button */
+.holdbtn {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 88px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 82, 96, 0.12);
+    border-width: 2px;
+    border-color: var(--accent);
+}
+
+.holdbtn:focus { border-color: var(--accent); }
+.holdbtn:hover { background-color: rgba(255, 82, 96, 0.22); }
+.holdbtn__fill { position: absolute; left: 0; top: 0; bottom: 0; background-color: rgba(255, 82, 96, 0.55); }
+.holdbtn__text { font-size: 22px; letter-spacing: 6px; color: var(--c-text); -unity-font-style: bold-and-italic; }
+.holdbtn__sub { margin-left: 16px; padding: 3px 10px 3px 10px; font-size: 13px; letter-spacing: 3px; color: rgb(3, 6, 13); background-color: rgb(255, 190, 0); -unity-font-style: bold; }

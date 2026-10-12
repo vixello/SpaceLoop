@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Pause/PauseMenu.uss" />
+
+    <!-- Pause menu over the race view. Shown here in ranked multiplayer mode: no restart, a pause timer, and a ranked leave warning. Dialogs are hidden by default. Show btn-restart for solo, training and story. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer phud" name="hud" picking-mode="Ignore">
+            <ui:VisualElement class="pdim" picking-mode="Ignore" />
+            <ui:VisualElement class="pbody" picking-mode="Ignore">
+                <ui:VisualElement class="pmenu" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="RACE PAUSED" picking-mode="Ignore" />
+                    <ui:Label class="pmenu__title" text="PAUSED" picking-mode="Ignore" />
+                    <ui:VisualElement class="pmenu__tags" picking-mode="Ignore">
+                        <ui:Label class="tag tag--accent" text="RANKED" picking-mode="Ignore" />
+                        <ui:Label class="tag" text="SEASON 04" picking-mode="Ignore" />
+                        <ui:Label class="tag" text="ONLINE" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <!-- Button set per mode. Multiplayer hides Restart. Set the leave label from C#: Abandon Mission (story), Quit Race (multiplayer), Quit Training (training). -->
+                    <ui:Button class="btn pbtn pbtn--main pbtn--0 accent-cyan" name="btn-resume">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="pbtn__idx" text="01" picking-mode="Ignore" />
+                        <ui:VisualElement class="pbtn__text" picking-mode="Ignore">
+                            <ui:Label class="pbtn__title" text="RESUME" name="btn-resume-label" picking-mode="Ignore" />
+                            <ui:Label class="pbtn__sub" text="BACK TO THE RACE" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn pbtn pbtn--norm pbtn--1 accent-cyan" name="btn-settings">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="pbtn__idx" text="02" picking-mode="Ignore" />
+                        <ui:VisualElement class="pbtn__text" picking-mode="Ignore">
+                            <ui:Label class="pbtn__title" text="SETTINGS" name="btn-settings-label" picking-mode="Ignore" />
+                            <ui:Label class="pbtn__sub" text="AUDIO, STEERING AND MORE" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn pbtn pbtn--norm pbtn--2 accent-cyan hidden" name="btn-restart">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="pbtn__idx" text="03" picking-mode="Ignore" />
+                        <ui:VisualElement class="pbtn__text" picking-mode="Ignore">
+                            <ui:Label class="pbtn__title" text="RESTART" name="btn-restart-label" picking-mode="Ignore" />
+                            <ui:Label class="pbtn__sub" text="START THIS RACE OVER" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn pbtn pbtn--danger pbtn--3 accent-red" name="btn-leave">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:VisualElement class="edge" picking-mode="Ignore" />
+                        <ui:Label class="pbtn__idx" text="03" picking-mode="Ignore" />
+                        <ui:VisualElement class="pbtn__text" picking-mode="Ignore">
+                            <ui:Label class="pbtn__title" text="QUIT RACE" name="btn-leave-label" picking-mode="Ignore" />
+                            <ui:Label class="pbtn__sub" text="LEAVE THE RACE" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="pbtn__warn" text="-22 RP" name="btn-leave-warn" picking-mode="Ignore" />
+                        <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                <ui:VisualElement class="pinfo" picking-mode="Ignore">
+                    <ui:VisualElement class="pinfo__head" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="AURELIA  /  SOLAR RIDGE" picking-mode="Ignore" />
+                        <ui:Label class="pinfo__name" text="SOLAR RIDGE" name="pause-track" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="pstats" picking-mode="Ignore">
+                        <ui:VisualElement class="pstat" picking-mode="Ignore">
+                            <ui:Label class="pstat__label" text="POSITION" picking-mode="Ignore" />
+                            <ui:Label class="pstat__val" text="P3 / 6" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pstat" picking-mode="Ignore">
+                            <ui:Label class="pstat__label" text="LAP" picking-mode="Ignore" />
+                            <ui:Label class="pstat__val" text="2 / 3" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pstat" picking-mode="Ignore">
+                            <ui:Label class="pstat__label" text="TIME" picking-mode="Ignore" />
+                            <ui:Label class="pstat__val" text="02:14.882" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pstat" picking-mode="Ignore">
+                            <ui:Label class="pstat__label" text="BEST LAP" picking-mode="Ignore" />
+                            <ui:Label class="pstat__val" text="01:03.455" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="pcar" picking-mode="Ignore">
+                        <ui:VisualElement class="pcar__art" picking-mode="Ignore">
+                            <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pcar__text" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="YOUR CAR" picking-mode="Ignore" />
+                            <ui:Label class="pcar__name" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                            <ui:Label class="pcar__sub" text="KAI NOVA  /  CLASS S" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="ptimer" picking-mode="Ignore">
+                        <ui:VisualElement class="ptimer__row" picking-mode="Ignore">
+                            <ui:Label class="eyebrow" text="PAUSE ENDS IN" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="ptimer__num" text="00:28" name="pause-time" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ptimer__bar" picking-mode="Ignore">
+                            <ui:VisualElement class="ptimer__fill" style="width: 62%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:Label class="ptimer__note" text="THE RACE KEEPS GOING FOR OTHER RACERS. YOUR CAR RESUMES AUTOMATICALLY WHEN THE TIMER ENDS." name="pause-note" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="warn accent-red" picking-mode="Ignore">
+                        <ui:VisualElement class="warn__tri" picking-mode="Ignore">
+                            <ui:VisualElement class="warn__tri-mark" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="warn__text" picking-mode="Ignore">
+                            <ui:Label class="warn__title" text="RANKED RACE IN PROGRESS" picking-mode="Ignore" />
+                            <ui:Label class="warn__body" text="LEAVING NOW COUNTS AS A LOSS. YOU LOSE RANK POINTS AND CANNOT QUEUE FOR 5 MINUTES." name="pause-warning" picking-mode="Ignore" />
+                            <ui:VisualElement class="warn__rp" picking-mode="Ignore">
+                                <ui:Label class="warn__rp-num" text="-22" picking-mode="Ignore" />
+                                <ui:Label class="warn__rp-label" text="RP IF YOU LEAVE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="modal-layer hidden" name="dlg-leave-ranked" picking-mode="Position">
+            <ui:VisualElement class="dlg dlg--wide accent-red" picking-mode="Ignore">
+                <ui:VisualElement class="dlg__bar" picking-mode="Ignore" />
+                <ui:VisualElement class="dlg__head" picking-mode="Ignore">
+                    <ui:VisualElement class="warn__tri warn__tri--lg" picking-mode="Ignore">
+                        <ui:VisualElement class="warn__tri-mark" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="dlg__headtext" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="RANKED  /  PLATINUM II" picking-mode="Ignore" />
+                        <ui:Label class="dlg__title" text="LEAVE RANKED RACE?" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label class="dlg__text" text="LEAVING BEFORE THE FINISH COUNTS AS A LOSS AND YOU WILL FINISH IN LAST PLACE." picking-mode="Ignore" />
+                <ui:VisualElement class="breakdown" picking-mode="Ignore">
+                    <ui:VisualElement class="brow brow--bad" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="RESULT" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="LOSS  /  6TH PLACE" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow brow--bad" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="RANK POINTS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="-22 RP" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="RP AFTER" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="2,318  (WAS 2,340)" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow brow--bad" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="QUEUE COOLDOWN" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="5 MIN" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="REWARDS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="NONE" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="dlg__row" picking-mode="Ignore">
+                    <ui:Button class="btn btn-cta dlg__btn accent-cyan" name="btn-stay">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="STAY IN RACE" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn holdbtn accent-red" name="btn-hold-leave">
+                        <ui:VisualElement class="holdbtn__fill" style="width: 0%;" name="hold-fill" picking-mode="Ignore" />
+                        <ui:Label class="holdbtn__text" text="HOLD TO LEAVE" picking-mode="Ignore" />
+                        <ui:Label class="holdbtn__sub" text="-22 RP" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="modal-layer hidden" name="dlg-leave-unranked" picking-mode="Position">
+            <ui:VisualElement class="dlg accent-amber" picking-mode="Ignore">
+                <ui:VisualElement class="dlg__bar" picking-mode="Ignore" />
+                <ui:Label class="eyebrow eyebrow--accent" text="UNRANKED" picking-mode="Ignore" />
+                <ui:Label class="dlg__title" text="LEAVE THE RACE?" picking-mode="Ignore" />
+                <ui:Label class="dlg__text" text="YOU WILL LEAVE THE ROOM RACE AND FORFEIT ANY REWARDS FROM IT. NO RANK POINTS ARE LOST." picking-mode="Ignore" />
+                <ui:VisualElement class="breakdown" picking-mode="Ignore">
+                    <ui:VisualElement class="brow" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="RANK POINTS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="NO CHANGE" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow brow--bad" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="REWARDS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="FORFEITED" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="ROOM" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="YOU CAN REJOIN LATER" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="dlg__row" picking-mode="Ignore">
+                    <ui:Button class="btn btn-cta dlg__btn accent-cyan" name="dlg-leave-unranked-stay">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="STAY IN RACE" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn btn-ghost dlg__btn accent-amber" name="btn-leave-unranked">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="LEAVE RACE" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="modal-layer hidden" name="dlg-restart" picking-mode="Position">
+            <ui:VisualElement class="dlg accent-amber" picking-mode="Ignore">
+                <ui:VisualElement class="dlg__bar" picking-mode="Ignore" />
+                <ui:Label class="eyebrow eyebrow--accent" text="RESTART" picking-mode="Ignore" />
+                <ui:Label class="dlg__title" text="RESTART THIS RACE?" picking-mode="Ignore" />
+                <ui:Label class="dlg__text" text="YOUR PROGRESS IN THIS ATTEMPT WILL BE LOST AND THE RACE STARTS FROM THE BEGINNING." picking-mode="Ignore" />
+                <ui:VisualElement class="breakdown" picking-mode="Ignore">
+                    <ui:VisualElement class="brow brow--bad" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="PROGRESS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="LOST" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="STARS AND BEST TIMES" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="KEPT" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="ENTRY COST" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="NONE" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="dlg__row" picking-mode="Ignore">
+                    <ui:Button class="btn btn-cta dlg__btn accent-cyan" name="dlg-restart-stay">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="KEEP RACING" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn btn-ghost dlg__btn accent-amber" name="btn-restart-confirm">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="RESTART" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="modal-layer hidden" name="dlg-abandon" picking-mode="Position">
+            <ui:VisualElement class="dlg accent-red" picking-mode="Ignore">
+                <ui:VisualElement class="dlg__bar" picking-mode="Ignore" />
+                <ui:Label class="eyebrow eyebrow--accent" text="STORY  /  KAI NOVA" picking-mode="Ignore" />
+                <ui:Label class="dlg__title" text="ABANDON MISSION?" picking-mode="Ignore" />
+                <ui:Label class="dlg__text" text="YOU WILL RETURN TO THE STORY MAP. THIS ATTEMPT WON'T COUNT TOWARDS CHAPTER OBJECTIVES." picking-mode="Ignore" />
+                <ui:VisualElement class="breakdown" picking-mode="Ignore">
+                    <ui:VisualElement class="brow brow--bad" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="CHAPTER PROGRESS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="THIS ATTEMPT LOST" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="PREVIOUS STARS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="KEPT" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brow brow--bad" picking-mode="Ignore">
+                        <ui:Label class="brow__label" text="REWARDS" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="brow__val" text="NOT EARNED" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="dlg__row" picking-mode="Ignore">
+                    <ui:Button class="btn btn-cta dlg__btn accent-cyan" name="dlg-abandon-stay">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="KEEP RACING" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn btn-ghost dlg__btn accent-red" name="btn-abandon-confirm">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="ABANDON" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
