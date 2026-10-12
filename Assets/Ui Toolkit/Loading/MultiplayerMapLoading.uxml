@@ -1,0 +1,254 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Loading/MultiplayerMapLoading.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+
+    <!-- Loading Screen Container. Multiplayer shows the starting grid with every racer's driver and vehicle. -->
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        
+        <!-- Dynamic Background Art (Swappable via C# or USS) -->
+        <ui:VisualElement class="loading-art" name="loading-bg-art" picking-mode="Ignore" />
+        
+        <!-- UI Overlay Layer -->
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer loading-hud" name="loading-hud" picking-mode="Ignore">
+            
+            <!-- Top Map & Game Info -->
+            <ui:VisualElement class="loading-header" name="loading-header" picking-mode="Ignore">
+                <ui:Label class="eyebrow eyebrow--accent" name="loading-eyebrow" text="SEASON 04  /  SPEED TRIAL" picking-mode="Ignore" />
+                <ui:Label class="loading-title" name="loading-title" text="AURELIA CIRCUIT" picking-mode="Ignore" />
+                <ui:Label class="loading-subtitle" name="loading-subtitle" text="TRACK HAZARD: NIGHT CONDITIONS" picking-mode="Ignore" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="racers" name="racers-panel" picking-mode="Ignore">
+                <ui:VisualElement class="racers__head" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="STARTING GRID  /  6 RACERS" picking-mode="Ignore" />
+                    <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                    <ui:Label class="racers__loaded" text="LOADED 4 / 6" name="racers-loaded" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <!-- Multiplayer only: hide this panel in solo races. Driver portrait and vehicle thumbnail are image slots (racer__portrait, racer__car). -->
+                <ui:VisualElement class="racers__cols" picking-mode="Ignore">
+                    <ui:VisualElement class="racers__col" picking-mode="Ignore">
+                        <ui:VisualElement class="racer racer--me" picking-mode="Ignore">
+                            <ui:Label class="racer__pos" text="P1" picking-mode="Ignore" />
+                            <ui:VisualElement class="racer__art" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__portrait" style="background-color: rgba(0,229,255,0.30);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="racer__car" style="background-color: rgba(0,229,255,0.55);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__text" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__who" picking-mode="Ignore">
+                                    <ui:Label class="racer__pilot" text="NOVA_RUNNER" picking-mode="Ignore" />
+                                    <ui:Label class="tag tag--accent racer__you" text="YOU" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="racer__driver" text="KAI NOVA" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__veh" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__veh-dot" picking-mode="Ignore" />
+                                    <ui:Label class="racer__veh-text" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__side" picking-mode="Ignore">
+                                <ui:Label class="racer__rank" text="PLAT II" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__ok" picking-mode="Ignore">
+                                    <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    <ui:Label class="racer__ok-text" text="READY" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="racer" picking-mode="Ignore">
+                            <ui:Label class="racer__pos" text="P3" picking-mode="Ignore" />
+                            <ui:VisualElement class="racer__art" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__portrait" style="background-color: rgba(255,46,176,0.30);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="racer__car" style="background-color: rgba(176,96,255,0.55);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__text" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__who" picking-mode="Ignore">
+                                    <ui:Label class="racer__pilot" text="VANTA_Q" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="racer__driver" text="MIRA VOSS" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__veh" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__veh-dot" picking-mode="Ignore" />
+                                    <ui:Label class="racer__veh-text" text="OBSIDIAN KING" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__side" picking-mode="Ignore">
+                                <ui:Label class="racer__rank" text="PLAT I" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__ok" picking-mode="Ignore">
+                                    <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    <ui:Label class="racer__ok-text" text="READY" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="racer" picking-mode="Ignore">
+                            <ui:Label class="racer__pos" text="P5" picking-mode="Ignore" />
+                            <ui:VisualElement class="racer__art" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__portrait" style="background-color: rgba(176,96,255,0.30);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="racer__car" style="background-color: rgba(255,82,96,0.55);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__text" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__who" picking-mode="Ignore">
+                                    <ui:Label class="racer__pilot" text="NULL" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="racer__driver" text="ZERO-7" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__veh" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__veh-dot" picking-mode="Ignore" />
+                                    <ui:Label class="racer__veh-text" text="SPECTRE ONE" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__side" picking-mode="Ignore">
+                                <ui:Label class="racer__rank" text="GOLD III" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__load" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__bar" picking-mode="Ignore">
+                                        <ui:VisualElement class="racer__fill" style="width: 61%;" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="racer__pct" text="61%" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="racers__col racers__col--b" picking-mode="Ignore">
+                        <ui:VisualElement class="racer" picking-mode="Ignore">
+                            <ui:Label class="racer__pos" text="P2" picking-mode="Ignore" />
+                            <ui:VisualElement class="racer__art" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__portrait" style="background-color: rgba(255,190,0,0.30);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="racer__car" style="background-color: rgba(255,190,0,0.55);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__text" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__who" picking-mode="Ignore">
+                                    <ui:Label class="racer__pilot" text="DRIFT_GHOST" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="racer__driver" text="DAX OROZCO" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__veh" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__veh-dot" picking-mode="Ignore" />
+                                    <ui:Label class="racer__veh-text" text="HELIX 88" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__side" picking-mode="Ignore">
+                                <ui:Label class="racer__rank" text="PLAT II" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__ok" picking-mode="Ignore">
+                                    <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    <ui:Label class="racer__ok-text" text="READY" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="racer" picking-mode="Ignore">
+                            <ui:Label class="racer__pos" text="P4" picking-mode="Ignore" />
+                            <ui:VisualElement class="racer__art" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__portrait" style="background-color: rgba(70,255,160,0.30);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="racer__car" style="background-color: rgba(70,255,160,0.55);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__text" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__who" picking-mode="Ignore">
+                                    <ui:Label class="racer__pilot" text="IRON_SAINT" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="racer__driver" text="JUNO PARK" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__veh" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__veh-dot" picking-mode="Ignore" />
+                                    <ui:Label class="racer__veh-text" text="NOMAD LX" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__side" picking-mode="Ignore">
+                                <ui:Label class="racer__rank" text="GOLD I" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__ok" picking-mode="Ignore">
+                                    <ui:VisualElement class="check" picking-mode="Ignore" />
+                                    <ui:Label class="racer__ok-text" text="READY" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="racer" picking-mode="Ignore">
+                            <ui:Label class="racer__pos" text="P6" picking-mode="Ignore" />
+                            <ui:VisualElement class="racer__art" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__portrait" style="background-color: rgba(255,110,60,0.30);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="racer__car" style="background-color: rgba(100,200,255,0.55);" picking-mode="Ignore">
+                                    <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__text" picking-mode="Ignore">
+                                <ui:VisualElement class="racer__who" picking-mode="Ignore">
+                                    <ui:Label class="racer__pilot" text="AURORA_9" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                                <ui:Label class="racer__driver" text="LYRA QUILL" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__veh" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__veh-dot" picking-mode="Ignore" />
+                                    <ui:Label class="racer__veh-text" text="KRAKEN V12" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="racer__side" picking-mode="Ignore">
+                                <ui:Label class="racer__rank" text="GOLD II" picking-mode="Ignore" />
+                                <ui:VisualElement class="racer__load" picking-mode="Ignore">
+                                    <ui:VisualElement class="racer__bar" picking-mode="Ignore">
+                                        <ui:VisualElement class="racer__fill" style="width: 38%;" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                    <ui:Label class="racer__pct" text="38%" picking-mode="Ignore" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+
+            <!-- Unique Game Start / Map Load Bottom Deck -->
+            <ui:VisualElement class="loading-deck" name="game-start-container" picking-mode="Ignore">
+                
+                <!-- Tip Ticker -->
+                <ui:VisualElement class="tip-box" name="tip-box" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="PRO TIP" picking-mode="Ignore" />
+                    <ui:Label class="tip-box__text" name="tip-text" text="Hold drift during sharp turn apexes to build Boost Gauge faster without losing top speed." picking-mode="Ignore" />
+                </ui:VisualElement>
+
+                <!-- Progress Bar & Spinner Row -->
+                <ui:VisualElement class="progress-row" picking-mode="Ignore">
+                    
+                    <!-- Circular Pulse Spinner -->
+                    <ui:VisualElement class="spinner-ring" name="spinner-ring" picking-mode="Ignore">
+                        <ui:VisualElement class="spinner-arc" name="spinner-arc" picking-mode="Ignore" />
+                    </ui:VisualElement>
+
+                    <!-- Main Loading Bar -->
+                    <ui:VisualElement class="loading-pbar-container" picking-mode="Ignore">
+                        <ui:VisualElement class="loading-pbar__meta" picking-mode="Ignore">
+                            <ui:Label class="loading-status" name="loading-status-text" text="INITIALIZING TRACK ASSETS..." picking-mode="Ignore" />
+                            <ui:Label class="loading-percent" name="loading-percent-text" text="78%" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        
+                        <ui:VisualElement class="pbar pbar--thick" name="loading-pbar" picking-mode="Ignore">
+                            <ui:VisualElement class="pbar__fill" name="loading-pbar-fill" style="width: 78%;" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <!-- Interactive 'Continue' Button (Shown when loading hits 100%) -->
+                <ui:Button class="btn btn-cta continue-btn hidden" name="btn-continue">
+                    <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                    <ui:Label class="btn-cta__label" text="PRESS ANY BUTTON TO START" picking-mode="Ignore" />
+                </ui:Button>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
