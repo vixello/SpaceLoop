@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/Mail/Mail.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml" />
+
+
+    <ui:VisualElement class="screen" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="rotate-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer hud" name="hud" picking-mode="Ignore">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <ui:AttributeOverrides element-name="screen-eyebrow" text="INBOX  /  REWARDS  /  NEWS" />
+                <ui:AttributeOverrides element-name="screen-title" text="MAIL" />
+            </ui:Instance>
+            <ui:VisualElement class="body mail-body" picking-mode="Ignore">
+
+                <!-- INBOX -->
+                <ui:VisualElement class="minbox" picking-mode="Ignore">
+                    <ui:VisualElement class="minbox__head" picking-mode="Ignore">
+                        <ui:VisualElement class="mfilters" picking-mode="Ignore">
+                            <ui:Button class="btn chip chip--active" name="filter-all">
+                                <ui:Label class="chip__label" text="ALL" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn chip" name="filter-rewards">
+                                <ui:Label class="chip__label" text="REWARDS" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn chip" name="filter-news">
+                                <ui:Label class="chip__label" text="NEWS" picking-mode="Ignore" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="minbox__count" name="mail-count" text="3 UNREAD" picking-mode="Ignore" />
+                    </ui:VisualElement>
+
+                    <ui:ScrollView class="mlist" name="mail-list" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <ui:Button class="btn mrow mrow--on mrow--unread accent-amber" name="mail-0">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__dot" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__text" picking-mode="Ignore">
+                                <ui:Label class="mrow__from" text="NEON GRAND PRIX" picking-mode="Ignore" />
+                                <ui:Label class="mrow__subject" text="YOUR WEEKLY REWARDS ARE READY" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="mrow__side" picking-mode="Ignore">
+                                <ui:Label class="mrow__date" text="TODAY" picking-mode="Ignore" />
+                                <ui:Label class="tag tag--accent mrow__tag" text="REWARD" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn mrow mrow--unread accent-cyan" name="mail-1">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__dot" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__text" picking-mode="Ignore">
+                                <ui:Label class="mrow__from" text="APEX VELOCITY TEAM" picking-mode="Ignore" />
+                                <ui:Label class="mrow__subject" text="PATCH 0.9.4 IS LIVE" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="mrow__side" picking-mode="Ignore">
+                                <ui:Label class="mrow__date" text="YESTERDAY" picking-mode="Ignore" />
+                                <ui:Label class="tag mrow__tag" text="NEWS" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn mrow mrow--unread accent-magenta" name="mail-2">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__dot" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__text" picking-mode="Ignore">
+                                <ui:Label class="mrow__from" text="SUPPORT" picking-mode="Ignore" />
+                                <ui:Label class="mrow__subject" text="RE: BUG REPORT #20418" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="mrow__side" picking-mode="Ignore">
+                                <ui:Label class="mrow__date" text="12 OCT" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:Button class="btn mrow accent-amber" name="mail-3">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:VisualElement class="edge" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__dot" picking-mode="Ignore" />
+                            <ui:VisualElement class="mrow__text" picking-mode="Ignore">
+                                <ui:Label class="mrow__from" text="WELCOME PACK" picking-mode="Ignore" />
+                                <ui:Label class="mrow__subject" text="THANKS FOR JOINING, PILOT" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="mrow__side" picking-mode="Ignore">
+                                <ui:Label class="mrow__date" text="03 MAR" picking-mode="Ignore" />
+                                <ui:Label class="tag tag--accent mrow__tag" text="CLAIMED" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:ScrollView>
+
+                    <ui:VisualElement class="minbox__foot" picking-mode="Ignore">
+                        <ui:Button class="btn btn-ghost minbox__btn accent-cyan" name="btn-mark-read">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-ghost__label" text="MARK ALL READ" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:Button class="btn btn-ghost minbox__btn accent-magenta" name="btn-delete-read">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-ghost__label" text="DELETE READ" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- READER -->
+                <ui:VisualElement class="mread accent-amber" name="mail-reader" picking-mode="Ignore">
+                    <ui:VisualElement class="mread__top" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" name="mail-from" text="NEON GRAND PRIX" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="mread__date" name="mail-date" text="TODAY  /  09:12" picking-mode="Ignore" />
+                        <ui:Button class="btn mrow__delete accent-magenta" name="btn-delete-mail-0" picking-mode="Position">
+                            <ui:VisualElement class="mbin" picking-mode="Ignore">
+                                <ui:VisualElement class="mbin__lid" picking-mode="Ignore" />
+                                <ui:VisualElement class="mbin__body" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:Label class="mread__title" name="mail-title" text="YOUR WEEKLY REWARDS ARE READY" picking-mode="Ignore" />
+                    <ui:ScrollView class="mread__scroll" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
+                        <ui:Label class="mread__body" name="mail-body-text" text="GREAT RACING THIS WEEK. HERE IS A THANK YOU FOR YOUR RESULTS IN THE NEON GRAND PRIX. CLAIM IT BEFORE IT EXPIRES." picking-mode="Ignore" />
+                    </ui:ScrollView>
+                    <ui:VisualElement class="mread__rewards" name="mail-rewards" picking-mode="Ignore">
+                        <ui:Label class="prev__note-text" text="ATTACHED REWARDS" picking-mode="Ignore" />
+                        <ui:VisualElement class="mread__prices" picking-mode="Ignore">
+                            <ui:VisualElement class="price accent-amber" picking-mode="Ignore">
+                                <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                <ui:Label class="price__value" text="5,000" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="price accent-magenta" picking-mode="Ignore">
+                                <ui:VisualElement class="price__icon" picking-mode="Ignore" />
+                                <ui:Label class="price__value" text="50" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Label class="mread__expiry" name="mail-expiry" text="EXPIRES IN 6D 12H" picking-mode="Ignore" />
+                    <ui:Button class="btn btn-cta mread__claim accent-amber" name="btn-claim">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="CLAIM REWARDS" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+
+                <!-- Empty state. Show instead of .mread when the inbox is empty. -->
+                <ui:VisualElement class="mempty mempty--hidden" name="mail-empty" picking-mode="Ignore">
+                    <ui:Label class="mempty__title" text="NO MAIL" picking-mode="Ignore" />
+                    <ui:Label class="mempty__text" text="NEW MESSAGES AND REWARDS WILL SHOW UP HERE." picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

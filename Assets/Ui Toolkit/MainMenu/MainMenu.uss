@@ -1,5 +1,5 @@
 /* =====================================================================
-   MAIN MENU  (requires Common.uss)
+   MAIN MENU  (requires Common.uss)  /  CINEMATIC LAYOUT
    ===================================================================== */
 
 /* ---------------------------------------------------------------------
@@ -20,14 +20,7 @@
 .main-row {
     flex-direction: row;
     flex-grow: 1;
-    justify-content: space-between;
     margin-top: 20px;
-}
-
-.col-left {
-    width: 29%;
-    min-width: 400px;
-    max-width: 560px;
 }
 
 .col-center {
@@ -35,36 +28,67 @@
     flex-shrink: 1;
     justify-content: flex-end;
     align-items: center;
-    margin: 0 24px 0 24px;
+    margin: 0 36px 0 0;
 }
 
 .col-right {
-    width: 31%;
-    min-width: 420px;
-    max-width: 600px;
-    justify-content: flex-end;
-    align-items: flex-end;
+    width: 34%;
+    min-width: 520px;
+    max-width: 650px;
+    flex-shrink: 0;
 }
 
+.promo { flex-shrink: 0; }
+.nav { flex-shrink: 0; }
+
 /* ---------------------------------------------------------------------
-   2. PROFILE + SETTINGS
+   1b. CINEMATIC GRADING
+   --------------------------------------------------------------------- */
+.mm-cine { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; }
+.mm-vig { position: absolute; background-color: rgba(3, 6, 13, 0.10); }
+.mm-vig--b1 { left: 0; right: 0; bottom: 0; height: 58%; }
+.mm-vig--b2 { left: 0; right: 0; bottom: 0; height: 44%; }
+.mm-vig--b3 { left: 0; right: 0; bottom: 0; height: 32%; }
+.mm-vig--b4 { left: 0; right: 0; bottom: 0; height: 21%; }
+.mm-vig--b5 { left: 0; right: 0; bottom: 0; height: 11%; }
+.mm-vig--t1 { left: 0; right: 0; top: 0; height: 24%; }
+.mm-vig--t2 { left: 0; right: 0; top: 0; height: 15%; }
+.mm-vig--t3 { left: 0; right: 0; top: 0; height: 7%; }
+.mm-vig--r1 { top: 0; bottom: 0; right: 0; width: 46%; }
+.mm-vig--r2 { top: 0; bottom: 0; right: 0; width: 37%; }
+.mm-vig--r3 { top: 0; bottom: 0; right: 0; width: 28%; }
+.mm-vig--r4 { top: 0; bottom: 0; right: 0; width: 19%; }
+.mm-vig--r5 { top: 0; bottom: 0; right: 0; width: 10%; }
+
+.mm-shaft { position: absolute; top: -60%; height: 240%; rotate: 24deg; }
+.mm-shaft--a { right: 34%; width: 220px; background-color: rgba(255, 255, 255, 0.02); }
+.mm-shaft--b { right: 31%; width: 6px;   background-color: rgba(0, 229, 255, 0.10); }
+
+/* ---------------------------------------------------------------------
+   2. PROFILE + SETTINGS (Playful Arcade Badge Redesign)
    --------------------------------------------------------------------- */
 .profile {
     flex-direction: row;
     align-items: center;
-    padding: 10px 34px 10px 10px;
+    padding: 14px 40px 14px 14px;
     background-color: var(--c-surface);
-    border-bottom-width: 2px;
+    border-left-width: 5px;
     border-color: var(--accent);
+    transform-origin: 0% 50%;
+    transition-property: background-color, scale, border-color;
+    transition-duration: 0.2s;
 }
 
 .profile:focus { border-color: var(--accent); }
-.profile:hover { background-color: var(--c-surface-hi); scale: 1.03 1.03; transform-origin: 0% 50%; }
+.profile:hover { background-color: var(--c-surface-hi); scale: 1.04 1.04; }
 
 .avatar {
-    width: 76px;
-    height: 76px;
+    width: 84px;
+    height: 84px;
     background-color: var(--accent-soft);
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: var(--accent);
 }
 
 .avatar__img {
@@ -78,39 +102,51 @@
 
 .avatar__lvl {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    min-width: 32px;
-    height: 26px;
-    padding: 0 6px 0 6px;
+    top: -10px;
+    right: -10px;
+    min-width: 38px;
+    height: 30px;
+    padding: 0 6px;
     background-color: var(--accent);
     justify-content: center;
+    rotate: 10deg;
+    border-radius: 4px;
 }
 
 .avatar__lvl-text {
-    font-size: 17px;
+    font-size: 19px;
     color: var(--c-ink);
-    -unity-font-style: bold;
+    -unity-font-style: bold-and-italic;
     -unity-text-align: middle-center;
 }
 
 .profile__info {
     min-width: 220px;
-    margin-left: 18px;
+    margin-left: 22px;
 }
 
 .profile__name {
-    font-size: 26px;
-    letter-spacing: 3px;
+    font-size: 28px;
+    letter-spacing: 5px;
     color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+.profile__title {
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--accent);
     -unity-font-style: bold;
+    margin-top: 3px;
     -unity-text-align: middle-left;
 }
 
 .profile__xp {
-    height: 3px;
-    margin-top: 8px;
+    height: 5px;
+    margin-top: 10px;
     background-color: var(--c-fill-mid);
+    border-radius: 2px;
 }
 
 .profile__xp-fill {
@@ -143,12 +179,110 @@
 .settings:hover .settings__bar { background-color: var(--c-ink); width: 26px; }
 
 /* ---------------------------------------------------------------------
+   2b. MAIL BUTTON + SETTINGS DROPDOWN
+   --------------------------------------------------------------------- */
+.mailbtn {
+    width: 56px;
+    height: 56px;
+    margin-left: 12px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-surface);
+}
+
+.mailbtn:hover { background-color: var(--accent); scale: 1.1 1.1; }
+
+.mailbtn__env {
+    width: 28px;
+    height: 20px;
+    border-width: 3px;
+    border-color: var(--accent);
+    overflow: hidden;
+    transition-property: border-color;
+    transition-duration: 0.18s;
+}
+
+.mailbtn__flap {
+    position: absolute;
+    left: 3px;
+    top: -9px;
+    width: 14px;
+    height: 14px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-color: var(--accent);
+    rotate: 45deg;
+    transition-property: border-color;
+    transition-duration: 0.18s;
+}
+
+.mailbtn:hover .mailbtn__env,
+.mailbtn:hover .mailbtn__flap { border-color: var(--c-ink); }
+
+.mailbtn__badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 5px;
+    font-size: 12px;
+    color: var(--c-ink);
+    background-color: rgb(255, 82, 96);
+    border-radius: 11px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.mailbtn__badge--hidden { display: none; }
+
+/* Full-screen click-away layer (under the HUD) */
+.dd-catcher { background-color: rgba(0, 0, 0, 0); }
+
+.dd {
+    position: absolute;
+    top: 112px;
+    right: 40px;
+    width: 340px;
+    padding: 8px;
+    background-color: rgb(12, 20, 38);
+    border-top-width: 3px;
+    border-color: var(--accent);
+    transform-origin: 100% 0%;
+}
+
+.dd--hidden { display: none; }
+
+.dd__item {
+    flex-direction: row;
+    align-items: center;
+    height: 72px;
+    margin-bottom: 6px;
+    padding: 0 20px 0 24px;
+    background-color: var(--c-surface);
+}
+
+.dd__item:last-child { margin-bottom: 0; }
+.dd__item .edge { width: 0; }
+.dd__item:hover { background-color: var(--c-surface-hi); translate: -6px 0; }
+.dd__item:hover .edge { width: 5px; }
+
+.dd__label {
+    flex-grow: 1;
+    font-size: 22px;
+    letter-spacing: 5px;
+    color: var(--c-text);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-left;
+}
+
+/* ---------------------------------------------------------------------
    3. EVENT BANNER
    --------------------------------------------------------------------- */
 .event {
-    height: 196px;
+    height: 236px;
     background-color: var(--c-surface);
-    transform-origin: 0% 50%;
+    transform-origin: 100% 50%;
 }
 
 .event:hover { background-color: var(--c-surface-hi); scale: 1.025 1.025; }
@@ -181,9 +315,23 @@
 .event__slash--b { right: 5%;  width: 14px; background-color: var(--accent-mid); }
 .event:hover .event__slash { translate: -26px 0; }
 
+.event__shade {
+    position: absolute;
+    left: -30%;
+    top: -50%;
+    width: 78%;
+    height: 200%;
+    rotate: 24deg;
+    background-color: rgba(3, 6, 13, 0.62);
+}
+
+.event__fade { position: absolute; left: 0; right: 0; bottom: 0; background-color: rgba(3, 6, 13, 0.16); }
+.event__fade--1 { height: 55%; }
+.event__fade--2 { height: 28%; }
+
 .event__body {
     flex-grow: 1;
-    padding: 16px 22px 16px 26px;
+    padding: 18px 24px 18px 28px;
 }
 
 .event__top {
@@ -222,9 +370,9 @@
 }
 
 .event__title {
-    margin-top: 12px;
-    font-size: 38px;
-    letter-spacing: 5px;
+    margin-top: 14px;
+    font-size: 46px;
+    letter-spacing: 6px;
     color: var(--c-text);
     -unity-font-style: bold-and-italic;
     -unity-text-align: middle-left;
@@ -240,7 +388,7 @@
 .event__track {
     flex-direction: row;
     align-items: center;
-    margin-top: 14px;
+    margin-top: auto;
 }
 
 .event__bar {
@@ -268,11 +416,11 @@
 .missions {
     flex-direction: row;
     align-items: center;
-    height: 88px;
-    margin-top: 12px;
+    height: 84px;
+    margin-top: 10px;
     padding: 0 24px 0 28px;
     background-color: var(--c-surface);
-    transform-origin: 0% 50%;
+    transform-origin: 100% 50%;
 }
 
 .missions:hover { background-color: var(--c-surface-hi); scale: 1.025 1.025; }
@@ -317,103 +465,80 @@
 }
 
 /* ---------------------------------------------------------------------
-   5. LOADOUT CARDS (driver + vehicle, open their own screens)
-   --------------------------------------------------------------------- */
-.loadout-row { flex-direction: row; }
-
-.loadout {
-    flex-grow: 1;
-    flex-basis: 0;
-    height: 184px;
-    margin-right: 12px;
-    background-color: var(--c-surface);
-    justify-content: flex-end;
-    transform-origin: 50% 100%;
-}
-
-.loadout:last-child { margin-right: 0; }
-.loadout:hover { background-color: var(--c-surface-hi); scale: 1.05 1.05; translate: 0 -4px; }
-
-.loadout__art {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    -unity-background-scale-mode: scale-and-crop;
-}
-
-/* Placeholder tints. Replace with portrait / car thumbnail background-images. */
-.loadout__art--driver  { background-color: rgba(255, 46, 176, 0.16); }
-.loadout__art--vehicle { background-color: rgba(0, 229, 255, 0.14); }
-
-.loadout__slash {
-    position: absolute;
-    right: 18%;
-    top: -50%;
-    width: 36px;
-    height: 220%;
-    rotate: 24deg;
-    background-color: var(--c-fill-soft);
-}
-
-.loadout__info { padding: 14px 18px 16px 22px; }
-
-.loadout__name {
-    font-size: 28px;
-    letter-spacing: 3px;
-    color: var(--c-text);
-    -unity-font-style: bold-and-italic;
-    -unity-text-align: middle-left;
-}
-
-.loadout__cta {
-    flex-direction: row;
-    align-items: center;
-    margin-top: 6px;
-}
-
-.loadout__cta-text {
-    margin-right: 14px;
-    font-size: 13px;
-    letter-spacing: 4px;
-    color: var(--c-text-2);
-    -unity-font-style: bold;
-}
-
-.loadout:hover .loadout__cta-text { color: var(--accent); }
-
-/* ---------------------------------------------------------------------
-   6. STAGE CONTROLS (center bottom)
+   5. STAGE DOCK (Centered Touch Selection, Rotators Removed)
    --------------------------------------------------------------------- */
 .stage {
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 700px;
+    height: 52px;
 }
 
-.stage__plate {
+.stage__spacer {
+    flex-grow: 1;
+}
+
+.subtle-dock {
+    flex-direction: row;
     align-items: center;
-    min-width: 330px;
-    margin: 0 20px 0 20px;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0;
 }
 
-.stage__eyebrow { -unity-text-align: middle-center; }
+.subtle-pill {
+    background-color: rgba(13, 18, 30, 0.75);
+    border-width: 0;
+    border-bottom-width: 2px;
+    border-color: var(--accent);
+    padding: 8px 24px;
+    margin: 0 8px;
+    flex-direction: row;
+    align-items: center;
+    transition-property: background-color, border-color, scale;
+    transition-duration: 0.2s;
+}
 
-.stage__name {
-    font-size: 48px;
-    letter-spacing: 9px;
+.subtle-pill:hover {
+    background-color: var(--c-surface-hi);
+    scale: 1.04 1.04;
+}
+
+.subtle-pill__label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--c-text-3);
+    -unity-font-style: bold;
+    margin-right: 10px;
+}
+
+.subtle-pill__val {
+    font-size: 14px;
+    letter-spacing: 3px;
     color: var(--c-text);
     -unity-font-style: bold-and-italic;
-    -unity-text-align: middle-center;
+}
+
+.subtle-pill:hover .subtle-pill__val {
+    color: var(--accent);
+}
+
+.drag-hint {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--c-text-3);
+    margin-top: 8px;
+    -unity-font-style: bold;
 }
 
 /* ---------------------------------------------------------------------
-   7. NAVIGATION (right). Solo is the hero button, the rest step inward.
+   7. NAVIGATION
    --------------------------------------------------------------------- */
 .nav-play {
     flex-direction: row;
     align-items: center;
-    width: 100%;
     height: 172px;
     margin-bottom: 12px;
     padding: 0 34px 0 38px;
@@ -422,7 +547,6 @@
 }
 
 .nav-play:hover { background-color: var(--accent-hi); scale: 1.05 1.05; translate: -10px 0; }
-
 .nav-play .sheen { background-color: rgba(255, 255, 255, 0.3); }
 
 .nav-play__slash {
@@ -482,16 +606,14 @@
 .nav-card {
     flex-direction: row;
     align-items: center;
-    width: 92%;
     height: 118px;
-    margin-bottom: 12px;
+    margin: 0 0 12px 28px;
     padding: 0 28px 0 32px;
     background-color: var(--c-surface);
     transform-origin: 100% 50%;
 }
 
 .nav-card:hover { background-color: var(--c-surface-hi); scale: 1.05 1.05; translate: -10px 0; }
-
 .nav-card__text { flex-grow: 1; }
 
 .nav-card__title {
@@ -503,24 +625,12 @@
 }
 
 .nav-card__online { align-items: flex-end; }
-
-.nav-card__online-num {
-    font-size: 24px;
-    letter-spacing: 2px;
-    color: var(--accent);
-    -unity-font-style: bold;
-}
-
-.nav-card__online-lbl {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--c-text-3);
-    -unity-font-style: bold;
-}
+.nav-card__online-num { font-size: 24px; letter-spacing: 2px; color: var(--accent); -unity-font-style: bold; }
+.nav-card__online-lbl { font-size: 11px; letter-spacing: 4px; color: var(--c-text-3); -unity-font-style: bold; }
 
 .nav-row {
     flex-direction: row;
-    width: 84%;
+    margin-left: 56px;
 }
 
 .nav-tile {
@@ -536,17 +646,5 @@
 
 .nav-tile:last-child { margin-right: 0; }
 .nav-tile:hover { background-color: var(--c-surface-hi); scale: 1.07 1.07; translate: 0 -4px; }
-
-.nav-tile__title {
-    font-size: 32px;
-    letter-spacing: 6px;
-    color: var(--c-text);
-    -unity-font-style: bold-and-italic;
-    -unity-text-align: middle-left;
-}
-
-.nav-tile__badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
+.nav-tile__title { font-size: 32px; letter-spacing: 6px; color: var(--c-text); -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.nav-tile__badge { position: absolute; top: 10px; right: 10px; }

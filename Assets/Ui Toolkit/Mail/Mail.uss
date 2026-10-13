@@ -1,0 +1,173 @@
+/* =====================================================================
+   MAIL  (requires Common.uss)
+   Inbox list on the left, reader on the right.
+   Toggle from C#: .mrow--on (selected row), .mrow--unread (unread dot),
+   .mempty--hidden (empty state), .chip--active (filters).
+   ===================================================================== */
+
+.mail-body { flex-direction: row; flex-grow: 1; margin-top: 22px; }
+
+/* ---------------------------------------------------------------------
+   1. INBOX
+   --------------------------------------------------------------------- */
+.minbox {
+    width: 46%;
+    min-width: 520px;
+    max-width: 760px;
+    flex-shrink: 0;
+    margin-right: 22px;
+    padding: 18px 22px 22px 24px;
+    background-color: var(--c-surface);
+    border-top-width: 2px;
+    border-color: var(--accent);
+}
+
+.minbox__head { flex-direction: row; align-items: center; flex-shrink: 0; margin-bottom: 14px; }
+.mfilters { flex-direction: row; }
+.mfilters .chip { height: 40px; margin: 0 8px 0 0; padding: 0 16px 0 16px; }
+.minbox__count { font-size: 12px; letter-spacing: 4px; color: var(--accent); -unity-font-style: bold; }
+
+.mlist { flex-grow: 1; flex-shrink: 1; }
+
+.minbox__foot { flex-direction: row; flex-shrink: 0; margin-top: 12px; }
+.minbox__btn { flex-grow: 1; flex-basis: 0; height: 64px; margin-right: 8px; }
+.minbox__btn:last-child { margin-right: 0; }
+
+/* Row */
+.mrow {
+    flex-direction: row;
+    align-items: center;
+    height: 96px;
+    margin-bottom: 6px;
+    padding: 0 18px 0 22px;
+    background-color: var(--c-fill-soft);
+    border-left-width: 3px;
+    border-color: var(--c-hair-strong);
+}
+
+.mrow .edge { width: 0; }
+.mrow:focus { border-color: var(--c-hair-strong); }
+.mrow:hover { background-color: var(--c-fill-mid); border-color: var(--accent); translate: 6px 0; }
+.mrow--on, .mrow--on:hover, .mrow--on:focus { background-color: var(--accent-soft); border-color: var(--accent); translate: 0 0; }
+
+.mrow__dot { width: 12px; height: 12px; margin-right: 18px; border-radius: 6px; background-color: rgba(0, 0, 0, 0); }
+.mrow--unread .mrow__dot { background-color: var(--accent); }
+
+.mrow__text { flex-grow: 1; flex-shrink: 1; }
+.mrow__from { font-size: 11px; letter-spacing: 4px; color: var(--c-text-3); white-space: nowrap; -unity-font-style: bold; -unity-text-align: middle-left; }
+.mrow__subject { font-size: 19px; letter-spacing: 3px; color: var(--c-text-2); white-space: nowrap; overflow: hidden; -unity-font-style: bold-and-italic; -unity-text-align: middle-left; }
+.mrow--unread .mrow__subject, .mrow--on .mrow__subject { color: var(--c-text); }
+.mrow--unread .mrow__from { color: var(--accent); }
+
+.mrow__side { align-items: flex-end; margin-left: 14px; flex-shrink: 0; }
+.mrow__date { font-size: 11px; letter-spacing: 3px; color: var(--c-text-3); -unity-font-style: bold; }
+.mrow__tag { margin-top: 6px; }
+
+/* ---------------------------------------------------------------------
+   2. READER
+   --------------------------------------------------------------------- */
+.mread {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 22px 28px 24px 30px;
+    background-color: var(--c-surface);
+    border-top-width: 2px;
+    border-color: var(--accent);
+}
+
+.mread--hidden { display: none; }
+
+.mread__top { flex-direction: row; align-items: center; flex-shrink: 0; }
+.mread__date { font-size: 12px; letter-spacing: 4px; color: var(--c-text-3); -unity-font-style: bold; }
+.mread__title { margin: 10px 0 14px 0; font-size: 40px; letter-spacing: 6px; color: var(--c-text); white-space: normal; -unity-font-style: bold-and-italic; -unity-text-align: upper-left; }
+.mread__scroll { flex-grow: 1; flex-shrink: 1; }
+.mread__body { font-size: 15px; letter-spacing: 3px; color: var(--c-text-2); white-space: normal; -unity-font-style: bold; -unity-text-align: upper-left; }
+
+.mread__rewards { flex-shrink: 0; margin-top: 14px; padding: 14px 18px 14px 20px; background-color: var(--c-fill-soft); border-left-width: 4px; border-color: var(--accent); }
+.mread__rewards--hidden { display: none; }
+.mread__prices { flex-direction: row; margin-top: 8px; }
+.mread__prices .price { margin-right: 16px; }
+
+.mread__expiry { flex-shrink: 0; margin-top: 12px; font-size: 11px; letter-spacing: 4px; color: var(--c-text-3); -unity-font-style: bold; -unity-text-align: middle-left; }
+.mread__claim { flex-shrink: 0; width: 100%; height: 84px; margin-top: 10px; }
+.mread__claim--hidden { display: none; }
+
+/* ---------------------------------------------------------------------
+   3. EMPTY STATE
+   --------------------------------------------------------------------- */
+.mempty { flex-grow: 1; align-items: center; justify-content: center; background-color: var(--c-surface); border-top-width: 2px; border-color: var(--c-hair-strong); }
+.mempty--hidden { display: none; }
+.mempty__title { font-size: 56px; letter-spacing: 10px; color: var(--c-text); -unity-font-style: bold-and-italic; }
+.mempty__text { margin-top: 8px; font-size: 12px; letter-spacing: 4px; color: var(--c-text-3); -unity-font-style: bold; }
+
+/* ---------------------------------------------------------------------
+   SINGLE MAIL DELETE BUTTON
+   --------------------------------------------------------------------- */
+.mrow__delete {
+    width: 36px;
+    height: 36px;
+    margin-left: 14px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-surface);
+}
+
+.mrow__delete:hover {
+    background-color: rgb(255, 82, 96);
+    scale: 1.1 1.1;
+}
+
+/* ---------------------------------------------------------------------
+   SINGLE MAIL DELETE BUTTON (TRASH BIN ICON)
+   --------------------------------------------------------------------- */
+.mrow__delete {
+    width: 36px;
+    height: 36px;
+    margin-left: 14px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-surface);
+}
+
+.mrow__delete:hover {
+    background-color: rgb(255, 82, 96);
+    scale: 1.1 1.1;
+}
+
+.mbin {
+    width: 14px;
+    height: 14px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mbin__lid {
+    width: 14px;
+    height: 2px;
+    background-color: var(--c-text-3);
+    border-radius: 1px;
+    transition-property: background-color;
+    transition-duration: 0.18s;
+}
+
+.mbin__body {
+    width: 10px;
+    height: 10px;
+    margin-top: 1px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-color: var(--c-text-3);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    transition-property: border-color;
+    transition-duration: 0.18s;
+}
+
+.mrow__delete:hover .mbin__lid {
+    background-color: var(--c-ink);
+}
+
+.mrow__delete:hover .mbin__body {
+    border-color: var(--c-ink);
+}
