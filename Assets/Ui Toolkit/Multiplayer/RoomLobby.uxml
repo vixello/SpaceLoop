@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Template name="Scrims" src="project://database/Assets/Ui%20Toolkit/Common/Components/Scrims.uxml?fileID=9197481963319205126&amp;guid=b8d0443616d7dbb44b0593bbb8f9b959&amp;type=3#Scrims" />
+    <ui:Template name="ScreenHeader" src="project://database/Assets/Ui%20Toolkit/Common/Components/ScreenHeader.uxml?fileID=9197481963319205126&amp;guid=1894d762554522c48b2121541c7adca5&amp;type=3#ScreenHeader" />
+    <Style src="project://database/Assets/Ui%20Toolkit/Common/Common.uss?fileID=7433441132597879392&amp;guid=f1e0c419fffe5c54ea31b5bd59f0c918&amp;type=3" />
+    <Style src="project://database/Assets/Ui%20Toolkit/Multiplayer/RoomLobby.uss?fileID=7433441132597879392&amp;guid=455e482aa84768f4bad4cbc8146db67e&amp;type=3#RoomLobby" />
+    <ui:VisualElement name="root" class="screen">
+        <ui:VisualElement name="rotate-drag-zone" class="layer drag-zone" />
+        <ui:Instance template="Scrims" picking-mode="Ignore" class="layer" />
+        <ui:VisualElement name="hud" picking-mode="Ignore" class="layer hud">
+            <ui:Instance template="ScreenHeader" name="screen-header" picking-mode="Ignore">
+                <AttributeOverrides element-name="screen-eyebrow" text="MULTIPLAYER  /  UNRANKED  /  PRIVATE ROOM" />
+                <AttributeOverrides element-name="screen-title" text="FRIDAY NIGHT DRIFT" />
+            </ui:Instance>
+            <ui:VisualElement picking-mode="Ignore" class="body">
+                <ui:VisualElement picking-mode="Ignore" class="col-column">
+                    <ui:VisualElement picking-mode="Ignore" class="plist accent-cyan">
+                        <ui:VisualElement class="plist__head">
+                            <ui:VisualElement picking-mode="Ignore" class="plist__title">
+                                <ui:Label text="PLAYERS" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                                <ui:Label text="4 / 6" picking-mode="Ignore" class="plist__count" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                            <ui:Button name="btn-copy-code" class="btn code">
+                                <ui:Label text="ROOM CODE" picking-mode="Ignore" class="code__lbl" />
+                                <ui:Label text="K7Q4M2" picking-mode="Ignore" class="code__val" />
+                                <ui:Label text="COPY" picking-mode="Ignore" class="code__copy" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ps ps--me">
+                            <ui:VisualElement picking-mode="Ignore" class="ps__av" style="background-color: rgba(0, 229, 255, 0.3);">
+                                <ui:VisualElement picking-mode="Ignore" class="car__slash" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="ps__text">
+                                <ui:VisualElement picking-mode="Ignore" class="ps__who">
+                                    <ui:Label text="NOVA_RUNNER" picking-mode="Ignore" class="ps__name" />
+                                    <ui:Label text="HOST" picking-mode="Ignore" class="tag tag--accent" />
+                                    <ui:Label text="YOU" picking-mode="Ignore" class="tag pl__you" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="ps__lo">
+                                    <ui:Button name="btn-lo-driver" class="btn lqm">
+                                        <ui:Label text="DRIVER" picking-mode="Ignore" class="lqm__lbl" />
+                                        <ui:Label text="KAI NOVA" name="lo-driver-name" picking-mode="Ignore" class="lqm__name" />
+                                    </ui:Button>
+                                    <ui:Button name="btn-lo-vehicle" class="btn lqm">
+                                        <ui:Label text="CAR" picking-mode="Ignore" class="lqm__lbl" />
+                                        <ui:Label text="ZEPHYR GT-X" name="lo-vehicle-name" picking-mode="Ignore" class="lqm__name" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="ps__side">
+                                <ui:Label text="PLAT II" picking-mode="Ignore" class="ps__rank" />
+                                <ui:Label text="24 MS" picking-mode="Ignore" class="ps__ping" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="st st--ready">
+                                <ui:VisualElement picking-mode="Ignore" class="check" />
+                                <ui:Label text="READY" picking-mode="Ignore" class="st__text" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ps">
+                            <ui:VisualElement picking-mode="Ignore" class="ps__av" style="background-color: rgba(255, 190, 0, 0.3);">
+                                <ui:VisualElement picking-mode="Ignore" class="car__slash" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="ps__text">
+                                <ui:VisualElement picking-mode="Ignore" class="ps__who">
+                                    <ui:Label text="DRIFT_GHOST" picking-mode="Ignore" class="ps__name" />
+                                </ui:VisualElement>
+                                <ui:Label text="DAX OROZCO  /  HELIX 88" picking-mode="Ignore" class="ps__loadout" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="ps__side">
+                                <ui:Label text="PLAT II" picking-mode="Ignore" class="ps__rank" />
+                                <ui:Label text="28 MS" picking-mode="Ignore" class="ps__ping" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="st st--ready">
+                                <ui:VisualElement picking-mode="Ignore" class="check" />
+                                <ui:Label text="READY" picking-mode="Ignore" class="st__text" />
+                            </ui:VisualElement>
+                            <ui:Button name="menu-drift_ghost" class="btn ps__menu">
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ps">
+                            <ui:VisualElement picking-mode="Ignore" class="ps__av" style="background-color: rgba(255, 46, 176, 0.3);">
+                                <ui:VisualElement picking-mode="Ignore" class="car__slash" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="ps__text">
+                                <ui:VisualElement picking-mode="Ignore" class="ps__who">
+                                    <ui:Label text="VANTA_Q" picking-mode="Ignore" class="ps__name" />
+                                </ui:VisualElement>
+                                <ui:Label text="MIRA VOSS  /  OBSIDIAN KING" picking-mode="Ignore" class="ps__loadout" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="ps__side">
+                                <ui:Label text="PLAT I" picking-mode="Ignore" class="ps__rank" />
+                                <ui:Label text="45 MS" picking-mode="Ignore" class="ps__ping" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="st st--wait">
+                                <ui:Label text="NOT READY" picking-mode="Ignore" class="st__text" />
+                            </ui:VisualElement>
+                            <ui:Button name="menu-vanta_q" class="btn ps__menu">
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="ps">
+                            <ui:VisualElement picking-mode="Ignore" class="ps__av" style="background-color: rgba(70, 255, 160, 0.3);">
+                                <ui:VisualElement picking-mode="Ignore" class="car__slash" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="ps__text">
+                                <ui:VisualElement picking-mode="Ignore" class="ps__who">
+                                    <ui:Label text="JUNO_P" picking-mode="Ignore" class="ps__name" />
+                                </ui:VisualElement>
+                                <ui:Label text="JUNO PARK  /  NOMAD LX" picking-mode="Ignore" class="ps__loadout" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="ps__side">
+                                <ui:Label text="GOLD II" picking-mode="Ignore" class="ps__rank" />
+                                <ui:VisualElement text="22 MS" picking-mode="Ignore" class="ps__ping" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="st st--ready">
+                                <ui:VisualElement picking-mode="Ignore" class="check" />
+                                <ui:Label text="READY" picking-mode="Ignore" class="st__text" />
+                            </ui:VisualElement>
+                            <ui:Button name="menu-juno_p" class="btn ps__menu">
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                                <ui:VisualElement picking-mode="Ignore" class="dot" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:Button class="btn ps ps--empty">
+                            <ui:VisualElement picking-mode="Ignore" class="ps__plus">
+                                <ui:VisualElement picking-mode="Ignore" class="plus-h" />
+                                <ui:VisualElement picking-mode="Ignore" class="plus-v" />
+                            </ui:VisualElement>
+                            <ui:Label text="INVITE A FRIEND" picking-mode="Ignore" class="ps__invite" />
+                        </ui:Button>
+                        <ui:Button class="btn ps ps--empty">
+                            <ui:VisualElement picking-mode="Ignore" class="ps__plus">
+                                <ui:VisualElement picking-mode="Ignore" class="plus-h" />
+                                <ui:VisualElement picking-mode="Ignore" class="plus-v" />
+                            </ui:VisualElement>
+                            <ui:Label text="INVITE A FRIEND" picking-mode="Ignore" class="ps__invite" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="chat accent-cyan" style="height: 240px;">
+                        <ui:VisualElement picking-mode="Ignore" class="chat__head">
+                            <ui:Label text="ROOM CHAT" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                            <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                            <ui:Label text="4 ONLINE" picking-mode="Ignore" class="chat__hint" />
+                        </ui:VisualElement>
+                        <ui:ScrollView touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" class="chat__list">
+                            <ui:VisualElement picking-mode="Ignore" class="msg msg--sys">
+                                <ui:Label text="SYSTEM" picking-mode="Ignore" class="msg__who" />
+                                <ui:Label text="JUNO_P JOINED THE ROOM" picking-mode="Ignore" class="msg__text" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="msg">
+                                <ui:Label text="DRIFT_GHOST" picking-mode="Ignore" class="msg__who" />
+                                <ui:Label text="READY WHEN YOU ARE" picking-mode="Ignore" class="msg__text" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="msg">
+                                <ui:Label text="VANTA_Q" picking-mode="Ignore" class="msg__who" />
+                                <ui:Label text="GIVE ME A SEC, CHANGING CAR" picking-mode="Ignore" class="msg__text" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="msg">
+                                <ui:Label text="NOVA_RUNNER" picking-mode="Ignore" class="msg__who" />
+                                <ui:Label text="NO RUSH. WE START WHEN EVERYONE IS READY" picking-mode="Ignore" class="msg__text" />
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                        <ui:VisualElement picking-mode="Ignore" class="chat__input">
+                            <ui:TextField name="chat-field" max-length="80" class="chat-field" />
+                            <ui:Button name="btn-chat-send" class="btn chat__send">
+                                <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                                <ui:Label text="SEND" picking-mode="Ignore" class="chat__send-text" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="center">
+                    <ui:VisualElement picking-mode="Ignore" class="rl-lower">
+                        <ui:Label text="ZEPHYR GT-X" name="lobby-vehicle-name" picking-mode="Ignore" class="rl-lower__name" />
+                        <ui:Label text="KAI NOVA  /  CLASS S" name="lobby-driver-name" picking-mode="Ignore" class="rl-lower__sub" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="col-column">
+                    <ui:VisualElement name="room-settings" picking-mode="Ignore" class="rset accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="rset__head">
+                            <ui:Label text="ROOM SETTINGS" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                            <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                            <ui:Label text="YOU ARE THE HOST" picking-mode="Ignore" class="rset__host" />
+                        </ui:VisualElement>
+                        <ui:Button name="btn-change-map" class="btn mapc">
+                            <ui:VisualElement picking-mode="Ignore" class="mapc__art">
+                                <ui:VisualElement picking-mode="Ignore" class="car__slash" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="mapc__fade mapc__fade--1" />
+                            <ui:VisualElement picking-mode="Ignore" class="mapc__fade mapc__fade--2" />
+                            <ui:Label text="CHANGE" picking-mode="Ignore" class="tag tag--accent mapc__change" />
+                            <ui:VisualElement picking-mode="Ignore" class="mapc__text">
+                                <ui:Label text="SOLAR RIDGE" picking-mode="Ignore" class="mapc__name" />
+                                <ui:Label text="AURELIA  /  5.4 KM  /  3 LAPS  /  DIFFICULTY 2 OF 5" picking-mode="Ignore" class="mapc__meta" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                        <ui:VisualElement picking-mode="Ignore" class="opt">
+                            <ui:Label text="MODE" picking-mode="Ignore" class="eyebrow opt__label" />
+                            <ui:VisualElement picking-mode="Ignore" class="chips">
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label text="RACE" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="ELIMINATION" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="DRIFT" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="opt">
+                            <ui:Label text="LAPS" picking-mode="Ignore" class="eyebrow opt__label" />
+                            <ui:VisualElement picking-mode="Ignore" class="chips">
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="1" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label text="3" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="5" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="opt">
+                            <ui:Label text="BOTS" picking-mode="Ignore" class="eyebrow opt__label" />
+                            <ui:VisualElement picking-mode="Ignore" class="chips">
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label text="0" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="2" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="4" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="opt">
+                            <ui:Label text="WEATHER" picking-mode="Ignore" class="eyebrow opt__label" />
+                            <ui:VisualElement picking-mode="Ignore" class="chips">
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label text="CLEAR" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="STORM" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="FOG" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="opt">
+                            <ui:Label text="TIME" picking-mode="Ignore" class="eyebrow opt__label" />
+                            <ui:VisualElement picking-mode="Ignore" class="chips">
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="DAY" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label text="DUSK" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="NIGHT" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="opt">
+                            <ui:Label text="CLASS" picking-mode="Ignore" class="eyebrow opt__label" />
+                            <ui:VisualElement picking-mode="Ignore" class="chips">
+                                <ui:Button class="btn chip chip--active">
+                                    <ui:Label text="ANY" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="A" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                                <ui:Button class="btn chip">
+                                    <ui:Label text="S" picking-mode="Ignore" class="chip__label" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="rset__lock hidden">
+                            <ui:VisualElement picking-mode="Ignore" class="lock">
+                                <ui:VisualElement picking-mode="Ignore" class="lock__shackle" />
+                                <ui:VisualElement picking-mode="Ignore" class="lock__body" />
+                            </ui:VisualElement>
+                            <ui:Label text="ONLY THE HOST CAN CHANGE SETTINGS" picking-mode="Ignore" class="rset__lock-text" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="actions">
+                        <ui:VisualElement class="actions__row">
+                            <ui:Button name="btn-ready" class="btn ready ready--on accent-green">
+                                <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                                <ui:Label text="READY" picking-mode="Ignore" class="ready__label" />
+                                <ui:Label text="TAP TO UNREADY" picking-mode="Ignore" class="ready__sub" />
+                            </ui:Button>
+                            <ui:Button name="btn-start-race" class="btn btn-cta start start--disabled accent-cyan">
+                                <ui:Label text="START RACE" picking-mode="Ignore" class="btn-cta__label" />
+                                <ui:Label text="3 OF 4 READY" picking-mode="Ignore" class="start__sub" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="actions__foot">
+                            <ui:Label text="WAITING FOR VANTA_Q TO BE READY" name="start-hint" picking-mode="Ignore" class="actions__hint-text" />
+                            <ui:Button name="btn-leave-room" class="btn leave">
+                                <ui:Label text="LEAVE ROOM" picking-mode="Ignore" class="leave__text" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="overlay-starting" class="modal-layer hidden">
+            <ui:VisualElement picking-mode="Ignore" class="count accent-cyan">
+                <ui:Label text="SOLAR RIDGE  /  3 LAPS" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                <ui:Label text="RACE STARTS IN" picking-mode="Ignore" class="count__title" />
+                <ui:Label text="5" name="start-count" picking-mode="Ignore" class="count__num" />
+                <ui:Label text="STAY IN THE ROOM. THE TRACK LOADS NEXT." picking-mode="Ignore" class="count__sub" />
+                <ui:Button name="btn-cancel-start" class="btn btn-ghost count__cancel accent-red">
+                    <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                    <ui:Label text="CANCEL START" picking-mode="Ignore" class="btn-ghost__label" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
