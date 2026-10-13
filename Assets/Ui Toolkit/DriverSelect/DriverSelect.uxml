@@ -1,0 +1,305 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/Ui Toolkit/Common/Common.uss" />
+    <ui:Style src="project://database/Assets/Ui Toolkit/DriverSelect/DriverSelect.uss" />
+    <ui:Template name="Scrims" src="project://database/Assets/Ui Toolkit/Common/Components/Scrims.uxml" />
+
+    <!-- First-time driver select. Fully transparent so the 3D lineup shows. The camera pans between drivers and their starting vehicles. Drag anywhere to look around. Floating world tags (wtag) are positioned from C# with style.left and style.top. Swap the accent class on the root when the driver changes. The confirm dialog is hidden by default. -->
+    <ui:VisualElement class="screen accent-cyan" name="root" picking-mode="Position">
+        <ui:VisualElement class="layer drag-zone" name="camera-drag-zone" picking-mode="Position" />
+        <ui:Instance class="layer" template="Scrims" picking-mode="Ignore" />
+        <ui:VisualElement class="layer front" name="front" picking-mode="Ignore">
+            <ui:VisualElement class="ptop" picking-mode="Ignore">
+                <ui:VisualElement class="ptop__left" picking-mode="Ignore">
+                    <ui:Label class="eyebrow eyebrow--accent" text="STEP 1 OF 2" picking-mode="Ignore" />
+                    <ui:Label class="ptop__title" text="CHOOSE YOUR DRIVER" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="ptop__right" picking-mode="Ignore">
+                    <ui:Label class="ptop__count" text="1" name="pick-count" picking-mode="Ignore" />
+                    <ui:Label class="ptop__of" text="/ 5" picking-mode="Ignore" />
+                    <ui:VisualElement class="dots" picking-mode="Ignore">
+                        <ui:VisualElement class="dotp dotp--on" picking-mode="Ignore" />
+                        <ui:VisualElement class="dotp" picking-mode="Ignore" />
+                        <ui:VisualElement class="dotp" picking-mode="Ignore" />
+                        <ui:VisualElement class="dotp" picking-mode="Ignore" />
+                        <ui:VisualElement class="dotp" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="left-col" picking-mode="Ignore">
+                <ui:VisualElement class="dinfo" name="driver-info" picking-mode="Ignore">
+                    <ui:VisualElement class="dinfo__top" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="VANGUARD" name="driver-role" picking-mode="Ignore" />
+                        <ui:Label class="dinfo__num" text="01" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:Label class="dinfo__name" text="KAI NOVA" name="driver-name" picking-mode="Ignore" />
+                    <ui:Label class="dinfo__tag" text="A BURNED-OUT PILOT RETURNS TO AURELIA TO FIND WHO SABOTAGED THE LAST GRAND PRIX." name="driver-tagline" picking-mode="Ignore" />
+                    <ui:VisualElement class="dinfo__chips" picking-mode="Ignore">
+                        <ui:Label class="tag tag--accent" text="ALL-ROUNDER" picking-mode="Ignore" />
+                        <ui:Label class="tag tag--accent" text="DRIFT" picking-mode="Ignore" />
+                        <ui:Label class="tag tag--accent" text="BEGINNER FRIENDLY" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="abil" picking-mode="Ignore">
+                        <ui:Label class="abil__label" text="PASSIVE" picking-mode="Ignore" />
+                        <ui:Label class="abil__name" text="PHASE DRIFT" name="driver-passive" picking-mode="Ignore" />
+                        <ui:Label class="abil__text" text="DRIFTING CHARGES A PHASE SHIELD THAT ABSORBS THE NEXT COLLISION." name="driver-passive-text" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="story" picking-mode="Ignore">
+                        <ui:Label class="abil__label" text="STORY ARC" picking-mode="Ignore" />
+                        <ui:VisualElement class="story__row" picking-mode="Ignore">
+                            <ui:VisualElement class="story__dot" picking-mode="Ignore" />
+                            <ui:Label class="story__name" text="EMBER RUN" picking-mode="Ignore" />
+                            <ui:Label class="story__len" text="18 CHAPTERS" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="right-col" picking-mode="Ignore">
+                <ui:VisualElement class="vinfo" name="vehicle-info" picking-mode="Ignore">
+                    <ui:VisualElement class="vinfo__top" picking-mode="Ignore">
+                        <ui:Label class="eyebrow eyebrow--accent" text="STARTING VEHICLE" picking-mode="Ignore" />
+                        <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                        <ui:Label class="tag tag--accent" text="CLASS S" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:Label class="vinfo__name" text="ZEPHYR GT-X" name="vehicle-name" picking-mode="Ignore" />
+                    <ui:Label class="vinfo__type" text="HYPERCAR" name="vehicle-type" picking-mode="Ignore" />
+                    <ui:VisualElement class="stats" picking-mode="Ignore">
+                        <ui:VisualElement class="stat" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                                <ui:Label class="stat__label" text="SPEED" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="stat__delta" text="" picking-mode="Ignore" />
+                                <ui:Label class="stat__value" text="74" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                                <ui:VisualElement class="stat__fill" style="width: 74%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 10%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 20%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 30%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 40%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 50%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 60%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 70%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 80%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 90%;" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="stat" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                                <ui:Label class="stat__label" text="ACCELERATION" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="stat__delta" text="" picking-mode="Ignore" />
+                                <ui:Label class="stat__value" text="68" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                                <ui:VisualElement class="stat__fill" style="width: 68%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 10%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 20%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 30%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 40%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 50%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 60%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 70%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 80%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 90%;" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="stat" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                                <ui:Label class="stat__label" text="HANDLING" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="stat__delta" text="" picking-mode="Ignore" />
+                                <ui:Label class="stat__value" text="81" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                                <ui:VisualElement class="stat__fill" style="width: 81%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 10%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 20%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 30%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 40%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 50%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 60%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 70%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 80%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 90%;" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="stat" picking-mode="Ignore">
+                            <ui:VisualElement class="stat__head" picking-mode="Ignore">
+                                <ui:Label class="stat__label" text="BOOST" picking-mode="Ignore" />
+                                <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                                <ui:Label class="stat__delta" text="" picking-mode="Ignore" />
+                                <ui:Label class="stat__value" text="59" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="stat__track" picking-mode="Ignore">
+                                <ui:VisualElement class="stat__fill" style="width: 59%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 10%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 20%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 30%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 40%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 50%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 60%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 70%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 80%;" picking-mode="Ignore" />
+                                <ui:VisualElement class="stat__tick" style="left: 90%;" picking-mode="Ignore" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="vinfo__note" picking-mode="Ignore">
+                        <ui:Label class="vinfo__note-text" text="YOURS TO KEEP. UPGRADE AND CUSTOMIZE IT IN THE GARAGE." picking-mode="Ignore" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="bottom" picking-mode="Ignore">
+                <ui:VisualElement class="bottom__left" picking-mode="Ignore">
+                    <ui:VisualElement class="focus" picking-mode="Ignore">
+                        <ui:Label class="eyebrow focus__label" text="CAMERA FOCUS" picking-mode="Ignore" />
+                        <ui:VisualElement class="focus__row" picking-mode="Ignore">
+                            <ui:Button class="btn fchip" name="focus-driver">
+                                <ui:Label class="fchip__text" text="DRIVER" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn fchip fchip--on" name="focus-both">
+                                <ui:Label class="fchip__text" text="BOTH" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn fchip" name="focus-vehicle">
+                                <ui:Label class="fchip__text" text="VEHICLE" picking-mode="Ignore" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="bottom__center" picking-mode="Ignore">
+                    <ui:VisualElement class="selector" picking-mode="Ignore">
+                        <ui:Button class="btn arrow arrow--l" name="btn-prev">
+                            <ui:VisualElement class="chevron chevron--left" picking-mode="Ignore" />
+                        </ui:Button>
+                        <ui:VisualElement class="selector__track" picking-mode="Ignore">
+                            <ui:VisualElement class="selector__line" picking-mode="Ignore" />
+                            <ui:Button class="btn node accent-cyan node--sel" name="driver-node-1">
+                                <ui:VisualElement class="node__ring" picking-mode="Ignore">
+                                    <ui:VisualElement class="node__img" style="background-color: rgba(0,229,255,0.30);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label class="node__name" text="KAI NOVA" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn node accent-amber" name="driver-node-2">
+                                <ui:VisualElement class="node__ring" picking-mode="Ignore">
+                                    <ui:VisualElement class="node__img" style="background-color: rgba(255,190,0,0.30);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label class="node__name" text="DAX OROZCO" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn node accent-green" name="driver-node-3">
+                                <ui:VisualElement class="node__ring" picking-mode="Ignore">
+                                    <ui:VisualElement class="node__img" style="background-color: rgba(70,255,160,0.30);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label class="node__name" text="JUNO PARK" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn node accent-magenta" name="driver-node-4">
+                                <ui:VisualElement class="node__ring" picking-mode="Ignore">
+                                    <ui:VisualElement class="node__img" style="background-color: rgba(255,46,176,0.30);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label class="node__name" text="MIRA VOSS" picking-mode="Ignore" />
+                            </ui:Button>
+                            <ui:Button class="btn node accent-violet" name="driver-node-5">
+                                <ui:VisualElement class="node__ring" picking-mode="Ignore">
+                                    <ui:VisualElement class="node__img" style="background-color: rgba(176,96,255,0.30);" picking-mode="Ignore">
+                                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label class="node__name" text="ZERO-7" picking-mode="Ignore" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                        <ui:Button class="btn arrow arrow--r" name="btn-next">
+                            <ui:VisualElement class="chevron" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:Label class="swipe-hint" text="SWIPE TO LOOK AROUND  /  TAP A DRIVER TO FOCUS" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="bottom__right" picking-mode="Ignore">
+                    <ui:VisualElement class="pickcta" picking-mode="Ignore">
+                        <ui:Label class="pickcta__note" text="YOU CAN UNLOCK THE OTHER DRIVERS LATER" picking-mode="Ignore" />
+                        <ui:Button class="btn btn-cta pick-btn" name="btn-select-driver">
+                            <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                            <ui:Label class="btn-cta__label" text="SELECT KAI NOVA" name="pick-label" picking-mode="Ignore" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="wtags" picking-mode="Ignore">
+                <ui:VisualElement class="wtag wtag--hidden" name="wtag-1" picking-mode="Ignore">
+                    <ui:VisualElement class="wtag__dot" picking-mode="Ignore" />
+                    <ui:Label class="wtag__name" text="KAI NOVA" picking-mode="Ignore" />
+                    <ui:Label class="wtag__tap" text="TAP TO VIEW" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="wtag" name="wtag-2" picking-mode="Ignore">
+                    <ui:VisualElement class="wtag__dot" picking-mode="Ignore" />
+                    <ui:Label class="wtag__name" text="DAX OROZCO" picking-mode="Ignore" />
+                    <ui:Label class="wtag__tap" text="TAP TO VIEW" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="wtag" name="wtag-3" picking-mode="Ignore">
+                    <ui:VisualElement class="wtag__dot" picking-mode="Ignore" />
+                    <ui:Label class="wtag__name" text="JUNO PARK" picking-mode="Ignore" />
+                    <ui:Label class="wtag__tap" text="TAP TO VIEW" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="wtag" name="wtag-4" picking-mode="Ignore">
+                    <ui:VisualElement class="wtag__dot" picking-mode="Ignore" />
+                    <ui:Label class="wtag__name" text="MIRA VOSS" picking-mode="Ignore" />
+                    <ui:Label class="wtag__tap" text="TAP TO VIEW" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="wtag" name="wtag-5" picking-mode="Ignore">
+                    <ui:VisualElement class="wtag__dot" picking-mode="Ignore" />
+                    <ui:Label class="wtag__name" text="ZERO-7" picking-mode="Ignore" />
+                    <ui:Label class="wtag__tap" text="TAP TO VIEW" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="modal-layer hidden" name="dlg-confirm" picking-mode="Position">
+            <ui:VisualElement class="dlg accent-cyan" picking-mode="Ignore">
+                <ui:VisualElement class="dlg__bar" picking-mode="Ignore" />
+                <ui:Label class="eyebrow eyebrow--accent" text="CONFIRM STARTER" picking-mode="Ignore" />
+                <ui:Label class="dlg__title" text="KAI NOVA?" name="confirm-title" picking-mode="Ignore" />
+                <ui:VisualElement class="dlg__sum" picking-mode="Ignore">
+                    <ui:VisualElement class="sum__art" picking-mode="Ignore">
+                        <ui:VisualElement class="car__slash" picking-mode="Ignore" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="sum__list" picking-mode="Ignore">
+                        <ui:VisualElement class="sum__row" picking-mode="Ignore">
+                            <ui:VisualElement class="sum__dot" picking-mode="Ignore" />
+                            <ui:Label class="sum__label" text="DRIVER" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="sum__val" text="KAI NOVA" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="sum__row" picking-mode="Ignore">
+                            <ui:VisualElement class="sum__dot" picking-mode="Ignore" />
+                            <ui:Label class="sum__label" text="VEHICLE" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="sum__val" text="ZEPHYR GT-X" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="sum__row" picking-mode="Ignore">
+                            <ui:VisualElement class="sum__dot" picking-mode="Ignore" />
+                            <ui:Label class="sum__label" text="STORY" picking-mode="Ignore" />
+                            <ui:VisualElement class="spacer" picking-mode="Ignore" />
+                            <ui:Label class="sum__val" text="EMBER RUN" picking-mode="Ignore" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label class="dlg__text" text="THE OTHER DRIVERS AND THEIR VEHICLES CAN BE UNLOCKED LATER IN THE SHOP OR BY PLAYING." picking-mode="Ignore" />
+                <ui:VisualElement class="dlg__row" picking-mode="Ignore">
+                    <ui:Button class="btn btn-ghost dlg__btn accent-cyan" name="btn-confirm-back">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-ghost__label" text="BACK" picking-mode="Ignore" />
+                    </ui:Button>
+                    <ui:Button class="btn btn-cta dlg__btn accent-cyan" name="btn-confirm">
+                        <ui:VisualElement class="sheen" picking-mode="Ignore" />
+                        <ui:Label class="btn-cta__label" text="CONFIRM" picking-mode="Ignore" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
