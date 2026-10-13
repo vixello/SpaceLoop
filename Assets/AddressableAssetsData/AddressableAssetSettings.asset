@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: c668be4928ee8644f830543903bf654c
   m_currentHash:
     serializedVersion: 2
-    Hash: 6b2e8ea309de1fa1ab66d1457041aad3
+    Hash: df1b57f23ddd5827cc1a77c098b91082
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
-  m_ContentStateBuildPathProfileVariableName: 
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
@@ -65,6 +65,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 40a789a0ed110c54fbb692b0b561abf7, type: 2}
   - {fileID: 11400000, guid: 5169df80f4ee5184da4ff01aeccb6385, type: 2}
   - {fileID: 11400000, guid: 817a7b9755494734d96c5b52db2e9c24, type: 2}
+  - {fileID: 11400000, guid: 6207c1361e2def9428f646ace899d63a, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
     m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles

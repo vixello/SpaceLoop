@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI Toolkit
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: UI Toolkit
+  m_GUID: f0f6bb702f6e8874fa405a8f5af126c2
+  m_SerializeEntries:
+  - m_GUID: 1894d762554522c48b2121541c7adca5
+    m_Address: Assets/Ui Toolkit/Common/Components/ScreenHeader.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 20068c0c52ae68b4cae27dc89276148f
+    m_Address: Assets/Ui Toolkit/Garage/DriverCustomization.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c52dfe938af55148bc3c2bb3300b758
+    m_Address: Assets/Ui Toolkit/MainMenu/MainMenu.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 773f2a00679dd1b48ad8d2de591bbd98
+    m_Address: Assets/Ui Toolkit/Garage/VehicleCustomization.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79696733fdae7b94280454cd8fac2b56
+    m_Address: Assets/Ui Toolkit/Garage/Garage.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c171f0b2e018b64b94c5ca61c4b6156
+    m_Address: Assets/Ui Toolkit/Profile/Profile.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cc1313d69b7241459339de75ccc703c
+    m_Address: Assets/Ui Toolkit/Profile/ProfileEdit.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8d0443616d7dbb44b0593bbb8f9b959
+    m_Address: Assets/Ui Toolkit/Common/Components/Scrims.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8ce34022f010134aadee163726c62cc
+    m_Address: Assets/Ui Toolkit/Common/Components/Currencies.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1e0c419fffe5c54ea31b5bd59f0c918
+    m_Address: Assets/Ui Toolkit/Common/Common.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa80a17c538937e4fbb9222fa8331f54
+    m_Address: Assets/Ui Toolkit/Common/Customize.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0ff5f19761583fa4583aad3eadc2c468, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f4015c89f3693b648bd55620e0ba7b42, type: 2}
+    - {fileID: 11400000, guid: 0841eede00ac1c145a283256bb7ed3b9, type: 2}
