@@ -12,7 +12,7 @@ namespace Assets.Scripts.UI
 
     public abstract class UIController
     {
-        private VisualElement _root;
+        protected VisualElement _root;
         public VisualElement Root => _root;
         public virtual void Initialize(UIDocument document)
         {

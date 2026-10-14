@@ -49,36 +49,36 @@ namespace Assets.Scripts.UI
         public override void OnShow()
         {
             // Query Interactive Elements by Name from MainMenu.uxml
-            _btnProfile = Root.Q<Button>("btn-profile");
-            _btnSettings = Root.Q<Button>("btn-settings");
-            _btnEvent = Root.Q<Button>("btn-event");
-            _btnMissions = Root.Q<Button>("btn-missions");
-            _btnDriver = Root.Q<Button>("btn-driver");
-            _btnVehicle = Root.Q<Button>("btn-vehicle");
-            _btnRotateLeft = Root.Q<Button>("rotate-left");
-            _btnRotateRight = Root.Q<Button>("rotate-right");
-            _btnSolo = Root.Q<Button>("btn-solo");
-            _btnMultiplayer = Root.Q<Button>("btn-multiplayer");
-            _btnGarage = Root.Q<Button>("btn-garage");
-            _btnShop = Root.Q<Button>("btn-shop");
-            _rotateDragZone = Root.Q<VisualElement>("rotate-drag-zone");
+            _btnProfile = _root.Q<Button>("btn-profile");
+            _btnSettings = _root.Q<Button>("btn-settings");
+            _btnEvent = _root.Q<Button>("btn-event");
+            _btnMissions = _root.Q<Button>("btn-missions");
+            _btnDriver = _root.Q<Button>("btn-driver");
+            _btnVehicle = _root.Q<Button>("btn-vehicle");
+            _btnRotateLeft = _root.Q<Button>("rotate-left");
+            _btnRotateRight = _root.Q<Button>("rotate-right");
+            _btnSolo = _root.Q<Button>("btn-solo");
+            _btnMultiplayer = _root.Q<Button>("btn-multiplayer");
+            _btnGarage = _root.Q<Button>("btn-garage");
+            _btnShop = _root.Q<Button>("btn-shop");
+            _rotateDragZone = _root.Q<VisualElement>("rotate-drag-zone");
 
             // Query Dropdown Elements[cite: 1]
-            _settingsDropdown = Root.Q<VisualElement>("settings-dropdown");
-            _ddCatcher = Root.Q<VisualElement>("dd-catcher");
-            _btnDdSettings = Root.Q<Button>("btn-dd-settings");
-            _btnDdSupport = Root.Q<Button>("btn-dd-support");
-            _btnDdFaq = Root.Q<Button>("btn-dd-faq");
+            _settingsDropdown = _root.Q<VisualElement>("settings-dropdown");
+            _ddCatcher = _root.Q<VisualElement>("dd-catcher");
+            _btnDdSettings = _root.Q<Button>("btn-dd-settings");
+            _btnDdSupport = _root.Q<Button>("btn-dd-support");
+            _btnDdFaq = _root.Q<Button>("btn-dd-faq");
 
             // Query Labels for dynamic data population
-            _playerLevel = Root.Q<Label>("player-level");
-            _playerName = Root.Q<Label>("player-name");
-            _eventTimer = Root.Q<Label>("event-timer");
-            _eventTitle = Root.Q<Label>("event-title");
-            _missionsBadge = Root.Q<Label>("missions-badge");
-            _driverName = Root.Q<Label>("driver-name");
-            _vehicleNameCard = Root.Q<Label>("vehicle-name-card");
-            _vehicleNameStage = Root.Q<Label>("vehicle-name");
+            _playerLevel = _root.Q<Label>("player-level");
+            _playerName = _root.Q<Label>("player-name");
+            _eventTimer = _root.Q<Label>("event-timer");
+            _eventTitle = _root.Q<Label>("event-title");
+            _missionsBadge = _root.Q<Label>("missions-badge");
+            _driverName = _root.Q<Label>("driver-name");
+            _vehicleNameCard = _root.Q<Label>("vehicle-name-card");
+            _vehicleNameStage = _root.Q<Label>("vehicle-name");
 
             RegisterCallbacks();
             LoadPlayerData(); // Populate initial text values if needed

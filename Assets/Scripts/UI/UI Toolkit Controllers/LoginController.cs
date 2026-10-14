@@ -16,7 +16,6 @@ namespace Assets.Scripts.UI
 
         // UI Document & Root Elements
         private UIDocument _document;
-        private VisualElement _root;
 
         // Pages
         private VisualElement _pageLogin;
