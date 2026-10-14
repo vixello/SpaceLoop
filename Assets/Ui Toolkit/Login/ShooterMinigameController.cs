@@ -3,22 +3,22 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Assets.Scripts.Core;
 
-namespace ApexVelocity.UI
+namespace Assets.Scripts.UI
 {
-    public class ShooterMinigameController : MonoBehaviour
+    public class ShooterMinigameController : UIController
     {
         [Header("Game Balance Settings")]
-        [SerializeField] private float gyroSensitivity = 1200f;
-        [SerializeField] private float touchSensitivity = 1.2f;
-        [SerializeField] private float laserSpeed = 800f;
-        [SerializeField] private float enemySpeed = 240f;
-        [SerializeField] private float spawnInterval = 0.7f;
-        [SerializeField] private float autoFireRate = 0.18f;
+        private float gyroSensitivity = 1200f;
+        private float touchSensitivity = 1.2f;
+        private float laserSpeed = 800f;
+        private float enemySpeed = 240f;
+        private float spawnInterval = 0.7f;
+        private float autoFireRate = 0.18f;
 
         [Header("Dependencies")]
-        [SerializeField] private InputManager inputManager;
+        private InputManager inputManager;
 
-        [SerializeField] private UIDocument _minigameDocument;
+        private UIDocument _minigameDocument;
         private VisualElement _minigameRoot;
         private VisualElement _gameSpace;
         private VisualElement _playerShip;
@@ -38,29 +38,33 @@ namespace ApexVelocity.UI
         private readonly List<VisualElement> _lasers = new List<VisualElement>();
         private readonly List<VisualElement> _enemies = new List<VisualElement>();
 
-        private void OnEnable()
+        public ShooterMinigameController()
         {
-            var uiDocuments = GetComponents<UIDocument>();
-            foreach (var doc in uiDocuments)
-            {
-                if (doc.visualTreeAsset != null && doc.visualTreeAsset.name.Contains("ShooterMinigame"))
-                {
-                    _minigameDocument = doc;
-                    break;
-                }
-            }
 
-            if (_minigameDocument == null && uiDocuments.Length > 1)
-                _minigameDocument = uiDocuments[1];
-            else if (_minigameDocument == null)
-                _minigameDocument = GetComponent<UIDocument>();
-
-            if (inputManager == null)
-                inputManager = GetComponent<InputManager>();
-
-            InitializeUI();
         }
+        /*        private void OnEnable()
+                {
+                    var uiDocuments = GetComponents<UIDocument>();
+                    foreach (var doc in uiDocuments)
+                    {
+                        if (doc.visualTreeAsset != null && doc.visualTreeAsset.name.Contains("ShooterMinigame"))
+                        {
+                            _minigameDocument = doc;
+                            break;
+                        }
+                    }
 
+                    if (_minigameDocument == null && uiDocuments.Length > 1)
+                        _minigameDocument = uiDocuments[1];
+                    else if (_minigameDocument == null)
+                        _minigameDocument = GetComponent<UIDocument>();
+
+                    if (inputManager == null)
+                        inputManager = GetComponent<InputManager>();
+
+                    InitializeUI();
+                }
+        */
         private void OnDisable()
         {
             UnbindInputEvents();

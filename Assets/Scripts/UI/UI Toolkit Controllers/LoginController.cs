@@ -3,16 +3,16 @@ using System.Linq; // Wymagane dla ToArray() na kolekcjach UI Toolkit
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ApexVelocity.UI
+namespace Assets.Scripts.UI
 {
-    [RequireComponent(typeof(UIDocument))]
-    [RequireComponent(typeof(ShooterMinigameController))]
-    public class LoginController : MonoBehaviour
+   // [RequireComponent(typeof(UIDocument))]
+   // [RequireComponent(typeof(ShooterMinigameController))]
+    public class LoginController : UIController
     {
         [Header("Tachometer Animation Settings")]
-        [SerializeField] private float minNeedleAngle = -52f;
-        [SerializeField] private float maxNeedleAngle = 100f;
-        [SerializeField] private float tachAnimationSpeed = 5f;
+        private float minNeedleAngle = -52f;
+        private float maxNeedleAngle = 100f;
+        private float tachAnimationSpeed = 5f;
 
         // UI Document & Root Elements
         private UIDocument _document;
@@ -60,15 +60,10 @@ namespace ApexVelocity.UI
 
         private ShooterMinigameController _minigameController;
         
-        private void OnEnable()
+        public override void OnShow()
         {
-            _document = GetComponent<UIDocument>();
-            if (_document == null) return;
-
-            _root = _document.rootVisualElement;
             if (_root == null) return;
-        
-            _minigameController = GetComponent<ShooterMinigameController>();
+            _minigameController = new ShooterMinigameController();
 
             QueryElements();
             RegisterCallbacks();
@@ -80,7 +75,7 @@ namespace ApexVelocity.UI
             SetInitialState();
         }
 
-        private void OnDisable()
+        public override void OnHide()
         {
             UnregisterCallbacks();
             if (_minigameController != null)
@@ -89,7 +84,7 @@ namespace ApexVelocity.UI
             }        
         }
 
-        private void Update()
+        public override void Tick()
         {
             if (Mathf.Abs(_currentNeedleAngle - _targetNeedleAngle) > 0.1f)
             {

@@ -61,3 +61,5 @@ MonoBehaviour:
   _titleManager: {fileID: 2037476287850902304, guid: e529920d40f6f7644a8aaac49421f167, type: 3}
   _levelCurve: {fileID: 11400000, guid: 320897f5e43ad684ea04aab86ecce394, type: 2}
   _inputManager: {fileID: 3052656208217132630, guid: 8068d5b64c06b024e8ca63f9f1505723, type: 3}
+  _spaceShipDatabase: {fileID: 11400000, guid: 0d2e3299a500aa74aaf90ee975c99425, type: 2}
+  _uiScreenManager: {fileID: 0}

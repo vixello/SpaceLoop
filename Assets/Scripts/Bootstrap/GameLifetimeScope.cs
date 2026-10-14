@@ -42,6 +42,7 @@ namespace Bootstrap
         [SerializeField] private LevelCurve _levelCurve;
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private AddresableDatabase<SpaceshipConfig> _spaceShipDatabase;
+        [SerializeField] private UIScreenManager _uiScreenManager;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -57,6 +58,8 @@ namespace Bootstrap
             builder.Register<IIdentityManager,IdentityManager>(Lifetime.Singleton);
             builder.RegisterComponentInNewPrefab(_inputManager, Lifetime.Singleton);
             builder.Register<PlayerSpaceshipManager>(Lifetime.Singleton);
+            builder.RegisterComponentInNewPrefab(_uiScreenManager, Lifetime.Singleton).As<IUIScreenManager>();
+            builder.Register<LoadingScreenManager>(Lifetime.Singleton).As<ILoadingScreenManager>();
 
             // Saveables
             builder.RegisterEntryPoint<WalletManager>(Lifetime.Singleton);
@@ -118,6 +121,9 @@ namespace Bootstrap
                 resolver => new CommandFactory<UIAchievementClickCommand>(resolver),
                 Lifetime.Singleton
             );
+            builder.Register<UIControllersFactory>(Lifetime.Singleton).As<IUIControllersFactory>();
+            builder.Register<LoginController>(Lifetime.Transient);
+            builder.Register<MainMenuController>(Lifetime.Transient);
 
             // Other
             builder.RegisterInstance(_levelCurve);

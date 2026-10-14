@@ -114,4 +114,29 @@ namespace Assets.Scripts.Core
             return Vector3.zero;
         }
     }
+
+    public enum ScreenType
+    {
+        MainMenu,
+        Garage,
+        DriverCustomization,
+        VehicleCustomization,
+        Shop,
+        Profile,
+        EditProfile,
+        Multiplayer,
+        MatchmakingRanked,
+        MatchmakingUnranked,
+        Options,
+        Pause,
+        RoomLobby,
+        SoloRacing,
+        Training,
+        Story,
+        Events,
+        Missions,
+        Bootstrap,
+        Mail,
+        Login
+    }
 }

@@ -10,6 +10,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using System.Linq;
+using Assets.Scripts.Core.Interfaces;
 
 namespace Assets.Scripts.Core
 {
@@ -26,11 +27,13 @@ namespace Assets.Scripts.Core
         private EventBinding<LogoutSucceeded> _logoutBinding;
         private Func<ILoadingScope> _beginLoading;
         private readonly Dictionary<string, AsyncOperationHandle<SceneInstance>> _loadedScenes = new();
+        private ILoadingScreenManager _loadingScreenManager;
 
         [Inject]                       
-        private void Construct(Func<ILoadingScope> func)
+        private void Construct(Func<ILoadingScope> func, ILoadingScreenManager loadingScreenManager)
         {
             _beginLoading = func;
+            _loadingScreenManager = loadingScreenManager;
         }
 
         private void Awake()
@@ -124,13 +127,16 @@ namespace Assets.Scripts.Core
                     Debug.LogWarning($"LoadingScreen not found in scene {_loadingScene.SceneName}");
             }
 
-            using (var loadingScreenDisposable = new ShowLoadingScreenDisposable(_loadingScreen))
-            {
-                loadingScreenDisposable.SetLoadingBarPercent(0f);
+/*            using (var loadingScreenDisposable = new ShowLoadingScreenDisposable(_loadingScreen))
+            {*/
+                _loadingScreenManager.Show(ScreenType.Bootstrap);
+                _loadingScreenManager.SetLoadingBarPercent(0f);
 
-                await UnloadScenes(scenesToUnload, loadingScreenDisposable);
-                await LoadScenes(scenesToLoad, loadingScreenDisposable);
-            }
+                await UnloadScenes(scenesToUnload/*, loadingScreenDisposable*/);
+                await LoadScenes(scenesToLoad/*, loadingScreenDisposable*/);
+            // }
+
+                _loadingScreenManager.Hide();
 
             if (_loadingScene != null && IsSceneLoaded(_loadingScene))
             {
@@ -191,9 +197,11 @@ namespace Assets.Scripts.Core
         }
 
 
-        private async UniTask FakeLoad(ShowLoadingScreenDisposable loading, float from, float to, float duration)
+        private async UniTask FakeLoad(/*ShowLoadingScreenDisposable loading,*/ float from, float to, float duration)
         {
             float elapsed = 0f;
+
+            _loadingScreenManager.Show(ScreenType.Bootstrap);
 
             while (elapsed < duration)
             {
@@ -201,11 +209,13 @@ namespace Assets.Scripts.Core
 
                 float t = Mathf.Clamp01(elapsed / duration);
                 float p = Mathf.Lerp(from, to, t);
-                loading.SetLoadingBarPercent(p);
+                _loadingScreenManager.SetLoadingBarPercent(p);
                 await UniTask.Yield();
             }
 
-            loading.SetLoadingBarPercent(to);
+            _loadingScreenManager.SetLoadingBarPercent(to);
+            _loadingScreenManager.Hide();
+
         }
 
         private LoadingScreen GetLoadingScreen(ISceneField loadingScene)
@@ -231,7 +241,7 @@ namespace Assets.Scripts.Core
             return _loadedScenes.ContainsKey(scene.SceneReference.RuntimeKey.ToString());
         }
 
-        public async UniTask LoadScenes(ISceneField[] scenesToLoad, ShowLoadingScreenDisposable loading = null)
+        public async UniTask LoadScenes(ISceneField[] scenesToLoad /*,ShowLoadingScreenDisposable loading = null*/)
         {
             _scenesToInitialize.Clear();
 
@@ -258,7 +268,7 @@ namespace Assets.Scripts.Core
 
                     Scene loadedScene = handle.Result.Scene;
                     await InitializeScene(loadedScene, runTimeKey, () =>
-                        AnimateLoading(start, endPercent, duration, loading));
+                        AnimateLoading(start, endPercent, duration/*, loading*/));
                 }
 
                 if (!isSceneLoaded)
@@ -277,12 +287,12 @@ namespace Assets.Scripts.Core
                     Scene loadedScene = handle.Result.Scene;
 
                     await InitializeScene(loadedScene, runTimeKey, () =>
-                        AnimateLoading(start, endPercent, duration, loading));
+                        AnimateLoading(start, endPercent, duration/*, loading*/));
                 }
             }
         }
 
-        public async Task UnloadScenes(ISceneField[] scenesToUnload, ShowLoadingScreenDisposable loading = null)
+        public async Task UnloadScenes(ISceneField[] scenesToUnload/*, ShowLoadingScreenDisposable loading = null*/)
         {
             if(scenesToUnload.Length == 0) { return; }
 
@@ -303,24 +313,28 @@ namespace Assets.Scripts.Core
                     System.GC.Collect();
                 }
             }
-            await AnimateLoading(0f, 0.5f, 0.2f, loading);
+            await AnimateLoading(0f, 0.5f, 0.2f/*, loading*/);
         }
 
-        private async UniTask AnimateLoading(float start, float end, float duration, ShowLoadingScreenDisposable loading)
+        private async UniTask AnimateLoading(float start, float end, float duration/*, ShowLoadingScreenDisposable loading*/)
         {
-            if (loading == null)
+            if (_loadingScreenManager == null)
                 return;
 
             float elapsed = 0f;
 
+            _loadingScreenManager.Show(ScreenType.Bootstrap);
+
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
-                loading.SetLoadingBarPercent(Mathf.Lerp(start, end, elapsed / duration));
+                _loadingScreenManager.SetLoadingBarPercent(Mathf.Lerp(start, end, elapsed / duration));
                 await UniTask.Yield();
             }
 
-            loading.SetLoadingBarPercent(end);
+            _loadingScreenManager.SetLoadingBarPercent(end);
+            _loadingScreenManager.Hide();
+
         }
 
         private static async UniTask InitializeScene(Scene loadedScene, string runtimeKey, Func<UniTask> callback)

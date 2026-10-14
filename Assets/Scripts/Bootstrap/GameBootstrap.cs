@@ -14,6 +14,7 @@ using Assets.Scripts.Services.Achievements;
 using Assets.Scripts.Data.Level;
 using Assets.Scripts.Services.EOS.Cloud;
 using Assets.Scripts.Data.Rewards;
+using Assets.Scripts.UI;
 
 namespace Bootstrap
 {
@@ -41,25 +42,30 @@ namespace Bootstrap
         private StatServiceMiddleman _statServiceMiddleman;
         private IProfileEditorManager _profileEditorManager;
         private RewardVisualDatabase _rewardVisualDatabase;
+        private IUIScreenManager _uiScreenManager;
+        private ILoadingScreenManager _loadingScreenManager;
 
         private async void Start()
         {
             BindObjects();
 
-            using (var loadingScreenDisposable =
-                new ShowLoadingScreenDisposable(_loadingScreen))
-            {
-                using(var cts = new CancellationTokenSource())
+            /*            using (var loadingScreenDisposable =
+                            new LoadingScreenManager(_loadingScreen, _uiScreenManager))
+                        {*/
+            _loadingScreenManager.Show(ScreenType.Bootstrap);
+                using (var cts = new CancellationTokenSource())
                 {
-                    loadingScreenDisposable.SetLoadingBarPercent(0f);
+                _loadingScreenManager.SetLoadingBarPercent(0f);
                     await InitializeObjects(cts.Token);
-                    loadingScreenDisposable.SetLoadingBarPercent(0.33f);
+                _loadingScreenManager.SetLoadingBarPercent(0.33f);
                     await CreateObjects(cts.Token);
-                    loadingScreenDisposable.SetLoadingBarPercent(0.66f);
+                _loadingScreenManager.SetLoadingBarPercent(0.66f);
                     await PrepareGame(cts.Token);
-                    loadingScreenDisposable.SetLoadingBarPercent(1.0f);
+                _loadingScreenManager.SetLoadingBarPercent(1.0f);
                 }
-            }
+
+            _loadingScreenManager.Hide();
+            // }
 
             await BeginGame();
         }
@@ -80,7 +86,9 @@ namespace Bootstrap
                                 ITitleManager titleManager,
                                 StatServiceMiddleman statServiceMiddleman,
                                 IProfileEditorManager profileEditorManager,
-                                RewardVisualDatabase rewardVisualDatabase
+                                RewardVisualDatabase rewardVisualDatabase,
+                                IUIScreenManager uiScreenManager,
+                                ILoadingScreenManager loadingScreenManager
                                 )
         {
             Debug.Log("[BOOTSTRAP] construct");
@@ -100,6 +108,8 @@ namespace Bootstrap
             _statServiceMiddleman = statServiceMiddleman;
             _profileEditorManager = profileEditorManager;
             _rewardVisualDatabase = rewardVisualDatabase;
+            _uiScreenManager = uiScreenManager;
+            _loadingScreenManager = loadingScreenManager;
         }
 
         private void BindObjects()
@@ -159,6 +169,10 @@ namespace Bootstrap
             if (_additiveScenesManager != null)
             {
                 await _additiveScenesManager.StartGame();
+                if (_uiScreenManager != null)
+                {
+                    _uiScreenManager.SwitchScreen(ScreenType.Login, clearHistory: true); ;
+                }
                 Destroy(_camera);
             }
             else

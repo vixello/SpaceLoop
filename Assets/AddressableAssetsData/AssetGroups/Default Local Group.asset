@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: c668be4928ee8644f830543903bf654c
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 0197980462c909145aa7793082deb65e
+    m_Address: Assets/Ui Toolkit/Garage/Garage.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4168e8b0e70004b4ba7b9381397e110f
+    m_Address: Assets/Ui Toolkit/Garage/VehicleCustomization.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 504e421d4e4556941a56f3b88abd50ad
+    m_Address: Assets/Ui Toolkit/Garage/DriverCustomization.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6711a28bd4ffc84792d3264465abcdd
+    m_Address: Assets/Ui Toolkit/MainMenu/MainMenu.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0ff5f19761583fa4583aad3eadc2c468, type: 2}
   m_SchemaSet:
