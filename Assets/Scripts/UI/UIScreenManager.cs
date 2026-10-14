@@ -37,6 +37,7 @@ namespace Assets.Scripts.UI
         private AsyncOperationHandle<VisualTreeAsset> _loadingLoadHandle;
 
         private ScreenType _currentScreen = ScreenType.Bootstrap;
+        private ScreenType _currentLoadingScreen = ScreenType.Bootstrap;
         private Stack<ScreenType> _historyStack = new Stack<ScreenType>();
 
         private IUIControllersFactory _uiControllersFactory;
@@ -44,6 +45,7 @@ namespace Assets.Scripts.UI
 
         public UIDocument MainUIDocument => _mainUIDocument;
         public UIDocument LoadingUIDocument => _loadingUIDocument;
+        public ScreenType CurrentLoadingScreen => _currentLoadingScreen;
 
         private void Awake()
         {
@@ -207,6 +209,12 @@ namespace Assets.Scripts.UI
 
         public void ShowLoadingOverlay(ScreenType loadingScreenType)
         {
+            if (_currentLoadingScreen == loadingScreenType)
+            {
+                if(!_loadingUIDocument.gameObject.activeSelf) _loadingUIDocument.gameObject.SetActive(true);
+                return;
+            }
+
             if (!_screenLookup.TryGetValue(loadingScreenType, out AssetReference assetRef))
             {
                 Debug.LogError($"[UIScreenManager] Loading ScreenType {loadingScreenType} not found in lookup!");
