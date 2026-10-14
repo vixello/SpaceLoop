@@ -40,9 +40,9 @@ namespace Assets.Scripts.Services.Eos
     using UnityEngine.SceneManagement;
     using UnityEngine.UI;
 
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
+    #if ENABLE_INPUT_SYSTEM
+        using UnityEngine.InputSystem;
+    #endif
 
     using PlayEveryWare.EpicOnlineServices;
     using static PlayEveryWare.EpicOnlineServices.EOSManager;
@@ -54,23 +54,23 @@ using UnityEngine.InputSystem;
     public class UILoginMenuEOS : MonoBehaviour
     {
         [Header("Authentication UI")]
-        public Text DemoTitle;
-        public Dropdown SceneSwitcherDropDown;
-        public Dropdown loginTypeDropdown;
+        //public Text DemoTitle;
+        //public Dropdown SceneSwitcherDropDown;
+        //public Dropdown loginTypeDropdown;
 
-        public RectTransform idContainer;
-        public Text idText;
-        public UIConsoleInputField idInputField;
+        //public RectTransform idContainer;
+        //public Text idText;
+        //public UIConsoleInputField idInputField;
 
-        public Text tokenText;
-        public UIConsoleInputField tokenInputField;
-        public UITooltip tokenTooltip;
+        //public Text tokenText;
+        //public UIConsoleInputField tokenInputField;
+        //public UITooltip tokenTooltip;
 
         public RectTransform connectTypeContainer;
         public Dropdown connectTypeDropdown;
 
-        public Text loginButtonText;
-        private string _OriginalloginButtonText;
+        //public Text loginButtonText;
+        //private string _OriginalloginButtonText;
         public Button loginButton;
         private Coroutine PreventLogIn = null;
         public Button logoutButton;
@@ -112,29 +112,29 @@ using UnityEngine.InputSystem;
 
         private void Awake()
         {
-            idInputField?.InputField.onEndEdit.AddListener(CacheIdInputField);
-            tokenInputField?.InputField.onEndEdit.AddListener(CacheTokenField);
-#if UNITY_EDITOR
-            loginType = LoginCredentialType.AccountPortal; // Default in editor
-#elif UNITY_SWITCH
-            loginType = LoginCredentialType.PersistentAuth; // Default on switch
-#elif UNITY_PS4 || UNITY_PS5 || UNITY_GAMECORE
-            loginType = LoginCredentialType.ExternalAuth; // Default on other consoles
-#else
-            loginType = LoginCredentialType.AccountPortal; // Default on other platforms
-#endif
+            //idInputField?.InputField.onEndEdit.AddListener(CacheIdInputField);
+            //tokenInputField?.InputField.onEndEdit.AddListener(CacheTokenField);
+            #if UNITY_EDITOR
+                loginType = LoginCredentialType.AccountPortal; // Default in editor
+            #elif UNITY_SWITCH
+                loginType = LoginCredentialType.PersistentAuth; // Default on switch
+            #elif UNITY_PS4 || UNITY_PS5 || UNITY_GAMECORE
+                loginType = LoginCredentialType.ExternalAuth; // Default on other consoles
+            #else
+                loginType = LoginCredentialType.AccountPortal; // Default on other platforms
+            #endif
 
             // TODO: This will fail on anything that is mac, windows, or linux, or is an editor version of any of the above
-#if UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX
-            if (idInputField?.InputField != null)
-            {
-                idInputField.InputField.text = "localhost:7777";//default on pc
-            }
-#endif
+            /*#if UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX
+                if (idInputField?.InputField != null)
+                {
+                    idInputField.InputField.text = "localhost:7777";//default on pc
+                }
+            #endif*/
 
-#if !ENABLE_INPUT_SYSTEM && (UNITY_XBOXONE || UNITY_GAMECORE_XBOXONE || UNITY_GAMECORE_SCARLETT || UNITY_PS4 || UNITY_PS5 || UNITY_SWITCH)
-            Debug.LogError("Input currently handled by Input Manager. Input System Package is required for controller support on consoles.");
-#endif
+            #if !ENABLE_INPUT_SYSTEM && (UNITY_XBOXONE || UNITY_GAMECORE_XBOXONE || UNITY_GAMECORE_SCARLETT || UNITY_PS4 || UNITY_PS5 || UNITY_SWITCH)
+                Debug.LogError("Input currently handled by Input Manager. Input System Package is required for controller support on consoles.");
+            #endif
         }
 
         private void CacheIdInputField(string value)
@@ -153,15 +153,15 @@ using UnityEngine.InputSystem;
             {
                 case 1:
                     loginType = LoginCredentialType.AccountPortal;
-                    ConfigureUIForAccountPortalLogin();
+                    //ConfigureUIForAccountPortalLogin();
                     break;
                 case 2:
                     loginType = LoginCredentialType.PersistentAuth;
-                    ConfigureUIForPersistentLogin();
+                    //ConfigureUIForPersistentLogin();
                     break;
                 case 3:
                     loginType = LoginCredentialType.ExternalAuth;
-                    ConfigureUIForExternalAuth();
+                    //ConfigureUIForExternalAuth();
                     break;
                 case 4:
                     loginType = LoginCredentialType.ExchangeCode;
@@ -172,7 +172,7 @@ using UnityEngine.InputSystem;
                 case 0:
                 default:
                     loginType = LoginCredentialType.Developer;
-                    ConfigureUIForDevAuthLogin();
+                    //ConfigureUIForDevAuthLogin();
                     break;
             }
 
@@ -230,15 +230,15 @@ using UnityEngine.InputSystem;
 
         public void Start()
         {
-            _OriginalloginButtonText = loginButtonText?.text;
+            //_OriginalloginButtonText = loginButtonText?.text;
             InitConnectDropdown();
             ConfigureUIForLogin();
 
-            // Populate the Scene dropdown.
-            SetupSceneDropdown();
+/*            // Populate the Scene dropdown.
+            SetupSceneDropdown();*/
         }
 
-        private void SetupSceneDropdown()
+/*        private void SetupSceneDropdown()
         {
             if (SceneSwitcherDropDown == null) return;
             // Get the currently active scene name.
@@ -305,7 +305,7 @@ using UnityEngine.InputSystem;
                 SceneManager.LoadScene(sceneToLoad);
             });
         }
-
+*/
         private void EnterPressedToLogin()
         {
             if (loginButton.IsActive())
@@ -408,6 +408,7 @@ using UnityEngine.InputSystem;
         /// </summary>
         /// <param name="firstGameObject">Reference to the GameObject that is considered to be the "first" in tab focus order.</param>
         /// <param name="findSelectable">Reference to the GameObject that can be used to find other selectables if doing so is necessary.</param>
+        /*
         private static void SetSelectedGameObject(ref GameObject firstGameObject, ref GameObject findSelectable)
         {
             if (null != EventSystem.current.currentSelectedGameObject)
@@ -419,7 +420,7 @@ using UnityEngine.InputSystem;
             {
                 EventSystem.current.SetSelectedGameObject(nextSelectable.gameObject);
             }
-        }
+        }*/
 
         private static void HandleTabInput()
         {
@@ -498,6 +499,7 @@ using UnityEngine.InputSystem;
         /// <param name="previouslySelected">The GameObject that was most recently selected.</param>
         /// <param name="firstSelected">The firstselectable (typically UIFirstSelected which is the GameObject controller for the scene.</param>
         /// <param name="findSelectable">The findSelectable.</param>
+        /*
         private static void HandleInput(ref GameObject previouslySelected, ref GameObject firstSelected,
             ref GameObject findSelectable)
         {
@@ -518,11 +520,11 @@ using UnityEngine.InputSystem;
 
             // If tab was pressed, progress the selected control to the next appropriate one.
             HandleTabInput();
-        }
+        }*/
 
         public void Update()
         { 
-            HandleInput(ref selectedGameObject, ref UIFirstSelected, ref UIFindSelectable);
+            // HandleInput(ref selectedGameObject, ref UIFirstSelected, ref UIFindSelectable);
 
             HandleEnterInput();
 
@@ -532,6 +534,10 @@ using UnityEngine.InputSystem;
             }
         }
 
+        /// <summary>
+        /// Commented out UI configuration for various login types
+        /// </summary>
+        /*
         private void ConfigureUIForDevAuthLogin()
         {
             if (loginTypeDropdown == null)
@@ -552,7 +558,7 @@ using UnityEngine.InputSystem;
                 tokenInputField.InputField.text = TokenGlobalCache;
             }
 
-            /* idContainer.gameObject.SetActive(true);
+            idContainer.gameObject.SetActive(true);
             connectTypeContainer.gameObject.SetActive(false);
             idInputField.gameObject.SetActive(true);
             tokenInputField.gameObject.SetActive(true);
@@ -560,7 +566,7 @@ using UnityEngine.InputSystem;
             tokenText.text = "Username";
             tokenTooltip.Text = "Username configured in EOS Dev Auth Tool";
             tokenText.gameObject.SetActive(true);
-            removePersistentTokenButton.gameObject.SetActive(false);*/
+            removePersistentTokenButton.gameObject.SetActive(false);
 
             tokenInputField.InputFieldButton.navigation = new Navigation()
             {
@@ -711,11 +717,11 @@ using UnityEngine.InputSystem;
                 selectOnDown = logoutButton,
                 selectOnLeft = logoutButton
             };
-        }
+        }*/
 
         private void ConfigureUIForConnectLogin()
         {
-            if (!loginButton || !loginButtonText || !tokenText || !tokenTooltip || !tokenInputField)  return;
+            if (!loginButton/* || !loginButtonText || !tokenText || !tokenTooltip || !tokenInputField*/)  return;
 
             //idContainer.gameObject.SetActive(false);
             //connectTypeContainer.gameObject.SetActive(true);
@@ -734,14 +740,14 @@ using UnityEngine.InputSystem;
 #if !UNITY_ANDROID || UNITY_EDITOR
                 case ExternalCredentialType.GoogleIdToken:
                     loginButton.interactable = false;
-                    loginButtonText.text = "Platform not supported.";
+                    //loginButtonText.text = "Platform not supported.";
                     break;
 #endif
 #if !(UNITY_STANDALONE)
                 case ExternalCredentialType.SteamSessionTicket:
                 case ExternalCredentialType.SteamAppTicket:
                     loginButton.interactable = false;
-                    loginButtonText.text = "Platform not set up.";
+                    //loginButtonText.text = "Platform not set up.";
                     break;
 #endif
 #if !(UNITY_STANDALONE || UNITY_ANDROID)
@@ -760,7 +766,7 @@ using UnityEngine.InputSystem;
 #if !(UNITY_IOS || UNITY_STANDALONE_OSX)
                 case ExternalCredentialType.AppleIdToken:
                     loginButton.interactable = false;
-                    loginButtonText.text = "Platform not supported.";
+                    //loginButtonText.text = "Platform not supported.";
                     break;
 #endif
                 case ExternalCredentialType.DeviceidAccessToken:
@@ -770,11 +776,12 @@ using UnityEngine.InputSystem;
 
             if (connectType == ExternalCredentialType.OpenidAccessToken)
             {
-                tokenText.text = "Credentials";
+/*                tokenText.text = "Credentials";
                 tokenTooltip.Text = "Credentials for OpenID login sample in the form of username:password";
                 tokenInputField.gameObject.SetActive(true);
-                tokenText.gameObject.SetActive(true);
+                tokenText.gameObject.SetActive(true);*/
 
+                /* // Navigation connectTypeDropdown            
                 connectTypeDropdown.navigation = new Navigation()
                 {
                     mode = Navigation.Mode.Explicit,
@@ -796,7 +803,7 @@ using UnityEngine.InputSystem;
                     mode = Navigation.Mode.Explicit,
                     selectOnUp = connectTypeDropdown,
                     selectOnDown = loginButton
-                };
+                };*/
             }
             else
             {
@@ -805,6 +812,8 @@ using UnityEngine.InputSystem;
                     Debug.LogError("connectTypeDropdown is null — navigation not assigned");
                     return;
                 }
+
+                /* // Navigation connectTypeDropdown  
                 connectTypeDropdown.navigation = new Navigation()
                 {
                     mode = Navigation.Mode.Explicit,
@@ -819,9 +828,11 @@ using UnityEngine.InputSystem;
                     selectOnUp = connectTypeDropdown,
                     selectOnDown = logoutButton,
                     selectOnLeft = logoutButton
-                };
+                };*/
             }
 
+
+            /* // Navigation LoginTypeDropdown 
             if (loginTypeDropdown == null)
             {
                 Debug.LogError("loginTypeDropdown is null — navigation not assigned");
@@ -832,7 +843,7 @@ using UnityEngine.InputSystem;
                 mode = Navigation.Mode.Explicit,
                 selectOnUp = SceneSwitcherDropDown,
                 selectOnDown = connectTypeDropdown
-            };
+            };*/
         }
 
         private void InitConnectDropdown()
@@ -870,23 +881,23 @@ using UnityEngine.InputSystem;
             switch (loginType)
             {
                 case LoginCredentialType.AccountPortal:
-                    ConfigureUIForAccountPortalLogin();
+                    //ConfigureUIForAccountPortalLogin();
                     break;
                 case LoginCredentialType.PersistentAuth:
-                    ConfigureUIForPersistentLogin();
+                    //ConfigureUIForPersistentLogin();
                     break;
                 case LoginCredentialType.ExternalAuth:
-                    ConfigureUIForExternalAuth();
+                    //ConfigureUIForExternalAuth();
                     break;
                 case LoginCredentialType.ExchangeCode:
-                    ConfigureUIForExchangeCode();
+                    //ConfigureUIForExchangeCode();
                     break;
                 case connect:
                     ConfigureUIForConnectLogin();
                     break;
                 case LoginCredentialType.Developer:
                 default:
-                    ConfigureUIForDevAuthLogin();
+                    //ConfigureUIForDevAuthLogin();
                     break;
             }
 
@@ -897,18 +908,14 @@ using UnityEngine.InputSystem;
 
         private void ConfigureUIForLogout()
         {
-            SceneSwitcherDropDown.gameObject.SetActive(false);
-            DemoTitle.gameObject.SetActive(false);
-            loginTypeDropdown.gameObject.SetActive(false);
-
             loginButton.gameObject.SetActive(false);
             logoutButton.gameObject.SetActive(true);
             removePersistentTokenButton.gameObject.SetActive(false);
 
-            idText.gameObject.SetActive(false);
-            tokenText.gameObject.SetActive(false);
-            idInputField.gameObject.SetActive(false);
-            tokenInputField.gameObject.SetActive(false);
+            // idText.gameObject.SetActive(false);
+            //tokenText.gameObject.SetActive(false);
+            //idInputField.gameObject.SetActive(false);
+            //tokenInputField.gameObject.SetActive(false);
             connectTypeContainer.gameObject.SetActive(false);
 
             if (OnLogin != null)
@@ -922,7 +929,7 @@ using UnityEngine.InputSystem;
             print("[AUTH] OnLogoutButtonClick. ");
 
             // if the readme is open, then close it.
-            UIReadme readme = UIReadme.FindObjectOfType<UIReadme>();
+            UIReadme readme = UIReadme.FindFirstObjectByType<UIReadme>();
             readme?.CloseReadme();
 /*
             if (EOSManager.Instance.GetLocalUserId() == null)
@@ -963,16 +970,16 @@ using UnityEngine.InputSystem;
                 print("[AUTH] StartLogout. ");
                 if (data.ResultCode == Result.Success)
                 {
-#if (UNITY_PS4 || UNITY_PS5) && !UNITY_EDITOR
-#if UNITY_PS4
-                    var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS4>();
-#elif UNITY_PS5
-                    var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS5>();
-#endif
+                    #if (UNITY_PS4 || UNITY_PS5) && !UNITY_EDITOR
+                    #if UNITY_PS4
+                        var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS4>();
+                    #elif UNITY_PS5
+                        var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS5>();
+                    #endif
 
-                    ///TODO: Use activating controller index here
-                    psnManager.StartLogoutWithPSN(0);
-#endif
+                        ///TODO: Use activating controller index here
+                        psnManager.StartLogoutWithPSN(0);
+                    #endif
                     Debug.Log("Logout Successful. [" + data.ResultCode + "]");
                     print("Logout Successful. [" + data.ResultCode + "]");
                     _authProviderLogoutCallback?.Invoke(data, sceneName);
@@ -1009,6 +1016,7 @@ using UnityEngine.InputSystem;
             return loginType == LoginCredentialType.Developer;
         }
 
+        /* // TurnButtonOnAfter15Sec       
         private IEnumerator TurnButtonOnAfter15Sec()
         {
             if (!loginButtonText) yield break;
@@ -1019,7 +1027,7 @@ using UnityEngine.InputSystem;
             }
             loginButton.enabled = true;
             loginButtonText.text = _OriginalloginButtonText;
-        }
+        }*/
 
         /// <summary>
         /// Start a login operation using Steam.
@@ -1084,7 +1092,7 @@ using UnityEngine.InputSystem;
                 Debug.LogError("Internet not reachable.");
                 return;
             }
-
+            /* Username and Password
             string usernameAsString = idInputField?.InputField?.text?.Trim();
             string passwordAsString = tokenInputField?.InputField?.text?.Trim();
 
@@ -1098,20 +1106,23 @@ using UnityEngine.InputSystem;
             {
                 print("Password is missing.");
                 return;
-            }
+            }*/
 
             if(loginButton) loginButton.enabled = false;
             if(PreventLogIn!=null)
                 StopCoroutine(PreventLogIn);
+            /*
             PreventLogIn = StartCoroutine(TurnButtonOnAfter15Sec());
-            //usernameInputField.enabled = false;
-            //passwordInputField.enabled = false;
+            usernameInputField.enabled = false;
+            passwordInputField.enabled = false;*/
             print("Attempting to login...");
 
             // Disabled at the moment to work around a crash that happens
-            //LoggingInterface.SetCallback((LogMessage logMessage) =>{
-            //    print(logMessage.Message);
-            //});
+            /*
+            LoggingInterface.SetCallback((LogMessage logMessage) =>{
+                 print(logMessage.Message);
+            })*/
+            ;
 
             if (loginType == connect)
             {
@@ -1120,41 +1131,41 @@ using UnityEngine.InputSystem;
             }
             else if (loginType == LoginCredentialType.ExternalAuth)
             {
-#if (UNITY_PS4 || UNITY_PS5) && !UNITY_EDITOR
-#if UNITY_PS4
-                    var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS4>();
-#elif UNITY_PS5
-                    var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS5>();
-#endif
+                #if (UNITY_PS4 || UNITY_PS5) && !UNITY_EDITOR
+                    #if UNITY_PS4
+                        var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS4>();
+                    #elif UNITY_PS5
+                        var psnManager = EOSManager.Instance.GetOrCreateManager<EOSPSNManagerPS5>();
+                    #endif
 
-                ///TOO(mendsley): Use activating controller index here
-                psnManager.StartLoginWithPSN(0, StartLoginWithLoginTypeAndTokenCallback);
-#elif UNITY_SWITCH && !UNITY_EDITOR
-                var nintendoManager = EOSManager.Instance.GetOrCreateManager<EOSNintendoManager>();
-                nintendoManager.StartLoginWithNSAPreselectedUser(StartLoginWithLoginTypeAndTokenCallback);
-#elif UNITY_GAMECORE && !UNITY_EDITOR
-                EOSXBLManager xblManager = EOSManager.Instance.GetOrCreateManager<EOSXBLManager>();
-                xblManager.StartLoginWithXbl(StartLoginWithLoginTypeAndTokenCallback);
-#else
-                PlayEveryWare.EpicOnlineServices.Samples.Steam.SteamManager.Instance.StartLoginWithSteam(StartLoginWithLoginTypeAndTokenCallback);
-#endif
+                    ///TOO(mendsley): Use activating controller index here
+                    psnManager.StartLoginWithPSN(0, StartLoginWithLoginTypeAndTokenCallback);
+                    #elif UNITY_SWITCH && !UNITY_EDITOR
+                        var nintendoManager = EOSManager.Instance.GetOrCreateManager<EOSNintendoManager>();
+                        nintendoManager.StartLoginWithNSAPreselectedUser(StartLoginWithLoginTypeAndTokenCallback);
+                    #elif UNITY_GAMECORE && !UNITY_EDITOR
+                        EOSXBLManager xblManager = EOSManager.Instance.GetOrCreateManager<EOSXBLManager>();
+                        xblManager.StartLoginWithXbl(StartLoginWithLoginTypeAndTokenCallback);
+                    #else
+                        PlayEveryWare.EpicOnlineServices.Samples.Steam.SteamManager.Instance.StartLoginWithSteam(StartLoginWithLoginTypeAndTokenCallback);
+                #endif
             }
             else if (loginType == LoginCredentialType.PersistentAuth)
             {
-#if UNITY_SWITCH && !UNITY_EDITOR
-                var nintendoManager = EOSManager.Instance.GetOrCreateManager<EOSNintendoManager>();
-                nintendoManager.StartLoginWithPersistantAuthPreselectedUser((LoginCallbackInfo callbackInfo) =>
-            {
-                    if (callbackInfo.ResultCode == Result.Success)
+                #if UNITY_SWITCH && !UNITY_EDITOR
+                    var nintendoManager = EOSManager.Instance.GetOrCreateManager<EOSNintendoManager>();
+                    nintendoManager.StartLoginWithPersistantAuthPreselectedUser((LoginCallbackInfo callbackInfo) =>
                     {
-                        ConfigureUIForLogout();
-                    }
-                    else
-                    {
-                        ConfigureUIForLogin();
-                    }
-                });
-#else
+                        if (callbackInfo.ResultCode == Result.Success)
+                        {
+                            ConfigureUIForLogout();
+                        }
+                        else
+                        {
+                            ConfigureUIForLogin();
+                        }
+                    });
+                #else
                 EOSManager.Instance.StartPersistentLogin((Epic.OnlineServices.Auth.LoginCallbackInfo callbackInfo) =>
                 {
                     // In this state, it means one needs to login in again with the previous login type, or a new one, as the
@@ -1164,7 +1175,7 @@ using UnityEngine.InputSystem;
                         print("Failed to login with Persistent token [" + callbackInfo.ResultCode + "]");
                         // Other platforms: Fallback to DevAuth login flow
                         loginType = LoginCredentialType.Developer;
-                        ConfigureUIForDevAuthLogin();
+                        // ConfigureUIForDevAuthLogin();
                     }
                     else
                     {
@@ -1180,6 +1191,7 @@ using UnityEngine.InputSystem;
                                                                        EOSManager.EOSSingleton.GetCommandLineArgsFromEpicLauncher().authPassword,
                                                                        StartLoginWithLoginTypeAndTokenCallback);
             }
+            /* //Username and password log in  issues
             else
             {
                 // Deal with other EOS log in issues
@@ -1187,7 +1199,7 @@ using UnityEngine.InputSystem;
                                                                         usernameAsString,
                                                                         passwordAsString,
                                                                         StartLoginWithLoginTypeAndTokenCallback);
-            }
+            }*/
         }
 
         //-------------------------------------------------------------------------
@@ -1404,7 +1416,7 @@ using UnityEngine.InputSystem;
 
         private void ConnectOpenId()
         {
-            var tokenParts = tokenInputField.InputField.text.Split(':');
+            string[] tokenParts = { };//tokenInputField.InputField.text.Split(':');
             if (tokenParts.Length >= 2)
             {
                 string username = tokenParts[0].Trim();
