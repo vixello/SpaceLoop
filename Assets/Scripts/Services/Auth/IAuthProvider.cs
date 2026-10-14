@@ -39,9 +39,9 @@ namespace Assets.Scripts.Services.Auth
 
     public interface IAuthProvider
     {
-        UniTask<LoginResult> LoginAsync(CancellationToken token, Action<bool> decideAboutDataCallback= null);
+        UniTask<LoginResult> LoginAsync(CancellationToken token, Action<bool> onTransferConflictResolutionCallback = null);
         UniTask<LogoutResult> Logout(CancellationToken token);
-        UniTask SwitchAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> resultCallback);
+        UniTask SwitchAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> onDataWipeRequired);
         UniTask LinkAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> resultCallback);
 /*        bool IsLoggedIn { get; }   
         string DisplayName { get; }*/

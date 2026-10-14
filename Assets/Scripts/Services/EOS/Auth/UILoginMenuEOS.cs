@@ -944,7 +944,7 @@ namespace Assets.Scripts.Services.Eos
             var productUserId = EOSManager.Instance.GetProductUserId();
             string sceneName = gameObject.scene.name;
 
-            // Case 1: No local user -> fake callback
+            // Case 1: No local user -> fake onDeviceDataConflictResolution
             if (localUserId == null)
             {
                 Debug.LogWarning("[AUTH] No LocalUserId, faking logout callback.");
@@ -952,7 +952,7 @@ namespace Assets.Scripts.Services.Eos
                 // Clear local state
                 EOSManager.Instance.ClearConnectId(productUserId);
 
-                // Fire callback with "NotFound" ResultCode
+                // Fire onDeviceDataConflictResolution with "NotFound" ResultCode
                 var fakeInfo = new Epic.OnlineServices.Auth.LogoutCallbackInfo
                 {
                     ResultCode = Epic.OnlineServices.Result.Success,
@@ -1294,7 +1294,7 @@ namespace Assets.Scripts.Services.Eos
                         print("Device ID login success. Saved ProductUserId: " + DeviceIdProductUser);
                     }
 
-                    // Call your original callback
+                    // Call your original onDeviceDataConflictResolution
                     ConnectLoginTokenCallback(info);
                 });
         }
@@ -1337,7 +1337,7 @@ namespace Assets.Scripts.Services.Eos
                             print("Device ID login success. Saved ProductUserId: " + DeviceIdProductUser);
                         }
 
-                        // Call your original callback
+                        // Call your original onDeviceDataConflictResolution
                         ConnectLoginTokenCallback(info);
                     });
             }
@@ -1481,9 +1481,9 @@ namespace Assets.Scripts.Services.Eos
         {
             _accountTransferCallback = callback;
         }
-        public void SetOnTransferDecision(Action<bool> callback)
+        public void SetOnTransferDecision(Action<bool> onDeviceDataConflictResolution)
         {
-            _onTransferDecision = callback;
+            _onTransferDecision = onDeviceDataConflictResolution;
         }
 
         private void StartConnectLoginWithToken(ExternalCredentialType externalType, string token, string displayName = null)

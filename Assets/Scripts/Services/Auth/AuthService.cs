@@ -61,7 +61,7 @@ namespace Assets.Scripts.Services.Auth
                 {
                     loading.SetMessage(StringConstants.LoggingIn);
 
-                    var result = await authProvider.LoginAsync(cts.Token, DecideAboutAccountWipe);
+                    var result = await authProvider.LoginAsync(cts.Token, ResolveDeviceDataConflict);
                     await HandleLoginResult(result, loginType);
                     return;
                 }
@@ -242,7 +242,7 @@ namespace Assets.Scripts.Services.Auth
             {
                 using (var cts = new CancellationTokenSource())
                 {
-                    await authProvider.SwitchAccount(cts.Token, strategy, DecideAboutAccountWipe);
+                    await authProvider.SwitchAccount(cts.Token, strategy, ResolveDeviceDataConflict);
                 }
                 _identityManager.GetIdentity().IsGuest = false;
                 _identityManager.GetIdentity().AccountTransfered = true;
@@ -281,7 +281,7 @@ namespace Assets.Scripts.Services.Auth
                 Debug.Log($"[AUTH] LinkAccount attempt, is a guest");
                 using (var cts = new CancellationTokenSource())
                 {
-                    await authProvider.LinkAccount(cts.Token, strategy, DecideAboutAccountWipe);
+                    await authProvider.LinkAccount(cts.Token, strategy, ResolveDeviceDataConflict);
                 }
                 _identityManager.GetIdentity().IsGuest = false;
                 _identityManager.GetIdentity().AccountTransfered = true;
@@ -295,13 +295,20 @@ namespace Assets.Scripts.Services.Auth
             Debug.Log($"[AUTH] Performed Link");
         }
 
-        private async void DecideAboutAccountWipe(bool keepDeviceData)
+        private async void ResolveDeviceDataConflict(bool keepDeviceData)
         {
             if (!keepDeviceData)
             {
-                _identityManager.ClearIdentity();
-                await _saveSystem.ClearLocalData();
-                //_saveSystem.RequestSave();
+                try
+                {
+                    _identityManager.ClearIdentity();
+                    await _saveSystem.ClearLocalData();
+                    //_saveSystem.RequestSave();
+                }
+                catch(System.Exception ex)
+                {
+                    Debug.LogError($"[AUTH] Failed to clear local data during account wipe: {ex}");
+                }
             }
         }
         private async Task<IAuthProvider> GetAuthProvider(LoginType loginType)

@@ -58,16 +58,16 @@ namespace Assets.Scripts.Services.EOS.Auth
             _isInitialized = true;
         }
 
-        public async UniTask<LoginResult> LoginAsync(CancellationToken token, Action<bool> action) 
+        public async UniTask<LoginResult> LoginAsync(CancellationToken token, Action<bool> onTransferConflictResolution) 
         {
             if(_uiLoginMenuEos == null) _uiLoginMenuEos = await _loginBackendProvider.GetBackend();
 
             var tcs = new UniTaskCompletionSource<LoginResult>();
-            _uiLoginMenuEos.SetOnTransferDecision(action);
+            _uiLoginMenuEos.SetOnTransferDecision(onTransferConflictResolution);
 
             token.ThrowIfCancellationRequested();
-            Debug.Log("[AUTH] Google auth: LoginAsync triggered");
 
+            Debug.Log("[AUTH] Google auth: LoginAsync triggered");
             Debug.Log("[AUTH] Google auth: attempting deviceId reset");
             //Result deleteResult = await _deviceIdentityService.DeleteDeviceIdAsync();
             //Result createResult = await _deviceIdentityService.CreateDeviceIdAsync();
@@ -163,7 +163,7 @@ namespace Assets.Scripts.Services.EOS.Auth
             _dialogService.ShowAccountTransfer(null, onChoiceCallback);
         }
 
-        public async UniTask SwitchAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> onAccountSwitchReady)
+        public async UniTask SwitchAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> onDeviceDataConflictResolution)
         {
             Debug.Log("[AUTHSWITCH] Switching account (TEST MODE)");
 
@@ -172,11 +172,11 @@ namespace Assets.Scripts.Services.EOS.Auth
             Result deleteResult = await _deviceIdentityService.DeleteDeviceIdAsync();
             Result createResult = await _deviceIdentityService.CreateDeviceIdAsync();
 
-            bool canWipeIdentity =
+            bool keepDeviceData =
                 deleteResult == Result.Success &&
                 createResult == Result.Success;
 
-            onAccountSwitchReady?.Invoke(!canWipeIdentity);
+            onDeviceDataConflictResolution?.Invoke(!keepDeviceData);
 
             await strategy.Login(token, LoginType.DeviceId);
             await strategy.Login(token, LoginType.GoogleId);

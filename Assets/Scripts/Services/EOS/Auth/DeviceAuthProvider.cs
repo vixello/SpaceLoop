@@ -121,7 +121,7 @@ namespace Assets.Scripts.Services.EOS.Auth
             return await tcsLogout.Task;
         }
 
-        public async UniTask SwitchAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> onAccountSwithcReady)
+        public async UniTask SwitchAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> onDataWipeRequired)
         {
             Debug.Log("[AUTH] Switching account (TEST MODE)");
 
@@ -161,7 +161,7 @@ namespace Assets.Scripts.Services.EOS.Auth
             Debug.Log("[AUTH] SwitchAccount sequence fired");
         }
 
-        public async UniTask LinkAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> localDataWipeDecision)
+        public async UniTask LinkAccount(CancellationToken token, IAccountLoginStrategy strategy, Action<bool> onDeviceDataConflictResolution)
         {
             if (_uiLoginMenuEos == null) _uiLoginMenuEos = await _loginBackendProvider.GetBackend();
             Debug.Log("[AUTH] Linking account");
@@ -172,7 +172,7 @@ namespace Assets.Scripts.Services.EOS.Auth
             _uiLoginMenuEos.DeviceIdProductUser = EOSManager.Instance.GetProductUserId();
             _uiLoginMenuEos.ManualLoginType = LoginType.GoogleId;
             await strategy.Login(token, LoginType.GoogleId);
-            _uiLoginMenuEos.SetOnTransferDecision(localDataWipeDecision);
+            _uiLoginMenuEos.SetOnTransferDecision(onDeviceDataConflictResolution);
 
             // EOS will trigger your ConnectLoginTokenCallback
             // If PUID mismatch → TransferDeviceIdAccount will run

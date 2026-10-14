@@ -204,7 +204,7 @@ namespace Assets.Scripts.Services.Auth
             {
                 using (var cts = new CancellationTokenSource())
                 {
-                    await authProvider.SwitchAccount(cts.Token, strategy, DecideAboutAccountWipe);
+                    await authProvider.SwitchAccount(cts.Token, strategy, ResolveDeviceDataConflict);
                 }
                 _identityManager.GetIdentity().IsGuest = false;
                 _identityManager.GetIdentity().AccountTransfered = true;
@@ -237,7 +237,7 @@ namespace Assets.Scripts.Services.Auth
             {
                 using (var cts = new CancellationTokenSource())
                 {
-                    await authProvider.LinkAccount(cts.Token, strategy, DecideAboutAccountWipe);
+                    await authProvider.LinkAccount(cts.Token, strategy, ResolveDeviceDataConflict);
                 }
                 _identityManager.GetIdentity().IsGuest = false;
                 _identityManager.GetIdentity().AccountTransfered = true;
@@ -251,7 +251,7 @@ namespace Assets.Scripts.Services.Auth
             Debug.Log($"[AUTH] Performed Link");
         }
 
-        private async void DecideAboutAccountWipe(bool canSwitch)
+        private async void ResolveDeviceDataConflict(bool canSwitch)
         {
             if(canSwitch)
             {
