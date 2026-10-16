@@ -1,0 +1,731 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Ui%20Toolkit/Common/Common.uss?fileID=7433441132597879392&amp;guid=f1e0c419fffe5c54ea31b5bd59f0c918&amp;type=3#Common" />
+    <Style src="project://database/Assets/Ui%20Toolkit/Popups/Popups.uss?fileID=7433441132597879392&amp;guid=c8d094e6a013300408ede7b3c6a9197a&amp;type=3#Popups" />
+    <ui:VisualElement name="popups" picking-mode="Ignore" class="popups layer">
+        <ui:VisualElement name="popup-link" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-cyan">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--link">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="ACCOUNT" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="LINK ACCOUNT" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="LINK A LOGIN METHOD SO YOU CAN RECOVER YOUR PROGRESS AND PLAY ON ANOTHER DEVICE." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="provs">
+                    <ui:VisualElement class="prov prov--linked">
+                        <ui:VisualElement picking-mode="Ignore" class="prov__logo prov__logo--google">
+                            <ui:VisualElement picking-mode="Ignore" class="g g--b" />
+                            <ui:VisualElement picking-mode="Ignore" class="g g--r" />
+                            <ui:VisualElement picking-mode="Ignore" class="g g--y" />
+                            <ui:VisualElement picking-mode="Ignore" class="g g--g" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="prov__text">
+                            <ui:Label text="GOOGLE" picking-mode="Ignore" class="prov__name" />
+                            <ui:Label text="NOVA.RUNNER@GMAIL.COM" picking-mode="Ignore" class="prov__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="btn-unlink-google" class="btn prov__btn prov__btn--linked">
+                            <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                            <ui:Label text="UNLINK" picking-mode="Ignore" class="prov__btn-text" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="prov prov--open">
+                        <ui:VisualElement picking-mode="Ignore" class="prov__logo prov__logo--apple" />
+                        <ui:VisualElement picking-mode="Ignore" class="prov__text">
+                            <ui:Label text="APPLE" picking-mode="Ignore" class="prov__name" />
+                            <ui:Label text="NOT LINKED" picking-mode="Ignore" class="prov__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="btn-link-apple" class="btn prov__btn prov__btn--open">
+                            <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                            <ui:Label text="LINK" picking-mode="Ignore" class="prov__btn-text" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="prov prov--open">
+                        <ui:VisualElement picking-mode="Ignore" class="prov__logo prov__logo--fb" />
+                        <ui:VisualElement picking-mode="Ignore" class="prov__text">
+                            <ui:Label text="FACEBOOK" picking-mode="Ignore" class="prov__name" />
+                            <ui:Label text="NOT LINKED" picking-mode="Ignore" class="prov__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="btn-link-facebook" class="btn prov__btn prov__btn--open">
+                            <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                            <ui:Label text="LINK" picking-mode="Ignore" class="prov__btn-text" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="prov prov--soon">
+                        <ui:VisualElement picking-mode="Ignore" class="prov__logo prov__logo--more" />
+                        <ui:VisualElement picking-mode="Ignore" class="prov__text">
+                            <ui:Label text="MORE OPTIONS" picking-mode="Ignore" class="prov__name" />
+                            <ui:Label text="COMING SOON" picking-mode="Ignore" class="prov__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="btn-link-more" class="btn prov__btn prov__btn--soon">
+                            <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                            <ui:Label text="SOON" picking-mode="Ignore" class="prov__btn-text" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="YOU NEED AT LEAST ONE LINKED LOGIN METHOD." picking-mode="Ignore" class="dlg__note" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-link-close" class="btn btn-ghost dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CLOSE" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-conflict" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-amber dlg--wide">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--warn">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="LINK GOOGLE ACCOUNT" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="DATA TRANSFER NEEDED" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="THIS GOOGLE ACCOUNT ALREADY HAS PROGRESS. CHOOSE WHICH PROGRESS TO KEEP. THE OTHER ONE WILL BE REPLACED." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="saves">
+                    <ui:Button name="save-device" class="btn save">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:VisualElement picking-mode="Ignore" class="save__top">
+                            <ui:Label text="THIS DEVICE" picking-mode="Ignore" class="tag" />
+                            <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                            <ui:VisualElement picking-mode="Ignore" class="save__radio">
+                                <ui:VisualElement picking-mode="Ignore" class="save__radio-dot" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="save__who">
+                            <ui:VisualElement picking-mode="Ignore" class="save__av" />
+                            <ui:VisualElement picking-mode="Ignore" class="save__names">
+                                <ui:Label text="GUEST_4821" picking-mode="Ignore" class="save__pilot" />
+                                <ui:Label text="GUEST PROGRESS" picking-mode="Ignore" class="save__via" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="save__stats">
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="LEVEL" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="3" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="RANK" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="BRONZE II" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="PLAYTIME" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="1H 12M" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="CREDITS" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="4,200" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="VEHICLES" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="1" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="LAST PLAYED" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="TODAY" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Button name="save-linked" class="btn save save--sel">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:VisualElement picking-mode="Ignore" class="save__top">
+                            <ui:Label text="LINKED ACCOUNT" picking-mode="Ignore" class="tag tag--accent" />
+                            <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                            <ui:Label text="MORE PROGRESS" picking-mode="Ignore" class="save__best" />
+                            <ui:VisualElement picking-mode="Ignore" class="save__radio">
+                                <ui:VisualElement picking-mode="Ignore" class="save__radio-dot" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="save__who">
+                            <ui:VisualElement picking-mode="Ignore" class="save__av" />
+                            <ui:VisualElement picking-mode="Ignore" class="save__names">
+                                <ui:Label text="NOVA_RUNNER" picking-mode="Ignore" class="save__pilot" />
+                                <ui:Label text="GOOGLE" picking-mode="Ignore" class="save__via" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="save__stats">
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="LEVEL" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="27" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="RANK" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="PLATINUM II" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="PLAYTIME" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="84H 40M" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="CREDITS" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="128,450" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="VEHICLES" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="4" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                            <ui:VisualElement picking-mode="Ignore" class="sstat">
+                                <ui:Label text="LAST PLAYED" picking-mode="Ignore" class="sstat__label" />
+                                <ui:Label text="2 DAYS AGO" picking-mode="Ignore" class="sstat__val" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="note-bad">
+                    <ui:Label text="THIS CANNOT BE UNDONE. THE PROGRESS YOU DO NOT KEEP IS DELETED." picking-mode="Ignore" class="note-bad__text" />
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-conflict-cancel" class="btn btn-ghost dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CANCEL" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-conflict-confirm" class="btn holdbtn accent-amber">
+                        <ui:VisualElement picking-mode="Ignore" class="holdbtn__fill" style="width: 0%;" />
+                        <ui:Label text="HOLD TO TRANSFER" picking-mode="Ignore" class="holdbtn__text" />
+                        <ui:Label text="KEEP LINKED" picking-mode="Ignore" class="holdbtn__sub" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-transfer" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-cyan">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="spin">
+                    <ui:VisualElement picking-mode="Ignore" class="spin__arc" />
+                </ui:VisualElement>
+                <ui:Label text="DATA TRANSFER" picking-mode="Ignore" class="eyebrow eyebrow--accent dlg__center" />
+                <ui:Label text="TRANSFERRING DATA" picking-mode="Ignore" class="dlg__title dlg__center" />
+                <ui:VisualElement picking-mode="Ignore" class="tsteps">
+                    <ui:VisualElement picking-mode="Ignore" class="tstep tstep--done">
+                        <ui:VisualElement picking-mode="Ignore" class="tstep__dot">
+                            <ui:VisualElement picking-mode="Ignore" class="check" />
+                        </ui:VisualElement>
+                        <ui:Label text="VERIFYING ACCOUNTS" picking-mode="Ignore" class="tstep__label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="tstep tstep--active">
+                        <ui:VisualElement picking-mode="Ignore" class="tstep__dot" />
+                        <ui:Label text="UPLOADING PROGRESS" picking-mode="Ignore" class="tstep__label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="tstep tstep--pending">
+                        <ui:VisualElement picking-mode="Ignore" class="tstep__dot" />
+                        <ui:Label text="MERGING PURCHASES" picking-mode="Ignore" class="tstep__label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="tstep tstep--pending">
+                        <ui:VisualElement picking-mode="Ignore" class="tstep__dot" />
+                        <ui:Label text="FINISHING UP" picking-mode="Ignore" class="tstep__label" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="tbar">
+                    <ui:VisualElement name="transfer-fill" picking-mode="Ignore" class="tbar__fill" style="width: 46%;" />
+                </ui:VisualElement>
+                <ui:Label text="DO NOT CLOSE THE GAME. THIS TAKES A FEW SECONDS." picking-mode="Ignore" class="dlg__note dlg__center" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-transfer-done" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-green">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--ok">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="DATA TRANSFER" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="TRANSFER COMPLETE" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="YOUR PROGRESS IS NOW SAVED TO YOUR LINKED GOOGLE ACCOUNT." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="breakdown">
+                    <ui:VisualElement picking-mode="Ignore" class="brow">
+                        <ui:Label text="ACCOUNT" picking-mode="Ignore" class="brow__label" />
+                        <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                        <ui:Label text="NOVA_RUNNER" picking-mode="Ignore" class="brow__val" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="brow">
+                        <ui:Label text="LEVEL" picking-mode="Ignore" class="brow__label" />
+                        <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                        <ui:Label text="27" picking-mode="Ignore" class="brow__val" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="brow">
+                        <ui:Label text="LINKED WITH" picking-mode="Ignore" class="brow__label" />
+                        <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                        <ui:Label text="GOOGLE" picking-mode="Ignore" class="brow__val" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-transfer-done" class="btn btn-cta dlg__btn accent-green">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CONTINUE" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-error" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-red">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--warn">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="ERROR" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="SOMETHING WENT WRONG" name="error-title" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="AN UNEXPECTED ERROR OCCURRED. PLEASE TRY AGAIN. IF IT KEEPS HAPPENING, CONTACT SUPPORT AND SHARE THE CODE BELOW." name="error-text" picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="errcode">
+                    <ui:VisualElement picking-mode="Ignore" class="errcode__main">
+                        <ui:Label text="ERROR CODE" picking-mode="Ignore" class="eyebrow" />
+                        <ui:Label text="ERR-4012" name="error-code" picking-mode="Ignore" class="errcode__val" />
+                    </ui:VisualElement>
+                    <ui:Button name="btn-copy-error" class="btn errcode__copy">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="COPY DETAILS" picking-mode="Ignore" class="errcode__copy-text" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement name="error-details-box" picking-mode="Ignore" class="errdetails hidden">
+                    <ui:Label text="Request: POST /v1/session  /  Status: 500  /  Trace: 7f3a-91c2-bb04  /  Build 1287" name="error-details" picking-mode="Ignore" class="errdetails__text" />
+                </ui:VisualElement>
+                <ui:Button name="btn-toggle-details" class="btn link">
+                    <ui:Label text="SHOW DETAILS" picking-mode="Ignore" class="link__text" />
+                </ui:Button>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-error-support" class="btn btn-ghost dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="SUPPORT" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-error-close" class="btn btn-ghost dlg__btn accent-red">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CLOSE" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-error-retry" class="btn btn-cta dlg__btn accent-red">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="RETRY" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-offline" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-amber">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--off">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="NETWORK" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="CONNECTION LOST" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="WE CANNOT REACH THE SERVER. CHECK YOUR INTERNET CONNECTION. WE WILL KEEP TRYING." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="retry">
+                    <ui:VisualElement picking-mode="Ignore" class="spin spin--sm">
+                        <ui:VisualElement picking-mode="Ignore" class="spin__arc" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="retry__text">
+                        <ui:Label text="RECONNECTING IN" picking-mode="Ignore" class="eyebrow" />
+                        <ui:Label text="5" name="retry-count" picking-mode="Ignore" class="retry__num" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-offline-quit" class="btn btn-ghost dlg__btn accent-amber">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="QUIT TO MENU" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-offline-retry" class="btn btn-cta dlg__btn accent-amber">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="RETRY NOW" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-update" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-cyan">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--up">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="UPDATE REQUIRED" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="NEW VERSION AVAILABLE" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="YOU NEED TO UPDATE THE GAME TO KEEP PLAYING ONLINE." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="ver">
+                    <ui:Label text="0.9.4" picking-mode="Ignore" class="ver__old" />
+                    <ui:VisualElement picking-mode="Ignore" class="ver__arrow">
+                        <ui:VisualElement picking-mode="Ignore" class="chevron" />
+                    </ui:VisualElement>
+                    <ui:Label text="0.9.5" picking-mode="Ignore" class="ver__new" />
+                    <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                    <ui:VisualElement picking-mode="Ignore" class="ver__size">
+                        <ui:Label text="DOWNLOAD" picking-mode="Ignore" class="eyebrow" />
+                        <ui:Label text="184 MB" picking-mode="Ignore" class="ver__size-val" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="notes">
+                    <ui:Label text="WHAT&apos;S NEW" picking-mode="Ignore" class="eyebrow notes__label" />
+                    <ui:VisualElement picking-mode="Ignore" class="note">
+                        <ui:VisualElement picking-mode="Ignore" class="note__dot" />
+                        <ui:Label text="NEW PLANET: KRYOS" picking-mode="Ignore" class="note__text" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="note">
+                        <ui:VisualElement picking-mode="Ignore" class="note__dot" />
+                        <ui:Label text="RANKED FIXES AND NEW REWARDS" picking-mode="Ignore" class="note__text" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="note">
+                        <ui:VisualElement picking-mode="Ignore" class="note__dot" />
+                        <ui:Label text="PERFORMANCE IMPROVEMENTS" picking-mode="Ignore" class="note__text" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-update-quit" class="btn btn-ghost dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="QUIT GAME" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-update-now" class="btn btn-cta dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="UPDATE NOW" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-maint" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-violet">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--tool">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="SERVERS" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="MAINTENANCE" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="WE ARE UPDATING THE SERVERS TO MAKE THE GAME BETTER. ONLINE MODES ARE UNAVAILABLE UNTIL IT ENDS." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="eta">
+                    <ui:Label text="BACK ONLINE IN" picking-mode="Ignore" class="eyebrow" />
+                    <ui:VisualElement picking-mode="Ignore" class="timer eta__timer">
+                        <ui:VisualElement picking-mode="Ignore" class="timer__cell">
+                            <ui:Label text="01" picking-mode="Ignore" class="timer__num" />
+                            <ui:Label text="H" picking-mode="Ignore" class="timer__unit" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="timer__cell">
+                            <ui:Label text="24" picking-mode="Ignore" class="timer__num" />
+                            <ui:Label text="M" picking-mode="Ignore" class="timer__unit" />
+                        </ui:VisualElement>
+                        <ui:VisualElement picking-mode="Ignore" class="timer__cell">
+                            <ui:Label text="10" picking-mode="Ignore" class="timer__num" />
+                            <ui:Label text="S" picking-mode="Ignore" class="timer__unit" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="SOLO MODES THAT DO NOT NEED A CONNECTION STAY AVAILABLE." picking-mode="Ignore" class="dlg__note" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-maint-quit" class="btn btn-ghost dlg__btn accent-violet">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="QUIT GAME" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-maint-retry" class="btn btn-cta dlg__btn accent-violet">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CHECK AGAIN" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-session" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-amber">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--lock">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="ACCOUNT" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="SESSION EXPIRED" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="YOU HAVE BEEN SIGNED OUT, OR YOU LOGGED IN ON ANOTHER DEVICE. SIGN IN AGAIN TO CONTINUE." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-session-quit" class="btn btn-ghost dlg__btn accent-amber">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CLOSE GAME" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-session-signin" class="btn btn-cta dlg__btn accent-amber">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="SIGN IN AGAIN" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-legal" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-cyan dlg--wide dlg--tall">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--doc">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="LEGAL" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="TERMS OF SERVICE" name="legal-title" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="legal-tabs">
+                    <ui:Button class="btn chip chip--active">
+                        <ui:Label text="TERMS OF SERVICE" picking-mode="Ignore" class="chip__label" />
+                    </ui:Button>
+                    <ui:Button class="btn chip">
+                        <ui:Label text="PRIVACY POLICY" picking-mode="Ignore" class="chip__label" />
+                    </ui:Button>
+                    <ui:Button class="btn chip">
+                        <ui:Label text="COMMUNITY RULES" picking-mode="Ignore" class="chip__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="legal-meta">
+                    <ui:Label text="VERSION 3.1  /  UPDATED 1 SEP 2026" picking-mode="Ignore" class="legal-meta__text" />
+                    <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                    <ui:Button name="btn-legal-browser" class="btn link">
+                        <ui:Label text="OPEN IN BROWSER" picking-mode="Ignore" class="link__text" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:ScrollView name="legal-doc" touch-scroll-type="Elastic" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" class="doc">
+                    <ui:Label text="1. Using the game" picking-mode="Ignore" class="doc__h" />
+                    <ui:Label text="Apex Velocity is a free to play racing game. By creating an account or playing, you agree to these terms. If you do not agree, please do not use the game." picking-mode="Ignore" class="doc__p" />
+                    <ui:Label text="You must be at least 13 years old, or the minimum age in your country, to create an account. If you are under 18, a parent or guardian should review these terms with you." picking-mode="Ignore" class="doc__p" />
+                    <ui:Label text="2. Your account" picking-mode="Ignore" class="doc__h" />
+                    <ui:Label text="Keep your login details secure. You are responsible for activity on your account. Accounts cannot be sold or transferred to other people." picking-mode="Ignore" class="doc__p" />
+                    <ui:Label text="We may suspend or close accounts that cheat, harass other players, abuse bugs, or break these terms." picking-mode="Ignore" class="doc__p" />
+                    <ui:Label text="3. Virtual items and purchases" picking-mode="Ignore" class="doc__h" />
+                    <ui:Label text="Credits, Quantum Cores and other virtual items have no real world value and cannot be exchanged for money. Purchases are processed by your app store and follow its refund policy." picking-mode="Ignore" class="doc__p" />
+                    <ui:Label text="4. Online play and conduct" picking-mode="Ignore" class="doc__h" />
+                    <ui:Label text="Be respectful in rooms and chat. Do not share offensive content, personal information or links to other services. Use the report option if someone breaks the rules." picking-mode="Ignore" class="doc__p" />
+                    <ui:Label text="5. Changes" picking-mode="Ignore" class="doc__h" />
+                    <ui:Label text="We may update these terms from time to time. We will tell you in the game when something important changes." picking-mode="Ignore" class="doc__p" />
+                </ui:ScrollView>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-legal-close" class="btn btn-cta dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CLOSE" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-consent" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-cyan">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--doc">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="ACTION NEEDED" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="WE UPDATED OUR TERMS" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="PLEASE REVIEW AND ACCEPT THE UPDATED TERMS AND PRIVACY POLICY TO KEEP PLAYING." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="notes">
+                    <ui:Label text="WHAT CHANGED" picking-mode="Ignore" class="eyebrow notes__label" />
+                    <ui:VisualElement picking-mode="Ignore" class="note">
+                        <ui:VisualElement picking-mode="Ignore" class="note__dot" />
+                        <ui:Label text="CLEARER RULES FOR ROOMS AND CHAT" picking-mode="Ignore" class="note__text" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="note">
+                        <ui:VisualElement picking-mode="Ignore" class="note__dot" />
+                        <ui:Label text="NEW OPTIONS TO MANAGE YOUR PRIVACY CHOICES" picking-mode="Ignore" class="note__text" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="note">
+                        <ui:VisualElement picking-mode="Ignore" class="note__dot" />
+                        <ui:Label text="UPDATED RANKED LEAVER PENALTIES" picking-mode="Ignore" class="note__text" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="consent-links">
+                    <ui:Button name="btn-read-terms" class="btn link">
+                        <ui:Label text="READ TERMS" picking-mode="Ignore" class="link__text" />
+                    </ui:Button>
+                    <ui:Button name="btn-read-privacy" class="btn link">
+                        <ui:Label text="READ PRIVACY POLICY" picking-mode="Ignore" class="link__text" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:Button name="cb-consent" class="btn cb">
+                    <ui:VisualElement picking-mode="Ignore" class="cb__box" />
+                    <ui:Label text="I HAVE READ AND AGREE TO THE TERMS OF SERVICE AND PRIVACY POLICY" picking-mode="Ignore" class="cb__text" />
+                </ui:Button>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-consent-decline" class="btn btn-ghost dlg__btn accent-red">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="DECLINE" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-consent-accept" class="btn btn-cta dlg__btn accent-cyan btn-cta--disabled">
+                        <ui:Label text="ACCEPT" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-privacy" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-cyan">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--lock">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="PRIVACY" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="YOUR PRIVACY CHOICES" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="CHOOSE HOW WE USE YOUR DATA. REQUIRED DATA IS NEEDED FOR THE GAME TO WORK." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="prv">
+                    <ui:VisualElement picking-mode="Ignore" class="srow srow--fixed">
+                        <ui:VisualElement picking-mode="Ignore" class="srow__text">
+                            <ui:Label text="REQUIRED DATA" picking-mode="Ignore" class="srow__label" />
+                            <ui:Label text="ACCOUNT, PROGRESS AND SECURITY. ALWAYS ON." picking-mode="Ignore" class="srow__sub" />
+                        </ui:VisualElement>
+                        <ui:Label text="ALWAYS ON" picking-mode="Ignore" class="srow__req" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="srow">
+                        <ui:VisualElement picking-mode="Ignore" class="srow__text">
+                            <ui:Label text="ANALYTICS" picking-mode="Ignore" class="srow__label" />
+                            <ui:Label text="HELPS US IMPROVE THE GAME" picking-mode="Ignore" class="srow__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="sw-analytics" class="btn swbtn swbtn--on">
+                            <ui:VisualElement picking-mode="Ignore" class="switch">
+                                <ui:VisualElement picking-mode="Ignore" class="switch__knob" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="srow">
+                        <ui:VisualElement picking-mode="Ignore" class="srow__text">
+                            <ui:Label text="PERSONALIZED OFFERS" picking-mode="Ignore" class="srow__label" />
+                            <ui:Label text="SHOP OFFERS BASED ON HOW YOU PLAY" picking-mode="Ignore" class="srow__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="sw-offers" class="btn swbtn">
+                            <ui:VisualElement picking-mode="Ignore" class="switch">
+                                <ui:VisualElement picking-mode="Ignore" class="switch__knob" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="srow">
+                        <ui:VisualElement picking-mode="Ignore" class="srow__text">
+                            <ui:Label text="CRASH REPORTS" picking-mode="Ignore" class="srow__label" />
+                            <ui:Label text="SENDS ERROR INFORMATION WHEN THE GAME CRASHES" picking-mode="Ignore" class="srow__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="sw-crash" class="btn swbtn swbtn--on">
+                            <ui:VisualElement picking-mode="Ignore" class="switch">
+                                <ui:VisualElement picking-mode="Ignore" class="switch__knob" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="srow">
+                        <ui:VisualElement picking-mode="Ignore" class="srow__text">
+                            <ui:Label text="MARKETING EMAILS" picking-mode="Ignore" class="srow__label" />
+                            <ui:Label text="NEWS AND EVENTS BY EMAIL" picking-mode="Ignore" class="srow__sub" />
+                        </ui:VisualElement>
+                        <ui:Button name="sw-mail" class="btn swbtn">
+                            <ui:VisualElement picking-mode="Ignore" class="switch">
+                                <ui:VisualElement picking-mode="Ignore" class="switch__knob" />
+                            </ui:VisualElement>
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="prv-links">
+                    <ui:Button name="btn-export-data" class="btn link">
+                        <ui:Label text="EXPORT MY DATA" picking-mode="Ignore" class="link__text" />
+                    </ui:Button>
+                    <ui:Button name="btn-delete-account" class="btn link link--red">
+                        <ui:Label text="DELETE MY ACCOUNT" picking-mode="Ignore" class="link__text" />
+                    </ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-privacy-cancel" class="btn btn-ghost dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="CANCEL" picking-mode="Ignore" class="btn-ghost__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-privacy-save" class="btn btn-cta dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="SAVE CHOICES" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-delete" class="modal-layer hidden" style="display: none;">
+            <ui:VisualElement picking-mode="Ignore" class="dlg accent-red">
+                <ui:VisualElement picking-mode="Ignore" class="dlg__bar" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__head">
+                    <ui:VisualElement picking-mode="Ignore" class="ico ico--warn">
+                        <ui:VisualElement picking-mode="Ignore" class="ico__a" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__b" />
+                        <ui:VisualElement picking-mode="Ignore" class="ico__c" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="dlg__headtext">
+                        <ui:Label text="ACCOUNT" picking-mode="Ignore" class="eyebrow eyebrow--accent" />
+                        <ui:Label text="DELETE ACCOUNT?" picking-mode="Ignore" class="dlg__title" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="YOUR ACCOUNT AND ALL ITS DATA WILL BE DELETED AFTER A 30 DAY WAITING PERIOD. YOU CAN CANCEL BY LOGGING IN BEFORE THEN." picking-mode="Ignore" class="dlg__text" />
+                <ui:VisualElement picking-mode="Ignore" class="breakdown">
+                    <ui:VisualElement picking-mode="Ignore" class="brow brow--bad">
+                        <ui:Label text="PROGRESS AND RANK" picking-mode="Ignore" class="brow__label" />
+                        <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                        <ui:Label text="DELETED" picking-mode="Ignore" class="brow__val" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="brow brow--bad">
+                        <ui:Label text="VEHICLES AND COSMETICS" picking-mode="Ignore" class="brow__label" />
+                        <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                        <ui:Label text="DELETED" picking-mode="Ignore" class="brow__val" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="brow brow--bad">
+                        <ui:Label text="PURCHASES" picking-mode="Ignore" class="brow__label" />
+                        <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                        <ui:Label text="NOT REFUNDED" picking-mode="Ignore" class="brow__val" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="brow">
+                        <ui:Label text="WAITING PERIOD" picking-mode="Ignore" class="brow__label" />
+                        <ui:VisualElement picking-mode="Ignore" class="spacer" />
+                        <ui:Label text="30 DAYS" picking-mode="Ignore" class="brow__val" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="TYPE DELETE TO CONFIRM" picking-mode="Ignore" class="eyebrow del__label" />
+                <ui:TextField name="delete-confirm" max-length="6" class="del-field" />
+                <ui:VisualElement picking-mode="Ignore" class="dlg__row">
+                    <ui:Button name="btn-delete-keep" class="btn btn-cta dlg__btn accent-cyan">
+                        <ui:VisualElement picking-mode="Ignore" class="sheen" />
+                        <ui:Label text="KEEP MY ACCOUNT" picking-mode="Ignore" class="btn-cta__label" />
+                    </ui:Button>
+                    <ui:Button name="btn-delete-hold" class="btn holdbtn accent-red">
+                        <ui:VisualElement picking-mode="Ignore" class="holdbtn__fill" style="width: 0%;" />
+                        <ui:Label text="HOLD TO DELETE" picking-mode="Ignore" class="holdbtn__text" />
+                        <ui:Label picking-mode="Ignore" class="holdbtn__sub" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
