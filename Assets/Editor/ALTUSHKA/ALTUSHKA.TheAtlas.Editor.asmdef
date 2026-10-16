@@ -1,0 +1,23 @@
+{
+    "name": "ALTUSHKA.TheAtlas.Editor",
+    "rootNamespace": "ALTUSHKA.TheAtlas",
+    "references": [
+        "GUID:2a0f691791cb9a441bd82b7d75a38cef",
+        "GUID:b31e9033f0570974da09553697016428",
+        "GUID:d61312054f2d8514f95f04706d0c2441",
+        "GUID:0a35a3d2643767f44931808bc695762d",
+        "GUID:946a67f7b4bf40f4b9d5f456a1da31f1",
+        "GUID:5af5b6f067ed90d4ea835fe3fddef23f",
+        "GUID:543a6dd67ef675a4cada9190642e089e",
+        "GUID:a46f7ebbceddde04fb84dfbc97a42a33"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
