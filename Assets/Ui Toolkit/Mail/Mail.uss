@@ -28,10 +28,75 @@
 .minbox__count { font-size: 12px; letter-spacing: 4px; color: var(--accent); -unity-font-style: bold; }
 
 .mlist { flex-grow: 1; flex-shrink: 1; }
+.mlist__title { flex-direction: row; align-items: flex-end; }
 
-.minbox__foot { flex-direction: row; flex-shrink: 0; margin-top: 12px; }
-.minbox__btn { flex-grow: 1; flex-basis: 0; height: 64px; margin-right: 8px; }
+/* Footer Layout & Stacked Rows */
+.minbox__foot { 
+    flex-direction: column; 
+    flex-shrink: 0; 
+    margin-top: 12px; 
+}
+
+.minbox__foot-row {
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.minbox__foot-row--hidden {
+    display: none;
+}
+
+.minbox__foot-row .minbox__btn {
+    width: 100%;
+    margin-right: 0;
+}
+
+.minbox__foot-actions {
+    flex-direction: row;
+    width: 100%;
+}
+
+.minbox__foot .btn {
+    height: 52px;
+}
+
+.minbox__btn { 
+    flex-grow: 1; 
+    flex-basis: 0; 
+    height: 52px; 
+    margin-right: 8px; 
+}
 .minbox__btn:last-child { margin-right: 0; }
+
+/* Claim All button matching footer button specs */
+.mlist__claim {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 52px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+}
+.mlist__claim:last-child {
+    margin-right: 0;
+}
+
+.mlist__claim-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.mlist__claim .btn-cta__label {
+    font-size: 21.5px;
+    line-height: 15px;
+    margin: 0;
+}
 
 /* Row */
 .mrow {
@@ -101,23 +166,6 @@
 .mempty__text { margin-top: 8px; font-size: 12px; letter-spacing: 4px; color: var(--c-text-3); -unity-font-style: bold; }
 
 /* ---------------------------------------------------------------------
-   SINGLE MAIL DELETE BUTTON
-   --------------------------------------------------------------------- */
-.mrow__delete {
-    width: 36px;
-    height: 36px;
-    margin-left: 14px;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--c-surface);
-}
-
-.mrow__delete:hover {
-    background-color: rgb(255, 82, 96);
-    scale: 1.1 1.1;
-}
-
-/* ---------------------------------------------------------------------
    SINGLE MAIL DELETE BUTTON (TRASH BIN ICON)
    --------------------------------------------------------------------- */
 .mrow__delete {
@@ -170,4 +218,82 @@
 
 .mrow__delete:hover .mbin__body {
     border-color: var(--c-ink);
+}
+
+/* Selection Checkbox Styles */
+.mrow__checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 14px;
+    border-width: 2px;
+    border-color: var(--c-hair-strong);
+    border-radius: 4px;
+    background-color: var(--c-surface);
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* Hide by default until multi-select/batch delete mode is active */
+    display: none; 
+}
+
+/* Inner checkmark or fill when selected */
+.mrow__checkbox-inner {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background-color: transparent;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+}
+
+.chip--small {
+    height: 32px;
+    padding: 0 12px;
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+.chip--small .chip__label {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* Modifier class toggled from C# to show selection bar and checkboxes */
+
+.mlist__selection-bar {
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.mlist__selection-bar--hidden {
+    display: none;
+}
+
+.mlist__selected-count {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    -unity-font-style: bold;
+}
+
+.mlist__selection-buttons {
+    flex-direction: row;
+}
+.mail-list--selecting .mlist__selection-bar {
+    display: flex;
+}
+
+.mail-list--selecting .mrow__checkbox {
+    display: flex;
+}
+/* State when an individual row is checked/selected */
+.mrow--selected .mrow__checkbox {
+    border-color: var(--accent);
+}
+
+.mrow--selected .mrow__checkbox-inner {
+    background-color: var(--accent);
 }
