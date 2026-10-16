@@ -13,6 +13,7 @@ namespace Assets.Scripts.UI
         {
             { ScreenType.MainMenu, typeof(MainMenuController) },
             { ScreenType.Login, typeof(LoginController) },
+            { ScreenType.Mail, typeof(MailScreenController) },
             //{ ScreenType.Shop, typeof(ShopController) },
         };
 
